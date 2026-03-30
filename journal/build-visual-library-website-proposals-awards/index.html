@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build a Visual Library for Proposals & Awards | Matt Anthony</title>
+  <meta name="description" content="Build a visual library of architectural photography for your website, proposals and award submissions. A long-term content strategy for builders in BC.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Build a Visual Library for Proposals & Awards | Matt Anthony">
+  <meta property="og:description" content="A single shoot creates images for years of marketing. Learn how builders and designers can build a visual library that supports their website, proposals, award entries and social media.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mattanthonyphoto.com/journal/build-visual-library-website-proposals-awards">
+  <meta property="og:site_name" content="Matt Anthony Photography">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://mattanthonyphoto.com/journal/build-visual-library-website-proposals-awards">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Base Styles -->
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { background: #1a1a18; color: #f6f4f0; font-family: 'DM Sans', -apple-system, sans-serif; overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+  </style>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a18'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23c9a96e' font-family='serif' font-size='20' font-weight='300'%3EMA%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<style>
+#maHeader{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:99999!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:26px 64px!important;background-color:transparent!important;transition:background-color .45s ease,padding .45s ease,box-shadow .45s ease;font-family:'DM Sans',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;pointer-events:auto!important;visibility:visible!important;opacity:1!important;height:auto!important;overflow:visible!important;animation:none!important}
+#maHeader.scrolled{background-color:#1a1a18!important;padding:16px 64px!important;box-shadow:0 1px 30px rgba(0,0,0,.2)!important}
+#maHeader .ma-logo{display:flex!important;flex-direction:column;align-items:flex-start;text-decoration:none!important;flex-shrink:0;visibility:visible!important;opacity:1!important;height:auto!important;pointer-events:auto!important;animation:none!important}
+#maHeader .ma-logo-name{font-family:'Josefin Sans',sans-serif!important;font-weight:700!important;font-size:15px!important;letter-spacing:.4em!important;text-transform:uppercase!important;line-height:1!important;color:#f6f4f0!important}
+#maHeader .ma-logo-rule{width:100%!important;height:1px!important;background:#c9a96e!important;margin:5px 0!important;display:block!important}
+#maHeader .ma-logo-desc{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:300!important;font-size:7.5px!important;letter-spacing:.25em!important;text-transform:uppercase!important;color:#b8975a!important}
+#maHeader .ma-nav{display:flex!important;align-items:center;gap:35px;list-style:none!important;margin:0!important;padding:0!important;visibility:visible!important;opacity:1!important;height:auto!important;animation:none!important}
+#maHeader .ma-nav-item{position:relative;list-style:none!important;display:block!important;visibility:visible!important;opacity:1!important;height:auto!important;animation:none!important}
+#maHeader .ma-nav-link{font-family:'DM Sans',sans-serif!important;font-size:12.5px!important;font-weight:400!important;letter-spacing:.18em!important;text-transform:uppercase!important;color:#d9d5cd!important;text-decoration:none!important;position:relative;padding:8px 0!important;cursor:pointer;background:none!important;border:none!important;display:inline-block!important;visibility:visible!important;opacity:1!important;transition:color .3s ease;animation:none!important}
+#maHeader .ma-nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#c9a96e;transition:width .3s ease}
+#maHeader .ma-nav-link:hover{color:#f6f4f0!important}
+#maHeader .ma-nav-link:hover::after{width:100%}
+#maHeader .ma-has-dd::before{content:'';display:inline-block;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:3px solid currentColor;margin-left:6px;vertical-align:middle;position:relative;top:-1px}
+#maHeader .ma-dropdown{position:absolute;top:calc(100% + 12px);left:-16px;background:rgba(26,26,24,.97)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);min-width:260px;padding:12px 0;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s ease,transform .25s ease,visibility .25s ease;border:1px solid rgba(217,213,205,.08);list-style:none!important;margin:0!important;z-index:100000;height:auto!important;display:block!important}
+#maHeader .ma-nav-item:hover .ma-dropdown,#maHeader .ma-nav-item.active .ma-dropdown{opacity:1!important;visibility:visible!important;transform:translateY(0)}
+#maHeader .ma-dropdown li{list-style:none!important;display:block!important;visibility:visible!important;opacity:1!important;height:auto!important}
+#maHeader .ma-dropdown a{display:block!important;padding:10px 24px!important;font-family:'DM Sans',sans-serif!important;font-size:11.5px!important;font-weight:300!important;letter-spacing:.12em!important;color:#8a8579!important;text-decoration:none!important;transition:color .2s ease,padding-left .2s ease}
+#maHeader .ma-dropdown a:hover{color:#f6f4f0!important;padding-left:28px!important}
+#maHeader .ma-toggle{display:none;background:none!important;border:none!important;cursor:pointer;padding:8px;z-index:100001}
+#maHeader .ma-toggle span{display:block;width:24px;height:1.5px;background:#f6f4f0;transition:all .35s ease}
+#maHeader .ma-toggle span:nth-child(1){margin-bottom:6px}
+#maHeader .ma-toggle span:nth-child(2){margin-bottom:6px}
+#maHeader .ma-toggle.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+#maHeader .ma-toggle.open span:nth-child(2){opacity:0}
+#maHeader .ma-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+#maMobileNav{display:none;position:fixed;inset:0;z-index:99998;background:rgba(26,26,24,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column;justify-content:flex-start;align-items:flex-start;padding:100px 40px 64px;overflow-y:auto}
+#maMobileNav.open{display:flex!important}
+#maMobileNav a{font-family:'Josefin Sans',sans-serif!important;font-weight:700;font-size:22px;letter-spacing:.15em;text-transform:uppercase;color:#f6f4f0!important;text-decoration:none!important;margin-bottom:32px;transition:color .3s ease}
+#maMobileNav a:hover{color:#c9a96e!important}
+#maMobileNav .mobile-sub{margin-bottom:36px;width:100%}
+#maMobileNav .mobile-sub-label{font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;padding-bottom:8px;display:block;font-weight:500;border-bottom:1px solid rgba(201,169,110,.2)}
+#maMobileNav .mobile-sub a{font-family:'DM Sans',sans-serif!important;font-weight:300;font-size:15px;letter-spacing:.08em;color:#d9d5cd!important;margin-bottom:16px;display:block}
+@media(max-width:900px){
+#maHeader{padding:19px 24px!important}
+#maHeader.scrolled{padding:13px 24px!important}
+#maHeader .ma-nav{display:none!important}
+#maHeader .ma-toggle{display:block!important}
+}
+</style>
+
+<div id="maHeader">
+  <a href="/" class="ma-logo">
+    <span class="ma-logo-name">Matt Anthony</span>
+    <span class="ma-logo-rule"></span>
+    <span class="ma-logo-desc">Architectural Photography</span>
+  </a>
+  <ul class="ma-nav">
+    <li class="ma-nav-item">
+      <span class="ma-nav-link ma-has-dd">About</span>
+      <ul class="ma-dropdown">
+        <li><a href="/bio">Bio</a></li>
+        <li><a href="/process">Process</a></li>
+        <li><a href="/faqs">FAQs</a></li>
+      </ul>
+    </li>
+    <li class="ma-nav-item"><a href="/projects" class="ma-nav-link">Projects</a></li>
+    <li class="ma-nav-item">
+      <span class="ma-nav-link ma-has-dd">Services</span>
+      <ul class="ma-dropdown">
+        <li><a href="/project-photography">Project Photography</a></li>
+        <li><a href="/award-publication-imagery">Award & Publication Imagery</a></li>
+        <li><a href="/construction-team-content">Build & Team Content</a></li>
+        <li><a href="/creative-partner">Creative Partner</a></li>
+      </ul>
+    </li>
+    <li class="ma-nav-item">
+      <span class="ma-nav-link ma-has-dd">Case Studies</span>
+      <ul class="ma-dropdown">
+        <li><a href="/summerhill-fine-homes">Summerhill Fine Homes</a></li>
+        <li><a href="/balmoral-construction">Balmoral Construction</a></li>
+        <li><a href="/sitelines-architecture">Sitelines Architecture</a></li>
+        <li><a href="/the-window-merchant">The Window Merchant</a></li>
+        <li><a href="/lrd-studio-interior-design">LRD Studio</a></li>
+      </ul>
+    </li>
+    <li class="ma-nav-item"><a href="/journal" class="ma-nav-link">Journal</a></li>
+    <li class="ma-nav-item"><a href="/contact" class="ma-nav-link">Contact</a></li>
+  </ul>
+  <button class="ma-toggle" id="maToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+
+<div id="maMobileNav">
+  <div class="mobile-sub">
+    <span class="mobile-sub-label">About</span>
+    <a href="/bio">Bio</a>
+    <a href="/process">Process</a>
+    <a href="/faqs">FAQs</a>
+  </div>
+  <a href="/projects">Projects</a>
+  <div class="mobile-sub">
+    <span class="mobile-sub-label">Services</span>
+    <a href="/project-photography">Project Photography</a>
+    <a href="/award-publication-imagery">Award & Publication Imagery</a>
+    <a href="/construction-team-content">Build & Team Content</a>
+    <a href="/creative-partner">Creative Partner</a>
+  </div>
+  <div class="mobile-sub">
+    <span class="mobile-sub-label">Case Studies</span>
+    <a href="/summerhill-fine-homes">Summerhill Fine Homes</a>
+    <a href="/balmoral-construction">Balmoral Construction</a>
+    <a href="/sitelines-architecture">Sitelines Architecture</a>
+    <a href="/the-window-merchant">The Window Merchant</a>
+    <a href="/lrd-studio-interior-design">LRD Studio</a>
+  </div>
+  <a href="/journal">Journal</a>
+  <a href="/contact">Contact</a>
+</div>
+
+<script>
+(function() {
+  function hideDefault() {
+    var h = document.getElementById('header');
+    if (h) h.style.cssText = 'display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important;';
+  }
+  hideDefault();
+  document.addEventListener('DOMContentLoaded', hideDefault);
+  setTimeout(hideDefault, 300);
+  setTimeout(hideDefault, 1000);
+  setTimeout(hideDefault, 2500);
+
+  var header = document.getElementById('maHeader');
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', (window.pageYOffset || document.documentElement.scrollTop) > 60);
+  });
+
+  var toggle = document.getElementById('maToggle');
+  var mobileNav = document.getElementById('maMobileNav');
+  toggle.addEventListener('click', function() {
+    toggle.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      toggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.querySelectorAll('#maHeader .ma-has-dd').forEach(function(trigger) {
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var parent = this.parentElement;
+      var wasActive = parent.classList.contains('active');
+      document.querySelectorAll('#maHeader .ma-nav-item').forEach(function(item) { item.classList.remove('active'); });
+      if (!wasActive) parent.classList.add('active');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#maHeader')) {
+      document.querySelectorAll('#maHeader .ma-nav-item').forEach(function(item) { item.classList.remove('active'); });
+    }
+  });
+})();
+</script>
+
+<!-- Fix og:image to HTTPS -->
+<meta property="og:image" content="https://static1.squarespace.com/static/6824fd48afd1dd40cd73e146/t/68643f2e3cc74f1722c12ce4/1751400238330/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w" />
+
+<!-- Sitewide Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://www.mattanthonyphoto.com/#business",
+      "name": "Matt Anthony Photography",
+      "alternateName": "Matt Anthony Architectural Photography",
+      "description": "Architectural photography and film for architects, custom builders, and interior designers in British Columbia. Serving Whistler, Pemberton, Squamish, Sunshine Coast, and Vancouver.",
+      "url": "https://www.mattanthonyphoto.com",
+      "telephone": "+16047659270",
+      "email": "info@mattanthonyphoto.com",
+      "image": "/images/west-10th-vancouver-web--2.jpg",
+      "logo": "/images/matt-anthony-photography.png",
+      "priceRange": "$$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Squamish",
+        "addressRegion": "BC",
+        "addressCountry": "CA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.7016,
+        "longitude": -123.1558
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Whistler",
+          "containedInPlace": { "@type": "AdministrativeArea", "name": "British Columbia" }
+        },
+        {
+          "@type": "City",
+          "name": "Pemberton",
+          "containedInPlace": { "@type": "AdministrativeArea", "name": "British Columbia" }
+        },
+        {
+          "@type": "City",
+          "name": "Squamish",
+          "containedInPlace": { "@type": "AdministrativeArea", "name": "British Columbia" }
+        },
+        {
+          "@type": "Place",
+          "name": "Sunshine Coast",
+          "containedInPlace": { "@type": "AdministrativeArea", "name": "British Columbia" }
+        },
+        {
+          "@type": "City",
+          "name": "Vancouver",
+          "containedInPlace": { "@type": "AdministrativeArea", "name": "British Columbia" }
+        }
+      ],
+      "founder": {
+        "@type": "Person",
+        "@id": "https://www.mattanthonyphoto.com/#person",
+        "name": "Matt Anthony"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Architectural Photography Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Project Photography",
+              "description": "Complete visual documentation of finished builds including architecture, interiors, aerial, twilight, and short form project film.",
+              "url": "https://www.mattanthonyphoto.com/project-photography"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Award & Publication Imagery",
+              "description": "Photography and film crafted for award submissions, editorial features, and industry recognition.",
+              "url": "https://www.mattanthonyphoto.com/award-publication-imagery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Build & Team Content",
+              "description": "Lifestyle photography, construction progression, team portraits, and short form video for social media, recruitment, and brand storytelling.",
+              "url": "https://www.mattanthonyphoto.com/construction-team-content"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Creative Partner",
+              "description": "Full embedded creative partnership including photography, marketing strategy, website development, content creation, and brand management for firms building multiple projects per year.",
+              "url": "https://www.mattanthonyphoto.com/creative-partner"
+            }
+          }
+        ]
+      },
+      "sameAs": [
+        "https://www.instagram.com/mattanthonyphoto/",
+        "https://www.linkedin.com/in/mattanthonyphoto/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.mattanthonyphoto.com/#person",
+      "name": "Matt Anthony",
+      "jobTitle": "Architectural Photographer & Filmmaker",
+      "url": "https://www.mattanthonyphoto.com/bio",
+      "image": "/images/matt-anthony-photography-squamish.jpg",
+      "worksFor": {
+        "@id": "https://www.mattanthonyphoto.com/#business"
+      },
+      "knowsAbout": [
+        "Architectural Photography",
+        "Interior Design Photography",
+        "Construction Photography",
+        "Aerial Drone Photography",
+        "Short Form Film",
+        "Award Submission Photography"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/mattanthonyphoto/",
+        "https://www.linkedin.com/in/mattanthonyphoto/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.mattanthonyphoto.com/#website",
+      "name": "Matt Anthony Photography",
+      "url": "https://www.mattanthonyphoto.com",
+      "publisher": {
+        "@id": "https://www.mattanthonyphoto.com/#business"
+      }
+    }
+  ]
+}
+</script>
+
+
+<style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}
+
+/* ═══ INTERACTIVE LAYER ═══ */
+
+/* ── Loading screen ── */
+.bl-loader{position:fixed;top:0;left:0;right:0;bottom:0;background:#1a1a18;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),visibility 0.8s}
+.bl-loader.bl-done{opacity:0;visibility:hidden;pointer-events:none}
+.bl-loader-brand{font-family:'Josefin Sans',sans-serif;font-weight:300;font-size:0.65rem;letter-spacing:0.6em;text-transform:uppercase;color:#f6f4f0;opacity:0;animation:blLoaderIn 0.6s 0.15s cubic-bezier(0.16,1,0.3,1) forwards}
+.bl-loader-sub{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:0.9rem;color:rgba(138,133,121,0.7);margin-top:8px;opacity:0;animation:blLoaderIn 0.6s 0.4s cubic-bezier(0.16,1,0.3,1) forwards}
+.bl-loader-line{width:80px;height:1px;background:rgba(201,169,110,0.12);margin-top:24px;position:relative;overflow:hidden;border-radius:1px;opacity:0;animation:blLoaderIn 0.6s 0.3s cubic-bezier(0.16,1,0.3,1) forwards}
+.bl-loader-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,#c9a96e,transparent);animation:blLoaderFill 1s 0.5s cubic-bezier(0.33,1,0.68,1) forwards}
+@keyframes blLoaderIn{to{opacity:1}}
+@keyframes blLoaderFill{to{left:100%}}
+
+/* ── Scroll progress bar ── */
+.bl-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,#c9a96e,rgba(201,169,110,0.4));z-index:9999;transition:width 0.05s linear;box-shadow:0 0 10px rgba(201,169,110,0.4)}
+
+/* ── Custom cursor ── */
+.bl-cursor{position:fixed;width:20px;height:20px;border:1px solid rgba(201,169,110,0.5);border-radius:50%;pointer-events:none;z-index:99999;transition:width 0.3s cubic-bezier(0.16,1,0.3,1),height 0.3s cubic-bezier(0.16,1,0.3,1),border-color 0.3s ease,background 0.3s ease,opacity 0.3s ease;transform:translate(-50%,-50%);mix-blend-mode:difference;opacity:0}
+.bl-cursor.bl-active{opacity:1}
+.bl-cursor.bl-hover{width:50px;height:50px;border-color:#c9a96e;background:rgba(201,169,110,0.08)}
+.bl-cursor.bl-click{width:14px;height:14px;background:rgba(201,169,110,0.3)}
+.bl-cursor-dot{position:fixed;width:4px;height:4px;background:#c9a96e;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.3s ease}
+.bl-cursor-dot.bl-active{opacity:1}
+
+/* ── CTA button glow ── */
+.bl-btn,.bl-cta-btn{animation:blBtnGlow 3s ease-in-out infinite alternate}
+@keyframes blBtnGlow{0%{box-shadow:none}100%{box-shadow:0 0 40px rgba(201,169,110,0.15),0 0 80px rgba(201,169,110,0.05)}}
+  :root {
+    --ink: #1a1a18;
+    --paper: #f6f4f0;
+    --warm: #c9a96e;
+    --warm-muted: #b8975a;
+    --stone: #8a8579;
+    --light-stone: #d9d5cd;
+    --off-white: #eeece6;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --display: 'Josefin Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+  .bl-hero { position: relative; min-height: 85vh; display: flex; align-items: flex-end; padding: 6rem 5vw; background: var(--ink); overflow: hidden; width: 100%; }
+  .bl-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(26,26,24,0.85) 100%); z-index: 1; }
+  .bl-hero-bg { position: absolute; inset: 0; opacity: 0.5; filter: saturate(0.6); }
+  .bl-hero-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bl-hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .bl-hero-label { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm); margin-bottom: 1.5rem; font-weight: 500; opacity: 0; animation: blFadeUp 0.8s ease forwards 0.3s; }
+  .bl-hero h1 { font-family: var(--serif); font-size: clamp(2.4rem, 5.5vw, 4.5rem); font-weight: 300; line-height: 1.1; color: var(--paper); letter-spacing: -0.02em; margin-bottom: 1.5rem; opacity: 0; animation: blFadeUp 0.8s ease forwards 0.5s; }
+  .bl-hero h1 em { font-style: italic; color: var(--warm); }
+  .bl-hero-sub { font-family: var(--sans); font-size: 1rem; color: var(--light-stone); font-weight: 300; max-width: 560px; opacity: 0; animation: blFadeUp 0.8s ease forwards 0.7s; }
+
+  .bl-meta-bar { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--light-stone); border-bottom: 1px solid var(--light-stone); width: 100%; }
+  .bl-meta-item { padding: 1.5rem 5vw; border-right: 1px solid var(--light-stone); flex: 1; min-width: 180px; }
+  .bl-meta-item:last-child { border-right: none; }
+  .bl-meta-item dt { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 0.4rem; font-weight: 500; }
+  .bl-meta-item dd { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--ink); }
+
+  .bl-body { padding: 5rem 5vw; width: 100%; }
+  .bl-body-inner { max-width: 720px; }
+  .bl-body h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; line-height: 1.2; margin: 3.5rem 0 1.5rem; letter-spacing: -0.01em; color: var(--ink); }
+  .bl-body h2:first-child { margin-top: 0; }
+  .bl-body h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .bl-body p { font-size: 1rem; color: #4a4a46; margin-bottom: 1.5rem; line-height: 1.8; }
+  .bl-body p:last-child { margin-bottom: 0; }
+  .bl-body ul { margin: 0 0 1.5rem 1.25rem; }
+  .bl-body li { font-size: 1rem; color: #4a4a46; line-height: 1.8; margin-bottom: 0.5rem; }
+  .bl-body li strong { color: var(--ink); font-weight: 500; }
+  .bl-body blockquote { border-left: 2px solid var(--warm); padding: 1.25rem 0 1.25rem 2rem; margin: 2.5rem 0; font-family: var(--serif); font-size: 1.25rem; font-style: italic; line-height: 1.5; color: var(--ink); }
+  .bl-body a { color: var(--warm-muted); text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.3); transition: border-color 0.3s ease; }
+  .bl-body a:hover { border-color: var(--warm); }
+
+  .bl-section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-muted); margin-bottom: 1.5rem; font-weight: 500; }
+  .bl-divider { width: 60px; height: 1px; background: var(--warm); margin: 0 0 2rem; }
+
+  .bl-image-break { width: 100%; height: 70vh; min-height: 450px; overflow: hidden; }
+  .bl-image-break img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .bl-image-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; width: 100%; }
+  .bl-image-pair img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+
+  /* ─── LIBRARY GRID ─── */
+  .bl-lib-grid { padding: 5rem 5vw; width: 100%; background: var(--ink); }
+  .bl-lib-grid .bl-section-label { color: var(--warm); }
+  .bl-lib-grid h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; color: var(--paper); margin-bottom: 2.5rem; }
+  .bl-lib-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+  .bl-lib-card { padding: 2rem 0; border-top: 1px solid rgba(201,169,110,0.2); }
+  .bl-lib-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--paper); margin-bottom: 0.75rem; }
+  .bl-lib-card p { font-size: 0.9rem; color: var(--stone); line-height: 1.7; }
+
+  /* ─── FRAMEWORK BOX ─── */
+  .bl-framework { background: var(--off-white); padding: 5rem 5vw; width: 100%; }
+  .bl-framework-inner { max-width: 720px; }
+  .bl-framework h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300; margin-bottom: 2rem; color: var(--ink); }
+  .bl-framework h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); margin: 2rem 0 0.75rem; }
+  .bl-framework p { font-size: 1rem; color: #4a4a46; line-height: 1.8; margin-bottom: 1rem; }
+
+  .bl-pull-quote { background: var(--off-white); padding: 5rem 5vw; text-align: center; width: 100%; }
+  .bl-pull-quote p { font-family: var(--serif); font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 300; font-style: italic; line-height: 1.4; max-width: 800px; margin: 0 auto; color: var(--ink); }
+  .bl-pull-quote p::before { content: '\201C'; display: block; font-size: 4rem; color: var(--warm); line-height: 1; margin-bottom: 0.5rem; font-style: normal; }
+
+  .bl-related { padding: 5rem 5vw; width: 100%; background: var(--ink); }
+  .bl-related .bl-section-label { color: var(--warm); }
+  .bl-related h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; color: var(--paper); margin-bottom: 2.5rem; }
+  .bl-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .bl-related-card { display: block; text-decoration: none; color: inherit; overflow: hidden; border-radius: 2px; }
+  .bl-related-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .bl-related-card:hover img { transform: scale(1.04); }
+  .bl-related-card-body { padding: 1.25rem 0; }
+  .bl-related-card-cat { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm); margin-bottom: 0.5rem; font-weight: 500; }
+  .bl-related-card-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--paper); line-height: 1.3; }
+
+  .bl-cta { position: relative; padding: 7rem 5vw; text-align: center; width: 100%; overflow: hidden; min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .bl-cta-bg { position: absolute; inset: 0; z-index: 0; }
+  .bl-cta-bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.5) brightness(0.25); }
+  .bl-cta-c { position: relative; z-index: 2; }
+  .bl-cta h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 300; color: var(--paper); margin-bottom: 1rem; }
+  .bl-cta h2 em { font-style: italic; color: var(--warm); }
+  .bl-cta p { color: var(--light-stone); font-size: 1rem; max-width: 520px; margin: 0 auto 2.5rem; }
+  .bl-cta-btn { display: inline-block !important; font-family: var(--sans) !important; font-size: 0.7rem !important; letter-spacing: 0.25em !important; text-transform: uppercase !important; padding: 1rem 2.5rem !important; border: 1px solid var(--warm) !important; color: var(--warm) !important; background: transparent !important; text-decoration: none !important; font-weight: 500 !important; transition: all 0.35s ease; }
+  .bl-cta-btn:hover { background: var(--warm) !important; color: var(--ink) !important; }
+  .bl-alt-cta { margin-top: 1.25rem; font-size: 0.75rem; color: var(--stone); letter-spacing: 0.05em; font-weight: 300; }
+  .bl-alt-cta a { color: var(--warm); text-decoration: underline; text-underline-offset: 3px; transition: color 0.3s ease; }
+  .bl-alt-cta a:hover { color: var(--paper); }
+
+  .bl-ft { background: #1a1a18; border-top: 1px solid rgba(201,169,110,0.15); }
+  .bl-ft-row { display: flex; justify-content: space-between; align-items: center; padding: 2.25rem 5vw; gap: 2rem; flex-wrap: wrap; }
+  .bl-ft-item { display: flex; align-items: baseline; gap: 10px; }
+  .bl-ft-label { font-size: 7.5px; letter-spacing: 0.3em; text-transform: uppercase; color: #c9a96e; font-weight: 500; white-space: nowrap; }
+  .bl-ft-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(201,169,110,0.4); flex-shrink: 0; position: relative; top: -2px; }
+  .bl-ft-item p, .bl-ft-item a { margin: 0; font-size: 12px; color: rgba(246,244,240,0.8); font-weight: 300; white-space: nowrap; text-decoration: none; transition: color 0.3s ease; }
+  .bl-ft-item a:hover { color: #c9a96e; }
+  .bl-ft-social { display: flex; gap: 18px; }
+  .bl-ft-rule { margin: 0 5vw; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.15) 20%, rgba(201,169,110,0.15) 80%, transparent 100%); }
+  .bl-ft-bottom { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5vw; }
+  .bl-ft-copy { font-size: 10px; color: rgba(246,244,240,0.35); letter-spacing: 0.08em; }
+  .bl-ft-nav{ display: flex; gap: 2.5rem; ;flex-wrap:wrap;justify-content:center}
+  .bl-ft-nav a { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(246,244,240,0.35); text-decoration: none; transition: color 0.3s ease; }
+  .bl-ft-nav a:hover { color: #c9a96e; }
+
+  @keyframes blFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    .bl-hero { min-height: 70vh; padding: 4rem 6vw; }
+    .bl-body { padding: 3.5rem 6vw; }
+    .bl-meta-item { border-right: none; border-bottom: 1px solid var(--light-stone); flex: 100%; }
+    .bl-meta-item:last-child { border-bottom: none; }
+    .bl-image-break { height: 50vh; min-height: 300px; }
+    .bl-image-pair { grid-template-columns: 1fr; }
+    .bl-lib-grid { padding: 3.5rem 6vw; }
+    .bl-lib-cards { grid-template-columns: 1fr; }
+    .bl-framework { padding: 3.5rem 6vw; }
+    .bl-pull-quote { padding: 3.5rem 6vw; }
+    .bl-related { padding: 3.5rem 6vw; }
+    .bl-related-grid { grid-template-columns: 1fr; }
+    .bl-cta { padding: 4rem 6vw; }
+    .bl-ft-row { flex-direction: column; gap: 1.25rem; align-items: flex-start; padding: 2rem 6vw; }
+    .bl-ft-rule { margin: 0 6vw; }
+    .bl-ft-bottom { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.25rem 6vw; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .bl-lib-cards { grid-template-columns: repeat(2, 1fr); }
+    .bl-related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+.bl-ft-email{cursor:pointer}
+body{overflow-x:hidden!important}
+</style>
+
+<div class="bl-loader" id="blLoader">
+  <div class="bl-loader-brand">Matt Anthony Photography</div>
+  <div class="bl-loader-sub">Building a Visual Library</div>
+  <div class="bl-loader-line"></div>
+</div>
+<div class="bl-cursor" id="blCursor"></div>
+<div class="bl-cursor-dot" id="blCursorDot"></div>
+<div class="bl-progress" id="blProgress"></div>
+
+<!-- HERO -->
+<section class="bl-hero">
+  <div class="bl-hero-bg"><img src="/images/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-40.jpg" alt="Fitzsimmons Residence Whistler architectural photography serving as visual library foundation"></div>
+  <div class="bl-hero-content">
+    <p class="bl-hero-label">Journal</p>
+    <h1>How to Build a Visual Library That Works Across Your Website, Proposals, and <em>Awards</em></h1>
+    <p class="bl-hero-sub">A strategic approach to building a visual library that stops you starting from scratch every time.</p>
+  </div>
+</section>
+
+<!-- META BAR -->
+<dl class="bl-meta-bar">
+  <div class="bl-meta-item">
+    <dt>Published</dt>
+    <dd>November 20, 2025</dd>
+  </div>
+  <div class="bl-meta-item">
+    <dt>Category</dt>
+    <dd>Strategy</dd>
+  </div>
+  <div class="bl-meta-item">
+    <dt>Author</dt>
+    <dd>Matt Anthony</dd>
+  </div>
+</dl>
+
+<!-- INTRO -->
+<section class="bl-body">
+  <div class="bl-body-inner">
+    <p>Most custom builders and architecture firms do not maintain comprehensive visual collections. Instead they maintain scattered assemblages. Projects completed years ago may have professional photography alongside recent phone snapshots. Photographers are hired once, never again. The outcome resembles patchwork: websites display one aesthetic, Instagram another, proposals use whatever remains available, and award submissions utilize leftover material.</p>
+    <p>A visual library differs fundamentally. It represents systematic, consistently-produced imagery covering all projects, content formats, and commercial requirements. When strategically developed, a single library serves websites, social platforms, client presentations, award entries, editorial pitches, and recruitment materials -- maintaining unified standards and brand narrative throughout.</p>
+  </div>
+</section>
+
+<!-- IMAGE BREAK -->
+<div class="bl-image-break">
+  <img src="/images/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg" alt="Sugarloaf Residence Pemberton exterior demonstrating consistent visual library standards" loading="lazy">
+</div>
+
+<!-- THE PROBLEM -->
+<section class="bl-body">
+  <div class="bl-body-inner">
+    <h2>The Problem With One-Off Shoots</h2>
+    <p>Typical procedures follow a pattern: projects complete, stakeholders suggest photography, builders contact photographers, negotiate fees, brief on details, schedule shoots. Images return, post online, share socially, file away. Months pass before another project finishes and the cycle repeats -- frequently with different photographers, varying editing approaches, inconsistent visual standards.</p>
+    <p>Across three years and six projects, imagery originates from multiple photographers, each bringing distinct colour, composition, and post-production perspectives. Websites appear inconsistent. Proposals showcase varying visual tones. Award submissions display quality inconsistencies. Every fresh shoot requires complete briefing since photographers lack brand context.</p>
+    <p>This is not a photography problem. It is a systems problem. The solution: one photographer, consistent visual standards, systematic application across all projects through time.</p>
+  </div>
+</section>
+
+<!-- LIBRARY GRID -->
+<section class="bl-lib-grid">
+  <p class="bl-section-label">The Six Categories</p>
+  <div class="bl-divider"></div>
+  <h2>What a visual library contains</h2>
+  <div class="bl-lib-cards">
+    <div class="bl-lib-card">
+      <h3>Architectural Photography</h3>
+      <p>Exteriors and interiors of completed projects communicating design purpose and craftsmanship. Standard shoots yield 15-25 edited images plus short-form video.</p>
+    </div>
+    <div class="bl-lib-card">
+      <h3>Detail &amp; Material</h3>
+      <p>Material junctions, hardware selections, custom millwork, lighting, texture close-ups. Supporting award claims and demonstrating quality depth.</p>
+    </div>
+    <div class="bl-lib-card">
+      <h3>Aerial &amp; Drone</h3>
+      <p>Context, scale, site integration. For projects where building-landscape relationships matter -- nearly every BC project -- aerial communicates what ground-level cannot.</p>
+    </div>
+    <div class="bl-lib-card">
+      <h3>Construction Lifestyle</h3>
+      <p>People and process behind finished products. Drives social engagement, attracts talent, humanizes brands.</p>
+    </div>
+    <div class="bl-lib-card">
+      <h3>Team Portraits</h3>
+      <p>Environmental headshots of key personnel, location-based rather than studio. Populating team pages, proposals, and LinkedIn profiles.</p>
+    </div>
+    <div class="bl-lib-card">
+      <h3>Short Form Video</h3>
+      <p>Project films, construction time-lapses, spatial walk-throughs, process clips. Outperforms stills across social platforms and increasingly expected in award submissions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOUCHPOINT MAP -->
+<section class="bl-body">
+  <div class="bl-body-inner">
+    <h2>The Touchpoint Map</h2>
+    <p>Visual library power emerges through multi-purpose deployment. Single project shoots produce assets serving every business touchpoint simultaneously.</p>
+    <p><strong>Website:</strong> Hero imagery, project galleries, service page examples, team portraits -- every page draws from unified libraries creating cohesive experiences.</p>
+    <p><strong>Proposals:</strong> Project sheets featuring comparable past work, team introductions, capability statements with visual evidence. Professional imagery-supported proposals close at elevated rates.</p>
+    <p><strong>Award Submissions:</strong> Curated image sets tailored to specific category criteria for Georgie, HAVAN, and CHBA National programs. Deep libraries allow selection and sequencing specific to each program.</p>
+    <p><strong>Social Media:</strong> Instagram posts, carousels, Reels, LinkedIn updates. Deep libraries mean months of content per shoot rather than frantic weekly searches.</p>
+    <p><strong>Editorial Pitches:</strong> When design publications seek project features, publication-ready images exist immediately. No scrambling to arrange post-interest shoots.</p>
+    <p><strong>Recruitment:</strong> Construction and team imagery demonstrates workplace experience for prospective hires -- significant in talent-scarce markets.</p>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="bl-pull-quote">
+  <p>Consistency is invisible to individual viewers. But they register the overall impression: this firm is professional, polished, deliberate. That impression compounds with each touchpoint.</p>
+</section>
+
+<!-- IMAGE PAIR -->
+<div class="bl-image-pair">
+  <img src="/images/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg" alt="Consistent visual library standards across Pemberton architectural photography" loading="lazy">
+  <img src="/images/construction-lifestyle-photography-sunshine-coast-summerhill18.jpg" alt="Construction lifestyle photography adding depth to visual library" loading="lazy">
+</div>
+
+<!-- HOW TO START -->
+<section class="bl-body">
+  <div class="bl-body-inner">
+    <h2>How to Start From Zero</h2>
+    <p>Patchy current libraries have a straightforward path forward without reshooting everything.</p>
+    <p><strong>Step One:</strong> Shoot the next completed project properly -- architecture, interiors, aerials, details, twilight, short video. This benchmarks everything following.</p>
+    <p><strong>Step Two:</strong> Add construction lifestyle to active projects. Half-day shoots capturing team, progression, and lifestyle content fill social gaps immediately.</p>
+    <p><strong>Step Three:</strong> Shoot every forward project. Professional photography becomes non-negotiable project close-out, like final cleaning or warranty documentation. Budget it upfront, not as an afterthought.</p>
+    <p><strong>Step Four:</strong> Consolidate under one photographer. Visual consistency requires identical shooters across projects. Find photographers matching desired standards, whose processes merit trust, and commit to the relationship. Over time, photographers learn brands, preferences, and expectations. Briefings shorten. Output strengthens. Libraries deepen.</p>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="bl-framework">
+  <div class="bl-framework-inner">
+    <h2>Building Your Visual Library: The Framework</h2>
+    <h3>Year One</h3>
+    <p>Shoot two to four completed projects at full scope. Add one to two construction lifestyle days. Establish visual standards and build the foundation.</p>
+    <h3>Year Two</h3>
+    <p>Shoot every completed project. Add quarterly lifestyle shoots across active jobsites. Begin award submissions with purpose-shot imagery. Libraries sustain consistent social media.</p>
+    <h3>Year Three and Beyond</h3>
+    <p>Self-sustaining libraries. Every project adds depth. Brands visually cohere across channels. Award submissions curate from strength, not scraps. Social systems operate smoothly. Proposals close faster through established visual credibility.</p>
+  </div>
+</section>
+
+<!-- THE MATH + RETAINER -->
+<section class="bl-body">
+  <div class="bl-body-inner">
+    <h2>The Math</h2>
+    <p>Custom builders completing four annual projects might invest $12,000 to $20,000 yearly on comprehensive photography: project shoots, lifestyle content, team portraits, video. This produces hundreds of assets deploying across business channels for years.</p>
+    <p>Compare alternatives. Google Ads campaigns cost $2,000 to $5,000 monthly with disappearing leads when spending stops. Trade show booths cost $5,000 to $15,000 reaching rooms briefly. Print ads cost $2,000 to $4,000 running once.</p>
+    <p>Photography investments produce permanent assets functioning across channels, 24/7, for three to five years per project. Amortized cost-per-use approaches zero. This represents construction firms' most capital-efficient marketing investment.</p>
+
+    <h2>The Creative Partner Model</h2>
+    <p>Firms completing three or more annual projects find standing engagements most efficient. Monthly or quarterly shoot days cover everything: project photography, award imagery, construction content, team portraits, video. Single relationship, unified visual standards.</p>
+    <p>The <a href="/creative-partner">Creative Partner</a> model exists because this approach produces superior results at lower effective costs versus project-by-project hiring. Per-image pricing decreases as efficiency improves. Quality rises through brand understanding. Strategic value becomes exponential through library compounding.</p>
+  </div>
+</section>
+
+<!-- CLOSING QUOTE -->
+<section class="bl-pull-quote">
+  <p>Start with the next project. Shoot it properly. Then don't stop.</p>
+</section>
+
+<!-- RELATED POSTS -->
+<section class="bl-related">
+  <p class="bl-section-label">Continue Reading</p>
+  <div class="bl-divider"></div>
+  <h2>Related Articles</h2>
+  <div class="bl-related-grid">
+    <a href="/journal/summerhill-fine-homes-visual-brand-ongoing-photography" class="bl-related-card">
+      <img src="/images/5322-backhouse-web-22.jpg" alt="Summerhill Fine Homes visual brand partnership" loading="lazy">
+      <div class="bl-related-card-body">
+        <p class="bl-related-card-cat">Client Story</p>
+        <p class="bl-related-card-title">How Summerhill Fine Homes Built a Visual Brand Through Ongoing Photography</p>
+      </div>
+    </a>
+    <a href="/journal/construction-lifestyle-photography-best-social-media-investment-builders" class="bl-related-card">
+      <img src="/images/construction-lifestyle-photography-sunshine-coast-summerhill18.jpg" alt="Construction lifestyle photography social media content" loading="lazy">
+      <div class="bl-related-card-body">
+        <p class="bl-related-card-cat">Social Strategy</p>
+        <p class="bl-related-card-title">Why Construction Lifestyle Photography is the Best Social Media Investment for Builders</p>
+      </div>
+    </a>
+    <a href="/journal/documenting-design-intent-photography-before-build-finished" class="bl-related-card">
+      <img src="/images/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg" alt="Sugarloaf Residence documenting design intent" loading="lazy">
+      <div class="bl-related-card-body">
+        <p class="bl-related-card-cat">Philosophy</p>
+        <p class="bl-related-card-title">Documenting Design Intent: Why the Best Photography Starts Before the Build is Finished</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bl-cta">
+  <div class="bl-cta-bg"><img src="/images/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-40.jpg" alt="Fitzsimmons Residence Whistler architectural photography" loading="lazy"></div>
+  <div class="bl-cta-c">
+    <h2>Ready to build a library that <em>compounds</em>?</h2>
+    <p>One conversation to set up a visual system that serves your firm for years. No more patchwork.</p>
+    <a href="/discovery-call" class="bl-cta-btn">Book a Discovery Call</a>
+    <p class="bl-alt-cta">Not ready to talk? <a href="/pricing-guide-landing">Get Pricing</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="bl-ft">
+<div class="bl-ft-locs"><a href="/squamish-architectural-photography">Squamish</a><a href="/whistler-architectural-photography">Whistler</a><a href="/pemberton-photography">Pemberton</a><a href="/sunshine-coast-photography">Sunshine Coast</a><a href="/vancouver-architectural-photographer">Vancouver</a><a href="/fraser-valley-photography">Fraser Valley</a><a href="/okanagan-architectural-photographer">Okanagan</a></div>
+  <div class="bl-ft-row">
+    <div class="bl-ft-item"><span class="bl-ft-label">Based In</span><span class="bl-ft-dot"></span><p>Squamish, British Columbia</p></div>
+    <div class="bl-ft-item"><span class="bl-ft-label">Email</span><span class="bl-ft-dot"></span><a id="ft-em" class="bl-ft-email"></a></div>
+    <div class="bl-ft-item"><span class="bl-ft-label">Phone</span><span class="bl-ft-dot"></span><a href="tel:6047659270">604.765.9270</a></div>
+    <div class="bl-ft-item"><span class="bl-ft-label">Follow</span><span class="bl-ft-dot"></span><div class="bl-ft-social"><a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/mattanthonyphoto/" target="_blank" rel="noopener">LinkedIn</a></div></div>
+  </div>
+  <div class="bl-ft-rule"></div>
+  <div class="bl-ft-bottom">
+    <span class="bl-ft-copy">&copy; 2026 Matt Anthony Photography</span>
+    <nav class="bl-ft-nav"><a href="/projects">Projects</a><a href="/journal">Journal</a><a href="/bio">About</a><a href="/contact">Contact</a><a href="/pricing-guide-landing">Get Pricing</a></nav>
+  </div>
+</div>
+
+<!-- SEO Meta -->
+<script>
+(function(){
+  var isMobile='ontouchstart' in window;
+
+  /* ═══ EMAIL OBFUSCATION ═══ */
+  var a=[105,110,102,111,64,109,97,116,116,97,110,116,104,111,110,121,112,104,111,116,111,46,99,111,109];var m=[109,97,105,108,116,111,58];var e=document.getElementById('ft-em');if(e){var s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);var h='';for(var j=0;j<m.length;j++)h+=String.fromCharCode(m[j]);e.href=h+s;e.textContent=s;}
+
+  /* ═══ LOADING SCREEN ═══ */
+  var loader=document.getElementById('blLoader');
+  window.addEventListener('load',function(){setTimeout(function(){loader.classList.add('bl-done');},1100);});
+
+  /* ═══ SCROLL PROGRESS ═══ */
+  var progressBar=document.getElementById('blProgress');
+  function updateProgress(){var sc=window.scrollY;var d=document.documentElement.scrollHeight-window.innerHeight;if(d>0)progressBar.style.width=(sc/d*100)+'%';}
+
+  /* ═══ CUSTOM CURSOR ═══ */
+  var cursor=document.getElementById('blCursor');var cursorDot=document.getElementById('blCursorDot');var cx=0,cy=0,dx=0,dy=0;
+  if(!isMobile&&cursor){
+    document.addEventListener('mousemove',function(ev){dx=ev.clientX;dy=ev.clientY;cursorDot.style.left=dx+'px';cursorDot.style.top=dy+'px';if(!cursor.classList.contains('bl-active')){cursor.classList.add('bl-active');cursorDot.classList.add('bl-active');}});
+    function tickCursor(){cx+=(dx-cx)*0.12;cy+=(dy-cy)*0.12;cursor.style.left=cx+'px';cursor.style.top=cy+'px';requestAnimationFrame(tickCursor);}tickCursor();
+    var hoverEls=document.querySelectorAll('a, button, .bl-btn, .bl-cta-btn, .bl-rel-card');
+    hoverEls.forEach(function(el){el.addEventListener('mouseenter',function(){cursor.classList.add('bl-hover');});el.addEventListener('mouseleave',function(){cursor.classList.remove('bl-hover');});});
+    document.addEventListener('mousedown',function(){cursor.classList.add('bl-click');});
+    document.addEventListener('mouseup',function(){cursor.classList.remove('bl-click');});
+  }
+
+  /* ═══ COMBINED SCROLL HANDLER ═══ */
+  var ticking=false;
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){updateProgress();ticking=false;});ticking=true;}},{passive:true});
+  updateProgress();
+})();
+</script>
+
+<meta name="description" content="A strategic approach to building a visual library that works across your website, proposals, and award submissions. Stop starting from scratch every time.">
+<link rel="canonical" href="https://www.mattanthonyphoto.com/journal/how-to-build-visual-library-website-proposals-awards">
+<meta property="og:title" content="How to Build a Visual Library That Works Across Your Website, Proposals, and Awards | Matt Anthony">
+<meta property="og:description" content="A strategic approach to building a visual library that stops you starting from scratch every time.">
+<meta property="og:url" content="https://www.mattanthonyphoto.com/journal/how-to-build-visual-library-website-proposals-awards">
+<meta property="og:type" content="article">
+
+<!-- BlogPosting Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Build a Visual Library That Works Across Your Website, Proposals, and Awards",
+  "description": "A strategic approach to building a visual library that stops you starting from scratch every time.",
+  "url": "https://www.mattanthonyphoto.com/journal/how-to-build-visual-library-website-proposals-awards",
+  "datePublished": "2025-11-20",
+  "dateModified": "2025-11-20",
+  "author": {
+    "@type": "Person",
+    "name": "Matt Anthony",
+    "url": "https://www.mattanthonyphoto.com/bio"
+  },
+  "publisher": {
+    "@type": "LocalBusiness",
+    "name": "Matt Anthony Photography",
+    "url": "https://www.mattanthonyphoto.com"
+  },
+  "image": "/images/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-40.jpg",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.mattanthonyphoto.com/journal/how-to-build-visual-library-website-proposals-awards"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- Header JS (scroll behavior, mobile toggle) -->
+<script>
+(function(){
+  var header = document.getElementById('maHeader');
+  var toggle = document.getElementById('maToggle');
+  var mobileNav = document.getElementById('maMobileNav');
+
+  // Scroll behavior
+  if (header) {
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  }
+
+  // Mobile toggle
+  if (toggle && mobileNav) {
+    toggle.addEventListener('click', function(){
+      toggle.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close on link click
+    mobileNav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        toggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Dropdown hover for desktop
+  var navItems = document.querySelectorAll('#maHeader .ma-nav-item');
+  navItems.forEach(function(item){
+    var dd = item.querySelector('.ma-dropdown');
+    if (!dd) return;
+    item.addEventListener('mouseenter', function(){ item.classList.add('active'); });
+    item.addEventListener('mouseleave', function(){ item.classList.remove('active'); });
+  });
+})();
+</script>
+
+</body>
+</html>
