@@ -234,130 +234,51 @@
   }
 
   // ═══════════════════════════════════════════════════════════════
-  // 4. QUIZ CTA BANNERS — Service, case study, bio, contact pages
+  // 4. QUIZ CTA BANNERS — Injected on Squarespace pages
+  //    Uses page-specific CSS class selectors to find the right
+  //    insertion point. Only injects if the target element exists.
   // ═══════════════════════════════════════════════════════════════
   window.addEventListener('DOMContentLoaded', function() {
-
-    // ── Service pages: before footer ──
-    var servicePages = ['/project-photography', '/award-publication-imagery', '/construction-team-content', '/creative-partner'];
-    if (servicePages.indexOf(path) !== -1) {
-      var footer = document.querySelector('footer, [class*="ft"], [class*="footer"]');
-      if (footer) {
-        footer.parentNode.insertBefore(quizBanner({
-          label: 'Not sure which service fits?',
-          headline: 'Take the quiz and get a <em>personalized recommendation</em>',
-          desc: '4 quick questions about your project. We\'ll tell you exactly which service fits and show you a relevant case study.',
-          secondaryText: 'Or book a discovery call'
-        }), footer);
-      }
+    // On Squarespace, look for the custom footer class used across all pages
+    // Each page uses a unique prefix (e.g. sv-ft, cs-ft, bl-ft, etc.)
+    // Fall back to the last <section> before the footer if no match
+    function findInsertPoint() {
+      // Try page-specific footer classes first
+      var ft = document.querySelector(
+        '.sv-ft, .cs-ft, .pj-ft, .bl-ft, .ct-ft, .dc-ft, .hp-ft, .ab-ft, .pr-ft, .fq-ft, .fg-ft'
+      );
+      if (ft) return ft;
+      // Generic fallback: last element with class containing "ft" at the end
+      var allFt = document.querySelectorAll('[class*="-ft"]');
+      if (allFt.length > 0) return allFt[allFt.length - 1];
+      return null;
     }
 
-    // ── Case study pages: after the content, before footer ──
-    var caseStudyPages = ['/summerhill-fine-homes', '/balmoral-construction', '/sitelines-architecture', '/the-window-merchant', '/lrd-studio-interior-design'];
-    if (caseStudyPages.indexOf(path) !== -1) {
-      var csFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
-      if (csFooter) {
-        csFooter.parentNode.insertBefore(quizBanner({
-          label: 'Inspired by this project?',
-          headline: 'See what we\'d recommend <em>for yours</em>',
-          desc: 'Take the 60-second quiz to get a personalized service recommendation and see how your project compares.',
-          secondaryText: 'Or book a discovery call'
-        }), csFooter);
-      }
-    }
+    // Pages that should get a quiz banner
+    var bannerConfig = {
+      '/': { label: '60 seconds', headline: 'Is your project <em>photo-ready?</em>', desc: 'Take the quiz to get a personalized recommendation, a relevant case study, and a clear next step.' },
+      '/home': { label: '60 seconds', headline: 'Is your project <em>photo-ready?</em>', desc: 'Take the quiz to get a personalized recommendation, a relevant case study, and a clear next step.' },
+      '/project-photography': { label: 'Not sure which service fits?', headline: 'Take the quiz and get a <em>personalized recommendation</em>', desc: '4 quick questions about your project. We\'ll tell you exactly which service fits and show you a relevant case study.' },
+      '/award-publication-imagery': { label: 'Not sure which service fits?', headline: 'Take the quiz and get a <em>personalized recommendation</em>', desc: '4 quick questions about your project. We\'ll tell you exactly which service fits and show you a relevant case study.' },
+      '/construction-team-content': { label: 'Not sure which service fits?', headline: 'Take the quiz and get a <em>personalized recommendation</em>', desc: '4 quick questions about your project. We\'ll tell you exactly which service fits and show you a relevant case study.' },
+      '/creative-partner': { label: 'Not sure which service fits?', headline: 'Take the quiz and get a <em>personalized recommendation</em>', desc: '4 quick questions about your project. We\'ll tell you exactly which service fits and show you a relevant case study.' },
+      '/summerhill-fine-homes': { label: 'Inspired by this project?', headline: 'See what we\'d recommend <em>for yours</em>', desc: 'Take the 60-second quiz to get a personalized service recommendation and see how your project compares.' },
+      '/balmoral-construction': { label: 'Inspired by this project?', headline: 'See what we\'d recommend <em>for yours</em>', desc: 'Take the 60-second quiz to get a personalized service recommendation and see how your project compares.' },
+      '/sitelines-architecture': { label: 'Inspired by this project?', headline: 'See what we\'d recommend <em>for yours</em>', desc: 'Take the 60-second quiz to get a personalized service recommendation and see how your project compares.' },
+      '/the-window-merchant': { label: 'Inspired by this project?', headline: 'See what we\'d recommend <em>for yours</em>', desc: 'Take the 60-second quiz to get a personalized service recommendation and see how your project compares.' },
+      '/lrd-studio-interior-design': { label: 'Inspired by this project?', headline: 'See what we\'d recommend <em>for yours</em>', desc: 'Take the 60-second quiz to get a personalized service recommendation and see how your project compares.' },
+      '/bio': { label: 'Want to work together?', headline: 'Find out if your project is <em>photo-ready</em>', desc: 'A 60-second quiz that tells you exactly what you need and what it looks like to work with us.' },
+      '/process': { label: 'Like what you see?', headline: 'Check if your project is <em>ready</em>', desc: 'Take the 60-second quiz and we\'ll recommend the right service based on where your project is right now.' },
+      '/faqs': { label: 'Still have questions?', headline: 'Take the quiz or <em>book a call</em>', desc: 'The quiz gives you a personalized recommendation in 60 seconds. Or jump straight to a conversation.' },
+      '/contact': { label: 'Not sure what you need yet?', headline: 'Start with the <em>photo-ready quiz</em>', desc: 'Answer 4 quick questions and we\'ll recommend the right service and show you a relevant case study.', secondaryHref: '/pricing-guide-landing', secondaryText: 'Or get the pricing guide' },
+    };
 
-    // ── Bio page: after content ──
-    if (path === '/bio') {
-      var bioFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
-      if (bioFooter) {
-        bioFooter.parentNode.insertBefore(quizBanner({
-          label: 'Want to work together?',
-          headline: 'Find out if your project is <em>photo-ready</em>',
-          desc: 'A 60-second quiz that tells you exactly what you need and what it looks like to work with us.',
-          secondaryText: 'Or book a discovery call'
-        }), bioFooter);
-      }
-    }
-
-    // ── Contact page: above the form ──
-    if (path === '/contact') {
-      var contactForm = document.querySelector('form, .ct-form, [class*="contact-form"]');
-      if (contactForm) {
-        contactForm.parentNode.insertBefore(quizBanner({
-          label: 'Not sure what you need yet?',
-          headline: 'Start with the <em>photo-ready quiz</em>',
-          desc: 'Answer 4 quick questions and we\'ll recommend the right service, show you a relevant case study, and give you a clear next step.',
-          primaryText: 'Take the Quiz',
-          secondaryHref: '/pricing-guide-landing',
-          secondaryText: 'Or get the pricing guide'
-        }), contactForm);
-      }
-    }
-
-    // ── Pricing guide thank-you: after confirmation ──
-    if (path === '/pricing-guide-thank-you' || path.indexOf('/pricing-guide/') === 0) {
-      var tyFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
-      if (tyFooter) {
-        tyFooter.parentNode.insertBefore(quizBanner({
-          label: 'Got the guide?',
-          headline: 'Now find out if your project is <em>ready to shoot</em>',
-          desc: 'Take the quiz to get a personalized recommendation based on your timeline and goals.',
-          primaryText: 'Take the Quiz',
-          secondaryHref: '/discovery-call',
-          secondaryText: 'Or book a call now'
-        }), tyFooter);
-      }
-    }
-
-    // ── Homepage: before footer ──
-    if (path === '/' || path === '/home') {
-      var homeFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
-      if (homeFooter) {
-        homeFooter.parentNode.insertBefore(quizBanner({
-          label: '60 seconds',
-          headline: 'Is your project <em>photo-ready?</em>',
-          desc: 'Take the quiz to get a personalized recommendation, a relevant case study, and a clear next step.',
-          secondaryText: 'Or book a discovery call'
-        }), homeFooter);
-      }
-    }
-
-    // ── Journal index: between article sections ──
-    if (path === '/journal') {
-      var grids = document.querySelectorAll('[class*="grid"], [class*="articles"], section');
-      if (grids.length >= 2) {
-        grids[1].parentNode.insertBefore(quizBanner({
-          label: 'Have a project coming up?',
-          headline: 'Find out if it\'s <em>photo-ready</em>',
-          desc: '4 quick questions. Personalized recommendation. No commitment.',
-          secondaryText: 'Or book a discovery call'
-        }), grids[1]);
-      }
-    }
-
-    // ── FAQs page: before footer ──
-    if (path === '/faqs') {
-      var faqFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
-      if (faqFooter) {
-        faqFooter.parentNode.insertBefore(quizBanner({
-          label: 'Still have questions?',
-          headline: 'Take the quiz or <em>book a call</em>',
-          desc: 'The quiz gives you a personalized recommendation in 60 seconds. Or jump straight to a conversation.',
-          secondaryText: 'Or book a discovery call'
-        }), faqFooter);
-      }
-    }
-
-    // ── Process page: before footer ──
-    if (path === '/process') {
-      var procFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
-      if (procFooter) {
-        procFooter.parentNode.insertBefore(quizBanner({
-          label: 'Like what you see?',
-          headline: 'Check if your project is <em>ready</em>',
-          desc: 'Take the 60-second quiz and we\'ll recommend the right service based on where your project is right now.',
-          secondaryText: 'Or book a discovery call'
-        }), procFooter);
+    var config = bannerConfig[path];
+    if (config) {
+      var insertPoint = findInsertPoint();
+      if (insertPoint) {
+        var banner = quizBanner(config);
+        insertPoint.parentNode.insertBefore(banner, insertPoint);
       }
     }
   });
