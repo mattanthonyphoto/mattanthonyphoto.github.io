@@ -11,47 +11,15 @@
   var path = window.location.pathname.replace(/\/$/, '') || '/';
   var QUIZ = 'https://mattanthonyphoto.github.io/photo-ready/';
 
-  // ── Shared styles (injected once) ──
+  // ── Shared styles for journal CTA ──
   var sharedCSS = document.createElement('style');
   sharedCSS.textContent = '' +
-    '.ma-quiz-banner{max-width:720px;margin:48px auto;padding:36px 40px;background:linear-gradient(135deg,rgba(26,26,24,0.95),rgba(30,28,24,0.95));border:1px solid rgba(201,169,110,0.15);border-radius:8px;text-align:center;position:relative;overflow:hidden;}' +
-    '.ma-quiz-banner::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c9a96e,transparent);}' +
-    '.ma-quiz-banner-label{font-family:"DM Sans",sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;margin-bottom:10px;}' +
-    '.ma-quiz-banner h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:1.4rem;color:#f6f4f0;margin-bottom:8px;line-height:1.4;}' +
-    '.ma-quiz-banner h3 em{font-style:italic;color:#c9a96e;}' +
-    '.ma-quiz-banner p{font-family:"DM Sans",sans-serif;font-size:0.8rem;color:#8a8579;line-height:1.6;margin-bottom:20px;max-width:460px;margin-left:auto;margin-right:auto;}' +
-    '.ma-quiz-banner-btns{display:flex;justify-content:center;gap:16px;align-items:center;flex-wrap:wrap;}' +
     '.ma-quiz-btn{display:inline-block;padding:14px 32px;font-family:"DM Sans",sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:all 0.3s ease;}' +
     '.ma-quiz-btn-gold{background:#c9a96e;color:#1a1a18;border:1px solid #c9a96e;}' +
     '.ma-quiz-btn-gold:hover{background:#d4b87a;}' +
     '.ma-quiz-btn-outline{background:transparent;color:#f6f4f0;border:1px solid rgba(201,169,110,0.35);}' +
-    '.ma-quiz-btn-outline:hover{border-color:#c9a96e;color:#c9a96e;background:rgba(201,169,110,0.06);}' +
-    '.ma-quiz-btn-text{font-family:"DM Sans",sans-serif;font-size:0.7rem;color:#8a8579;text-decoration:none;transition:color 0.2s;}' +
-    '.ma-quiz-btn-text:hover{color:#c9a96e;}' +
-    '@media(max-width:600px){.ma-quiz-banner{margin:36px 16px;padding:28px 20px;}.ma-quiz-banner h3{font-size:1.2rem;}.ma-quiz-banner-btns{flex-direction:column;gap:10px;}}';
+    '.ma-quiz-btn-outline:hover{border-color:#c9a96e;color:#c9a96e;background:rgba(201,169,110,0.06);}';
   document.head.appendChild(sharedCSS);
-
-  // ── Helper: create a quiz banner ──
-  function quizBanner(opts) {
-    var el = document.createElement('div');
-    el.className = 'ma-quiz-banner';
-    var label = opts.label || 'Not sure where to start?';
-    var headline = opts.headline || 'Find out if your project is <em>photo-ready</em>';
-    var desc = opts.desc || 'Take a 60-second quiz and get a personalized recommendation based on your project stage, goals, and timeline.';
-    var primaryText = opts.primaryText || 'Take the Quiz';
-    var secondaryHref = opts.secondaryHref || '/discovery-call';
-    var secondaryText = opts.secondaryText || 'Or book a call';
-
-    el.innerHTML = '' +
-      '<p class="ma-quiz-banner-label">' + label + '</p>' +
-      '<h3>' + headline + '</h3>' +
-      '<p>' + desc + '</p>' +
-      '<div class="ma-quiz-banner-btns">' +
-        '<a href="' + QUIZ + '" class="ma-quiz-btn ma-quiz-btn-gold">' + primaryText + '</a>' +
-        '<a href="' + secondaryHref + '" class="ma-quiz-btn-text">' + secondaryText + '</a>' +
-      '</div>';
-    return el;
-  }
 
   // ═══════════════════════════════════════════════════════════════
   // 1. DISCOVERY CALL — Social proof above the scheduler
@@ -233,10 +201,5 @@
     }
   }
 
-  // ═══════════════════════════════════════════════════════════════
-  // 4. QUIZ CTA BANNERS — Disabled until Squarespace DOM is mapped
-  //    The inline banners need page-specific selectors to place
-  //    correctly on Squarespace. Re-enable once selectors are confirmed.
-  // ═══════════════════════════════════════════════════════════════
 
 })();
