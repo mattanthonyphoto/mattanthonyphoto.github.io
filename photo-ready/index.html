@@ -794,11 +794,9 @@
       timeline: answers.timeline || ''
     };
 
-    fetch('https://services.leadconnectorhq.com/hooks/6Nlxml1Rtjj35EjoKuLO/webhook-trigger/90f300f1-c408-4183-bbc5-4dc4640dd2ad', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function() {});
+    // Store email for results — submit after score is calculated
+    answers._email = email;
+    answers._firstName = firstName;
 
     trackEvent('quiz_email_captured', { quiz_name: 'photo-ready', firm_type: answers.firm });
     showResults();
@@ -820,6 +818,24 @@
     setTimeout(function() { bgImg.src = bgImages[4]; bgImg.style.opacity = '0.12'; }, 300);
 
     var score = calcScore();
+
+    // Send to n8n webhook (Sheet + Email notification)
+    if (answers._email) {
+      fetch('https://n8n.srv1277163.hstgr.cloud/webhook/photo-ready-quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: answers._firstName || '',
+          email: answers._email,
+          firmType: answers.firm || '',
+          projectStage: answers.stage || '',
+          purpose: answers.purpose || '',
+          timeline: answers.timeline || '',
+          score: score.pct
+        })
+      }).catch(function() {});
+    }
+
     trackEvent('quiz_complete', {
       quiz_name: 'photo-ready',
       score: score.pct,
