@@ -1,12 +1,57 @@
 /**
  * Matt Anthony Photography — Conversion Optimization
- * 1. Discovery call page: move social proof above scheduler, add urgency
- * 2. Journal posts: inject mid-article CTA
- * 3. Exit-intent popup on pricing/project/case study pages
+ * 1. Discovery call page: social proof above scheduler
+ * 2. Journal posts: mid-article CTA with quiz secondary
+ * 3. Exit-intent popup on high-intent pages
+ * 4. Quiz CTA banner on service, case study, bio, contact, homepage, pricing thank-you
+ * 5. Journal index: quiz CTA between article grids
  */
 (function() {
   'use strict';
   var path = window.location.pathname.replace(/\/$/, '') || '/';
+  var QUIZ = 'https://mattanthonyphoto.github.io/photo-ready/';
+
+  // ── Shared styles (injected once) ──
+  var sharedCSS = document.createElement('style');
+  sharedCSS.textContent = '' +
+    '.ma-quiz-banner{max-width:720px;margin:48px auto;padding:36px 40px;background:linear-gradient(135deg,rgba(26,26,24,0.95),rgba(30,28,24,0.95));border:1px solid rgba(201,169,110,0.15);border-radius:8px;text-align:center;position:relative;overflow:hidden;}' +
+    '.ma-quiz-banner::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c9a96e,transparent);}' +
+    '.ma-quiz-banner-label{font-family:"DM Sans",sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;margin-bottom:10px;}' +
+    '.ma-quiz-banner h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:1.4rem;color:#f6f4f0;margin-bottom:8px;line-height:1.4;}' +
+    '.ma-quiz-banner h3 em{font-style:italic;color:#c9a96e;}' +
+    '.ma-quiz-banner p{font-family:"DM Sans",sans-serif;font-size:0.8rem;color:#8a8579;line-height:1.6;margin-bottom:20px;max-width:460px;margin-left:auto;margin-right:auto;}' +
+    '.ma-quiz-banner-btns{display:flex;justify-content:center;gap:16px;align-items:center;flex-wrap:wrap;}' +
+    '.ma-quiz-btn{display:inline-block;padding:14px 32px;font-family:"DM Sans",sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:all 0.3s ease;}' +
+    '.ma-quiz-btn-gold{background:#c9a96e;color:#1a1a18;border:1px solid #c9a96e;}' +
+    '.ma-quiz-btn-gold:hover{background:#d4b87a;}' +
+    '.ma-quiz-btn-outline{background:transparent;color:#f6f4f0;border:1px solid rgba(201,169,110,0.35);}' +
+    '.ma-quiz-btn-outline:hover{border-color:#c9a96e;color:#c9a96e;background:rgba(201,169,110,0.06);}' +
+    '.ma-quiz-btn-text{font-family:"DM Sans",sans-serif;font-size:0.7rem;color:#8a8579;text-decoration:none;transition:color 0.2s;}' +
+    '.ma-quiz-btn-text:hover{color:#c9a96e;}' +
+    '@media(max-width:600px){.ma-quiz-banner{margin:36px 16px;padding:28px 20px;}.ma-quiz-banner h3{font-size:1.2rem;}.ma-quiz-banner-btns{flex-direction:column;gap:10px;}}';
+  document.head.appendChild(sharedCSS);
+
+  // ── Helper: create a quiz banner ──
+  function quizBanner(opts) {
+    var el = document.createElement('div');
+    el.className = 'ma-quiz-banner';
+    var label = opts.label || 'Not sure where to start?';
+    var headline = opts.headline || 'Find out if your project is <em>photo-ready</em>';
+    var desc = opts.desc || 'Take a 60-second quiz and get a personalized recommendation based on your project stage, goals, and timeline.';
+    var primaryText = opts.primaryText || 'Take the Quiz';
+    var secondaryHref = opts.secondaryHref || '/discovery-call';
+    var secondaryText = opts.secondaryText || 'Or book a call';
+
+    el.innerHTML = '' +
+      '<p class="ma-quiz-banner-label">' + label + '</p>' +
+      '<h3>' + headline + '</h3>' +
+      '<p>' + desc + '</p>' +
+      '<div class="ma-quiz-banner-btns">' +
+        '<a href="' + QUIZ + '" class="ma-quiz-btn ma-quiz-btn-gold">' + primaryText + '</a>' +
+        '<a href="' + secondaryHref + '" class="ma-quiz-btn-text">' + secondaryText + '</a>' +
+      '</div>';
+    return el;
+  }
 
   // ═══════════════════════════════════════════════════════════════
   // 1. DISCOVERY CALL — Social proof above the scheduler
@@ -41,7 +86,6 @@
           '<div class="dc-proof-badge"><strong>7</strong>Regions</div>' +
         '</div>';
 
-      // Insert proof strip and expect text before the scheduler
       var iframeWrap = booking.querySelector('.dc-booking-iframe');
       if (iframeWrap) {
         var expectP = document.createElement('p');
@@ -54,16 +98,14 @@
   }
 
   // ═══════════════════════════════════════════════════════════════
-  // 2. JOURNAL POSTS — Mid-article CTA
+  // 2. JOURNAL POSTS — Mid-article CTA + quiz secondary
   // ═══════════════════════════════════════════════════════════════
-  if (path.indexOf('/journal/') === 0) {
+  if (path.indexOf('/journal/') === 0 && path !== '/journal') {
     window.addEventListener('DOMContentLoaded', function() {
       var articles = document.querySelectorAll('article.bl-body');
       if (articles.length < 2) return;
 
-      // Insert after the 2nd article block (roughly mid-article)
       var insertAfter = articles[1];
-
       var cta = document.createElement('div');
       cta.className = 'bl-inline-cta';
       cta.innerHTML = '' +
@@ -73,23 +115,26 @@
         '.bl-inline-cta-label{font-family:"DM Sans",sans-serif;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;margin-bottom:12px;}' +
         '.bl-inline-cta h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:1.5rem;color:#f6f4f0;margin-bottom:10px;line-height:1.4;}' +
         '.bl-inline-cta p{font-family:"DM Sans",sans-serif;font-size:0.85rem;color:#8a8579;line-height:1.6;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto;}' +
-        '.bl-inline-cta-btn{display:inline-block;padding:14px 36px;font-family:"DM Sans",sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#f6f4f0;background:transparent;border:1px solid rgba(201,169,110,0.4);border-radius:4px;text-decoration:none;transition:all 0.3s ease;}' +
-        '.bl-inline-cta-btn:hover{background:rgba(201,169,110,0.1);border-color:#c9a96e;color:#c9a96e;}' +
-        '@media(max-width:600px){.bl-inline-cta{margin:36px 5vw;padding:28px 20px;}.bl-inline-cta h3{font-size:1.25rem;}}' +
+        '.bl-inline-cta-btns{display:flex;justify-content:center;gap:16px;align-items:center;flex-wrap:wrap;}' +
+        '@media(max-width:600px){.bl-inline-cta{margin:36px 5vw;padding:28px 20px;}.bl-inline-cta h3{font-size:1.25rem;}.bl-inline-cta-btns{flex-direction:column;gap:10px;}}' +
         '</style>' +
         '<p class="bl-inline-cta-label">Like what you\'re reading?</p>' +
         '<h3>Let\'s talk about your next project</h3>' +
-        '<p>Book a free 20-minute discovery call. No pitch, no obligation, just a conversation about your goals and whether we\'re a fit.</p>' +
-        '<a href="/discovery-call" class="bl-inline-cta-btn">Book a Discovery Call</a>';
+        '<p>Find out if your project is ready for professional photography, or book a call to discuss your goals.</p>' +
+        '<div class="bl-inline-cta-btns">' +
+          '<a href="' + QUIZ + '" class="ma-quiz-btn ma-quiz-btn-gold">Take the Quiz</a>' +
+          '<a href="/discovery-call" class="ma-quiz-btn ma-quiz-btn-outline">Book a Call</a>' +
+        '</div>';
 
       insertAfter.parentNode.insertBefore(cta, insertAfter.nextSibling);
     });
   }
 
   // ═══════════════════════════════════════════════════════════════
-  // 3. EXIT-INTENT POPUP — Pricing, project, and case study pages
+  // 3. EXIT-INTENT POPUP — All high-intent pages + homepage
   // ═══════════════════════════════════════════════════════════════
   var exitPages = [
+    '/',
     '/pricing-guide-landing',
     '/pricing-guide-builders',
     '/project-photography',
@@ -101,20 +146,21 @@
     '/sitelines-architecture',
     '/the-window-merchant',
     '/lrd-studio-interior-design',
+    '/bio',
+    '/process',
+    '/projects',
+    '/contact',
   ];
 
-  // Also trigger on any /projects sub-path
-  var isProjectPage = path.indexOf('/projects') === -1 && (
-    exitPages.indexOf(path) !== -1 ||
-    document.querySelector('.pj-hero, .cs-hero, .sv-hero')
-  );
+  var shouldShowExit = exitPages.indexOf(path) !== -1 ||
+    document.querySelector('.pj-hero, .cs-hero, .sv-hero') ||
+    path.indexOf('/journal/') === 0;
 
-  if (exitPages.indexOf(path) !== -1 || isProjectPage) {
+  if (shouldShowExit) {
     var exitShown = false;
     var dismissed = sessionStorage.getItem('ma_exit_dismissed');
 
     if (!dismissed) {
-      // Inject popup HTML
       var overlay = document.createElement('div');
       overlay.id = 'maExitOverlay';
       overlay.innerHTML = '' +
@@ -142,7 +188,7 @@
           '<h3>Is your project <em>photo-ready?</em></h3>' +
           '<p>Take a 60-second quiz to find out. Get a personalized recommendation based on your project stage, goals, and timeline.</p>' +
           '<div class="ma-exit-btns">' +
-            '<a href="https://mattanthonyphoto.github.io/photo-ready/" class="ma-exit-btn-primary">Take the Quiz</a>' +
+            '<a href="' + QUIZ + '" class="ma-exit-btn-primary">Take the Quiz</a>' +
             '<a href="/pricing-guide-landing" class="ma-exit-btn-secondary">Or get the pricing guide</a>' +
           '</div>' +
         '</div>';
@@ -152,7 +198,6 @@
       function showExit() {
         if (exitShown || dismissed) return;
         exitShown = true;
-        // Small delay for the CSS transition
         requestAnimationFrame(function() {
           overlay.classList.add('ma-exit-show');
         });
@@ -163,7 +208,6 @@
         sessionStorage.setItem('ma_exit_dismissed', '1');
       }
 
-      // Close handlers
       document.getElementById('maExitClose').addEventListener('click', hideExit);
       overlay.addEventListener('click', function(e) {
         if (e.target === overlay) hideExit();
@@ -172,24 +216,150 @@
         if (e.key === 'Escape') hideExit();
       });
 
-      // Desktop: mouse leaves viewport (top edge)
       document.addEventListener('mouseout', function(e) {
         if (e.clientY <= 0 && !exitShown) showExit();
       });
 
-      // Mobile: back-button/scroll-up after significant engagement
       var scrollDepth = 0;
       var hasScrolledDeep = false;
       window.addEventListener('scroll', function() {
         var docHeight = document.documentElement.scrollHeight - window.innerHeight;
         scrollDepth = Math.max(scrollDepth, (window.scrollY / docHeight) * 100);
         if (scrollDepth > 50) hasScrolledDeep = true;
-
-        // If they scrolled past 50% then scroll back to top rapidly, show exit
         if (hasScrolledDeep && window.scrollY < 100 && !exitShown) {
           showExit();
         }
       });
     }
   }
+
+  // ═══════════════════════════════════════════════════════════════
+  // 4. QUIZ CTA BANNERS — Service, case study, bio, contact pages
+  // ═══════════════════════════════════════════════════════════════
+  window.addEventListener('DOMContentLoaded', function() {
+
+    // ── Service pages: before footer ──
+    var servicePages = ['/project-photography', '/award-publication-imagery', '/construction-team-content', '/creative-partner'];
+    if (servicePages.indexOf(path) !== -1) {
+      var footer = document.querySelector('footer, [class*="ft"], [class*="footer"]');
+      if (footer) {
+        footer.parentNode.insertBefore(quizBanner({
+          label: 'Not sure which service fits?',
+          headline: 'Take the quiz and get a <em>personalized recommendation</em>',
+          desc: '4 quick questions about your project. We\'ll tell you exactly which service fits and show you a relevant case study.',
+          secondaryText: 'Or book a discovery call'
+        }), footer);
+      }
+    }
+
+    // ── Case study pages: after the content, before footer ──
+    var caseStudyPages = ['/summerhill-fine-homes', '/balmoral-construction', '/sitelines-architecture', '/the-window-merchant', '/lrd-studio-interior-design'];
+    if (caseStudyPages.indexOf(path) !== -1) {
+      var csFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
+      if (csFooter) {
+        csFooter.parentNode.insertBefore(quizBanner({
+          label: 'Inspired by this project?',
+          headline: 'See what we\'d recommend <em>for yours</em>',
+          desc: 'Take the 60-second quiz to get a personalized service recommendation and see how your project compares.',
+          secondaryText: 'Or book a discovery call'
+        }), csFooter);
+      }
+    }
+
+    // ── Bio page: after content ──
+    if (path === '/bio') {
+      var bioFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
+      if (bioFooter) {
+        bioFooter.parentNode.insertBefore(quizBanner({
+          label: 'Want to work together?',
+          headline: 'Find out if your project is <em>photo-ready</em>',
+          desc: 'A 60-second quiz that tells you exactly what you need and what it looks like to work with us.',
+          secondaryText: 'Or book a discovery call'
+        }), bioFooter);
+      }
+    }
+
+    // ── Contact page: above the form ──
+    if (path === '/contact') {
+      var contactForm = document.querySelector('form, .ct-form, [class*="contact-form"]');
+      if (contactForm) {
+        contactForm.parentNode.insertBefore(quizBanner({
+          label: 'Not sure what you need yet?',
+          headline: 'Start with the <em>photo-ready quiz</em>',
+          desc: 'Answer 4 quick questions and we\'ll recommend the right service, show you a relevant case study, and give you a clear next step.',
+          primaryText: 'Take the Quiz',
+          secondaryHref: '/pricing-guide-landing',
+          secondaryText: 'Or get the pricing guide'
+        }), contactForm);
+      }
+    }
+
+    // ── Pricing guide thank-you: after confirmation ──
+    if (path === '/pricing-guide-thank-you' || path.indexOf('/pricing-guide/') === 0) {
+      var tyFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
+      if (tyFooter) {
+        tyFooter.parentNode.insertBefore(quizBanner({
+          label: 'Got the guide?',
+          headline: 'Now find out if your project is <em>ready to shoot</em>',
+          desc: 'Take the quiz to get a personalized recommendation based on your timeline and goals.',
+          primaryText: 'Take the Quiz',
+          secondaryHref: '/discovery-call',
+          secondaryText: 'Or book a call now'
+        }), tyFooter);
+      }
+    }
+
+    // ── Homepage: before footer ──
+    if (path === '/' || path === '/home') {
+      var homeFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
+      if (homeFooter) {
+        homeFooter.parentNode.insertBefore(quizBanner({
+          label: '60 seconds',
+          headline: 'Is your project <em>photo-ready?</em>',
+          desc: 'Take the quiz to get a personalized recommendation, a relevant case study, and a clear next step.',
+          secondaryText: 'Or book a discovery call'
+        }), homeFooter);
+      }
+    }
+
+    // ── Journal index: between article sections ──
+    if (path === '/journal') {
+      var grids = document.querySelectorAll('[class*="grid"], [class*="articles"], section');
+      if (grids.length >= 2) {
+        grids[1].parentNode.insertBefore(quizBanner({
+          label: 'Have a project coming up?',
+          headline: 'Find out if it\'s <em>photo-ready</em>',
+          desc: '4 quick questions. Personalized recommendation. No commitment.',
+          secondaryText: 'Or book a discovery call'
+        }), grids[1]);
+      }
+    }
+
+    // ── FAQs page: before footer ──
+    if (path === '/faqs') {
+      var faqFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
+      if (faqFooter) {
+        faqFooter.parentNode.insertBefore(quizBanner({
+          label: 'Still have questions?',
+          headline: 'Take the quiz or <em>book a call</em>',
+          desc: 'The quiz gives you a personalized recommendation in 60 seconds. Or jump straight to a conversation.',
+          secondaryText: 'Or book a discovery call'
+        }), faqFooter);
+      }
+    }
+
+    // ── Process page: before footer ──
+    if (path === '/process') {
+      var procFooter = document.querySelector('footer, [class*="ft"], [class*="footer"]');
+      if (procFooter) {
+        procFooter.parentNode.insertBefore(quizBanner({
+          label: 'Like what you see?',
+          headline: 'Check if your project is <em>ready</em>',
+          desc: 'Take the 60-second quiz and we\'ll recommend the right service based on where your project is right now.',
+          secondaryText: 'Or book a discovery call'
+        }), procFooter);
+      }
+    }
+  });
+
 })();
