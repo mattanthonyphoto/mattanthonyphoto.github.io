@@ -1,0 +1,195 @@
+/**
+ * Matt Anthony Photography — Conversion Optimization
+ * 1. Discovery call page: move social proof above scheduler, add urgency
+ * 2. Journal posts: inject mid-article CTA
+ * 3. Exit-intent popup on pricing/project/case study pages
+ */
+(function() {
+  'use strict';
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+
+  // ═══════════════════════════════════════════════════════════════
+  // 1. DISCOVERY CALL — Social proof above the scheduler
+  // ═══════════════════════════════════════════════════════════════
+  if (path === '/discovery-call') {
+    window.addEventListener('DOMContentLoaded', function() {
+      var booking = document.querySelector('.dc-booking');
+      if (!booking) return;
+
+      var proofHTML = document.createElement('div');
+      proofHTML.className = 'dc-proof-strip';
+      proofHTML.innerHTML = '' +
+        '<style>' +
+        '.dc-proof-strip{max-width:680px;margin:0 auto 48px;padding:32px 40px;background:rgba(201,169,110,0.04);border:1px solid rgba(201,169,110,0.12);border-radius:8px;text-align:center;}' +
+        '.dc-proof-strip .dc-proof-quote{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:1.15rem;line-height:1.7;color:#d9d5cd;margin-bottom:16px;}' +
+        '.dc-proof-strip .dc-proof-attr{font-family:"DM Sans",sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;}' +
+        '.dc-proof-strip .dc-proof-attr a{color:#c9a96e;text-decoration:none;}' +
+        '.dc-proof-strip .dc-proof-attr a:hover{text-decoration:underline;}' +
+        '.dc-proof-badges{display:flex;justify-content:center;gap:24px;margin-top:20px;padding-top:20px;border-top:1px solid rgba(201,169,110,0.08);}' +
+        '.dc-proof-badge{font-family:"DM Sans",sans-serif;font-size:0.7rem;letter-spacing:0.05em;color:#8a8579;}' +
+        '.dc-proof-badge strong{color:#c9a96e;font-size:0.85rem;display:block;margin-bottom:2px;}' +
+        '.dc-proof-expect{max-width:540px;margin:0 auto 12px;font-family:"DM Sans",sans-serif;font-size:0.8rem;color:#8a8579;line-height:1.6;text-align:center;}' +
+        '.dc-proof-expect strong{color:#d9d5cd;}' +
+        '@media(max-width:600px){.dc-proof-strip{padding:24px 20px;margin:0 16px 36px;}.dc-proof-badges{gap:16px;flex-wrap:wrap;}}' +
+        '</style>' +
+        '<p class="dc-proof-quote">"Matt\'s photography helped us win two Georgie Awards. The images captured exactly what we were going for with the design."</p>' +
+        '<p class="dc-proof-attr">Marc Harvey, Balmoral Construction &middot; <a href="/balmoral-construction">Case Study</a></p>' +
+        '<div class="dc-proof-badges">' +
+          '<div class="dc-proof-badge"><strong>50+</strong>Projects Shot</div>' +
+          '<div class="dc-proof-badge"><strong>30+</strong>Clients</div>' +
+          '<div class="dc-proof-badge"><strong>5</strong>Case Studies</div>' +
+          '<div class="dc-proof-badge"><strong>7</strong>Regions</div>' +
+        '</div>';
+
+      // Insert proof strip and expect text before the scheduler
+      var iframeWrap = booking.querySelector('.dc-booking-iframe');
+      if (iframeWrap) {
+        var expectP = document.createElement('p');
+        expectP.className = 'dc-proof-expect';
+        expectP.innerHTML = '<strong>20 minutes, zero obligation.</strong> We\'ll talk about your upcoming projects and whether working together makes sense. No pitch, no pressure.';
+        booking.insertBefore(expectP, iframeWrap);
+        booking.insertBefore(proofHTML, expectP);
+      }
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // 2. JOURNAL POSTS — Mid-article CTA
+  // ═══════════════════════════════════════════════════════════════
+  if (path.indexOf('/journal/') === 0) {
+    window.addEventListener('DOMContentLoaded', function() {
+      var articles = document.querySelectorAll('article.bl-body');
+      if (articles.length < 2) return;
+
+      // Insert after the 2nd article block (roughly mid-article)
+      var insertAfter = articles[1];
+
+      var cta = document.createElement('div');
+      cta.className = 'bl-inline-cta';
+      cta.innerHTML = '' +
+        '<style>' +
+        '.bl-inline-cta{max-width:680px;margin:48px auto;padding:40px;background:linear-gradient(135deg,rgba(26,26,24,0.95),rgba(30,28,24,0.95));border:1px solid rgba(201,169,110,0.15);border-radius:8px;text-align:center;position:relative;overflow:hidden;}' +
+        '.bl-inline-cta::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c9a96e,transparent);}' +
+        '.bl-inline-cta-label{font-family:"DM Sans",sans-serif;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;margin-bottom:12px;}' +
+        '.bl-inline-cta h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:1.5rem;color:#f6f4f0;margin-bottom:10px;line-height:1.4;}' +
+        '.bl-inline-cta p{font-family:"DM Sans",sans-serif;font-size:0.85rem;color:#8a8579;line-height:1.6;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto;}' +
+        '.bl-inline-cta-btn{display:inline-block;padding:14px 36px;font-family:"DM Sans",sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#f6f4f0;background:transparent;border:1px solid rgba(201,169,110,0.4);border-radius:4px;text-decoration:none;transition:all 0.3s ease;}' +
+        '.bl-inline-cta-btn:hover{background:rgba(201,169,110,0.1);border-color:#c9a96e;color:#c9a96e;}' +
+        '@media(max-width:600px){.bl-inline-cta{margin:36px 5vw;padding:28px 20px;}.bl-inline-cta h3{font-size:1.25rem;}}' +
+        '</style>' +
+        '<p class="bl-inline-cta-label">Like what you\'re reading?</p>' +
+        '<h3>Let\'s talk about your next project</h3>' +
+        '<p>Book a free 20-minute discovery call. No pitch, no obligation, just a conversation about your goals and whether we\'re a fit.</p>' +
+        '<a href="/discovery-call" class="bl-inline-cta-btn">Book a Discovery Call</a>';
+
+      insertAfter.parentNode.insertBefore(cta, insertAfter.nextSibling);
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // 3. EXIT-INTENT POPUP — Pricing, project, and case study pages
+  // ═══════════════════════════════════════════════════════════════
+  var exitPages = [
+    '/pricing-guide-landing',
+    '/pricing-guide-builders',
+    '/project-photography',
+    '/award-publication-imagery',
+    '/construction-team-content',
+    '/creative-partner',
+    '/summerhill-fine-homes',
+    '/balmoral-construction',
+    '/sitelines-architecture',
+    '/the-window-merchant',
+    '/lrd-studio-interior-design',
+  ];
+
+  // Also trigger on any /projects sub-path
+  var isProjectPage = path.indexOf('/projects') === -1 && (
+    exitPages.indexOf(path) !== -1 ||
+    document.querySelector('.pj-hero, .cs-hero, .sv-hero')
+  );
+
+  if (exitPages.indexOf(path) !== -1 || isProjectPage) {
+    var exitShown = false;
+    var dismissed = sessionStorage.getItem('ma_exit_dismissed');
+
+    if (!dismissed) {
+      // Inject popup HTML
+      var overlay = document.createElement('div');
+      overlay.id = 'maExitOverlay';
+      overlay.innerHTML = '' +
+        '<style>' +
+        '#maExitOverlay{position:fixed;inset:0;z-index:999999;background:rgba(10,10,8,0.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;}' +
+        '#maExitOverlay.ma-exit-show{display:flex;opacity:1;}' +
+        '.ma-exit-card{background:#1a1a18;border:1px solid rgba(201,169,110,0.15);border-radius:8px;max-width:460px;width:90%;padding:48px 40px;text-align:center;position:relative;transform:translateY(20px);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);}' +
+        '#maExitOverlay.ma-exit-show .ma-exit-card{transform:translateY(0);}' +
+        '.ma-exit-close{position:absolute;top:16px;right:16px;background:none;border:none;color:#8a8579;font-size:18px;cursor:pointer;padding:4px 8px;transition:color 0.2s;}' +
+        '.ma-exit-close:hover{color:#f6f4f0;}' +
+        '.ma-exit-label{font-family:"DM Sans",sans-serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;}' +
+        '.ma-exit-card h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:1.6rem;color:#f6f4f0;line-height:1.4;margin-bottom:12px;}' +
+        '.ma-exit-card h3 em{font-style:italic;color:#c9a96e;}' +
+        '.ma-exit-card>p{font-family:"DM Sans",sans-serif;font-size:0.85rem;color:#8a8579;line-height:1.6;margin-bottom:28px;}' +
+        '.ma-exit-btns{display:flex;flex-direction:column;gap:10px;align-items:center;}' +
+        '.ma-exit-btn-primary{display:inline-block;padding:14px 40px;font-family:"DM Sans",sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#1a1a18;background:#c9a96e;border:none;border-radius:4px;text-decoration:none;cursor:pointer;transition:all 0.3s ease;}' +
+        '.ma-exit-btn-primary:hover{background:#d4b87a;}' +
+        '.ma-exit-btn-secondary{font-family:"DM Sans",sans-serif;font-size:0.7rem;color:#8a8579;text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;}' +
+        '.ma-exit-btn-secondary:hover{color:#c9a96e;}' +
+        '@media(max-width:500px){.ma-exit-card{padding:36px 24px;}}' +
+        '</style>' +
+        '<div class="ma-exit-card">' +
+          '<button class="ma-exit-close" id="maExitClose">&times;</button>' +
+          '<p class="ma-exit-label">Before You Go</p>' +
+          '<h3>Is your project <em>photo-ready?</em></h3>' +
+          '<p>Take a 60-second quiz to find out. Get a personalized recommendation based on your project stage, goals, and timeline.</p>' +
+          '<div class="ma-exit-btns">' +
+            '<a href="https://mattanthonyphoto.github.io/photo-ready/" class="ma-exit-btn-primary">Take the Quiz</a>' +
+            '<a href="/pricing-guide-landing" class="ma-exit-btn-secondary">Or get the pricing guide</a>' +
+          '</div>' +
+        '</div>';
+
+      document.body.appendChild(overlay);
+
+      function showExit() {
+        if (exitShown || dismissed) return;
+        exitShown = true;
+        // Small delay for the CSS transition
+        requestAnimationFrame(function() {
+          overlay.classList.add('ma-exit-show');
+        });
+      }
+
+      function hideExit() {
+        overlay.classList.remove('ma-exit-show');
+        sessionStorage.setItem('ma_exit_dismissed', '1');
+      }
+
+      // Close handlers
+      document.getElementById('maExitClose').addEventListener('click', hideExit);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) hideExit();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') hideExit();
+      });
+
+      // Desktop: mouse leaves viewport (top edge)
+      document.addEventListener('mouseout', function(e) {
+        if (e.clientY <= 0 && !exitShown) showExit();
+      });
+
+      // Mobile: back-button/scroll-up after significant engagement
+      var scrollDepth = 0;
+      var hasScrolledDeep = false;
+      window.addEventListener('scroll', function() {
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        scrollDepth = Math.max(scrollDepth, (window.scrollY / docHeight) * 100);
+        if (scrollDepth > 50) hasScrolledDeep = true;
+
+        // If they scrolled past 50% then scroll back to top rapidly, show exit
+        if (hasScrolledDeep && window.scrollY < 100 && !exitShown) {
+          showExit();
+        }
+      });
+    }
+  }
+})();

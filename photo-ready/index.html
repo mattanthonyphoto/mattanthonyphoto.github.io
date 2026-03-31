@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Is Your Project Photo-Ready? | Matt Anthony Photography</title>
+  <meta name="description" content="Take a 60-second quiz to find out if your project is ready for professional architectural photography and get a personalized recommendation.">
+  <meta property="og:title" content="Is Your Project Photo-Ready? | Matt Anthony Photography">
+  <meta property="og:description" content="Take a 60-second quiz to find out if your project is ready for professional architectural photography.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mattanthonyphoto.com/photo-ready">
+  <meta property="og:site_name" content="Matt Anthony Photography">
+  <link rel="canonical" href="https://mattanthonyphoto.com/photo-ready">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a18'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23c9a96e' font-family='serif' font-size='20' font-weight='300'%3EMA%3C/text%3E%3C/svg%3E">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { background: #1a1a18; color: #f6f4f0; font-family: 'DM Sans', -apple-system, sans-serif; overflow-x: hidden; min-height: 100vh; }
+    a { color: inherit; }
+
+    /* ── Layout ── */
+    .qz-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 48px;
+      position: relative;
+    }
+
+    .qz-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .qz-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.12;
+      filter: blur(2px);
+      transition: opacity 0.4s ease;
+    }
+
+    .qz-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    /* ── Brand Mark ── */
+    .qz-brand {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .qz-brand-name {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(246,244,240,0.5);
+    }
+    .qz-brand-rule {
+      width: 60px;
+      height: 1px;
+      background: rgba(201,169,110,0.3);
+      margin: 10px auto;
+    }
+
+    /* ── Progress Bar ── */
+    .qz-progress {
+      width: 100%;
+      height: 2px;
+      background: rgba(201,169,110,0.08);
+      border-radius: 1px;
+      margin-bottom: 48px;
+      overflow: hidden;
+    }
+    .qz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #c9a96e, rgba(201,169,110,0.5));
+      border-radius: 1px;
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ── Step (Question) ── */
+    .qz-step {
+      display: none;
+      animation: qzFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .qz-step.active { display: block; }
+
+    @keyframes qzFadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .qz-step-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      margin-bottom: 12px;
+    }
+
+    .qz-question {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 1.3;
+      color: #f6f4f0;
+      margin-bottom: 36px;
+    }
+    .qz-question em {
+      font-style: italic;
+      color: #c9a96e;
+    }
+
+    /* ── Options ── */
+    .qz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .qz-option {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: rgba(246,244,240,0.03);
+      border: 1px solid rgba(201,169,110,0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    .qz-option:hover {
+      background: rgba(201,169,110,0.06);
+      border-color: rgba(201,169,110,0.25);
+    }
+    .qz-option.selected {
+      background: rgba(201,169,110,0.08);
+      border-color: rgba(201,169,110,0.4);
+    }
+
+    .qz-option-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      background: rgba(201,169,110,0.06);
+      border-radius: 8px;
+    }
+
+    .qz-option-text {
+      flex: 1;
+    }
+    .qz-option-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #f6f4f0;
+      margin-bottom: 2px;
+    }
+    .qz-option-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: #8a8579;
+      line-height: 1.4;
+    }
+
+    /* ── Email Gate ── */
+    .qz-gate {
+      display: none;
+      animation: qzFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+    }
+    .qz-gate.active { display: block; }
+
+    .qz-gate-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      margin-bottom: 16px;
+    }
+    .qz-gate h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.8rem;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .qz-gate h2 em { font-style: italic; color: #c9a96e; }
+    .qz-gate-sub {
+      font-size: 0.85rem;
+      color: #8a8579;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .qz-gate-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .qz-gate-row {
+      display: flex;
+      gap: 12px;
+    }
+    .qz-gate-input {
+      flex: 1;
+      padding: 14px 18px;
+      background: rgba(246,244,240,0.04);
+      border: 1px solid rgba(201,169,110,0.12);
+      border-radius: 6px;
+      color: #f6f4f0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .qz-gate-input::placeholder { color: #5a5649; }
+    .qz-gate-input:focus { border-color: rgba(201,169,110,0.4); }
+
+    .qz-gate-submit {
+      padding: 16px 32px;
+      background: #c9a96e;
+      color: #1a1a18;
+      border: none;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .qz-gate-submit:hover { background: #d4b87a; }
+    .qz-gate-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .qz-gate-skip {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.7rem;
+      color: #5a5649;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .qz-gate-skip:hover { color: #8a8579; }
+    .qz-gate-disclaimer {
+      margin-top: 12px;
+      font-size: 0.65rem;
+      color: #3d3a33;
+    }
+    .qz-gate-trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 16px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(201,169,110,0.06);
+    }
+    .qz-gate-trust-label {
+      width: 100%;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #3d3a33;
+      margin-bottom: 4px;
+    }
+    .qz-gate-trust span {
+      font-size: 0.7rem;
+      color: #5a5649;
+      white-space: nowrap;
+    }
+
+    /* ── Results ── */
+    .qz-results {
+      display: none;
+      animation: qzFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .qz-results.active { display: block; }
+
+    .qz-score {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .qz-score-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      margin-bottom: 20px;
+    }
+    .qz-score-ring {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+    .qz-score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .qz-score-ring .ring-bg { fill: none; stroke: rgba(201,169,110,0.08); stroke-width: 6; }
+    .qz-score-ring .ring-fill {
+      fill: none;
+      stroke: #c9a96e;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-dasharray: 408;
+      stroke-dashoffset: 408;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .qz-score-num {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .qz-score-pct {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #f6f4f0;
+      line-height: 1;
+    }
+    .qz-score-word {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      margin-top: 4px;
+    }
+
+    .qz-score-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .qz-score-headline em { font-style: italic; color: #c9a96e; }
+    .qz-score-desc {
+      font-size: 0.85rem;
+      color: #8a8579;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── Recommendation Cards ── */
+    .qz-recs {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .qz-rec {
+      padding: 24px;
+      background: rgba(246,244,240,0.03);
+      border: 1px solid rgba(201,169,110,0.1);
+      border-radius: 8px;
+    }
+    .qz-rec-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      margin-bottom: 8px;
+    }
+    .qz-rec h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: #f6f4f0;
+    }
+    .qz-rec p {
+      font-size: 0.8rem;
+      color: #8a8579;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .qz-rec-link {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .qz-rec-link:hover { opacity: 0.7; }
+
+    /* ── CTA Section ── */
+    .qz-cta {
+      text-align: center;
+      padding: 40px;
+      background: rgba(201,169,110,0.04);
+      border: 1px solid rgba(201,169,110,0.12);
+      border-radius: 8px;
+      margin-bottom: 32px;
+    }
+    .qz-cta h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .qz-cta h3 em { font-style: italic; color: #c9a96e; }
+    .qz-cta p {
+      font-size: 0.8rem;
+      color: #8a8579;
+      margin-bottom: 20px;
+    }
+    .qz-cta-btn {
+      display: inline-block;
+      padding: 16px 40px;
+      background: #c9a96e;
+      color: #1a1a18;
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .qz-cta-btn:hover { background: #d4b87a; }
+    .qz-cta-secondary {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.7rem;
+      color: #8a8579;
+      text-decoration: none;
+    }
+    .qz-cta-secondary:hover { color: #c9a96e; }
+
+    /* ── Footer ── */
+    .qz-footer {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(201,169,110,0.06);
+      font-size: 0.65rem;
+      color: #3d3a33;
+    }
+    .qz-footer a { color: #5a5649; text-decoration: none; }
+    .qz-footer a:hover { color: #c9a96e; }
+
+    @media (max-width: 600px) {
+      .qz-question { font-size: 1.5rem; }
+      .qz-option { padding: 16px 18px; }
+      .qz-gate h2 { font-size: 1.4rem; }
+      .qz-gate-row { flex-direction: column; }
+      .qz-score-headline { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="qz-bg">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=2500w" alt="">
+</div>
+
+<div class="qz-wrap">
+  <div class="qz-container">
+
+    <div class="qz-brand">
+      <div class="qz-brand-name">Matt Anthony Photography</div>
+      <div class="qz-brand-rule"></div>
+    </div>
+
+    <div class="qz-progress">
+      <div class="qz-progress-fill" id="qzProgress"></div>
+    </div>
+
+    <!-- ═══ QUESTION 1: Firm Type ═══ -->
+    <div class="qz-step active" id="qzStep1">
+      <div class="qz-step-num">Question 1 of 4</div>
+      <h2 class="qz-question">What best describes <em>your firm?</em></h2>
+      <div class="qz-options">
+        <div class="qz-option" data-q="firm" data-v="builder">
+          <div class="qz-option-icon">&#9632;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Custom Home Builder</div>
+            <div class="qz-option-desc">You build residential or commercial projects</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="firm" data-v="architect">
+          <div class="qz-option-icon">&#9651;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Architect</div>
+            <div class="qz-option-desc">You design buildings and spaces</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="firm" data-v="designer">
+          <div class="qz-option-icon">&#9672;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Interior Designer</div>
+            <div class="qz-option-desc">You design interior spaces and select finishes</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="firm" data-v="trade">
+          <div class="qz-option-icon">&#9670;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Trade or Supplier</div>
+            <div class="qz-option-desc">Millwork, glazing, stone, lighting, landscaping, or other specialty</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ QUESTION 2: Project Stage ═══ -->
+    <div class="qz-step" id="qzStep2">
+      <div class="qz-step-num">Question 2 of 4</div>
+      <h2 class="qz-question">Where is your project <em>right now?</em></h2>
+      <div class="qz-options">
+        <div class="qz-option" data-q="stage" data-v="construction">
+          <div class="qz-option-icon">&#9881;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Under Construction</div>
+            <div class="qz-option-desc">Framing, finishing, or in the final stages of the build</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="stage" data-v="just-completed">
+          <div class="qz-option-icon">&#10003;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Just Completed</div>
+            <div class="qz-option-desc">Finished within the last few months, not yet photographed</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="stage" data-v="completed-6plus">
+          <div class="qz-option-icon">&#8635;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Completed 6+ Months Ago</div>
+            <div class="qz-option-desc">Finished a while back, never professionally shot or needs a reshoot</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="stage" data-v="planning">
+          <div class="qz-option-icon">&#9998;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Still in Planning / Design</div>
+            <div class="qz-option-desc">Haven't broken ground yet but thinking ahead</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ QUESTION 3: Purpose ═══ -->
+    <div class="qz-step" id="qzStep3">
+      <div class="qz-step-num">Question 3 of 4</div>
+      <h2 class="qz-question">What will the photography <em>be used for?</em></h2>
+      <div class="qz-options">
+        <div class="qz-option" data-q="purpose" data-v="website">
+          <div class="qz-option-icon">&#9741;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Website &amp; Portfolio</div>
+            <div class="qz-option-desc">Update your site with professional project imagery</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="purpose" data-v="awards">
+          <div class="qz-option-icon">&#9733;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Award Submissions</div>
+            <div class="qz-option-desc">Georgie, CHBA, RAIC, HAVAN, or other industry awards</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="purpose" data-v="publications">
+          <div class="qz-option-icon">&#9776;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Editorial &amp; Publications</div>
+            <div class="qz-option-desc">Western Living, Dwell, Dezeen, or other magazines</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="purpose" data-v="everything">
+          <div class="qz-option-icon">&#10022;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">All of the Above</div>
+            <div class="qz-option-desc">Website, social, awards, proposals, and everything else</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ QUESTION 4: Timeline ═══ -->
+    <div class="qz-step" id="qzStep4">
+      <div class="qz-step-num">Question 4 of 4</div>
+      <h2 class="qz-question">When do you <em>need it?</em></h2>
+      <div class="qz-options">
+        <div class="qz-option" data-q="timeline" data-v="30days">
+          <div class="qz-option-icon">&#9889;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Within 30 Days</div>
+            <div class="qz-option-desc">The project is ready or almost ready to shoot</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="timeline" data-v="1-3months">
+          <div class="qz-option-icon">&#9716;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">1 &ndash; 3 Months</div>
+            <div class="qz-option-desc">Wrapping up soon, want to get it on the calendar</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="timeline" data-v="3-6months">
+          <div class="qz-option-icon">&#9201;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">3 &ndash; 6 Months</div>
+            <div class="qz-option-desc">Planning ahead for a project finishing later this year</div>
+          </div>
+        </div>
+        <div class="qz-option" data-q="timeline" data-v="exploring">
+          <div class="qz-option-icon">&#9782;</div>
+          <div class="qz-option-text">
+            <div class="qz-option-title">Just Exploring</div>
+            <div class="qz-option-desc">No immediate project, but want to understand the process</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ EMAIL GATE ═══ -->
+    <div class="qz-gate" id="qzGate">
+      <p class="qz-gate-label">Your Results Are Ready</p>
+      <h2>Where should we send <em>your recommendation?</em></h2>
+      <p class="qz-gate-sub">Get your personalized results plus a project preparation checklist.</p>
+      <div class="qz-gate-form">
+        <div class="qz-gate-row">
+          <input type="text" class="qz-gate-input" id="qzFirstName" placeholder="First name" autocomplete="given-name">
+          <input type="email" class="qz-gate-input" id="qzEmail" placeholder="Email" autocomplete="email">
+        </div>
+        <button class="qz-gate-submit" id="qzSubmit">See My Results</button>
+      </div>
+      <a class="qz-gate-skip" id="qzSkip">Skip and see results</a>
+      <p class="qz-gate-disclaimer">No spam. Just your results and one follow-up with relevant resources.</p>
+      <div class="qz-gate-trust">
+        <div class="qz-gate-trust-label">Trusted by</div>
+        <span>Balmoral Construction</span>
+        <span>Summerhill Fine Homes</span>
+        <span>Sitelines Architecture</span>
+        <span>The Window Merchant</span>
+        <span>LRD Studio</span>
+      </div>
+    </div>
+
+    <!-- ═══ RESULTS ═══ -->
+    <div class="qz-results" id="qzResults">
+      <div class="qz-score">
+        <p class="qz-score-label">Your Photo-Readiness Score</p>
+        <div class="qz-score-ring">
+          <svg viewBox="0 0 140 140">
+            <circle class="ring-bg" cx="70" cy="70" r="65" />
+            <circle class="ring-fill" id="qzRingFill" cx="70" cy="70" r="65" />
+          </svg>
+          <div class="qz-score-num">
+            <div class="qz-score-pct" id="qzScorePct">0%</div>
+            <div class="qz-score-word" id="qzScoreWord">Calculating</div>
+          </div>
+        </div>
+        <h2 class="qz-score-headline" id="qzHeadline"></h2>
+        <p class="qz-score-desc" id="qzDesc"></p>
+      </div>
+
+      <div class="qz-recs" id="qzRecs"></div>
+
+      <div class="qz-cta">
+        <h3>Ready to <em>get started?</em></h3>
+        <p>Book a free 20-minute discovery call. We'll talk about your project and whether working together makes sense.</p>
+        <a href="https://mattanthonyphoto.com/discovery-call" class="qz-cta-btn">Book a Discovery Call</a>
+        <a href="https://mattanthonyphoto.com/pricing-guide-landing" class="qz-cta-secondary">Or get the pricing guide first</a>
+      </div>
+
+      <div class="qz-footer">
+        <a href="https://mattanthonyphoto.com">Back to mattanthonyphoto.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  var answers = {};
+  var steps = document.querySelectorAll('.qz-step');
+  var progress = document.getElementById('qzProgress');
+  var gate = document.getElementById('qzGate');
+  var results = document.getElementById('qzResults');
+  var totalSteps = steps.length;
+  var bgImg = document.querySelector('.qz-bg img');
+
+  // Background images per step
+  var bgImages = [
+    'https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=2500w',
+    'https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=2500w',
+    'https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eae50d7b-893c-483f-9849-84f06b45e58f/architectural-interiors-photographer-netzero-whistler8.jpg?format=2500w',
+    'https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w',
+    'https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=2500w'
+  ];
+  // Preload
+  bgImages.forEach(function(src) { var i = new Image(); i.src = src; });
+
+  // GA4 helper
+  function trackEvent(name, params) {
+    if (typeof gtag === 'function') gtag('event', name, params);
+  }
+  trackEvent('quiz_start', { quiz_name: 'photo-ready' });
+
+  // ── Option click → auto-advance ──
+  document.querySelectorAll('.qz-option').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var q = this.getAttribute('data-q');
+      var v = this.getAttribute('data-v');
+      answers[q] = v;
+
+      // Highlight selected
+      this.closest('.qz-options').querySelectorAll('.qz-option').forEach(function(o) { o.classList.remove('selected'); });
+      this.classList.add('selected');
+
+      // Track answer
+      trackEvent('quiz_answer', { question: q, answer: v, quiz_name: 'photo-ready' });
+
+      // Advance after brief pause
+      setTimeout(function() { advance(); }, 350);
+    });
+  });
+
+  function advance() {
+    var current = document.querySelector('.qz-step.active');
+    if (!current) return;
+
+    var stepNum = parseInt(current.id.replace('qzStep', ''));
+
+    if (stepNum < totalSteps) {
+      current.classList.remove('active');
+      document.getElementById('qzStep' + (stepNum + 1)).classList.add('active');
+      progress.style.width = ((stepNum) / totalSteps * 100) + '%';
+      // Swap background
+      if (bgImages[stepNum]) {
+        bgImg.style.opacity = '0';
+        setTimeout(function() { bgImg.src = bgImages[stepNum]; bgImg.style.opacity = '0.12'; }, 300);
+      }
+    } else {
+      // All questions answered → show gate
+      current.classList.remove('active');
+      progress.style.width = '100%';
+      gate.classList.add('active');
+      trackEvent('quiz_gate_shown', { quiz_name: 'photo-ready' });
+    }
+  }
+
+  // ── Email submit ──
+  document.getElementById('qzSubmit').addEventListener('click', function() {
+    var email = document.getElementById('qzEmail').value.trim();
+    var firstName = document.getElementById('qzFirstName').value.trim();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('qzEmail').style.borderColor = '#c47a5a';
+      return;
+    }
+
+    this.disabled = true;
+    this.textContent = 'Loading...';
+
+    // Send to GHL webhook
+    var payload = {
+      firstName: firstName,
+      email: email,
+      source: 'photo-ready-quiz',
+      tag: 'quiz-lead',
+      firmType: answers.firm || '',
+      projectStage: answers.stage || '',
+      purpose: answers.purpose || '',
+      timeline: answers.timeline || ''
+    };
+
+    fetch('https://services.leadconnectorhq.com/hooks/6Nlxml1Rtjj35EjoKuLO/webhook-trigger/90f300f1-c408-4183-bbc5-4dc4640dd2ad', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function() {});
+
+    trackEvent('quiz_email_captured', { quiz_name: 'photo-ready', firm_type: answers.firm });
+    showResults();
+  });
+
+  // ── Skip gate ──
+  document.getElementById('qzSkip').addEventListener('click', function() {
+    trackEvent('quiz_gate_skipped', { quiz_name: 'photo-ready' });
+    showResults();
+  });
+
+  // ── Results engine ──
+  function showResults() {
+    gate.classList.remove('active');
+    results.classList.add('active');
+
+    // Swap to final bg
+    bgImg.style.opacity = '0';
+    setTimeout(function() { bgImg.src = bgImages[4]; bgImg.style.opacity = '0.12'; }, 300);
+
+    var score = calcScore();
+    trackEvent('quiz_complete', {
+      quiz_name: 'photo-ready',
+      score: score.pct,
+      firm_type: answers.firm,
+      stage: answers.stage,
+      purpose: answers.purpose,
+      timeline: answers.timeline
+    });
+    var pct = score.pct;
+    var word = score.word;
+
+    // Animate ring
+    var circumference = 2 * Math.PI * 65; // ~408
+    var offset = circumference - (circumference * pct / 100);
+    setTimeout(function() {
+      document.getElementById('qzRingFill').style.strokeDashoffset = offset;
+    }, 100);
+
+    // Animate number
+    var counter = { v: 0 };
+    var pctEl = document.getElementById('qzScorePct');
+    var start = performance.now();
+    function tick(now) {
+      var p = Math.min((now - start) / 1200, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      pctEl.textContent = Math.round(pct * eased) + '%';
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    document.getElementById('qzScoreWord').textContent = word;
+    document.getElementById('qzHeadline').innerHTML = score.headline;
+    document.getElementById('qzDesc').textContent = score.desc;
+
+    // Build recommendation cards
+    var recsHTML = '';
+    score.recs.forEach(function(rec) {
+      recsHTML += '<div class="qz-rec">' +
+        '<p class="qz-rec-label">' + rec.label + '</p>' +
+        '<h3>' + rec.title + '</h3>' +
+        '<p>' + rec.text + '</p>' +
+        '<a href="' + rec.link + '" class="qz-rec-link">' + rec.linkText + ' &rarr;</a>' +
+        '</div>';
+    });
+    document.getElementById('qzRecs').innerHTML = recsHTML;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function calcScore() {
+    var pts = 0;
+    var maxPts = 12;
+
+    // Stage scoring (max 4)
+    if (answers.stage === 'just-completed') pts += 4;
+    else if (answers.stage === 'construction') pts += 3;
+    else if (answers.stage === 'completed-6plus') pts += 2;
+    else pts += 1;
+
+    // Purpose scoring (max 4)
+    if (answers.purpose === 'everything') pts += 4;
+    else if (answers.purpose === 'awards') pts += 3;
+    else if (answers.purpose === 'publications') pts += 3;
+    else pts += 2;
+
+    // Timeline scoring (max 4)
+    if (answers.timeline === '30days') pts += 4;
+    else if (answers.timeline === '1-3months') pts += 3;
+    else if (answers.timeline === '3-6months') pts += 2;
+    else pts += 1;
+
+    var pct = Math.round((pts / maxPts) * 100);
+    var word, headline, desc;
+
+    if (pct >= 85) {
+      word = 'Ready';
+      headline = 'Your project is <em>ready to shoot</em>';
+      desc = 'You have a completed or near-complete project with clear goals and a timeline. This is the ideal time to lock in a shoot date before the calendar fills up.';
+    } else if (pct >= 60) {
+      word = 'Almost';
+      headline = 'You\'re in a <em>great position</em>';
+      desc = 'Your project is on track for professional photography. A quick planning conversation now will make sure everything is lined up for the best possible result.';
+    } else if (pct >= 40) {
+      word = 'Planning';
+      headline = 'Good timing to <em>start planning</em>';
+      desc = 'You\'re thinking ahead, which is exactly the right move. The best architectural photography happens when we coordinate early in the project timeline.';
+    } else {
+      word = 'Exploring';
+      headline = 'Let\'s get you <em>oriented</em>';
+      desc = 'You\'re in research mode, which is smart. Understanding the process and investment now means you\'ll be ready to move fast when the time comes.';
+    }
+
+    // Build personalized recommendations
+    var recs = [];
+
+    // Rec 1: Service recommendation based on firm type + purpose
+    var serviceRec = getServiceRec(answers.firm, answers.purpose);
+    recs.push(serviceRec);
+
+    // Rec 2: Case study based on firm type
+    var caseStudy = getCaseStudy(answers.firm);
+    recs.push(caseStudy);
+
+    // Rec 3: Timing/process recommendation
+    var timingRec = getTimingRec(answers.stage, answers.timeline);
+    recs.push(timingRec);
+
+    return { pct: pct, word: word, headline: headline, desc: desc, recs: recs };
+  }
+
+  var SITE = 'https://mattanthonyphoto.com';
+
+  function getServiceRec(firm, purpose) {
+    if (purpose === 'everything') {
+      return {
+        label: 'Recommended Service',
+        title: 'Creative Partner Retainer',
+        text: 'For firms producing multiple projects per year, an ongoing creative partnership covers photography, content strategy, and brand management under one predictable monthly investment.',
+        link: SITE + '/creative-partner',
+        linkText: 'Learn about Creative Partner'
+      };
+    }
+    if (purpose === 'awards') {
+      return {
+        label: 'Recommended Service',
+        title: 'Award & Publication Imagery',
+        text: 'Photography crafted specifically for award submissions and editorial features. We handle everything from shot planning to final delivery in submission-ready formats.',
+        link: SITE + '/award-publication-imagery',
+        linkText: 'See Award Photography'
+      };
+    }
+    if (firm === 'builder' && purpose === 'website') {
+      return {
+        label: 'Recommended Service',
+        title: 'Project Photography',
+        text: 'Complete visual documentation of your finished build including architecture, interiors, aerial, and twilight. One shoot creates content for every channel.',
+        link: SITE + '/project-photography',
+        linkText: 'See Project Photography'
+      };
+    }
+    return {
+      label: 'Recommended Service',
+      title: 'Project Photography',
+      text: 'Professional documentation of your completed project. Includes architecture, interiors, details, and context shots that tell the full story of the design.',
+      link: SITE + '/project-photography',
+      linkText: 'See Project Photography'
+    };
+  }
+
+  function getCaseStudy(firm) {
+    if (firm === 'builder') {
+      return {
+        label: 'Relevant Case Study',
+        title: 'Balmoral Construction',
+        text: 'How ongoing photography helped a Sea-to-Sky builder win two Georgie Awards and build a visual brand that drives referrals from architects and designers.',
+        link: SITE + '/balmoral-construction',
+        linkText: 'Read Case Study'
+      };
+    }
+    if (firm === 'architect') {
+      return {
+        label: 'Relevant Case Study',
+        title: 'Sitelines Architecture',
+        text: 'Documenting residential architecture across the Sea-to-Sky with photography that captures design intent and supports award submissions.',
+        link: SITE + '/sitelines-architecture',
+        linkText: 'Read Case Study'
+      };
+    }
+    if (firm === 'designer') {
+      return {
+        label: 'Relevant Case Study',
+        title: 'LRD Studio Interior Design',
+        text: 'How editorial-quality photography helped an interior design studio build a portfolio that attracts high-end residential clients.',
+        link: SITE + '/lrd-studio-interior-design',
+        linkText: 'Read Case Study'
+      };
+    }
+    return {
+      label: 'Relevant Case Study',
+      title: 'The Window Merchant',
+      text: 'How a specialty trade supplier used professional photography to differentiate their product and win specification from architects.',
+      link: SITE + '/the-window-merchant',
+      linkText: 'Read Case Study'
+    };
+  }
+
+  function getTimingRec(stage, timeline) {
+    if (stage === 'construction' || timeline === '1-3months' || timeline === '3-6months') {
+      return {
+        label: 'Timing Tip',
+        title: 'Book Early for the Best Light',
+        text: 'The best time to photograph a project is within the first few weeks of completion, before landscaping matures and before the owners fully move in. Booking now locks in your preferred dates and gives us time to plan the shoot around optimal light conditions.',
+        link: SITE + '/process',
+        linkText: 'See Our Process'
+      };
+    }
+    if (stage === 'just-completed' || timeline === '30days') {
+      return {
+        label: 'Next Step',
+        title: 'Let\'s Get This on the Calendar',
+        text: 'Your project is in the sweet spot for photography. A 20-minute discovery call is all we need to scope the shoot, align on deliverables, and lock in a date.',
+        link: SITE + '/discovery-call',
+        linkText: 'Book a Discovery Call'
+      };
+    }
+    return {
+      label: 'While You Plan',
+      title: 'Get the Pricing Guide',
+      text: 'Our pricing guide breaks down investment ranges for every service tier so you can plan your content budget with confidence. No call required.',
+      link: SITE + '/pricing-guide-landing',
+      linkText: 'Get the Pricing Guide'
+    };
+  }
+
+})();
+</script>
+
+</body>
+</html>
