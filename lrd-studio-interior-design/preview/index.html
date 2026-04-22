@@ -1,0 +1,1623 @@
+<style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}
+#header,header,.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+#footer,footer#footer,.footer-wrapper,[data-section-type="footer"]{display:none!important}
+body{background:#F6F4F0!important}
+#page{background:transparent!important}
+#sections{background:transparent!important}
+.page-section{background:transparent!important;min-height:0!important;padding:0!important;margin:0!important}
+.page-section .content-wrapper{padding:0!important;max-width:none!important}
+.content-wrapper{background:transparent!important;max-width:none!important;padding:0!important}
+.fluid-engine{background:transparent!important;padding:0!important;max-width:none!important;grid-template-columns:none!important;display:block!important}
+.fe-block{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;grid-area:auto!important;position:relative!important}
+.sqs-block-code{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.sqs-block-content{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.sqs-code-container{padding:0!important;margin:0!important;max-width:none!important;width:100%!important;overflow:visible!important}
+.lrd-wrap,.lrd-ft{animation:none!important;-webkit-animation:none!important;opacity:1!important;visibility:visible!important}
+.lrd-wrap>section:not(.lrd-reveal),.lrd-wrap>div:not(.lrd-reveal):not(.lrd-img-reveal){animation:none!important;-webkit-animation:none!important;opacity:1!important;visibility:visible!important}
+
+/* ═══ TOKENS ═══ */
+.lrd-wrap {
+  --ink: #1A1A18;
+  --cream: #F6F4F0;
+  --warm: #ECE3D2;       /* warmer wheat */
+  --warm-deep: #E0D6BE;  /* deeper warm beige */
+  --clay: #A56F4E;       /* warm terracotta accent */
+  --gold: #B8975A;       /* warm gold */
+  --stone: #7B7164;      /* warm stone */
+  --stone-lt: #ADA290;   /* lighter warm stone */
+  --body: #6F6657;       /* warm brown body */
+  --rule: rgba(58, 47, 30, 0.10);
+  --f: 'Poppins', -apple-system, sans-serif;
+  --fs: 'Cormorant Garamond', 'Times New Roman', serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Serif headings throughout — matches the mockup direction Lauren liked.
+   Body stays in Poppins; only h1/h2/h3 get the serif treatment. */
+.lrd-wrap h1, .lrd-wrap h2, .lrd-wrap h3 { font-family: var(--f); font-weight: 300; letter-spacing: -0.02em; }
+.lrd-wrap h1 em, .lrd-wrap h2 em, .lrd-wrap h3 em { font-family: var(--f); font-style: italic; font-weight: 300; letter-spacing: -0.02em; }
+
+/* ═══ BASE ═══ */
+.lrd-wrap {
+  font-family: var(--f); font-weight: 300; color: var(--ink);
+  background: var(--cream); -webkit-font-smoothing: antialiased;
+  line-height: 1.8; overflow-x: hidden;
+}
+.lrd-wrap *, .lrd-wrap *::before, .lrd-wrap *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.lrd-wrap img { max-width: 100%; display: block; object-fit: cover; }
+.lrd-wrap a { text-decoration: none; color: inherit; }
+.lrd-wrap ::selection { background: rgba(138,133,121,0.12); }
+
+/* Section numbering — editorial chapter markers (I · II · III · IV) */
+.lrd-section-num {
+  display: inline-block;
+  font-family: var(--fs);
+  font-style: italic; font-weight: 400;
+  font-size: 1.3em;
+  color: var(--stone-lt);
+  margin-right: 14px;
+  letter-spacing: 0;
+  vertical-align: baseline;
+}
+h2 .lrd-section-num {
+  font-size: 0.6em;
+  vertical-align: 0.25em;
+  opacity: 0.7;
+}
+
+/* ═══ ACCESSIBILITY ═══ */
+/* Skip to content — only visible on keyboard focus */
+.lrd-skip-link {
+  position: absolute; top: -48px; left: 16px;
+  z-index: 999;
+  padding: 12px 20px;
+  background: var(--ink); color: white !important;
+  font-weight: 500; font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+.lrd-skip-link:focus { top: 16px; outline: 2px solid white; outline-offset: 2px; }
+
+/* Explicit focus states for keyboard navigation */
+.lrd-wrap a:focus-visible,
+.lrd-wrap button:focus-visible,
+.lrd-wrap input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+.lrd-hero a:focus-visible,
+.lrd-cta a:focus-visible,
+.lrd-ft a:focus-visible,
+.lrd-banner a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+.lrd-proj-item a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* ═══ NAV ═══ */
+.lrd-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 36px clamp(32px, 6vw, 80px);
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.6s var(--ease);
+}
+.lrd-nav.lrd-scrolled {
+  background: rgba(246,244,240,0.95);
+  backdrop-filter: blur(20px);
+  padding: 20px clamp(32px, 6vw, 80px);
+}
+.lrd-nav-logo { height: clamp(24px, 2.5vw, 32px); transition: filter 0.5s var(--ease); }
+.lrd-nav.lrd-scrolled .lrd-nav-logo { filter: invert(1); }
+.lrd-nav-links { display: flex; gap: clamp(24px, 3.5vw, 48px); align-items: center; }
+.lrd-nav-links a {
+  font-weight: 300; font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.78); transition: color 0.3s;
+}
+.lrd-nav-links a:hover { color: white; }
+.lrd-nav.lrd-scrolled .lrd-nav-links a { color: var(--stone); }
+.lrd-nav.lrd-scrolled .lrd-nav-links a:hover { color: var(--ink); }
+
+/* Nav CTA button — accented against both scroll states */
+.lrd-nav-links a.lrd-nav-cta {
+  border: 1px solid rgba(255,255,255,0.42);
+  color: white !important;
+  padding: 10px 22px;
+  letter-spacing: 0.14em;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.lrd-nav-links a.lrd-nav-cta:hover {
+  background: white; color: var(--ink) !important; border-color: white;
+}
+.lrd-nav.lrd-scrolled .lrd-nav-links a.lrd-nav-cta {
+  border-color: var(--ink); color: var(--ink) !important;
+  background: transparent;
+}
+.lrd-nav.lrd-scrolled .lrd-nav-links a.lrd-nav-cta:hover {
+  background: var(--ink); color: white !important; border-color: var(--ink);
+}
+@media(max-width:900px) {
+  .lrd-nav-links a.lrd-nav-cta {
+    border: 1px solid rgba(255,255,255,0.55) !important;
+    padding: 14px 30px !important; margin-top: 12px;
+  }
+}
+.lrd-nav-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 101; background: none; border: none; padding: 8px; }
+.lrd-nav-toggle span { width: 20px; height: 1px; background: white; transition: all 0.4s; display: block; }
+.lrd-nav.lrd-scrolled .lrd-nav-toggle span { background: var(--ink); }
+@media(max-width:900px) {
+  .lrd-nav-toggle { display: flex; }
+  .lrd-nav-links {
+    position: fixed; inset: 0; background: var(--ink);
+    flex-direction: column; justify-content: center; gap: 36px;
+    opacity: 0; visibility: hidden; transition: all 0.5s var(--ease);
+  }
+  .lrd-nav-links.lrd-open { opacity: 1; visibility: visible; }
+  .lrd-nav-links a { color: rgba(255,255,255,0.85) !important; font-size: 14px; letter-spacing: 0.2em; }
+  .lrd-nav-links a:hover { color: white !important; }
+}
+
+/* ═══ HERO SLIDESHOW ═══ */
+.lrd-hero {
+  position: relative; height: 100vh; min-height: 700px;
+  overflow: hidden; display: flex; align-items: flex-end;
+  background: var(--ink);
+}
+.lrd-hero-slides { position: absolute; inset: 0; }
+.lrd-hero-slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0; transition: opacity 1.6s var(--ease);
+  transform: scale(1.02);
+}
+.lrd-hero-slide.lrd-active {
+  opacity: 1;
+  animation: lrdKenBurns 9s linear forwards;
+}
+@keyframes lrdKenBurns {
+  0% { transform: scale(1.02); }
+  100% { transform: scale(1.10); }
+}
+.lrd-hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.82) 100%);
+  pointer-events: none;
+}
+.lrd-hero-content {
+  position: relative; z-index: 2;
+  padding: 0 clamp(32px, 8vw, 120px) clamp(80px, 14vh, 160px);
+  max-width: 820px;
+}
+.lrd-hero-eyebrow {
+  font-weight: 300; font-size: 10px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: rgba(255,255,255,0.75);
+  margin-bottom: 36px;
+  opacity: 0; transform: translateY(16px);
+  animation: lrdFadeUp 1.2s var(--ease) 0.2s forwards;
+}
+.lrd-hero h1 {
+  font-weight: 200; font-size: clamp(34px, 5vw, 68px);
+  line-height: 1.05; color: white; letter-spacing: -0.035em;
+  opacity: 0; transform: translateY(24px);
+  animation: lrdFadeUp 1.4s var(--ease) 0.5s forwards;
+}
+.lrd-hero h1 em { font-style: italic; font-weight: 200; }
+.lrd-hero-lead {
+  font-family: var(--fs);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(16px, 1.6vw, 22px);
+  color: rgba(255,255,255,0.92); max-width: 540px;
+  line-height: 1.4; margin-top: 24px;
+  letter-spacing: -0.005em;
+  opacity: 0; transform: translateY(16px);
+  animation: lrdFadeUp 1.2s var(--ease) 0.8s forwards;
+}
+.lrd-hero-sub {
+  font-weight: 300; font-size: clamp(12px, 1vw, 14px);
+  color: rgba(255,255,255,0.68); max-width: 500px; line-height: 1.8; margin-top: 16px;
+  letter-spacing: 0.02em;
+  opacity: 0; transform: translateY(16px);
+  animation: lrdFadeUp 1.2s var(--ease) 1s forwards;
+}
+.lrd-hero-actions {
+  display: flex; gap: clamp(32px, 4vw, 56px); margin-top: 40px; flex-wrap: wrap;
+  opacity: 0; transform: translateY(16px);
+  animation: lrdFadeUp 1.2s var(--ease) 1.15s forwards;
+}
+.lrd-hero-link {
+  display: inline-flex; align-items: center; gap: 16px;
+  font-weight: 400; font-size: 11px;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 14px rgba(0,0,0,0.5);
+  transition: color 0.4s var(--ease);
+}
+.lrd-hero-link::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 1px;
+  background: rgba(255,255,255,0.85);
+  transition: width 0.6s var(--ease), background 0.4s var(--ease);
+}
+.lrd-hero-link:hover::before { width: 48px; background: white; }
+.lrd-hero-meta {
+  position: absolute; z-index: 2;
+  bottom: clamp(32px, 4vh, 48px); right: clamp(32px, 8vw, 120px);
+  display: flex; align-items: center; gap: 24px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 300; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  opacity: 0; animation: lrdFadeIn 1s var(--ease) 1.4s forwards;
+}
+.lrd-hero-dots { display: flex; gap: 10px; }
+.lrd-hero-dot {
+  width: 22px; height: 1px; background: rgba(255,255,255,0.25);
+  transition: background 0.6s var(--ease), width 0.6s var(--ease);
+  cursor: pointer; border: none; padding: 0;
+}
+.lrd-hero-dot.lrd-active { background: white; width: 44px; }
+@media(max-width:700px) {
+  .lrd-hero-meta {
+    bottom: clamp(20px, 3vh, 32px);
+    right: clamp(20px, 4vw, 32px);
+    gap: 16px;
+  }
+  .lrd-hero-caption { display: none; }
+}
+
+@keyframes lrdFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes lrdFadeIn {
+  to { opacity: 1; }
+}
+
+/* ═══ RULE ═══ */
+.lrd-rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+/* ═══ SCROLL REVEAL — GPU-accelerated, no text jitter ═══ */
+.lrd-reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.lrd-reveal.lrd-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+/* Release GPU layer after reveal — prevents text subpixel repaint on scroll */
+.lrd-reveal.lrd-revealed {
+  transform: none;
+}
+.lrd-reveal-delay-1 { transition-delay: 0.1s; }
+.lrd-reveal-delay-2 { transition-delay: 0.2s; }
+.lrd-reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Image reveal — soft mask slide */
+.lrd-img-reveal { position: relative; overflow: hidden; }
+.lrd-img-reveal::before {
+  content: ''; position: absolute; inset: 0; z-index: 2;
+  background: var(--cream);
+  transform: translateX(0);
+  transition: transform 1.6s var(--ease);
+}
+.lrd-img-reveal.lrd-visible::before { transform: translateX(100%); }
+.lrd-img-reveal img {
+  transform: scale(1.12); transition: transform 2s var(--ease);
+}
+.lrd-img-reveal.lrd-visible img { transform: scale(1); }
+
+/* ═══ PHILOSOPHY ═══ */
+.lrd-philosophy {
+  padding: clamp(120px, 16vw, 240px) clamp(32px, 8vw, 120px);
+  max-width: 760px; margin: 0 auto;
+  text-align: left;
+}
+.lrd-philosophy-kicker {
+  font-weight: 300; font-size: 10px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--stone); margin-bottom: 32px;
+}
+.lrd-philosophy h2 {
+  font-weight: 200; font-size: clamp(24px, 2.9vw, 38px);
+  line-height: 1.45; letter-spacing: -0.02em; color: var(--ink);
+}
+.lrd-philosophy h2 em { font-style: italic; font-weight: 200; }
+.lrd-philosophy p {
+  font-weight: 300; font-size: clamp(13px, 1vw, 15px);
+  color: var(--body); line-height: 2; margin: 40px 0 0;
+  text-align: left;
+}
+/* ═══ PROJECTS ═══ */
+.lrd-projects {
+  padding: clamp(80px, 10vw, 160px) clamp(20px, 3vw, 48px);
+  max-width: 1720px; margin: 0 auto;
+}
+.lrd-projects-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: clamp(48px, 6vw, 80px); flex-wrap: wrap; gap: 20px;
+}
+.lrd-projects-header h2 {
+  font-weight: 200; font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.15; letter-spacing: -0.03em;
+}
+.lrd-projects-header h2 em { font-style: italic; font-weight: 200; }
+.lrd-view-all {
+  font-weight: 300; font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--stone);
+  border-bottom: 1px solid var(--rule); padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.lrd-view-all:hover { color: var(--ink); border-color: var(--ink); }
+
+/* Project stack — uniform 3-col grid (architectural) */
+.lrd-proj-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 40px) clamp(16px, 2vw, 28px);
+}
+.lrd-proj-item a { display: block; }
+.lrd-proj-item-img {
+  overflow: hidden;
+  position: relative;
+  background: var(--ink);
+  aspect-ratio: 4/3;
+}
+.lrd-proj-item-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.4s var(--ease), filter 0.7s var(--ease);
+}
+.lrd-proj-item a:hover .lrd-proj-item-img img {
+  transform: scale(1.04);
+  filter: brightness(0.88);
+}
+/* Gallery spotlight — when hovering one tile, other tiles dim */
+.lrd-proj-stack .lrd-proj-item {
+  transition: opacity 0.5s var(--ease);
+}
+.lrd-proj-stack:hover .lrd-proj-item { opacity: 0.45; }
+.lrd-proj-stack:hover .lrd-proj-item:hover { opacity: 1; }
+@media(max-width:900px) { .lrd-proj-stack { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:550px) { .lrd-proj-stack { grid-template-columns: 1fr; } }
+/* Hover gradient mask — creates depth for the overlay text */
+.lrd-proj-item-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.06) 0%, transparent 30%, rgba(0,0,0,0.4) 100%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+  z-index: 1;
+}
+.lrd-proj-item a:hover .lrd-proj-item-img::after { opacity: 1; }
+/* "View project" overlay — minimal architectural label, no box */
+.lrd-proj-item-overlay {
+  position: absolute;
+  bottom: clamp(24px, 3vw, 44px);
+  left: clamp(24px, 3vw, 44px);
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s var(--ease) 0.05s, transform 0.7s var(--ease) 0.05s;
+  display: inline-flex; align-items: center; gap: 16px;
+  font-weight: 400; font-size: 10.5px;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: white;
+  text-shadow: 0 1px 14px rgba(0,0,0,0.5);
+}
+.lrd-proj-item-overlay::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 1px;
+  background: rgba(255,255,255,0.85);
+  transition: width 0.6s var(--ease);
+}
+.lrd-proj-item a:hover .lrd-proj-item-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.lrd-proj-item a:hover .lrd-proj-item-overlay::before {
+  width: 44px;
+}
+.lrd-proj-item-text {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-top: 16px; flex-wrap: wrap; gap: 8px;
+}
+.lrd-proj-item-name {
+  font-weight: 400; font-size: clamp(14px, 1.1vw, 16px);
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.lrd-proj-item-loc {
+  font-weight: 400; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--stone);
+}
+
+/* ═══ DUO IMAGE ═══ */
+
+/* ═══ APPROACH (combined narrative + services, magazine 2-column) ═══ */
+.lrd-approach {
+  padding: clamp(120px, 16vw, 220px) clamp(32px, 8vw, 120px);
+}
+.lrd-approach-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.05fr 1fr;
+  gap: clamp(48px, 8vw, 120px);
+  align-items: start;
+}
+.lrd-approach-label, .lrd-approach-services-label {
+  font-weight: 300; font-size: 10px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--stone); margin-bottom: 22px;
+}
+.lrd-approach h2 {
+  font-weight: 200; font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 28px;
+}
+.lrd-approach h2 em { font-style: italic; font-weight: 200; }
+.lrd-approach-narrative p {
+  font-weight: 300; font-size: clamp(13.5px, 1vw, 15px);
+  color: var(--body); line-height: 2;
+  margin-bottom: 18px;
+}
+.lrd-svc-list {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+}
+.lrd-svc-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: clamp(16px, 2vw, 24px);
+  padding: clamp(20px, 2.4vw, 26px) 0;
+  border-top: 1px solid var(--rule);
+}
+.lrd-svc-row:last-child { border-bottom: 1px solid var(--rule); }
+.lrd-svc-row .lrd-svc-num {
+  font-weight: 400; font-size: 13px;
+  color: var(--stone); padding-top: 4px; letter-spacing: 0.05em;
+}
+.lrd-svc-text h3 {
+  font-weight: 300; font-size: clamp(15px, 1.2vw, 18px);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+.lrd-svc-text p {
+  font-weight: 300; font-size: 12.5px;
+  color: var(--body); line-height: 1.7;
+  margin: 0;
+}
+.lrd-approach-link {
+  display: inline-block;
+  font-weight: 300; font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--stone);
+  border-bottom: 1px solid var(--rule); padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.lrd-approach-link:hover { color: var(--ink); border-color: var(--ink); }
+@media(max-width:900px) {
+  .lrd-approach-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+
+/* ═══ PROJECT CARD AWARD BADGE (corner overlay) ═══ */
+.lrd-proj-item-award { position: relative; }
+.lrd-proj-award-badge {
+  position: absolute; top: clamp(16px, 2vw, 28px); right: clamp(16px, 2vw, 28px);
+  width: clamp(72px, 8vw, 108px); height: auto; z-index: 2;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25));
+  transition: transform 0.6s var(--ease);
+}
+.lrd-proj-item a:hover .lrd-proj-award-badge { transform: scale(1.04); }
+.lrd-proj-award-badge img {
+  width: 100%; height: auto; display: block;
+  mix-blend-mode: normal;
+}
+
+/* ═══ CTA — compact final close ═══ */
+.lrd-cta {
+  position: relative; overflow: hidden;
+  padding: clamp(60px, 8vw, 110px) clamp(28px, 6vw, 80px);
+  text-align: center;
+}
+.lrd-cta-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/efa7f649-329a-41c1-a913-5920bc7ef3ed/Copyright-Darby-Magill-7114.jpg?format=2500w&auto=format');
+}
+.lrd-cta-bg::after { content: ''; position: absolute; inset: 0; background: rgba(26,26,24,0.74); }
+.lrd-cta-inner { position: relative; z-index: 2; max-width: 580px; margin: 0 auto; }
+.lrd-cta h2 {
+  font-weight: 400; font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.2; color: white; letter-spacing: -0.01em; margin-bottom: 18px;
+}
+.lrd-cta h2 em { font-style: italic; font-weight: 400; }
+.lrd-cta-availability {
+  font-weight: 400; font-size: 10px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+  margin-bottom: 20px;
+}
+.lrd-cta-availability::before {
+  content: ''; display: inline-block; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--gold);
+  vertical-align: middle; margin-right: 12px;
+  box-shadow: 0 0 0 4px rgba(184,151,90,0.20);
+}
+.lrd-cta p {
+  font-weight: 300; font-size: clamp(13px, 1vw, 14.5px);
+  color: rgba(255,255,255,0.72); line-height: 1.85;
+  max-width: 480px; margin: 0 auto 28px;
+}
+.lrd-cta-actions {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 14px;
+}
+.lrd-cta-btn {
+  display: inline-block;
+  font-weight: 500; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 16px 44px;
+  background: white; color: var(--ink);
+  border: 1px solid white;
+  transition: all 0.4s var(--ease);
+}
+.lrd-cta-btn:hover {
+  background: transparent; color: white; border-color: white;
+  transform: translateY(-1px);
+}
+.lrd-cta-or {
+  font-weight: 300; font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em;
+}
+.lrd-cta-or a {
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  padding-bottom: 1px; transition: all 0.3s;
+}
+.lrd-cta-or a:hover { color: white; border-color: white; }
+.lrd-cta-actions { margin-bottom: 0; }
+
+/* ═══ PROOF BAND ═══ */
+.lrd-proof {
+  background: var(--cream);
+  padding: clamp(32px, 4.5vw, 52px) clamp(32px, 6vw, 80px);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.lrd-proof-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2.5vw, 36px);
+  text-align: center;
+}
+.lrd-proof-item {
+  display: flex; flex-direction: column; gap: 6px;
+  position: relative;
+  transition: opacity 0.3s, transform 0.4s var(--ease);
+}
+a.lrd-proof-item:hover { opacity: 0.7; transform: translateY(-1px); }
+a.lrd-proof-item:hover strong { color: var(--stone); }
+.lrd-proof-item:not(:last-child)::after {
+  content: ''; position: absolute;
+  right: calc(-1 * clamp(8px, 1.25vw, 18px));
+  top: 12%; bottom: 12%;
+  width: 1px; background: var(--rule);
+}
+.lrd-proof-item strong {
+  font-weight: 400; font-size: clamp(10px, 1vw, 12px); letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink);
+}
+.lrd-proof-item span {
+  font-weight: 300; font-size: clamp(9px, 0.85vw, 10px); letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--stone);
+}
+@media(max-width:700px) {
+  .lrd-proof-inner { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
+  .lrd-proof-item:not(:last-child)::after { display: none; }
+}
+
+/* ═══ BANNER BREAK (full-bleed image with centered quote overlay) ═══ */
+.lrd-banner {
+  position: relative; overflow: hidden;
+  width: 100%;
+  height: clamp(420px, 55vw, 640px);
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(40px, 6vw, 80px) clamp(28px, 7vw, 100px);
+}
+.lrd-banner-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 1.4s var(--ease);
+}
+.lrd-banner::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(26, 26, 24, 0.55);
+  z-index: 1;
+}
+.lrd-banner-inner {
+  position: relative; z-index: 2;
+  max-width: 820px; text-align: center;
+}
+.lrd-banner-quote {
+  font-family: var(--fs);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.35; color: white;
+  letter-spacing: -0.005em;
+  margin: 0 0 28px;
+}
+.lrd-banner-quote em {
+  font-family: var(--fs);
+  font-style: italic; font-weight: 500;
+}
+.lrd-banner-cite {
+  font-weight: 400; font-size: 10px; letter-spacing: 0.32em;
+  text-transform: uppercase; color: rgba(255,255,255,0.7);
+}
+
+/* ═══ TESTIMONIALS (magazine spread — sticky title + quote stack) ═══ */
+.lrd-testimonials {
+  padding: clamp(120px, 16vw, 220px) clamp(32px, 8vw, 120px);
+}
+.lrd-testimonials-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: clamp(48px, 8vw, 120px);
+  align-items: start;
+}
+.lrd-testimonials-header {
+  position: sticky; top: clamp(80px, 12vh, 140px);
+  /* Force GPU compositing on sticky — prevents Safari/Chrome jitter on scroll */
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+.lrd-testimonials-label {
+  font-weight: 300; font-size: 10px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--stone); margin-bottom: 22px;
+}
+.lrd-testimonials-header h2 {
+  font-weight: 200; font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 24px;
+}
+.lrd-testimonials-header h2 em { font-style: italic; font-weight: 200; }
+.lrd-testimonials-intro {
+  font-weight: 300; font-size: clamp(13px, 1vw, 15px);
+  color: var(--body); line-height: 2;
+  margin-bottom: 28px;
+}
+.lrd-testimonials-stack {
+  display: flex; flex-direction: column;
+  gap: clamp(40px, 5vw, 60px);
+}
+.lrd-testimonial-quote {
+  margin: 0;
+  padding: clamp(28px, 3.2vw, 44px) 0 0;
+  border-top: 1px solid var(--rule);
+}
+.lrd-testimonial-quote:first-child { padding-top: 0; border-top: none; }
+.lrd-testimonial-quote p {
+  font-family: var(--fs);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.5; color: var(--ink);
+  letter-spacing: -0.005em;
+  margin: 0 0 22px;
+}
+.lrd-testimonial-quote cite {
+  font-style: normal; font-weight: 400;
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--stone);
+}
+.lrd-testimonials-all {
+  display: inline-block;
+  font-weight: 300; font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--stone);
+  border-bottom: 1px solid var(--rule); padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.lrd-testimonials-all:hover { color: var(--ink); border-color: var(--ink); }
+
+/* Trust strip (Press + Client Notes) */
+.lrd-trust-strip { max-width: 1200px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) clamp(32px, 8vw, 120px); border-top: 1px solid var(--rule); }
+.lrd-trust-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); }
+.lrd-trust-col { display: flex; flex-direction: column; gap: 14px; }
+.lrd-trust-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
+.lrd-trust-list { display: flex; flex-direction: column; gap: 6px; }
+.lrd-trust-list span { font-weight: 300; font-size: 13.5px; color: var(--body); line-height: 1.7; }
+.lrd-trust-list em { font-family: var(--fs); font-style: italic; font-weight: 400; color: var(--ink); }
+.lrd-trust-link { align-self: flex-start; margin-top: 8px; font-weight: 400; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); border-bottom: 1px solid var(--rule); padding-bottom: 4px; transition: all 0.3s; }
+.lrd-trust-link:hover { color: var(--ink); border-color: var(--ink); }
+@media(max-width:700px) { .lrd-trust-inner { grid-template-columns: 1fr; gap: 32px; } }
+@media(max-width:900px) {
+  .lrd-testimonials-inner { grid-template-columns: 1fr; gap: 48px; }
+  .lrd-testimonials-header { position: static; }
+}
+
+
+/* View Transitions API — progressive enhancement for hero slide crossfade */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══ REDUCED MOTION ═══ */
+@media (prefers-reduced-motion: reduce) {
+  .lrd-wrap *, .lrd-wrap *::before, .lrd-wrap *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+  .lrd-hero-slide.lrd-active { animation: none !important; transform: none !important; }
+  .lrd-hero-eyebrow, .lrd-hero h1, .lrd-hero-sub, .lrd-hero-actions, .lrd-hero-meta {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+  .lrd-reveal, .lrd-img-reveal { opacity: 1 !important; transform: none !important; }
+  .lrd-img-reveal::before { display: none !important; }
+  .lrd-img-reveal img { transform: none !important; }
+  .lrd-proj-item a:hover .lrd-proj-item-img img { transform: none !important; }
+}
+
+/* ═══ FOOTER ═══ */
+.lrd-ft {
+  background: var(--ink);
+  padding: clamp(72px, 10vw, 120px) clamp(32px, 6vw, 80px) clamp(36px, 4vw, 56px);
+}
+.lrd-ft-inner { max-width: 1200px; margin: 0 auto; }
+
+/* Brand statement — large, editorial, sets the tone */
+.lrd-ft-statement {
+  display: flex; flex-direction: column; gap: 28px;
+  padding-bottom: clamp(56px, 7vw, 88px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+.lrd-ft-logo {
+  width: clamp(140px, 14vw, 200px); opacity: 0.85;
+}
+.lrd-ft-tagline {
+  font-family: var(--fs);
+  font-weight: 400; font-size: clamp(22px, 2.4vw, 32px);
+  color: rgba(255,255,255,0.92);
+  line-height: 1.3; letter-spacing: -0.005em;
+  max-width: 720px;
+}
+.lrd-ft-tagline em { font-family: var(--f); font-style: italic; font-weight: 300; }
+.lrd-ft-tagline span {
+  display: inline-block; margin-top: 8px;
+  font-family: var(--f);
+  font-weight: 300; font-size: clamp(12px, 1vw, 14px);
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5);
+}
+
+/* 4-col nav */
+.lrd-ft-cols {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 48px);
+  padding-bottom: clamp(48px, 6vw, 72px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.lrd-ft-col h4 {
+  font-family: var(--f);
+  font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 22px; font-weight: 400;
+}
+.lrd-ft-col a, .lrd-ft-col span {
+  display: block; font-size: 12.5px;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 14px;
+  font-weight: 300;
+  transition: color 0.3s;
+  line-height: 1.5;
+}
+.lrd-ft-col a:hover { color: white; }
+.lrd-ft-col span { color: rgba(255,255,255,0.55); }
+
+/* Bottom legal */
+.lrd-ft-bottom {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding-top: clamp(28px, 3vw, 40px);
+  flex-wrap: wrap; gap: 20px;
+}
+.lrd-ft-copy {
+  font-size: 10px; color: rgba(255,255,255,0.45);
+  font-weight: 300; letter-spacing: 0.06em;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.lrd-ft-credit {
+  font-style: italic; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.04em;
+}
+.lrd-ft-credit a {
+  color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  transition: color 0.3s, border-color 0.3s;
+}
+.lrd-ft-credit a:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.5); }
+.lrd-ft-land {
+  font-size: 10px; color: rgba(255,255,255,0.45);
+  font-weight: 300; max-width: 520px;
+  line-height: 1.85; text-align: right;
+  letter-spacing: 0.02em;
+}
+@media(max-width:1100px) {
+  .lrd-ft-cols { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .lrd-ft-land { text-align: left; }
+}
+@media(max-width:550px) {
+  .lrd-ft-cols { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+
+<div class="lrd-wrap">
+
+<!-- Accessibility skip link — visible only on keyboard focus -->
+<a href="#lrd-main" class="lrd-skip-link">Skip to main content</a>
+
+<!-- Nav -->
+<nav class="lrd-nav" id="lrdNav">
+  <a href="/lrd-studio-interior-design/preview/" class="lrd-nav-brand"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/d3571741-4823-46bd-aff3-64f24925ac00/LRD-STUDIO-LOGO-WHITE.png" alt="LRD Studio" class="lrd-nav-logo"></a>
+  <div class="lrd-nav-links" id="lrdNavLinks">
+    <a href="/lrd-studio-interior-design/preview/projects/">Projects</a>
+    <a href="/lrd-studio-interior-design/preview/services/">Services</a>
+    <a href="/lrd-studio-interior-design/preview/studio/">Studio</a>
+    <a href="/lrd-studio-interior-design/preview/journal/">Journal</a>
+    <a href="/lrd-studio-interior-design/preview/contact/">Contact</a>
+    <a href="/lrd-studio-interior-design/preview/contact/" class="lrd-nav-cta">Book a Call</a>
+  </div>
+  <button class="lrd-nav-toggle" id="lrdNavToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Hero — 6-image crossfade slideshow with ken burns
+     Order: Sunstone → Sunridge → Balsam → SRAM → Panorama → Tapleys -->
+<section class="lrd-hero" id="lrd-main">
+  <div class="lrd-hero-slides" id="lrdHeroSlides">
+    <div class="lrd-hero-slide lrd-active" role="img" aria-label="Sunstone — Mountain Modern new-build interior design in Pemberton, BC by LRD Studio. Western Living Design 25 Winner. Photography by Darby Magill." style="background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/be3572da-42ec-4467-b1b4-e8a97daa5568/Copyright-Darby-Magill-6932.jpg?format=2500w&auto=format');" data-project="Sunstone" data-location="Pemberton"></div>
+    <div class="lrd-hero-slide" role="img" aria-label="Sunridge — renovation interior design in Whistler, BC by LRD Studio. Log home renovation with curved staircase and stone tower. Photography by Matt Anthony." data-bg="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/1d570c5d-5e27-41ab-9fdf-7ed4192118ca/LRD-2500px-12.jpg?format=2500w&auto=format" data-project="Sunridge" data-location="Whistler"></div>
+    <div class="lrd-hero-slide" role="img" aria-label="SRAM Canada headquarters — commercial workspace interior design in North Vancouver, BC by LRD Studio. Branded workspace with curved meeting rooms and oak paneling." data-bg="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/41426d63-8f87-43c4-bb2c-c7af3a1bf9e3/3-LRD-DESIGNS-SRAM.jpg?format=1500w&auto=format" data-project="SRAM" data-location="North Vancouver"></div>
+    <div class="lrd-hero-slide" role="img" aria-label="Panorama — Mountain Modern new-build interior design in Whistler, BC by LRD Studio." data-bg="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/b9a260f9-7121-4dab-bb61-51953ca272ef/20-LRD-DESIGNS-Panorama.jpg?format=1500w&auto=format" data-project="Panorama" data-location="Whistler"></div>
+  </div>
+  <div class="lrd-hero-content">
+    <div class="lrd-hero-eyebrow">Whistler &middot; Squamish &middot; Pemberton &middot; Vancouver</div>
+    <h1>Mountain Modern interior design across the Sea to Sky.</h1>
+    <p class="lrd-hero-sub">LRD Studio &mdash; residential and commercial design across Whistler, Squamish, Pemberton, and Vancouver. Good design tells the story of who we are.</p>
+    <div class="lrd-hero-actions">
+      <a href="/lrd-studio-interior-design/preview/contact/" class="lrd-hero-link">Start a project</a>
+      <a href="/lrd-studio-interior-design/preview/projects/" class="lrd-hero-link">See our work</a>
+    </div>
+  </div>
+  <div class="lrd-hero-meta">
+    <span class="lrd-hero-caption" id="lrdHeroCaption">Sunstone &middot; Pemberton</span>
+    <div class="lrd-hero-dots" id="lrdHeroDots">
+      <button class="lrd-hero-dot lrd-active" aria-label="Slide 1: Sunstone"></button>
+      <button class="lrd-hero-dot" aria-label="Slide 2: Sunridge"></button>
+      <button class="lrd-hero-dot" aria-label="Slide 3: SRAM"></button>
+      <button class="lrd-hero-dot" aria-label="Slide 4: Panorama"></button>
+    </div>
+  </div>
+</section>
+
+<!-- Proof band -->
+<section class="lrd-proof" aria-label="Awards and recognition">
+  <div class="lrd-proof-inner">
+    <a class="lrd-proof-item" href="/lrd-studio-interior-design/preview/projects/residential/sunstone/"><strong>Western Living Design 25</strong><span>Winner &middot; 2026</span></a>
+    <a class="lrd-proof-item" href="/lrd-studio-interior-design/preview/press/"><strong>4&times; Western Living</strong><span>Features</span></a>
+    <a class="lrd-proof-item" href="/lrd-studio-interior-design/preview/press/"><strong>West Coast North</strong><span>Featured Book</span></a>
+    <a class="lrd-proof-item" href="/lrd-studio-interior-design/preview/projects/"><strong>50+ Projects</strong><span>Since 2017 &middot; Sea to Sky</span></a>
+  </div>
+</section>
+
+<!-- Philosophy — text-first, left-aligned with drop cap -->
+<section class="lrd-philosophy lrd-reveal">
+  <div class="lrd-philosophy-kicker"><span class="lrd-section-num">I</span>Mountain Modern &middot; British Columbia</div>
+  <h2>We start with the broad scale of how your family lives. By the end, we're talking about where your <em>special cutting board</em> is going to go.</h2>
+  <p>Equal parts logic and creativity. Every decision layered with intention &mdash; grounded in who you are, never another Lauren Ritz house.</p>
+</section>
+
+<hr class="lrd-rule">
+
+<!-- Projects — stacked, full-width images, text below -->
+<section class="lrd-projects">
+  <div class="lrd-projects-header lrd-reveal">
+    <h2><span class="lrd-section-num">II</span>Selected work</h2>
+    <a href="/lrd-studio-interior-design/preview/projects/" class="lrd-view-all">View all projects</a>
+  </div>
+  <div class="lrd-proj-stack">
+
+    <!-- Sunstone — with Western Living Design 25 badge overlay -->
+    <div class="lrd-proj-item lrd-reveal" itemscope itemtype="https://schema.org/CreativeWork">
+      <a href="/lrd-studio-interior-design/preview/projects/residential/sunstone/" itemprop="url">
+        <div class="lrd-proj-item-img lrd-proj-item-award">
+          <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg?format=1500w&auto=format" alt="Sunstone kitchen — Mountain Modern new-build interior design in Pemberton, BC by LRD Studio. Dark stone island, oak cabinetry, Western Living Design 25 Winner. Photography by Darby Magill." width="1500" height="1125" loading="lazy">
+          <span class="lrd-proj-item-overlay">View project</span>
+          <div class="lrd-proj-award-badge" aria-label="Western Living Design 25 Winner 2026">
+            <img src="data:image/jpeg;base64,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" alt="Western Living Design 25 Winner 2026" width="450" height="434">
+          </div>
+        </div>
+        <div class="lrd-proj-item-text">
+          <div class="lrd-proj-item-name" itemprop="name">Sunstone</div>
+          <div class="lrd-proj-item-loc" itemprop="contentLocation">Pemberton</div>
+        </div>
+      </a>
+    </div>
+
+      <div class="lrd-proj-item lrd-reveal" itemscope itemtype="https://schema.org/CreativeWork">
+        <a href="/lrd-studio-interior-design/preview/projects/residential/balsam/" itemprop="url">
+          <div class="lrd-proj-item-img">
+            <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/9ee945b7-f395-43b9-b206-015a4b2b86ec/Copyright-Darby-Magill-0441.jpg" alt="Balsam kitchen — Mountain Modern new-build interior design in Whistler, BC by LRD Studio. Cold rolled steel hood, chisel limestone backsplash, rustic oak cabinets. Photography by Darby Magill." width="1500" height="1125" loading="lazy">
+            <span class="lrd-proj-item-overlay">View project</span>
+          </div>
+          <div class="lrd-proj-item-text">
+            <div class="lrd-proj-item-name" itemprop="name">Balsam</div>
+            <div class="lrd-proj-item-loc" itemprop="contentLocation">Whistler</div>
+          </div>
+        </a>
+      </div>
+      <div class="lrd-proj-item lrd-reveal" itemscope itemtype="https://schema.org/CreativeWork">
+        <a href="/lrd-studio-interior-design/preview/projects/residential/panorama/" itemprop="url">
+          <div class="lrd-proj-item-img">
+            <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/b9a260f9-7121-4dab-bb61-51953ca272ef/20-LRD-DESIGNS-Panorama.jpg" alt="Panorama — Mountain Modern new-build interior design in Whistler, BC by LRD Studio." width="1500" height="1125" loading="lazy">
+            <span class="lrd-proj-item-overlay">View project</span>
+          </div>
+          <div class="lrd-proj-item-text">
+            <div class="lrd-proj-item-name" itemprop="name">Panorama</div>
+            <div class="lrd-proj-item-loc" itemprop="contentLocation">Whistler</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="lrd-proj-item lrd-reveal" itemscope itemtype="https://schema.org/CreativeWork">
+        <a href="/lrd-studio-interior-design/preview/projects/residential/sunridge/" itemprop="url">
+          <div class="lrd-proj-item-img">
+            <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/6847f944-d86d-40e4-8cf9-2dc00a75e1eb/sunridge-whistle-web--32.jpg?format=1500w&auto=format" alt="Sunridge — renovation interior design in Whistler, BC by LRD Studio. Log home renovation featuring curved staircase and stone tower. Photography by Matt Anthony." width="1500" height="1125" loading="lazy">
+            <span class="lrd-proj-item-overlay">View project</span>
+          </div>
+          <div class="lrd-proj-item-text">
+            <div class="lrd-proj-item-name" itemprop="name">Sunridge</div>
+            <div class="lrd-proj-item-loc" itemprop="contentLocation">Whistler</div>
+          </div>
+        </a>
+      </div>
+      <div class="lrd-proj-item lrd-reveal" itemscope itemtype="https://schema.org/CreativeWork">
+        <a href="/lrd-studio-interior-design/preview/projects/residential/tapleys/" itemprop="url">
+          <div class="lrd-proj-item-img">
+            <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/a5eac8b7-aec8-4754-9927-a1b90ed94cce/LRD-2500px-7.jpg?format=1500w&auto=format" alt="Tapleys — major renovation interior design in Whistler, BC by LRD Studio. Whitewashed fir beams, hickory floors, reimagined kitchen and living spaces." width="1500" height="1125" loading="lazy">
+            <span class="lrd-proj-item-overlay">View project</span>
+          </div>
+          <div class="lrd-proj-item-text">
+            <div class="lrd-proj-item-name" itemprop="name">Tapleys</div>
+            <div class="lrd-proj-item-loc" itemprop="contentLocation">Whistler</div>
+          </div>
+        </a>
+      </div>
+
+    <!-- SRAM — commercial -->
+    <div class="lrd-proj-item lrd-reveal" itemscope itemtype="https://schema.org/CreativeWork">
+      <a href="/lrd-studio-interior-design/preview/projects/commercial/sram/" itemprop="url">
+        <div class="lrd-proj-item-img">
+          <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/b52ee734-bf22-4b98-b50e-73fab8652551/16-LRD-DESIGNS-SRAM.jpg" alt="SRAM Canada headquarters — commercial workspace interior design in North Vancouver, BC by LRD Studio. Branded headquarters with curved meeting rooms, oak paneling, and backlit logo wall." width="1500" height="1125" loading="lazy">
+          <span class="lrd-proj-item-overlay">View project</span>
+        </div>
+        <div class="lrd-proj-item-text">
+          <div class="lrd-proj-item-name" itemprop="name">SRAM</div>
+          <div class="lrd-proj-item-loc" itemprop="contentLocation">North Vancouver</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Approach — combined narrative + services in a magazine 2-column layout -->
+<section class="lrd-approach">
+  <div class="lrd-approach-inner">
+    <div class="lrd-approach-narrative lrd-reveal">
+      <div class="lrd-approach-label"><span class="lrd-section-num">III</span>Our Approach</div>
+      <h2>Designed around how you actually live.</h2>
+      <p>Every project starts with the broad scale &mdash; how your family moves through a space, what matters most. From there: visual direction, material palettes, drawings, procurement, install.</p>
+      <p>We&rsquo;re embedded in the team start to finish &mdash; your ambassador to the build crew, making sure the finished space feels like you. Not exclusive. Not precious. Just well thought-out.</p>
+    </div>
+    <div class="lrd-approach-services lrd-reveal">
+      <div class="lrd-approach-services-label">Our Services</div>
+      <ul class="lrd-svc-list">
+        <li class="lrd-svc-row">
+          <span class="lrd-svc-num">1</span>
+          <div class="lrd-svc-text">
+            <h3>Residential Design</h3>
+            <p>New builds, renovations, and family homes.</p>
+          </div>
+        </li>
+        <li class="lrd-svc-row">
+          <span class="lrd-svc-num">2</span>
+          <div class="lrd-svc-text">
+            <h3>Commercial Design</h3>
+            <p>Offices, hospitality, and retail.</p>
+          </div>
+        </li>
+        <li class="lrd-svc-row">
+          <span class="lrd-svc-num">3</span>
+          <div class="lrd-svc-text">
+            <h3>Furniture &amp; Finishes</h3>
+            <p>Sourcing, custom millwork, specification.</p>
+          </div>
+        </li>
+        <li class="lrd-svc-row">
+          <span class="lrd-svc-num">4</span>
+          <div class="lrd-svc-text">
+            <h3>Project Management</h3>
+            <p>Procurement, coordination, install.</p>
+          </div>
+        </li>
+      </ul>
+      <a href="/lrd-studio-interior-design/preview/services/" class="lrd-approach-link">Explore services in detail &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- Banner break — full-bleed image with Lauren-voice quote overlay -->
+<section class="lrd-banner">
+  <div class="lrd-banner-bg" role="img" aria-label="Sunstone — Mountain Modern new-build interior design in Pemberton, BC by LRD Studio. Western Living Design 25 Winner. Photography by Darby Magill." style="background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/9fa4c71a-275d-40da-b6e3-e6160056d060/Copyright-Darby-Magill-7297.jpg?format=2500w&auto=format');"></div>
+  <div class="lrd-banner-inner lrd-reveal">
+    <blockquote class="lrd-banner-quote">
+      &ldquo;We don&rsquo;t impose a style. We find <em>yours</em>.&rdquo;
+    </blockquote>
+    <div class="lrd-banner-cite">Lauren Ritz &middot; Principal Designer</div>
+  </div>
+</section>
+
+<!-- Testimonials — magazine spread, sticky title left, quotes right -->
+<section class="lrd-testimonials">
+  <div class="lrd-testimonials-inner">
+    <aside class="lrd-testimonials-header lrd-reveal">
+      <div class="lrd-testimonials-label"><span class="lrd-section-num">IV</span>Client Notes</div>
+      <h2>In their words.</h2>
+      <p class="lrd-testimonials-intro">Clients across Vancouver, Whistler, and Squamish on the experience of designing with our studio.</p>
+      <a href="/lrd-studio-interior-design/preview/testimonials/" class="lrd-testimonials-all">Read more from clients &rarr;</a>
+    </aside>
+    <div class="lrd-testimonials-stack">
+      <blockquote class="lrd-testimonial-quote lrd-reveal">
+        <p>&ldquo;When I walked in to our home for the first time, I had an experience that I cannot truly describe. Our colour palette and texture choices came to life with such beauty that it stopped me in my tracks.&rdquo;</p>
+        <cite>Carolyn &mdash; Vancouver, BC</cite>
+      </blockquote>
+      <blockquote class="lrd-testimonial-quote lrd-reveal">
+        <p>&ldquo;Lauren found a way to take charge of the important aspects, while leaving us in control of the decisions we were comfortable with &mdash; and taught us a heck of a lot along the way.&rdquo;</p>
+        <cite>Richard P. &mdash; Whistler, BC</cite>
+      </blockquote>
+      <blockquote class="lrd-testimonial-quote lrd-reveal">
+        <p>&ldquo;Her ability to pull together beautiful palettes of colours, textures and materials from ideas we brought her, into a cohesive design plan was amazing.&rdquo;</p>
+        <cite>Mike E. &mdash; Squamish, BC</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- Press + Testimonials surface strip -->
+<section class="lrd-trust-strip" aria-label="Trust signals">
+  <div class="lrd-trust-inner">
+    <div class="lrd-trust-col">
+      <div class="lrd-trust-label">Press</div>
+      <div class="lrd-trust-list">
+        <span><em>Western Living</em> &middot; 4 features</span>
+        <span><em>West Coast North</em> &middot; Featured book</span>
+        <span><em>Elio Magazine</em> &middot; Squamish + Whistler</span>
+      </div>
+      <a href="/lrd-studio-interior-design/preview/press/" class="lrd-trust-link">View press &rarr;</a>
+    </div>
+    <div class="lrd-trust-col">
+      <div class="lrd-trust-label">Client Notes</div>
+      <div class="lrd-trust-list">
+        <span>12 verified testimonials across</span>
+        <span>Vancouver &middot; Whistler &middot; Squamish</span>
+        <span>&mdash; five-star rated.</span>
+      </div>
+      <a href="/lrd-studio-interior-design/preview/testimonials/" class="lrd-trust-link">Read client notes &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — focused single-action close -->
+<section class="lrd-cta">
+  <div class="lrd-cta-bg" role="img" aria-label="Sunstone — Mountain Modern new-build interior design in Pemberton, BC by LRD Studio. Western Living Design 25 Winner. Photography by Darby Magill."></div>
+  <div class="lrd-cta-inner lrd-reveal">
+    <h2>Let&rsquo;s talk about how your family lives.</h2>
+    <p>Every project starts with a conversation about who you are and how you actually live.</p>
+    <div class="lrd-cta-actions">
+      <a href="/lrd-studio-interior-design/preview/contact/" class="lrd-cta-btn">Start a Project</a>
+      <span class="lrd-cta-or">or email <a href="mailto:hello@lrdstudio.ca">hello@lrdstudio.ca</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer — editorial brand statement on top, 3-col nav below, legal at bottom -->
+<footer class="lrd-ft">
+  <div class="lrd-ft-inner">
+    <div class="lrd-ft-statement">
+      <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/d3571741-4823-46bd-aff3-64f24925ac00/LRD-STUDIO-LOGO-WHITE.png" alt="LRD Studio" class="lrd-ft-logo">
+      <p class="lrd-ft-tagline">Designed around how you actually live.<br><span>Mountain Modern interior design across the Sea to Sky.</span></p>
+    </div>
+    <div class="lrd-ft-cols">
+      <div class="lrd-ft-col"><h4>Explore</h4><a href="/lrd-studio-interior-design/preview/projects/">Projects</a><a href="/lrd-studio-interior-design/preview/services/">Services</a><a href="/lrd-studio-interior-design/preview/journal/">Journal</a><a href="/lrd-studio-interior-design/preview/studio/">Studio</a><a href="/lrd-studio-interior-design/preview/contact/">Contact</a><a href="/lrd-studio-interior-design/preview/awards/">Awards</a><a href="/lrd-studio-interior-design/preview/press/">Press</a><a href="/lrd-studio-interior-design/preview/testimonials/">Client notes</a></div>
+      <div class="lrd-ft-col"><h4>What we design</h4><a href="/lrd-studio-interior-design/preview/mountain-modern-interior-design/">Mountain Modern</a><a href="/lrd-studio-interior-design/preview/west-coast-modern-design/">West Coast Modern</a><a href="/lrd-studio-interior-design/preview/kitchen-design-whistler/">Kitchen design</a><a href="/lrd-studio-interior-design/preview/legacy-renovations-whistler/">Legacy renovations</a><a href="/lrd-studio-interior-design/preview/new-build-interior-design/">New build interiors</a><a href="/lrd-studio-interior-design/preview/commercial-interior-design/">Commercial</a><a href="/lrd-studio-interior-design/preview/sustainable-interior-design/">Sustainable &amp; Passive House</a><a href="/lrd-studio-interior-design/preview/interior-design-cost-guide/">Cost &amp; process</a></div>
+      <div class="lrd-ft-col"><h4>Where we work</h4><a href="/lrd-studio-interior-design/preview/sea-to-sky-interior-design/">Sea-to-Sky corridor</a><a href="/lrd-studio-interior-design/preview/whistler-interior-design/">Whistler</a><a href="/lrd-studio-interior-design/preview/squamish-interior-design/">Squamish</a><a href="/lrd-studio-interior-design/preview/pemberton-interior-design/">Pemberton</a><a href="/lrd-studio-interior-design/preview/vancouver-interior-design/">Vancouver</a><a href="/lrd-studio-interior-design/preview/kitchen-design-whistler/">Kitchens · Whistler</a><a href="/lrd-studio-interior-design/preview/kitchen-design-squamish/">Kitchens · Squamish</a><a href="/lrd-studio-interior-design/preview/kitchen-design-pemberton/">Kitchens · Pemberton</a></div>
+      <div class="lrd-ft-col"><h4>Connect</h4><a href="/lrd-studio-interior-design/preview/contact/">Start a project</a><a href="mailto:hello@lrdstudio.ca">hello@lrdstudio.ca</a><a href="https://www.instagram.com/lrdstudio_interiors/" target="_blank" rel="noopener">Instagram</a><a href="/lrd-studio-interior-design/preview/client-portal/">Client portal</a></div>
+    </div>
+    <div class="lrd-ft-bottom">
+      <div class="lrd-ft-copy">
+        <div>&copy; <span id="lrdCurrentYear">2026</span> LRD Studio Ltd. &middot; Est. 2017 &middot; Squamish, BC</div>
+        <div class="lrd-ft-credit">Designed &amp; managed by <a href="https://www.mattanthonyphoto.com" target="_blank" rel="noopener">Matt Anthony Photography</a></div>
+      </div>
+      <div class="lrd-ft-land">We work on the unceded Indigenous land of the Coast Salish peoples &mdash; the Lil&rsquo;wat and Squamish Nations.</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  /* Scrolled nav state */
+  var nav = document.getElementById('lrdNav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('lrd-scrolled', window.scrollY > 60);
+  }, { passive: true });
+  document.getElementById('lrdNavToggle').addEventListener('click', function() {
+    document.getElementById('lrdNavLinks').classList.toggle('lrd-open');
+  });
+
+  /* Dynamic footer year — stays accurate forever */
+  var yearEl = document.getElementById('lrdCurrentYear');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* Hero slideshow — crossfade + ken burns */
+  var slides = document.querySelectorAll('.lrd-hero-slide');
+  var dots = document.querySelectorAll('.lrd-hero-dot');
+  var caption = document.getElementById('lrdHeroCaption');
+  var current = 0;
+  var slideInterval;
+  var SLIDE_DURATION = 7500;
+
+  /* LCP-friendly deferred slide hydration.
+     Slide 1 ships with inline background-image; slides 2-6 carry data-bg and
+     hydrate after the page is idle so they don't compete for initial bandwidth. */
+  function hydrateDeferredSlides() {
+    slides.forEach(function(slide) {
+      var url = slide.getAttribute('data-bg');
+      if (url) {
+        slide.style.backgroundImage = "url('" + url + "')";
+        slide.removeAttribute('data-bg');
+      }
+    });
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(hydrateDeferredSlides, { timeout: 1500 });
+  } else {
+    setTimeout(hydrateDeferredSlides, 800);
+  }
+
+  function applySlide(index) {
+    slides[current].classList.remove('lrd-active');
+    dots[current].classList.remove('lrd-active');
+    current = index;
+    slides[current].classList.add('lrd-active');
+    dots[current].classList.add('lrd-active');
+    var slide = slides[current];
+    if (caption && slide.dataset.project) {
+      caption.style.opacity = '0';
+      setTimeout(function() {
+        caption.textContent = slide.dataset.project + ' · ' + slide.dataset.location;
+        caption.style.opacity = '1';
+      }, 400);
+    }
+  }
+  function setSlide(index) {
+    // Progressive enhancement: use View Transitions API where supported, fall back to existing opacity crossfade
+    if (document.startViewTransition && !prefersReduced) {
+      document.startViewTransition(function() { applySlide(index); });
+    } else {
+      applySlide(index);
+    }
+  }
+  function nextSlide() { setSlide((current + 1) % slides.length); }
+  function startSlideshow() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, SLIDE_DURATION);
+  }
+  dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() { setSlide(i); startSlideshow(); });
+  });
+  if (caption) {
+    caption.style.transition = 'opacity 0.5s ease';
+  }
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (slides.length > 1 && !prefersReduced) startSlideshow();
+
+  /* Scroll reveal via IntersectionObserver */
+  var revealEls = document.querySelectorAll('.lrd-reveal, .lrd-img-reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.classList.add('lrd-visible');
+          /* After the transition finishes, release the GPU layer so
+             text rendering returns to subpixel-perfect (no scroll jitter). */
+          setTimeout(function() { el.classList.add('lrd-revealed'); }, 1000);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el) { observer.observe(el); });
+  } else {
+    /* Fallback — show everything immediately */
+    revealEls.forEach(function(el) { el.classList.add('lrd-visible'); });
+  }
+})();
+</script>
+
+<title>LRD Studio &mdash; Mountain Modern Interior Design | Whistler, Squamish, Sea to Sky</title>
+<meta name="description" content="LRD Studio is a Mountain Modern interior design studio based in Squamish, BC. Residential and commercial interior design across Whistler, Squamish, Pemberton, and Vancouver. Western Living Design 25 Winner.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F6F4F0">
+<link rel="canonical" href="https://www.lrdstudio.ca/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="LRD Studio — Mountain Modern Interior Design">
+<meta property="og:description" content="Thoughtful interior design for residential and commercial spaces across Whistler, Squamish, Pemberton, and Vancouver. Founded by Lauren Ritz, est. 2017.">
+<meta property="og:url" content="https://www.lrdstudio.ca/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LRD Studio">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg?format=1500w&auto=format">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:alt" content="Sunstone kitchen — Western Living Design 25 Winner by LRD Studio, Pemberton BC">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LRD Studio — Mountain Modern Interior Design">
+<meta name="twitter:description" content="Thoughtful interior design for residential and commercial spaces across the Sea to Sky. Western Living Design 25 Winner.">
+<meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg?format=1500w&auto=format">
+<meta name="twitter:image:alt" content="Sunstone kitchen — Western Living Design 25 Winner by LRD Studio, Pemberton BC">
+
+<!-- Performance: preconnect + preload hero LCP -->
+<link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
+<link rel="preload" as="image" href="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/be3572da-42ec-4467-b1b4-e8a97daa5568/Copyright-Darby-Magill-6932.jpg?format=2500w&auto=format" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["InteriorDesigner", "LocalBusiness"],
+  "@id": "https://www.lrdstudio.ca/#studio",
+  "name": "LRD Studio",
+  "alternateName": "LRD Studio Ltd.",
+  "description": "Mountain Modern interior design studio for residential and commercial spaces across Whistler, Squamish, Pemberton, and Vancouver.",
+  "url": "https://www.lrdstudio.ca",
+  "logo": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/d3571741-4823-46bd-aff3-64f24925ac00/LRD-STUDIO-LOGO-WHITE.png",
+  "image": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg",
+  "email": "hello@lrdstudio.ca",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "37758 3rd Avenue",
+    "addressLocality": "Squamish",
+    "addressRegion": "BC",
+    "postalCode": "V8B 0B6",
+    "addressCountry": "CA"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 49.7016, "longitude": -123.1558 },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "08:30",
+    "closes": "17:00"
+  }],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "email": "hello@lrdstudio.ca",
+    "areaServed": "CA",
+    "availableLanguage": ["English"]
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Lauren Ritz",
+    "jobTitle": "Principal Designer",
+    "hasCredential": [
+      { "@type": "EducationalOccupationalCredential", "name": "NCIDQ Certified" },
+      { "@type": "EducationalOccupationalCredential", "name": "Registered Interior Designer, IDIBC" },
+      { "@type": "EducationalOccupationalCredential", "name": "Interior Designers of Canada (IDC)" }
+    ]
+  },
+  "foundingDate": "2017",
+  "slogan": "Good design tells the story of who we are.",
+  "knowsAbout": [
+    "Interior Design",
+    "Mountain Modern Design",
+    "Residential Design",
+    "Commercial Interior Design",
+    "Kitchen Design",
+    "Custom Millwork",
+    "Material Sourcing",
+    "Project Management",
+    "Furniture Specification",
+    "Space Planning"
+  ],
+  "areaServed": [
+    { "@type": "City", "name": "Whistler", "containedInPlace": "British Columbia, Canada" },
+    { "@type": "City", "name": "Squamish", "containedInPlace": "British Columbia, Canada" },
+    { "@type": "City", "name": "Pemberton", "containedInPlace": "British Columbia, Canada" },
+    { "@type": "City", "name": "Vancouver", "containedInPlace": "British Columbia, Canada" }
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Residential Interior Design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Interior Design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Furniture & Finishes" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project Management" } }
+  ],
+  "sameAs": ["https://www.instagram.com/lrdstudio_interiors/"],
+  "award": [
+    "Western Living Design 25 Winner 2026",
+    "Western Living Home of the Year Top 5 Finalist 2021"
+  ],
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Carolyn" },
+      "reviewBody": "When I walked in to our home for the first time, I had an experience that I cannot truly describe. Our colour palette and texture choices came to life with such beauty that it stopped me in my tracks."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Richard P." },
+      "reviewBody": "Lauren found a way to take charge of the important aspects, while leaving us in control of the decisions we were comfortable with — and taught us a heck of a lot along the way."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Mike E." },
+      "reviewBody": "Her ability to pull together beautiful palettes of colours, textures and materials from ideas we brought her, into a cohesive design plan was amazing."
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3",
+    "bestRating": "5"
+  }
+}
+</script>
+
+<!-- WebSite schema — enables Google sitelinks search + speakable for voice assistants -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.lrdstudio.ca/#website",
+  "url": "https://www.lrdstudio.ca/",
+  "name": "LRD Studio",
+  "description": "Mountain Modern interior design studio — Whistler, Squamish, Pemberton, Vancouver",
+  "publisher": { "@id": "https://www.lrdstudio.ca/#studio" },
+  "inLanguage": "en-CA",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.lrdstudio.ca/?s={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".lrd-hero h1", ".lrd-philosophy h2"]
+  }
+}
+</script>
+
+<!-- Person schema — Lauren Ritz as standalone entity referenced from the studio -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.lrdstudio.ca/#lauren-ritz",
+  "name": "Lauren Ritz",
+  "givenName": "Lauren",
+  "familyName": "Ritz",
+  "jobTitle": "Principal Designer",
+  "worksFor": { "@id": "https://www.lrdstudio.ca/#studio" },
+  "knowsAbout": [
+    "Interior Design",
+    "Mountain Modern Design",
+    "Residential Design",
+    "Commercial Interior Design",
+    "Custom Millwork",
+    "Material Sourcing"
+  ],
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "name": "NCIDQ Certified", "credentialCategory": "certification" },
+    { "@type": "EducationalOccupationalCredential", "name": "Registered Interior Designer, IDIBC", "credentialCategory": "license" },
+    { "@type": "EducationalOccupationalCredential", "name": "Member, Interior Designers of Canada" }
+  ],
+  "award": [
+    "Western Living Design 25 Winner 2026",
+    "Western Living Home of the Year Top 5 Finalist 2021"
+  ],
+  "sameAs": ["https://www.instagram.com/lrdstudio_interiors/"]
+}
+</script>
+
+<!-- CreativeWork — featured projects with photographer credit for AI search visibility -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.lrdstudio.ca/projects/residential/sunstone",
+      "name": "Sunstone",
+      "url": "https://www.lrdstudio.ca/projects/residential/sunstone",
+      "creator": { "@id": "https://www.lrdstudio.ca/#studio" },
+      "contentLocation": { "@type": "Place", "name": "Pemberton, BC" },
+      "award": "Western Living Design 25 Winner 2026 — Mountain Modern",
+      "image": {
+        "@type": "ImageObject",
+        "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg",
+        "creditText": "Darby Magill",
+        "creator": { "@type": "Person", "name": "Darby Magill" },
+        "copyrightNotice": "© Darby Magill"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.lrdstudio.ca/projects/residential/balsam",
+      "name": "Balsam",
+      "url": "https://www.lrdstudio.ca/projects/residential/balsam",
+      "creator": { "@id": "https://www.lrdstudio.ca/#studio" },
+      "contentLocation": { "@type": "Place", "name": "Whistler, BC" },
+      "image": {
+        "@type": "ImageObject",
+        "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/9ee945b7-f395-43b9-b206-015a4b2b86ec/Copyright-Darby-Magill-0441.jpg",
+        "creditText": "Darby Magill",
+        "creator": { "@type": "Person", "name": "Darby Magill" },
+        "copyrightNotice": "© Darby Magill"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.lrdstudio.ca/projects/residential/panorama",
+      "name": "Panorama",
+      "url": "https://www.lrdstudio.ca/projects/residential/panorama",
+      "creator": { "@id": "https://www.lrdstudio.ca/#studio" },
+      "contentLocation": { "@type": "Place", "name": "Whistler, BC" },
+      "image": {
+        "@type": "ImageObject",
+        "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/b9a260f9-7121-4dab-bb61-51953ca272ef/20-LRD-DESIGNS-Panorama.jpg",
+        "creditText": "Ema Peter",
+        "creator": { "@type": "Person", "name": "Ema Peter" },
+        "copyrightNotice": "© Ema Peter"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.lrdstudio.ca/projects/residential/sunridge",
+      "name": "Sunridge",
+      "url": "https://www.lrdstudio.ca/projects/residential/sunridge",
+      "creator": { "@id": "https://www.lrdstudio.ca/#studio" },
+      "contentLocation": { "@type": "Place", "name": "Whistler, BC" },
+      "image": {
+        "@type": "ImageObject",
+        "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/6847f944-d86d-40e4-8cf9-2dc00a75e1eb/sunridge-whistle-web--32.jpg",
+        "creditText": "Matt Anthony",
+        "creator": { "@type": "Person", "name": "Matt Anthony" },
+        "copyrightNotice": "© Matt Anthony"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.lrdstudio.ca/projects/residential/tapleys",
+      "name": "Tapleys",
+      "url": "https://www.lrdstudio.ca/projects/residential/tapleys",
+      "creator": { "@id": "https://www.lrdstudio.ca/#studio" },
+      "contentLocation": { "@type": "Place", "name": "Whistler, BC" },
+      "image": {
+        "@type": "ImageObject",
+        "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/a5eac8b7-aec8-4754-9927-a1b90ed94cce/LRD-2500px-7.jpg",
+        "creditText": "Matt Anthony",
+        "creator": { "@type": "Person", "name": "Matt Anthony" },
+        "copyrightNotice": "© Matt Anthony"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.lrdstudio.ca/projects/commercial/sram",
+      "name": "SRAM Canada Headquarters",
+      "url": "https://www.lrdstudio.ca/projects/commercial/sram",
+      "creator": { "@id": "https://www.lrdstudio.ca/#studio" },
+      "contentLocation": { "@type": "Place", "name": "North Vancouver, BC" },
+      "genre": "Commercial Interior Design",
+      "image": {
+        "@type": "ImageObject",
+        "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/b52ee734-bf22-4b98-b50e-73fab8652551/16-LRD-DESIGNS-SRAM.jpg",
+        "creditText": "Janis Nicolay",
+        "creator": { "@type": "Person", "name": "Janis Nicolay" },
+        "copyrightNotice": "© Janis Nicolay"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- FAQPage schema — optimized for Google AI Overviews, ChatGPT, Perplexity answer extraction -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Mountain Modern interior design?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mountain Modern is a design aesthetic native to the Pacific Northwest — warm woods, natural stone, restrained palettes, and a deep connection to the surrounding landscape. It blends West Coast modernism with the craft and materiality of alpine architecture. LRD Studio specializes in Mountain Modern residential and commercial interiors across the Sea to Sky corridor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does LRD Studio work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LRD Studio is based in Squamish, BC and takes on projects across the Sea to Sky corridor — primarily Whistler, Pemberton, and Squamish — with select residential and commercial work in Vancouver and the Lower Mainland."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What services does LRD Studio offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Residential interior design (new builds, renovations, family homes, vacation homes), commercial interior design (offices, hospitality, retail), furniture and finishes (sourcing, custom millwork, specification), and project management (procurement, contractor coordination, install oversight)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is the principal designer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lauren Ritz is the founder and principal designer of LRD Studio. She is NCIDQ certified, a Registered Interior Designer with IDIBC, and a member of Interior Designers of Canada. She founded the Squamish-based studio in 2017 after training in Theatre and Film Set Design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Has LRD Studio won any awards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. LRD Studio won Western Living Design 25 in 2026 for the Sunstone project in Pemberton's Mountain Modern category, and was a Western Living Home of the Year Top 5 Finalist in 2021. The studio has been featured in Western Living magazine four times and included in the Figure 1 Publishing book West Coast North."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the design process work at LRD Studio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every project begins at the broad scale — understanding how a family moves through a space, what their quiet mornings look like, what matters most. From there, the studio works toward the details: visual direction, material palettes, drawings, procurement, and installation. LRD Studio is embedded in the build team start to finish, representing the client's vision across every part of the project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I start a project with LRD Studio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with a conversation. Visit the contact page at lrdstudio.ca/contact, or email hello@lrdstudio.ca. The studio is located at 37758 3rd Avenue in Squamish, BC, and is open Monday through Friday, 8:30–5pm, by appointment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is LRD Studio accepting new projects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — LRD Studio is currently accepting new residential and commercial projects for 2026 across Whistler, Squamish, Pemberton, and Vancouver."
+      }
+    }
+  ]
+}
+</script>

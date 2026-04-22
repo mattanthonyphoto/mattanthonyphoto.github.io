@@ -1,0 +1,576 @@
+<style>
+.item-pagination{display:none!important}
+.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}
+.sqs-announcement-bar-dropzone{display:none!important}
+#header,header,.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+#footer,footer#footer,.footer-wrapper,[data-section-type="footer"]{display:none!important}
+body{background:#F6F4F0!important}
+#page,#sections{background:transparent!important}
+.page-section{background:transparent!important;min-height:0!important;padding:0!important;margin:0!important}
+.page-section .content-wrapper,.content-wrapper{background:transparent!important;max-width:none!important;padding:0!important}
+.fluid-engine{background:transparent!important;padding:0!important;max-width:none!important;grid-template-columns:none!important;display:block!important}
+.fe-block{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;grid-area:auto!important;position:relative!important}
+.sqs-block-code,.sqs-block-content,.sqs-code-container{padding:0!important;margin:0!important;max-width:none!important;width:100%!important;overflow:visible!important}
+.lrd-wrap,.lrd-ft{animation:none!important;-webkit-animation:none!important;opacity:1!important;visibility:visible!important}
+.lrd-wrap>section:not(.lrd-reveal),.lrd-wrap>div:not(.lrd-reveal):not(.lrd-img-reveal){animation:none!important;-webkit-animation:none!important;opacity:1!important;visibility:visible!important}
+
+.lrd-wrap {
+  --ink: #1A1A18; --cream: #F6F4F0; --warm: #ECE3D2; --warm-deep: #E0D6BE;
+  --stone: #7B7164; --stone-lt: #ADA290; --body: #6F6657;
+  --rule: rgba(58, 47, 30, 0.10);
+  --f: 'Poppins', -apple-system, sans-serif;
+  --fs: 'Cormorant Garamond', 'Times New Roman', serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lrd-wrap h1, .lrd-wrap h2, .lrd-wrap h3 { font-family: var(--f); font-weight: 300; letter-spacing: -0.02em; }
+.lrd-wrap h1 em, .lrd-wrap h2 em, .lrd-wrap h3 em { font-family: var(--f); font-style: italic; font-weight: 300; letter-spacing: -0.02em; }
+.lrd-wrap { font-family: var(--f); font-weight: 300; color: var(--ink); background: var(--cream); -webkit-font-smoothing: antialiased; line-height: 1.8; overflow-x: hidden; }
+.lrd-wrap *, .lrd-wrap *::before, .lrd-wrap *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.lrd-wrap img { max-width: 100%; display: block; object-fit: cover; }
+.lrd-wrap a { text-decoration: none; color: inherit; }
+.lrd-wrap ::selection { background: rgba(138,133,121,0.12); }
+
+.lrd-skip-link { position: absolute; top: -48px; left: 16px; z-index: 999; padding: 12px 20px; background: var(--ink); color: white !important; font-weight: 500; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; transition: top 0.2s ease; }
+.lrd-skip-link:focus { top: 16px; outline: 2px solid white; outline-offset: 2px; }
+.lrd-wrap a:focus-visible, .lrd-wrap button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.lrd-cta a:focus-visible, .lrd-ft a:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.lrd-section-num { display: inline-block; font-family: var(--fs); font-style: italic; font-weight: 400; font-size: 1.3em; color: var(--stone-lt); margin-right: 14px; }
+
+/* Nav (light variant) */
+.lrd-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 36px clamp(32px, 6vw, 80px); display: flex; align-items: center; justify-content: space-between; transition: all 0.6s var(--ease); }
+.lrd-nav.lrd-scrolled { background: rgba(246,244,240,0.95); backdrop-filter: blur(20px); padding: 20px clamp(32px, 6vw, 80px); }
+.lrd-nav-logo { height: clamp(24px, 2.5vw, 32px); filter: invert(1); }
+.lrd-nav-links { display: flex; gap: clamp(24px, 3.5vw, 48px); align-items: center; }
+.lrd-nav-links a { font-weight: 300; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); transition: color 0.3s; }
+.lrd-nav-links a:hover { color: var(--ink); }
+.lrd-nav-links a.lrd-nav-cta { border: 1px solid var(--ink); color: var(--ink) !important; padding: 10px 22px; letter-spacing: 0.14em; transition: all 0.4s var(--ease); }
+.lrd-nav-links a.lrd-nav-cta:hover { background: var(--ink); color: white !important; }
+.lrd-nav-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 101; background: none; border: none; padding: 8px; }
+.lrd-nav-toggle span { width: 20px; height: 1px; background: var(--ink); transition: all 0.4s; display: block; }
+@media(max-width:900px) {
+  .lrd-nav-toggle { display: flex; }
+  .lrd-nav-links { position: fixed; inset: 0; background: var(--ink); flex-direction: column; justify-content: center; gap: 36px; opacity: 0; visibility: hidden; transition: all 0.5s var(--ease); }
+  .lrd-nav-links.lrd-open { opacity: 1; visibility: visible; }
+  .lrd-nav-links a { color: rgba(255,255,255,0.85) !important; font-size: 14px; letter-spacing: 0.2em; }
+  .lrd-nav-links a.lrd-nav-cta { border: 1px solid rgba(255,255,255,0.55) !important; padding: 14px 30px !important; margin-top: 12px; }
+}
+
+.lrd-rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+.lrd-reveal { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.lrd-reveal.lrd-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+.lrd-reveal.lrd-revealed { transform: none; }
+.lrd-img-reveal { position: relative; overflow: hidden; }
+.lrd-img-reveal::before { content: ''; position: absolute; inset: 0; z-index: 2; background: var(--cream); transform: translateX(0); transition: transform 1.6s var(--ease); }
+.lrd-img-reveal.lrd-visible::before { transform: translateX(100%); }
+.lrd-img-reveal img { transform: scale(1.08); transition: transform 2s var(--ease); }
+.lrd-img-reveal.lrd-visible img { transform: scale(1); }
+
+/* Page head */
+.lrd-page-head { padding: clamp(140px, 16vw, 220px) clamp(32px, 8vw, 120px) clamp(60px, 8vw, 100px); max-width: 1200px; margin: 0 auto; }
+.lrd-page-head-label { font-weight: 300; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--stone); margin-bottom: 22px; }
+.lrd-page-head h1 { font-weight: 400; font-size: clamp(34px, 5vw, 68px); line-height: 1.05; letter-spacing: -0.02em; max-width: 900px; }
+.lrd-page-head-sub { font-weight: 300; font-size: clamp(14px, 1.1vw, 16px); color: var(--body); line-height: 1.9; margin-top: clamp(24px, 3vw, 36px); max-width: 640px; }
+
+/* Approach */
+.lrd-approach { padding: clamp(60px, 8vw, 100px) clamp(32px, 8vw, 120px); max-width: 1100px; margin: 0 auto; }
+.lrd-approach-label { font-weight: 300; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--stone); margin-bottom: 22px; }
+.lrd-approach h2 { font-weight: 400; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.15; margin-bottom: 36px; max-width: 720px; }
+.lrd-approach p { font-weight: 300; font-size: clamp(14px, 1.05vw, 16px); color: var(--body); line-height: 2; margin-bottom: 18px; max-width: 640px; }
+
+/* Service blocks */
+.lrd-services-list { max-width: 1200px; margin: 0 auto; padding: clamp(60px, 8vw, 100px) clamp(32px, 8vw, 120px); }
+.lrd-service-block { padding: clamp(48px, 6vw, 72px) 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 60px 1.4fr 1fr; gap: clamp(32px, 5vw, 72px); }
+.lrd-service-block:last-child { border-bottom: 1px solid var(--rule); }
+.lrd-service-num { font-family: var(--fs); font-style: italic; font-weight: 400; font-size: clamp(32px, 3vw, 44px); color: var(--stone); line-height: 1; padding-top: 4px; }
+.lrd-service-block h2 { font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.15; margin-bottom: 20px; }
+.lrd-service-block > .lrd-service-body > p { font-weight: 300; font-size: clamp(13.5px, 1vw, 15px); color: var(--body); line-height: 1.95; margin-bottom: 18px; max-width: 540px; }
+.lrd-service-includes h4 { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 18px; }
+.lrd-service-includes ul { list-style: none; padding: 0; margin: 0; }
+.lrd-service-includes li { font-weight: 300; font-size: 13px; color: var(--ink); line-height: 1.6; padding: 10px 0; border-top: 1px solid var(--rule); }
+.lrd-service-includes li:first-child { border-top: none; }
+@media(max-width:900px) {
+  .lrd-service-block { grid-template-columns: 1fr; gap: 24px; }
+  .lrd-service-num { font-size: 28px; }
+}
+
+/* Process */
+.lrd-process { background: var(--cream); border-top: 1px solid var(--rule); padding: clamp(80px, 10vw, 140px) clamp(32px, 8vw, 120px); }
+.lrd-process-inner { max-width: 900px; margin: 0 auto; }
+.lrd-process-header { margin-bottom: clamp(48px, 6vw, 72px); }
+.lrd-process-label { font-weight: 300; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--stone); margin-bottom: 22px; }
+.lrd-process h2 { font-weight: 400; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.15; margin-bottom: 18px; }
+.lrd-process-intro { font-weight: 300; font-size: clamp(14px, 1.05vw, 16px); color: var(--body); line-height: 2; max-width: 560px; }
+.lrd-step { display: grid; grid-template-columns: 80px 1fr; gap: clamp(24px, 4vw, 48px); padding: clamp(28px, 3vw, 40px) 0; border-top: 1px solid var(--rule); }
+.lrd-step:last-child { border-bottom: 1px solid var(--rule); }
+.lrd-step-num { font-family: var(--fs); font-weight: 400; font-size: clamp(22px, 2vw, 28px); color: var(--stone); line-height: 1; }
+.lrd-step h3 { font-weight: 400; font-size: clamp(17px, 1.4vw, 22px); margin-bottom: 10px; line-height: 1.3; }
+.lrd-step p { font-weight: 300; font-size: 13.5px; color: var(--body); line-height: 1.9; max-width: 520px; }
+@media(max-width:700px) { .lrd-step { grid-template-columns: 1fr; gap: 8px; } }
+
+/* FAQ */
+.lrd-faq { max-width: 900px; margin: 0 auto; padding: clamp(80px, 10vw, 140px) clamp(32px, 8vw, 120px); }
+.lrd-faq-label { font-weight: 300; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--stone); margin-bottom: 22px; }
+.lrd-faq h2 { font-weight: 400; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.15; margin-bottom: clamp(48px, 6vw, 72px); max-width: 720px; }
+.lrd-faq-item { padding: clamp(24px, 3vw, 36px) 0; border-top: 1px solid var(--rule); }
+.lrd-faq-item:last-child { border-bottom: 1px solid var(--rule); }
+.lrd-faq-item summary { font-family: var(--fs); font-weight: 400; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.3; cursor: pointer; list-style: none; display: flex; align-items: flex-start; gap: 20px; transition: color 0.3s; }
+.lrd-faq-item summary::-webkit-details-marker { display: none; }
+.lrd-faq-item summary::after { content: '+'; margin-left: auto; font-weight: 300; color: var(--stone); transition: transform 0.3s; flex-shrink: 0; }
+.lrd-faq-item[open] summary::after { content: '\2013'; }
+.lrd-faq-item summary:hover { color: var(--stone); }
+.lrd-faq-item-body { font-weight: 300; font-size: 14px; color: var(--body); line-height: 1.9; padding-top: 18px; max-width: 700px; }
+
+/* CTA */
+.lrd-cta { position: relative; overflow: hidden; padding: clamp(60px, 8vw, 110px) clamp(28px, 6vw, 80px); text-align: center; }
+.lrd-cta-bg { position: absolute; inset: 0; background-size: cover; background-position: center; background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/efa7f649-329a-41c1-a913-5920bc7ef3ed/Copyright-Darby-Magill-7114.jpg?format=2500w&auto=format'); }
+.lrd-cta-bg::after { content: ''; position: absolute; inset: 0; background: rgba(26,26,24,0.74); }
+.lrd-cta-inner { position: relative; z-index: 2; max-width: 580px; margin: 0 auto; }
+.lrd-cta h2 { font-weight: 400; font-size: clamp(24px, 3vw, 38px); line-height: 1.2; color: white; margin-bottom: 18px; }
+.lrd-cta p { font-weight: 300; font-size: clamp(13px, 1vw, 14.5px); color: rgba(255,255,255,0.72); line-height: 1.85; max-width: 480px; margin: 0 auto 28px; }
+.lrd-cta-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.lrd-cta-btn { display: inline-block; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; padding: 16px 44px; background: white; color: var(--ink); border: 1px solid white; transition: all 0.4s var(--ease); }
+.lrd-cta-btn:hover { background: transparent; color: white; transform: translateY(-1px); }
+.lrd-cta-or { font-weight: 300; font-size: 12px; color: rgba(255,255,255,0.55); }
+.lrd-cta-or a { color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 1px; }
+.lrd-cta-or a:hover { color: white; border-color: white; }
+
+/* Footer */
+.lrd-ft { background: var(--ink); padding: clamp(72px, 10vw, 120px) clamp(32px, 6vw, 80px) clamp(36px, 4vw, 56px); }
+.lrd-ft-inner { max-width: 1200px; margin: 0 auto; }
+.lrd-ft-statement { display: flex; flex-direction: column; gap: 28px; padding-bottom: clamp(56px, 7vw, 88px); border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: clamp(48px, 6vw, 72px); }
+.lrd-ft-logo { width: clamp(140px, 14vw, 200px); opacity: 0.85; }
+.lrd-ft-tagline { font-family: var(--f); font-weight: 300; font-size: clamp(22px, 2.4vw, 32px); color: rgba(255,255,255,0.92); line-height: 1.3; max-width: 720px; }
+.lrd-ft-tagline span { display: inline-block; margin-top: 8px; font-family: var(--f); font-weight: 300; font-size: clamp(12px, 1vw, 14px); color: rgba(255,255,255,0.5); }
+.lrd-ft-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(32px, 4vw, 56px); padding-bottom: clamp(48px, 6vw, 72px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.lrd-ft-col h4 { font-family: var(--f); font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 22px; font-weight: 400; }
+.lrd-ft-col a, .lrd-ft-col span { display: block; font-size: 12.5px; color: rgba(255,255,255,0.78); margin-bottom: 14px; font-weight: 300; transition: color 0.3s; }
+.lrd-ft-col a:hover { color: white; }
+.lrd-ft-col span { color: rgba(255,255,255,0.55); }
+.lrd-ft-bottom { display: flex; justify-content: space-between; align-items: flex-start; padding-top: clamp(28px, 3vw, 40px); flex-wrap: wrap; gap: 20px; }
+.lrd-ft-copy { font-size: 10px; color: rgba(255,255,255,0.45); font-weight: 300; display: flex; flex-direction: column; gap: 6px; }
+.lrd-ft-credit { font-style: italic; color: rgba(255,255,255,0.35); }
+.lrd-ft-credit a { color: rgba(255,255,255,0.5); border-bottom: 1px solid rgba(255,255,255,0.15); }
+.lrd-ft-credit a:hover { color: rgba(255,255,255,0.85); }
+.lrd-ft-land { font-size: 10px; color: rgba(255,255,255,0.45); font-weight: 300; max-width: 520px; line-height: 1.85; text-align: right; }
+@media(max-width:1100px) { .lrd-ft-cols { grid-template-columns: 1fr 1fr; gap: 36px; } .lrd-ft-land { text-align: left; } }
+@media(max-width:550px) { .lrd-ft-cols { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .lrd-wrap *, .lrd-wrap *::before, .lrd-wrap *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
+  .lrd-reveal, .lrd-img-reveal { opacity: 1 !important; transform: none !important; }
+  .lrd-img-reveal::before { display: none !important; }
+}
+
+/* Page banner — full-bleed hero image for non-homepage pages */
+.lrd-banner-hero {
+  position: relative;
+  height: clamp(380px, 55vw, 620px);
+  overflow: hidden;
+  margin-top: 0;
+}
+.lrd-banner-hero-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.lrd-banner-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+}
+.lrd-banner-hero-content {
+  position: relative; z-index: 2;
+  height: 100%;
+  display: flex; align-items: flex-end;
+  padding: 0 clamp(32px, 8vw, 120px) clamp(60px, 8vw, 100px);
+  max-width: 1400px; margin: 0 auto;
+}
+.lrd-banner-hero-text {
+  max-width: 760px;
+}
+.lrd-banner-hero-label {
+  font-weight: 400; font-size: 10px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: rgba(255,255,255,0.78);
+  margin-bottom: 22px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+}
+.lrd-banner-hero h1 {
+  font-weight: 300; font-size: clamp(34px, 5vw, 68px);
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: white;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+.lrd-banner-hero h1 em { font-style: italic; font-weight: 300; }
+.lrd-banner-hero-sub {
+  font-weight: 300; font-size: clamp(14px, 1.1vw, 16px);
+  color: rgba(255,255,255,0.85); line-height: 1.9;
+  margin-top: clamp(20px, 2.5vw, 28px);
+  max-width: 600px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+}
+/* Mobile: match the homepage hero's full-viewport spacing so every page has the same banner feel */
+@media (max-width: 700px) {
+  .lrd-banner-hero { height: 100vh; min-height: 640px; }
+  .lrd-banner-hero-content { padding: 0 clamp(24px, 6vw, 48px) clamp(80px, 14vh, 140px); }
+  .lrd-banner-hero-label { margin-bottom: 28px; }
+  .lrd-banner-hero-sub { margin-top: 20px; }
+}
+/* Hide the plain page-head when banner-hero is in use */
+.lrd-banner-hero + hr.lrd-rule { display: none; }
+/* Hide old page-head when banner-hero exists on page */
+.lrd-has-banner .lrd-page-head { display: none; }
+
+/* When nav sits over banner-hero, it should default to white (dark nav mode off) */
+.lrd-has-banner .lrd-nav .lrd-nav-logo { filter: none; }
+.lrd-has-banner .lrd-nav .lrd-nav-links a { color: rgba(255,255,255,0.85); }
+.lrd-has-banner .lrd-nav .lrd-nav-links a:hover { color: white; }
+.lrd-has-banner .lrd-nav .lrd-nav-links a.lrd-nav-cta {
+  border-color: rgba(255,255,255,0.5); color: white !important;
+}
+.lrd-has-banner .lrd-nav .lrd-nav-links a.lrd-nav-cta:hover {
+  background: white; color: var(--ink) !important; border-color: white;
+}
+.lrd-has-banner .lrd-nav-toggle span { background: white; }
+.lrd-has-banner .lrd-nav.lrd-scrolled .lrd-nav-logo { filter: invert(1); }
+.lrd-has-banner .lrd-nav.lrd-scrolled .lrd-nav-links a { color: var(--stone); }
+.lrd-has-banner .lrd-nav.lrd-scrolled .lrd-nav-links a:hover { color: var(--ink); }
+.lrd-has-banner .lrd-nav.lrd-scrolled .lrd-nav-links a.lrd-nav-cta { border-color: var(--ink); color: var(--ink) !important; }
+.lrd-has-banner .lrd-nav.lrd-scrolled .lrd-nav-links a.lrd-nav-cta:hover { background: var(--ink); color: white !important; }
+.lrd-has-banner .lrd-nav.lrd-scrolled .lrd-nav-toggle span { background: var(--ink); }
+
+</style>
+
+<div class="lrd-wrap lrd-has-banner">
+
+<a href="#lrd-main" class="lrd-skip-link">Skip to main content</a>
+
+<nav class="lrd-nav" id="lrdNav">
+  <a href="/lrd-studio-interior-design/preview/"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/d3571741-4823-46bd-aff3-64f24925ac00/LRD-STUDIO-LOGO-WHITE.png" alt="LRD Studio" class="lrd-nav-logo"></a>
+  <div class="lrd-nav-links" id="lrdNavLinks">
+    <a href="/lrd-studio-interior-design/preview/projects/">Projects</a>
+    <a href="/lrd-studio-interior-design/preview/services/">Services</a>
+    <a href="/lrd-studio-interior-design/preview/studio/">Studio</a>
+    <a href="/lrd-studio-interior-design/preview/journal/">Journal</a>
+    <a href="/lrd-studio-interior-design/preview/contact/">Contact</a>
+    <a href="/lrd-studio-interior-design/preview/contact/" class="lrd-nav-cta">Book a Call</a>
+  </div>
+  <button class="lrd-nav-toggle" id="lrdNavToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="lrd-banner-hero" id="lrd-main" role="img" aria-label="Sunstone — Mountain Modern new-build interior design in Pemberton, BC by LRD Studio. Residential and commercial interior design services across the Sea to Sky corridor. Photography by Darby Magill.">
+  <div class="lrd-banner-hero-img" style="background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/c428071f-484b-42fb-9267-36e03eff7611/3-LRD-DESIGNS-Summer+Lane.jpg?format=2500w&auto=format');"></div>
+  <div class="lrd-banner-hero-content">
+    <div class="lrd-banner-hero-text">
+      <div class="lrd-banner-hero-label">Services</div>
+      <h1>An ambassador for the whole project.</h1>
+      <p class="lrd-banner-hero-sub">From the first conversation about how you live, through procurement and final styling — we represent your vision across every part of the build. Residential. Commercial. Always thoughtful.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Approach narrative -->
+<section class="lrd-approach">
+  <div class="lrd-approach-label"><span class="lrd-section-num">II</span>Our Approach</div>
+  <h2>Designed around how you actually live.</h2>
+  <p>Every project starts with the broad scale &mdash; how your family moves through a space, what matters most. From there: visual direction, material palettes, drawings, procurement, install.</p>
+  <p>We're embedded in the team start to finish &mdash; your ambassador to the build crew, making sure the finished space feels like you. Not exclusive. Not precious. Just well thought-out.</p>
+</section>
+
+<hr class="lrd-rule">
+
+<!-- Service blocks -->
+<section class="lrd-services-list">
+  <div class="lrd-service-block lrd-reveal">
+    <div class="lrd-service-num">1</div>
+    <div class="lrd-service-body">
+      <h2>Residential Design</h2>
+      <p>New builds, renovations, and family homes of all sizes. We get to know how you live &mdash; where the sunlight falls in the morning, where the kids drop their bags, where you want to host dinners &mdash; and design a space that feels genuinely yours.</p>
+      <p>Full-scope interior design from concept to install. Works best alongside a builder and architect we coordinate with throughout.</p>
+    </div>
+    <div class="lrd-service-includes">
+      <h4>Includes</h4>
+      <ul>
+        <li>New builds + major renovations</li>
+        <li>Vacation homes + second residences</li>
+        <li>Space planning + spatial flow</li>
+        <li>Material palettes + finish specification</li>
+        <li>Custom millwork design</li>
+        <li>Furniture specification + procurement</li>
+        <li>Lighting design + spec</li>
+        <li>Art + styling install</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lrd-service-block lrd-reveal">
+    <div class="lrd-service-num">2</div>
+    <div class="lrd-service-body">
+      <h2>Commercial Design</h2>
+      <p>Offices, studios, retail, and hospitality. We work with the brand and the people who show up every day &mdash; translating a business's character into spaces that reflect what they actually do, not a stock commercial look.</p>
+      <p>Featured commercial: <a href="/lrd-studio-interior-design/preview/projects/commercial/sram/" style="color:inherit;border-bottom:1px solid var(--rule);">SRAM Canada marketing headquarters (North Vancouver)</a>, <a href="/lrd-studio-interior-design/preview/projects/commercial/moov-yoga-studio/" style="color:inherit;border-bottom:1px solid var(--rule);">Moov Yoga Studio</a>, <a href="/lrd-studio-interior-design/preview/projects/commercial/chiefdental/" style="color:inherit;border-bottom:1px solid var(--rule);">Chief Dental</a>, <a href="/lrd-studio-interior-design/preview/projects/commercial/stilhavn/" style="color:inherit;border-bottom:1px solid var(--rule);">Stilhavn Real Estate</a>.</p>
+    </div>
+    <div class="lrd-service-includes">
+      <h4>Includes</h4>
+      <ul>
+        <li>Workspaces + offices</li>
+        <li>Hospitality + retail</li>
+        <li>Professional services</li>
+        <li>Brand-aligned interiors</li>
+        <li>Space planning + wayfinding</li>
+        <li>Acoustic + lighting strategy</li>
+        <li>FF&amp;E procurement</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lrd-service-block lrd-reveal">
+    <div class="lrd-service-num">3</div>
+    <div class="lrd-service-body">
+      <h2>Furniture &amp; Finishes</h2>
+      <p>Material sourcing, custom millwork, and furniture specification. Every surface considered &mdash; what it's made of, where it comes from, how it ages. We work with local makers and trusted international vendors to get the right piece for the right spot.</p>
+      <p>Can be a standalone engagement for clients who already have a designer or want to layer on top of an existing space.</p>
+    </div>
+    <div class="lrd-service-includes">
+      <h4>Includes</h4>
+      <ul>
+        <li>Material + finish sourcing</li>
+        <li>Custom millwork design</li>
+        <li>Furniture specification</li>
+        <li>Textile + upholstery curation</li>
+        <li>Hardware + plumbing fixtures</li>
+        <li>Lighting selection</li>
+        <li>Procurement management</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lrd-service-block lrd-reveal">
+    <div class="lrd-service-num">4</div>
+    <div class="lrd-service-body">
+      <h2>Project Management</h2>
+      <p>Procurement, contractor coordination, and installation oversight. We have a huge respect for the build team &mdash; our role is to keep everyone aligned, solve problems before they reach you, and make sure what gets built matches what we drew.</p>
+      <p>Includes managing long-lead procurement schedules, on-site install coordination, and change-order review.</p>
+    </div>
+    <div class="lrd-service-includes">
+      <h4>Includes</h4>
+      <ul>
+        <li>Contractor coordination</li>
+        <li>Trade communication</li>
+        <li>Procurement scheduling</li>
+        <li>On-site install oversight</li>
+        <li>Change-order review</li>
+        <li>Punch-list + closeout</li>
+        <li>Deliverable tracking</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="lrd-process">
+  <div class="lrd-process-inner">
+    <div class="lrd-process-header lrd-reveal">
+      <div class="lrd-process-label"><span class="lrd-section-num">III</span>Process</div>
+      <h2>Four beats, start to finish.</h2>
+      <p class="lrd-process-intro">Every project runs through these four phases &mdash; residential or commercial, ground-up or renovation. Timelines vary by scope, but the shape of the work is consistent.</p>
+    </div>
+    <div class="lrd-step lrd-reveal">
+      <div class="lrd-step-num">1</div>
+      <div>
+        <h3>Listening</h3>
+        <p>How does your family live? What spaces matter most? What do quiet mornings look like? We start at the broad scale and work toward the details. Initial consultation, site walk-through, and written brief.</p>
+      </div>
+    </div>
+    <div class="lrd-step lrd-reveal">
+      <div class="lrd-step-num">2</div>
+      <div>
+        <h3>Direction</h3>
+        <p>Visual direction, material palettes, and spatial planning &mdash; grounded in who you are. We don't impose a style. We find yours. Mood boards, palette presentation, 3D visualizations as needed.</p>
+      </div>
+    </div>
+    <div class="lrd-step lrd-reveal">
+      <div class="lrd-step-num">3</div>
+      <div>
+        <h3>The Details</h3>
+        <p>Drawings, specifications, procurement. This is the logic side of design &mdash; every hinge, switch, and reveal specified with intention. Full construction documents, finish schedules, FF&amp;E packages.</p>
+      </div>
+    </div>
+    <div class="lrd-step lrd-reveal">
+      <div class="lrd-step-num">4</div>
+      <div>
+        <h3>Install</h3>
+        <p>Site oversight, furniture install, and styling. We stay until every detail arrives exactly as we drew it. On-site presence during final weeks, punch list, styling, and closeout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="lrd-faq">
+  <div class="lrd-faq-label"><span class="lrd-section-num">IV</span>FAQ</div>
+  <h2>Common questions.</h2>
+  <details class="lrd-faq-item">
+    <summary>How much does a full residential project cost?</summary>
+    <div class="lrd-faq-item-body">Design fees vary by scope. For a full-scope new build or major renovation, we typically work on a percentage-of-construction-budget basis or hourly with a not-to-exceed cap. We provide a detailed fee proposal after the initial consultation and site visit. Material + FF&amp;E budgets are separate and depend entirely on the level of finish you want.</div>
+  </details>
+  <details class="lrd-faq-item">
+    <summary>How long does a typical project take?</summary>
+    <div class="lrd-faq-item-body">A full-scope residential project generally runs 12 to 24 months from kickoff to install, depending on scope, permitting, and construction timelines. Design phase alone is typically 3&ndash;6 months. Commercial projects vary widely &mdash; a dental practice fit-out might run 4 months, a headquarters build 12+.</div>
+  </details>
+  <details class="lrd-faq-item">
+    <summary>Do you work outside the Sea to Sky corridor?</summary>
+    <div class="lrd-faq-item-body">Our primary service area is Whistler, Squamish, Pemberton, and Vancouver. We occasionally take on select projects elsewhere in BC where the fit is right &mdash; especially for returning clients or projects with a strong design brief. Reach out and we'll tell you honestly whether we're the right studio for the location.</div>
+  </details>
+  <details class="lrd-faq-item">
+    <summary>Can we hire you for just one phase?</summary>
+    <div class="lrd-faq-item-body">Yes. Furniture &amp; Finishes is often a standalone engagement for clients who already have a designer or builder but want material + FF&amp;E expertise layered on. We also take on consultative work &mdash; color, material, or spatial advice for smaller renovations.</div>
+  </details>
+  <details class="lrd-faq-item">
+    <summary>Do you work with our architect and builder?</summary>
+    <div class="lrd-faq-item-body">Absolutely &mdash; most of our projects are collaborations with an architect and GC. We coordinate closely with both, contribute to the overall design conversation, and make sure the interior design aligns with the architecture rather than fighting it.</div>
+  </details>
+  <details class="lrd-faq-item">
+    <summary>What's your design style?</summary>
+    <div class="lrd-faq-item-body">Mountain Modern &mdash; warm materials, restrained palettes, deep connection to the Pacific Northwest landscape. But we don't impose a style on clients. Every project ends up looking like the people who live in it, not like a LRD Studio house.</div>
+  </details>
+  <details class="lrd-faq-item">
+    <summary>How do we get started?</summary>
+    <div class="lrd-faq-item-body">Email <a href="mailto:hello@lrdstudio.ca" style="color:var(--ink);border-bottom:1px solid var(--rule);">hello@lrdstudio.ca</a> or visit our <a href="/lrd-studio-interior-design/preview/contact/" style="color:var(--ink);border-bottom:1px solid var(--rule);">contact page</a> with a little about your project. We'll follow up to schedule an initial conversation, typically by phone or in our Squamish studio.</div>
+  </details>
+</section>
+
+<!-- CTA -->
+<section class="lrd-cta">
+  <div class="lrd-cta-bg" role="img" aria-label="Sunstone — Mountain Modern new-build interior design in Pemberton, BC by LRD Studio. Western Living Design 25 Winner. Photography by Darby Magill."></div>
+  <div class="lrd-cta-inner lrd-reveal">
+    <h2>Let&rsquo;s talk about your project.</h2>
+    <p>Every project starts with a conversation about who you are and how you actually live.</p>
+    <div class="lrd-cta-actions">
+      <a href="/lrd-studio-interior-design/preview/contact/" class="lrd-cta-btn">Start a Project</a>
+      <span class="lrd-cta-or">or email <a href="mailto:hello@lrdstudio.ca">hello@lrdstudio.ca</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="lrd-ft">
+  <div class="lrd-ft-inner">
+    <div class="lrd-ft-statement">
+      <img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/d3571741-4823-46bd-aff3-64f24925ac00/LRD-STUDIO-LOGO-WHITE.png" alt="LRD Studio" class="lrd-ft-logo">
+      <p class="lrd-ft-tagline">Designed around how you actually live.<br><span>Mountain Modern interior design across the Sea to Sky.</span></p>
+    </div>
+    <div class="lrd-ft-cols">
+      <div class="lrd-ft-col"><h4>Explore</h4><a href="/lrd-studio-interior-design/preview/projects/">Projects</a><a href="/lrd-studio-interior-design/preview/services/">Services</a><a href="/lrd-studio-interior-design/preview/journal/">Journal</a><a href="/lrd-studio-interior-design/preview/studio/">Studio</a><a href="/lrd-studio-interior-design/preview/contact/">Contact</a><a href="/lrd-studio-interior-design/preview/awards/">Awards</a><a href="/lrd-studio-interior-design/preview/press/">Press</a><a href="/lrd-studio-interior-design/preview/testimonials/">Client notes</a></div>
+      <div class="lrd-ft-col"><h4>What we design</h4><a href="/lrd-studio-interior-design/preview/mountain-modern-interior-design/">Mountain Modern</a><a href="/lrd-studio-interior-design/preview/west-coast-modern-design/">West Coast Modern</a><a href="/lrd-studio-interior-design/preview/kitchen-design-whistler/">Kitchen design</a><a href="/lrd-studio-interior-design/preview/legacy-renovations-whistler/">Legacy renovations</a><a href="/lrd-studio-interior-design/preview/new-build-interior-design/">New build interiors</a><a href="/lrd-studio-interior-design/preview/commercial-interior-design/">Commercial</a><a href="/lrd-studio-interior-design/preview/sustainable-interior-design/">Sustainable &amp; Passive House</a><a href="/lrd-studio-interior-design/preview/interior-design-cost-guide/">Cost &amp; process</a></div>
+      <div class="lrd-ft-col"><h4>Where we work</h4><a href="/lrd-studio-interior-design/preview/sea-to-sky-interior-design/">Sea-to-Sky corridor</a><a href="/lrd-studio-interior-design/preview/whistler-interior-design/">Whistler</a><a href="/lrd-studio-interior-design/preview/squamish-interior-design/">Squamish</a><a href="/lrd-studio-interior-design/preview/pemberton-interior-design/">Pemberton</a><a href="/lrd-studio-interior-design/preview/vancouver-interior-design/">Vancouver</a><a href="/lrd-studio-interior-design/preview/kitchen-design-whistler/">Kitchens · Whistler</a><a href="/lrd-studio-interior-design/preview/kitchen-design-squamish/">Kitchens · Squamish</a><a href="/lrd-studio-interior-design/preview/kitchen-design-pemberton/">Kitchens · Pemberton</a></div>
+      <div class="lrd-ft-col"><h4>Connect</h4><a href="/lrd-studio-interior-design/preview/contact/">Start a project</a><a href="mailto:hello@lrdstudio.ca">hello@lrdstudio.ca</a><a href="https://www.instagram.com/lrdstudio_interiors/" target="_blank" rel="noopener">Instagram</a><a href="/lrd-studio-interior-design/preview/client-portal/">Client portal</a></div>
+    </div>
+    <div class="lrd-ft-bottom">
+      <div class="lrd-ft-copy">
+        <div>&copy; <span id="lrdCurrentYear">2026</span> LRD Studio Ltd. &middot; Est. 2017 &middot; Squamish, BC</div>
+        <div class="lrd-ft-credit">Designed &amp; managed by <a href="https://www.mattanthonyphoto.com" target="_blank" rel="noopener">Matt Anthony Photography</a></div>
+      </div>
+      <div class="lrd-ft-land">We work on the unceded Indigenous land of the Coast Salish peoples &mdash; the Lil&rsquo;wat and Squamish Nations.</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var nav = document.getElementById('lrdNav');
+  if (nav) {
+    window.addEventListener('scroll', function() { nav.classList.toggle('lrd-scrolled', window.scrollY > 60); }, { passive: true });
+    document.getElementById('lrdNavToggle').addEventListener('click', function() { document.getElementById('lrdNavLinks').classList.toggle('lrd-open'); });
+  }
+  var yearEl = document.getElementById('lrdCurrentYear');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  var revealEls = document.querySelectorAll('.lrd-reveal, .lrd-img-reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.classList.add('lrd-visible');
+          setTimeout(function() { el.classList.add('lrd-revealed'); }, 1000);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('lrd-visible'); });
+  }
+})();
+</script>
+
+<title>Services &mdash; LRD Studio | Residential, Commercial, FF&amp;E, Project Management</title>
+<meta name="description" content="Interior design services by LRD Studio: residential design, commercial design, furniture & finishes, and project management across Whistler, Squamish, Pemberton, and Vancouver.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F6F4F0">
+<link rel="canonical" href="https://www.lrdstudio.ca/services">
+<meta property="og:title" content="Services — LRD Studio">
+<meta property="og:description" content="Full-scope interior design services: residential, commercial, furniture & finishes, project management.">
+<meta property="og:url" content="https://www.lrdstudio.ca/services">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LRD Studio">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/efa7f649-329a-41c1-a913-5920bc7ef3ed/Copyright-Darby-Magill-7114.jpg?format=1500w">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Services — LRD Studio">
+<meta name="twitter:description" content="Full-scope interior design services across the Sea to Sky.">
+<meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/efa7f649-329a-41c1-a913-5920bc7ef3ed/Copyright-Darby-Magill-7114.jpg?format=1500w">
+<link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+<!-- OfferCatalog schema for all 4 services -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://www.lrdstudio.ca/services#services",
+  "name": "Interior Design Services",
+  "provider": { "@id": "https://www.lrdstudio.ca/#studio" },
+  "areaServed": [
+    { "@type": "City", "name": "Whistler, BC" },
+    { "@type": "City", "name": "Squamish, BC" },
+    { "@type": "City", "name": "Pemberton, BC" },
+    { "@type": "City", "name": "Vancouver, BC" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "LRD Studio Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Residential Design", "description": "New builds, renovations, family homes, vacation homes. Full-scope interior design from concept to install." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Design", "description": "Workspaces, hospitality, retail, professional services. Brand-aligned commercial interiors." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Furniture & Finishes", "description": "Material sourcing, custom millwork, furniture specification, procurement management." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project Management", "description": "Contractor coordination, procurement scheduling, on-site install oversight, punch list, closeout." } }
+    ]
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.lrdstudio.ca/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.lrdstudio.ca/services" }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How much does a full residential project cost?", "acceptedAnswer": { "@type": "Answer", "text": "Design fees vary by scope. For a full-scope new build or major renovation, we typically work on a percentage-of-construction-budget basis or hourly with a not-to-exceed cap. We provide a detailed fee proposal after the initial consultation and site visit. Material and FF&E budgets are separate and depend on the level of finish." }},
+    { "@type": "Question", "name": "How long does a typical project take?", "acceptedAnswer": { "@type": "Answer", "text": "A full-scope residential project generally runs 12 to 24 months from kickoff to install, depending on scope, permitting, and construction timelines. Design phase alone is typically 3–6 months. Commercial projects vary widely." }},
+    { "@type": "Question", "name": "Do you work outside the Sea to Sky corridor?", "acceptedAnswer": { "@type": "Answer", "text": "Primary service area is Whistler, Squamish, Pemberton, and Vancouver. We occasionally take select projects elsewhere in BC where the fit is right." }},
+    { "@type": "Question", "name": "Can we hire you for just one phase?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Furniture & Finishes is often a standalone engagement for clients who already have a designer or builder but want material and FF&E expertise layered on." }},
+    { "@type": "Question", "name": "Do you work with our architect and builder?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — most of our projects are collaborations with an architect and GC. We coordinate closely with both and contribute to the overall design conversation." }},
+    { "@type": "Question", "name": "What's your design style?", "acceptedAnswer": { "@type": "Answer", "text": "Mountain Modern — warm materials, restrained palettes, deep connection to the Pacific Northwest landscape. But we don't impose a style; every project ends up looking like the people who live in it." }},
+    { "@type": "Question", "name": "How do we get started?", "acceptedAnswer": { "@type": "Answer", "text": "Email hello@lrdstudio.ca or visit the contact page with a little about your project. We'll follow up to schedule an initial conversation, typically by phone or in our Squamish studio." }}
+  ]
+}
+</script>
