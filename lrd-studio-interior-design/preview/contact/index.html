@@ -276,8 +276,8 @@ body{background:#F6F4F0!important}
     <h2>Tell us about your project.</h2>
     <p>Fields marked * are required. Everything else helps us prepare for our first conversation.</p>
 
-    <!-- Squarespace will replace this with its native form; the structure is a design reference for the Form Block to match -->
-    <form class="lrd-form" action="/lrd-studio-interior-design/preview/thank-you/" method="post" data-form="project-inquiry">
+    <!-- Squarespace will replace this with its native form; the preview sends inquiries by email so submissions are not lost on GitHub Pages. -->
+    <form class="lrd-form" action="mailto:hello@lrdstudio.ca" method="post" enctype="text/plain" data-form="project-inquiry">
       <div class="lrd-form-row">
         <div class="lrd-form-field">
           <label for="name">Your name *</label>
@@ -346,7 +346,7 @@ body{background:#F6F4F0!important}
       </div>
 
       <button type="submit" class="lrd-form-submit">Send inquiry</button>
-      <p class="lrd-form-note">We'll reply within two business days. Nothing shared stays on file longer than needed, and we never share contact information.</p>
+      <p class="lrd-form-note">We'll reply within two business days. This preview opens your email app so the inquiry reaches the studio directly.</p>
     </form>
   </div>
 
@@ -437,6 +437,30 @@ body{background:#F6F4F0!important}
   }
   var yearEl = document.getElementById('lrdCurrentYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+  var inquiryForm = document.querySelector('.lrd-form[data-form="project-inquiry"]');
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      var data = new FormData(inquiryForm);
+      var fields = [
+        ['Name', data.get('name')],
+        ['Email', data.get('email')],
+        ['Phone', data.get('phone')],
+        ['Project location', data.get('location')],
+        ['Project type', data.get('type')],
+        ['Timeline', data.get('timeline')],
+        ['Budget', data.get('budget')],
+        ['Message', data.get('message')]
+      ];
+      var body = fields
+        .filter(function(field) { return field[1]; })
+        .map(function(field) { return field[0] + ':\n' + field[1]; })
+        .join('\n\n');
+      window.location.href = 'mailto:hello@lrdstudio.ca?subject=' +
+        encodeURIComponent('New project inquiry from LRD preview') +
+        '&body=' + encodeURIComponent(body);
+    });
+  }
   var revealEls = document.querySelectorAll('.lrd-reveal');
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
