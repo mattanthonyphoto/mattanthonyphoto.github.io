@@ -111,13 +111,44 @@ body{background:#F6F4F0!important}
 .lrd-page-head-sub { font-weight: 300; font-size: clamp(14px, 1.1vw, 16px); color: var(--body); line-height: 1.9; margin-top: clamp(24px, 3vw, 36px); max-width: 640px; }
 
 
-.lrd-legal { max-width: 760px; margin: 0 auto; padding: clamp(40px, 6vw, 80px) clamp(28px, 6vw, 48px) clamp(80px, 10vw, 140px); }
-.lrd-legal h2 { font-weight: 400; font-size: clamp(18px, 1.6vw, 22px); margin: clamp(36px, 4vw, 56px) 0 16px; }
-.lrd-legal p, .lrd-legal li { font-weight: 300; font-size: 14.5px; color: var(--body); line-height: 1.95; margin-bottom: 16px; }
-.lrd-legal ul { padding-left: 24px; }
-.lrd-legal li { margin-bottom: 8px; }
-.lrd-legal a { color: var(--ink); border-bottom: 1px solid var(--rule); }
-.lrd-legal-updated { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 24px; }
+.lrd-proj-intro { max-width: 1200px; margin: 0 auto; padding: clamp(60px, 8vw, 100px) clamp(32px, 8vw, 120px); display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(40px, 6vw, 100px); align-items: start; }
+@media(max-width:900px) { .lrd-proj-intro { grid-template-columns: 1fr; gap: 40px; } }
+.lrd-proj-intro-text { font-weight: 300; font-size: clamp(14px, 1.05vw, 16px); color: var(--body); line-height: 1.95; max-width: 600px; }
+.lrd-proj-meta { display: flex; flex-direction: column; gap: 24px; }
+.lrd-proj-meta-item { padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.lrd-proj-meta-item:last-child { border-bottom: none; }
+.lrd-proj-meta-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; }
+.lrd-proj-meta-value { font-weight: 300; font-size: 14px; color: var(--ink); line-height: 1.5; }
+.lrd-proj-gallery { max-width: 1200px; margin: 0 auto; padding: clamp(40px, 6vw, 80px) clamp(20px, 3vw, 48px); }
+.lrd-proj-gallery-grid { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 48px); }
+.lrd-proj-gallery-img { width: 100%; overflow: hidden; background: var(--ink); }
+.lrd-proj-gallery-img img { width: 100%; height: auto; display: block; transition: transform 1.6s var(--ease), filter 0.7s var(--ease); }
+.lrd-proj-gallery-img:hover img { transform: scale(1.02); filter: brightness(0.97); }
+.lrd-proj-pillars { max-width: 1200px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) clamp(28px, 6vw, 48px); border-top: 1px solid var(--rule); }
+.lrd-proj-pillars-inner { display: flex; flex-direction: column; gap: 22px; }
+.lrd-proj-pillars-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); }
+.lrd-proj-pillars-chips { display: flex; flex-wrap: wrap; gap: 10px 12px; }
+.lrd-proj-pillar-chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px; border: 1px solid var(--rule); font-weight: 400; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); transition: all 0.3s var(--ease); }
+.lrd-proj-pillar-chip:hover { border-color: var(--ink); color: var(--ink); background: var(--warm); }
+.lrd-proj-pillar-chip-arrow { color: var(--stone-lt); transition: color 0.3s; }
+.lrd-proj-pillar-chip:hover .lrd-proj-pillar-chip-arrow { color: var(--ink); }
+.lrd-proj-next { padding: clamp(80px, 10vw, 140px) clamp(32px, 8vw, 120px); border-top: 1px solid var(--rule); text-align: center; max-width: 1200px; margin: 0 auto; }
+.lrd-proj-next-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 18px; }
+.lrd-proj-next a { display: inline-block; }
+.lrd-proj-next-name { font-weight: 300; font-size: clamp(28px, 3vw, 44px); line-height: 1.1; color: var(--ink); transition: color 0.3s; }
+.lrd-proj-next a:hover .lrd-proj-next-name { color: var(--stone); }
+.lrd-proj-next-arrow { display: inline-block; font-weight: 300; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); margin-top: 18px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; transition: all 0.3s; }
+.lrd-proj-next a:hover .lrd-proj-next-arrow { color: var(--ink); border-color: var(--ink); }
+.lrd-proj-cross { max-width: 1200px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) clamp(32px, 8vw, 120px); text-align: center; }
+.lrd-proj-cross-inner { border-top: 1px solid var(--rule); padding-top: clamp(32px, 4vw, 48px); }
+.lrd-proj-cross-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
+.lrd-proj-cross-link { font-family: var(--fs); font-style: italic; font-weight: 400; font-size: clamp(18px, 1.8vw, 24px); color: var(--ink); border-bottom: 1px solid var(--rule); padding-bottom: 4px; transition: border-color 0.3s; }
+.lrd-proj-cross-link:hover { border-color: var(--ink); }
+.lrd-crumbs { max-width: 1200px; margin: 0 auto; padding: 24px clamp(32px, 8vw, 120px) 0; font-weight: 300; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); }
+.lrd-crumbs a { color: var(--stone); border-bottom: 1px solid transparent; transition: border-color 0.3s, color 0.3s; }
+.lrd-crumbs a:hover { color: var(--ink); border-color: var(--rule); }
+.lrd-crumbs-sep { margin: 0 10px; opacity: 0.5; }
+.lrd-crumbs-current { color: var(--ink); }
 
 .lrd-cta { position: relative; overflow: hidden; padding: clamp(60px, 8vw, 110px) clamp(28px, 6vw, 80px); text-align: center; }
 .lrd-cta-bg { position: absolute; inset: 0; background-size: cover; background-position: center; background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/efa7f649-329a-41c1-a913-5920bc7ef3ed/Copyright-Darby-Magill-7114.jpg?format=2500w&auto=format'); }
@@ -160,7 +191,7 @@ body{background:#F6F4F0!important}
 
 </style>
 
-<div class="lrd-wrap lrd-no-banner">
+<div class="lrd-wrap lrd-has-banner">
 
 <a href="#lrd-main" class="lrd-skip-link">Skip to main content</a>
 
@@ -177,28 +208,76 @@ body{background:#F6F4F0!important}
   <button class="lrd-nav-toggle" id="lrdNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="lrdNavLinks"><span></span><span></span><span></span></button>
 </nav>
 
-<section class="lrd-page-head" id="lrd-main">
-  <div class="lrd-page-head-label">Terms</div>
-  <h1>Terms of Use.</h1>
-  <p class="lrd-page-head-sub">The terms governing your use of lrdstudio.ca.</p>
+<section class="lrd-banner-hero" id="lrd-main" role="img" aria-label="Moov Yoga Studio — commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith.">
+  <div class="lrd-banner-hero-img" style="background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/99e97405-e498-48cf-ba6e-e8b489526f4f/2-Moov-LRD-STUDIOS.jpg?format=2500w&auto=format');"></div>
+  <div class="lrd-banner-hero-content">
+    <div class="lrd-banner-hero-text">
+      <div class="lrd-banner-hero-label">Commercial &middot; Vancouver</div>
+      <h1>Moov Yoga Studio.</h1>
+      <p class="lrd-banner-hero-sub">Create a unique space for this young budding company that would set them apart from the rest. The design features rich black walnut paired with light white washed ash throughout, flooding with natural light at the downtown location.</p>
+    </div>
+  </div>
 </section>
-<section class="lrd-legal">
-  <div class="lrd-legal-updated">Last updated &middot; May 2026</div>
-  <p>By accessing or using lrdstudio.ca (the "Site"), you agree to these Terms of Use. If you do not agree, please do not use the Site.</p>
-  <h2>Intellectual property</h2>
-  <p>All content on this Site &mdash; including project photography, written copy, logos, and visual design &mdash; is the property of LRD Studio Ltd. or its photographers (Darby Magill, Janis Nicolay, Ema Peter, Matt Anthony) and is protected by Canadian copyright law. You may not reproduce, distribute, or create derivative works from this content without written permission.</p>
-  <h2>Use of the Site</h2>
-  <p>The Site is provided for informational purposes. You agree to use it lawfully and not to attempt to interfere with its operation or security.</p>
-  <h2>External links</h2>
-  <p>This Site may link to external websites we do not control. We are not responsible for the content or privacy practices of those sites.</p>
-  <h2>Project inquiries</h2>
-  <p>Information submitted through the contact form is reviewed by LRD Studio. Submitting an inquiry does not constitute a contract or commitment by either party. Engagement terms are set out in a separate written agreement before any project work begins.</p>
-  <h2>Disclaimer</h2>
-  <p>Project photography depicts completed past work. Material availability, finishes, and timelines vary by project. Nothing on this Site should be construed as a binding offer or guarantee of specific results.</p>
-  <h2>Governing law</h2>
-  <p>These terms are governed by the laws of British Columbia, Canada. Any dispute will be resolved in the courts of the province of British Columbia.</p>
-  <h2>Contact</h2>
-  <p>Questions about these terms: <a href="mailto:hello@lrdstudio.ca">hello@lrdstudio.ca</a>.</p>
+<nav class="lrd-crumbs" aria-label="Breadcrumb">
+  <a href="/lrd-studio-interior-design/preview/">Home</a><span class="lrd-crumbs-sep">/</span><a href="/lrd-studio-interior-design/preview/projects/">Projects</a><span class="lrd-crumbs-sep">/</span><a href="/lrd-studio-interior-design/preview/projects/#commercial">Commercial</a><span class="lrd-crumbs-sep">/</span><span class="lrd-crumbs-current">Moov Yoga Studio</span>
+</nav>
+<section class="lrd-proj-intro">
+  <div class="lrd-proj-intro-text lrd-reveal">
+    <p>Create a unique space for this young budding company that would set them apart from the rest. The design features rich black walnut paired with light white washed ash throughout, flooding with natural light at the downtown location.</p>
+  </div>
+  <div class="lrd-proj-meta lrd-reveal">
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Location</div>
+      <div class="lrd-proj-meta-value">Vancouver, BC</div>
+    </div>
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Project Type</div>
+      <div class="lrd-proj-meta-value">Commercial - Full Tenant Improvement Renovation</div>
+    </div>
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Builder</div>
+      <div class="lrd-proj-meta-value">—</div>
+    </div>
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Photographer</div>
+      <div class="lrd-proj-meta-value">Jordan Smith</div>
+    </div>
+  </div>
+</section><section class="lrd-proj-gallery"><div class="lrd-proj-gallery-grid">
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/99e97405-e498-48cf-ba6e-e8b489526f4f/2-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — interior view 1, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/15637937-feb6-4a2b-95d4-a2a2f0ad9ff2/details+2.edited.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — interior detail 2, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/258cb273-f0f6-4703-8f6f-963f0b9c6bdf/9-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — room detail 3, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/bb85dc85-08ed-4a39-a616-52d33bdb7c93/8-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — design detail 4, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/5f0aeebb-b792-4901-95d3-997cc815a006/10-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — material and finish detail 5, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/0481aeff-6968-4279-b9c5-e1da53b3b87c/20-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — living space 6, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/078e6aae-29fc-4428-bf63-2dea3fe240db/11-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — furnishing detail 7, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/334f6af2-836a-4f59-8247-ead19cd6160a/3-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — millwork detail 8, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/ce2d3be1-0919-4397-b37c-1e0a767f09ea/5-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — spatial composition 9, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/540c3093-0bf9-4e6e-b7ce-253ac6d553e4/1-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — custom interior detail 10, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/688de285-dd7d-4ed0-83d9-7891c22b30c2/6-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — interior view 11, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/e0372382-15e3-4091-8b0e-230f6ab05c7e/7-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — interior detail 12, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/c4ef49e9-ea74-4098-bb83-79d0525bcc95/16-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — room detail 13, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/b42c324c-b11f-4a21-84d3-2cc09c3cb763/13-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — design detail 14, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/6d733b5c-6bdc-44d4-b7f8-e40294fa0368/12-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — material and finish detail 15, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/c3f4b78e-11f2-4644-9eb8-de9bbea46b74/14-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — living space 16, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/c66676c4-24e8-4b5f-87bf-05be2503ce3c/15-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — furnishing detail 17, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/a88854a3-5cf6-43c0-b518-26c4e4673dec/17-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — millwork detail 18, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/cdc58e29-f75d-49ce-b239-4cd2bea71909/hallway+2.edited.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — spatial composition 19, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/42a6c26c-a835-4783-9d8f-4c911f2880e8/hallway+from+studio+2.edited.jpg?format=1500w&auto=format" alt="Moov Yoga Studio — custom interior detail 20, commercial interior design in Vancouver, BC by LRD Studio. Photography by Jordan Smith." loading="lazy" decoding="async"></div>
+  </div>
+</section>
+<section class="lrd-proj-cross">
+  <div class="lrd-proj-cross-inner">
+    <div class="lrd-proj-cross-label">Explore more</div>
+    <a href="/lrd-studio-interior-design/preview/vancouver-interior-design/" class="lrd-proj-cross-link">More interior design projects in Vancouver &rarr;</a>
+  </div>
+</section>
+<section class="lrd-proj-next">
+  <a href="/lrd-studio-interior-design/preview/projects/commercial/stilhavn/">
+    <div class="lrd-proj-next-label">Next Project</div>
+    <div class="lrd-proj-next-name">Stilhavn</div>
+    <span class="lrd-proj-next-arrow">Squamish &rarr;</span>
+  </a>
 </section>
 
 <section class="lrd-cta">
@@ -271,22 +350,22 @@ body{background:#F6F4F0!important}
 })();
 </script>
 
-<title>Terms of Use — LRD Studio</title>
-<meta name="description" content="Terms of use for the LRD Studio website.">
+<title>Moov Yoga Studio — Interior Design Project | LRD Studio</title>
+<meta name="description" content="Create a unique space for this young budding company that would set them apart from the rest. The design features rich black walnut paired with light white...">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F6F4F0">
-<link rel="canonical" href="https://www.lrdstudio.ca/terms">
-<meta property="og:title" content="Terms of Use — LRD Studio">
-<meta property="og:description" content="Terms of use for the LRD Studio website.">
-<meta property="og:url" content="https://www.lrdstudio.ca/terms">
-<meta property="og:type" content="website">
+<link rel="canonical" href="https://www.lrdstudio.ca/projects/commercial/moov-yoga-studio">
+<meta property="og:title" content="Moov Yoga Studio — Interior Design Project | LRD Studio">
+<meta property="og:description" content="Create a unique space for this young budding company that would set them apart from the rest. The design features rich black walnut paired with light white...">
+<meta property="og:url" content="https://www.lrdstudio.ca/projects/commercial/moov-yoga-studio">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="LRD Studio">
 <meta property="og:locale" content="en_CA">
-<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg?format=1500w">
+<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/99e97405-e498-48cf-ba6e-e8b489526f4f/2-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Terms of Use — LRD Studio">
-<meta name="twitter:description" content="Terms of use for the LRD Studio website.">
-<meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg?format=1500w">
+<meta name="twitter:title" content="Moov Yoga Studio — Interior Design Project | LRD Studio">
+<meta name="twitter:description" content="Create a unique space for this young budding company that would set them apart from the rest. The design features rich black walnut paired with light white...">
+<meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/99e97405-e498-48cf-ba6e-e8b489526f4f/2-Moov-LRD-STUDIOS.jpg?format=1500w&auto=format">
 <link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -294,14 +373,71 @@ body{background:#F6F4F0!important}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://www.lrdstudio.ca/terms#page",
-  "url": "https://www.lrdstudio.ca/terms",
-  "name": "Terms of Use \u2014 LRD Studio",
-  "description": "Terms of use for the LRD Studio website.",
-  "isPartOf": {
-    "@id": "https://www.lrdstudio.ca/#website"
+  "@type": "CreativeWork",
+  "@id": "https://www.lrdstudio.ca/projects/commercial/moov-yoga-studio",
+  "name": "Moov Yoga Studio",
+  "url": "https://www.lrdstudio.ca/projects/commercial/moov-yoga-studio",
+  "description": "Create a unique space for this young budding company that would set them apart from the rest. The design features rich black walnut paired with light white washed ash throughout, flooding with natural light at the downtown location.",
+  "creator": {
+    "@id": "https://www.lrdstudio.ca/#studio"
   },
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Vancouver, BC"
+  },
+  "genre": "Commercial Interior Design",
+  "image": [
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/99e97405-e498-48cf-ba6e-e8b489526f4f/2-Moov-LRD-STUDIOS.jpg",
+      "creditText": "Jordan Smith",
+      "creator": {
+        "@type": "Person",
+        "name": "Jordan Smith"
+      },
+      "copyrightNotice": "\u00a9 Jordan Smith"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/15637937-feb6-4a2b-95d4-a2a2f0ad9ff2/details+2.edited.jpg",
+      "creditText": "Jordan Smith",
+      "creator": {
+        "@type": "Person",
+        "name": "Jordan Smith"
+      },
+      "copyrightNotice": "\u00a9 Jordan Smith"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/258cb273-f0f6-4703-8f6f-963f0b9c6bdf/9-Moov-LRD-STUDIOS.jpg",
+      "creditText": "Jordan Smith",
+      "creator": {
+        "@type": "Person",
+        "name": "Jordan Smith"
+      },
+      "copyrightNotice": "\u00a9 Jordan Smith"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/bb85dc85-08ed-4a39-a616-52d33bdb7c93/8-Moov-LRD-STUDIOS.jpg",
+      "creditText": "Jordan Smith",
+      "creator": {
+        "@type": "Person",
+        "name": "Jordan Smith"
+      },
+      "copyrightNotice": "\u00a9 Jordan Smith"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/5f0aeebb-b792-4901-95d3-997cc815a006/10-Moov-LRD-STUDIOS.jpg",
+      "creditText": "Jordan Smith",
+      "creator": {
+        "@type": "Person",
+        "name": "Jordan Smith"
+      },
+      "copyrightNotice": "\u00a9 Jordan Smith"
+    }
+  ],
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
@@ -314,8 +450,14 @@ body{background:#F6F4F0!important}
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Terms",
-        "item": "https://www.lrdstudio.ca/terms"
+        "name": "Projects",
+        "item": "https://www.lrdstudio.ca/projects"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Moov Yoga Studio",
+        "item": "https://www.lrdstudio.ca/projects/commercial/moov-yoga-studio"
       }
     ]
   }

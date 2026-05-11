@@ -111,15 +111,44 @@ body{background:#F6F4F0!important}
 .lrd-page-head-sub { font-weight: 300; font-size: clamp(14px, 1.1vw, 16px); color: var(--body); line-height: 1.9; margin-top: clamp(24px, 3vw, 36px); max-width: 640px; }
 
 
-.lrd-press-list { max-width: 1000px; margin: 0 auto; padding: clamp(60px, 8vw, 100px) clamp(32px, 8vw, 120px); }
-.lrd-press-item { padding: clamp(28px, 3vw, 40px) 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 220px 1fr auto; gap: clamp(24px, 4vw, 60px); align-items: baseline; }
-.lrd-press-item:last-child { border-bottom: 1px solid var(--rule); }
-.lrd-press-pub { font-family: var(--fs); font-style: italic; font-weight: 400; font-size: clamp(20px, 2vw, 26px); color: var(--ink); }
-.lrd-press-detail { font-weight: 300; font-size: 14px; color: var(--body); line-height: 1.6; }
-.lrd-press-year { font-weight: 400; font-size: 11px; letter-spacing: 0.2em; color: var(--stone); }
-.lrd-press-link { display: inline-block; margin-top: 6px; font-weight: 400; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); border-bottom: 1px solid var(--rule); padding-bottom: 3px; transition: all 0.3s; }
-.lrd-press-link:hover { color: var(--ink); border-color: var(--ink); }
-@media(max-width:700px) { .lrd-press-item { grid-template-columns: 1fr; gap: 8px; } }
+.lrd-proj-intro { max-width: 1200px; margin: 0 auto; padding: clamp(60px, 8vw, 100px) clamp(32px, 8vw, 120px); display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(40px, 6vw, 100px); align-items: start; }
+@media(max-width:900px) { .lrd-proj-intro { grid-template-columns: 1fr; gap: 40px; } }
+.lrd-proj-intro-text { font-weight: 300; font-size: clamp(14px, 1.05vw, 16px); color: var(--body); line-height: 1.95; max-width: 600px; }
+.lrd-proj-meta { display: flex; flex-direction: column; gap: 24px; }
+.lrd-proj-meta-item { padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.lrd-proj-meta-item:last-child { border-bottom: none; }
+.lrd-proj-meta-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; }
+.lrd-proj-meta-value { font-weight: 300; font-size: 14px; color: var(--ink); line-height: 1.5; }
+.lrd-proj-gallery { max-width: 1200px; margin: 0 auto; padding: clamp(40px, 6vw, 80px) clamp(20px, 3vw, 48px); }
+.lrd-proj-gallery-grid { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 48px); }
+.lrd-proj-gallery-img { width: 100%; overflow: hidden; background: var(--ink); }
+.lrd-proj-gallery-img img { width: 100%; height: auto; display: block; transition: transform 1.6s var(--ease), filter 0.7s var(--ease); }
+.lrd-proj-gallery-img:hover img { transform: scale(1.02); filter: brightness(0.97); }
+.lrd-proj-pillars { max-width: 1200px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) clamp(28px, 6vw, 48px); border-top: 1px solid var(--rule); }
+.lrd-proj-pillars-inner { display: flex; flex-direction: column; gap: 22px; }
+.lrd-proj-pillars-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); }
+.lrd-proj-pillars-chips { display: flex; flex-wrap: wrap; gap: 10px 12px; }
+.lrd-proj-pillar-chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px; border: 1px solid var(--rule); font-weight: 400; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); transition: all 0.3s var(--ease); }
+.lrd-proj-pillar-chip:hover { border-color: var(--ink); color: var(--ink); background: var(--warm); }
+.lrd-proj-pillar-chip-arrow { color: var(--stone-lt); transition: color 0.3s; }
+.lrd-proj-pillar-chip:hover .lrd-proj-pillar-chip-arrow { color: var(--ink); }
+.lrd-proj-next { padding: clamp(80px, 10vw, 140px) clamp(32px, 8vw, 120px); border-top: 1px solid var(--rule); text-align: center; max-width: 1200px; margin: 0 auto; }
+.lrd-proj-next-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 18px; }
+.lrd-proj-next a { display: inline-block; }
+.lrd-proj-next-name { font-weight: 300; font-size: clamp(28px, 3vw, 44px); line-height: 1.1; color: var(--ink); transition: color 0.3s; }
+.lrd-proj-next a:hover .lrd-proj-next-name { color: var(--stone); }
+.lrd-proj-next-arrow { display: inline-block; font-weight: 300; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); margin-top: 18px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; transition: all 0.3s; }
+.lrd-proj-next a:hover .lrd-proj-next-arrow { color: var(--ink); border-color: var(--ink); }
+.lrd-proj-cross { max-width: 1200px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) clamp(32px, 8vw, 120px); text-align: center; }
+.lrd-proj-cross-inner { border-top: 1px solid var(--rule); padding-top: clamp(32px, 4vw, 48px); }
+.lrd-proj-cross-label { font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
+.lrd-proj-cross-link { font-family: var(--fs); font-style: italic; font-weight: 400; font-size: clamp(18px, 1.8vw, 24px); color: var(--ink); border-bottom: 1px solid var(--rule); padding-bottom: 4px; transition: border-color 0.3s; }
+.lrd-proj-cross-link:hover { border-color: var(--ink); }
+.lrd-crumbs { max-width: 1200px; margin: 0 auto; padding: 24px clamp(32px, 8vw, 120px) 0; font-weight: 300; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); }
+.lrd-crumbs a { color: var(--stone); border-bottom: 1px solid transparent; transition: border-color 0.3s, color 0.3s; }
+.lrd-crumbs a:hover { color: var(--ink); border-color: var(--rule); }
+.lrd-crumbs-sep { margin: 0 10px; opacity: 0.5; }
+.lrd-crumbs-current { color: var(--ink); }
 
 .lrd-cta { position: relative; overflow: hidden; padding: clamp(60px, 8vw, 110px) clamp(28px, 6vw, 80px); text-align: center; }
 .lrd-cta-bg { position: absolute; inset: 0; background-size: cover; background-position: center; background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/efa7f649-329a-41c1-a913-5920bc7ef3ed/Copyright-Darby-Magill-7114.jpg?format=2500w&auto=format'); }
@@ -179,56 +208,77 @@ body{background:#F6F4F0!important}
   <button class="lrd-nav-toggle" id="lrdNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="lrdNavLinks"><span></span><span></span><span></span></button>
 </nav>
 
-<section class="lrd-banner-hero" id="lrd-main" role="img" aria-label="Panorama — new-build interior design in Whistler, BC by LRD Studio. Featured in Western Living, West Coast North, and Elio Magazine.">
-  <div class="lrd-banner-hero-img" style="background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/bffc3318-5534-49f4-b3ea-f3e4fccde12e/1-LRD-DESIGNS-Panorama.jpg?format=2500w&auto=format');"></div>
+<section class="lrd-banner-hero" id="lrd-main" role="img" aria-label="Cypress — new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz.">
+  <div class="lrd-banner-hero-img" style="background-image: url('https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/cc902fc0-63e7-4350-a570-33a9a0e91cf9/7-LRD-DESIGNS-CYPRESS.jpg?format=2500w&auto=format');"></div>
   <div class="lrd-banner-hero-content">
     <div class="lrd-banner-hero-text">
-      <div class="lrd-banner-hero-label">Press</div>
-      <h1>In print, online, and on the bookshelf.</h1>
-      <p class="lrd-banner-hero-sub">Four Western Living magazine features, a Western Living Design 25 win, the Figure 1 Publishing book West Coast North, and a profile in Elio Magazine.</p>
+      <div class="lrd-banner-hero-label">Residential &middot; Whistler</div>
+      <h1>Cypress.</h1>
+      <p class="lrd-banner-hero-sub">A simple palette that compliments the canvas of polished concrete floors throughout, we adorned this beautiful home with natural oak and kept the millwork clean and linear with recessed channels. Our favorite features include the master ens...</p>
     </div>
   </div>
-</section><section class="lrd-press-list">
-  <div class="lrd-press-item lrd-reveal">
-    <div class="lrd-press-pub">Western Living</div>
-    <div>
-      <div class="lrd-press-detail"><strong style="font-weight:400;color:var(--ink);">Design 25 Winner — Mountain Modern</strong> &middot; Sunstone, Pemberton</div>
-      <a href="https://westernliving.ca/doty/wl-design-25/" class="lrd-press-link" target="_blank" rel="noopener">Read article &rarr;</a>
-    </div>
-    <div class="lrd-press-year">2026</div>
+</section>
+<nav class="lrd-crumbs" aria-label="Breadcrumb">
+  <a href="/lrd-studio-interior-design/preview/">Home</a><span class="lrd-crumbs-sep">/</span><a href="/lrd-studio-interior-design/preview/projects/">Projects</a><span class="lrd-crumbs-sep">/</span><a href="/lrd-studio-interior-design/preview/projects/#residential">Residential</a><span class="lrd-crumbs-sep">/</span><span class="lrd-crumbs-current">Cypress</span>
+</nav>
+<section class="lrd-proj-intro">
+  <div class="lrd-proj-intro-text lrd-reveal">
+    <p>A simple palette that compliments the canvas of polished concrete floors throughout, we adorned this beautiful home with natural oak and kept the millwork clean and linear with recessed channels. Our favorite features include the master ensuite with gorgeous freestanding tub, inset niche, and sexy integrated lit medicine cabinets, the tiered kitchen cabinets, the tiered island counter with wine bar waterfalled counter, and the subtle vaulted ceilings.</p>
   </div>
-  <div class="lrd-press-item lrd-reveal">
-    <div class="lrd-press-pub">Western Living</div>
-    <div>
-      <div class="lrd-press-detail"><strong style="font-weight:400;color:var(--ink);">Home of the Year — Top 5 Finalist</strong> &middot; Whistler residence</div>
-      
+  <div class="lrd-proj-meta lrd-reveal">
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Location</div>
+      <div class="lrd-proj-meta-value">Whistler, BC</div>
     </div>
-    <div class="lrd-press-year">2021</div>
-  </div>
-  <div class="lrd-press-item lrd-reveal">
-    <div class="lrd-press-pub">Western Living</div>
-    <div>
-      <div class="lrd-press-detail"><strong style="font-weight:400;color:var(--ink);">Magazine feature</strong> &middot; Multiple projects (4 features total)</div>
-      
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Project Type</div>
+      <div class="lrd-proj-meta-value">New Build</div>
     </div>
-    <div class="lrd-press-year">—</div>
-  </div>
-  <div class="lrd-press-item lrd-reveal">
-    <div class="lrd-press-pub">West Coast North</div>
-    <div>
-      <div class="lrd-press-detail"><strong style="font-weight:400;color:var(--ink);">Featured book</strong> &middot; Selected works</div>
-      <a href="https://www.figure1publishing.com/book/west-coast-north/" class="lrd-press-link" target="_blank" rel="noopener">Read article &rarr;</a>
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Builder</div>
+      <div class="lrd-proj-meta-value">Ario Construction</div>
     </div>
-    <div class="lrd-press-year">2023</div>
-  </div>
-  <div class="lrd-press-item lrd-reveal">
-    <div class="lrd-press-pub">Elio Magazine</div>
-    <div>
-      <div class="lrd-press-detail"><strong style="font-weight:400;color:var(--ink);">Squamish + Whistler edition</strong> &middot; Studio profile</div>
-      <a href="https://squamish.elio.ca/interior-design-and-living-in-squamish-with-lauren-ritz/" class="lrd-press-link" target="_blank" rel="noopener">Read article &rarr;</a>
+    <div class="lrd-proj-meta-item">
+      <div class="lrd-proj-meta-label">Photographer</div>
+      <div class="lrd-proj-meta-value">Adam Levitt & Rebecca Ritz</div>
     </div>
-    <div class="lrd-press-year">—</div>
   </div>
+</section><section class="lrd-proj-gallery"><div class="lrd-proj-gallery-grid">
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/cc902fc0-63e7-4350-a570-33a9a0e91cf9/7-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — interior view 1, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/6e92625a-0cf3-4363-983a-d4cc10429ebe/4-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — interior detail 2, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/49e63bf6-c756-4b2a-aee3-c732141a7311/1-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — room detail 3, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/9c0b2ddb-5016-45e8-a577-40a221aefc4e/3-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — design detail 4, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/6aff4d22-51c3-4570-a13d-553e9d5d537b/5-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — material and finish detail 5, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/b492a853-2e81-4d02-a019-040c46b27de3/6-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — living space 6, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/0b3571cc-1138-4167-9d17-b3a04d074860/8-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — furnishing detail 7, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/08dbc8e0-f242-4bbb-b8d9-e5eda20db3e2/9-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — millwork detail 8, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/a8a17236-7672-4ecb-9085-e1a9b2f73b1d/2-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — spatial composition 9, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/105f24c7-fc7f-4049-8453-1ff03bf1752a/10-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — custom interior detail 10, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/96054f5f-12e1-43ef-83fe-28ab48c506ce/11-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — interior view 11, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/3b14dbc6-4acb-4bd0-b280-374ae1c33b99/12-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — interior detail 12, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/648c1c5f-5b8c-4ce0-aa37-c2909c49176d/21-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — room detail 13, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/83362670-7361-4548-8398-2940e0de80cd/13-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — design detail 14, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/fe4a977c-c394-4c4b-a6e4-584c45139105/14-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — material and finish detail 15, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/0b594d9e-b821-43d1-9e09-696f23f9cbb2/15-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — living space 16, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/a5dc7eb0-61f9-4a8f-baea-39e38b7269fc/16-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — furnishing detail 17, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/575e8a75-3ea5-4c75-b27d-b3b5d2393ff3/17-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — millwork detail 18, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/06ebdc9e-cb1c-4f65-aded-ad3f3133730f/18-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — spatial composition 19, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/d9a092b9-fe1e-42b4-ab6e-e3986f502fa8/19-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — custom interior detail 20, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+    <div class="lrd-proj-gallery-img"><img src="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/e77785fa-cc09-463c-9b22-f11aafee8970/23-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format" alt="Cypress — interior view 21, new-build interior design in Whistler, BC by LRD Studio. Photography by Adam Levitt & Rebecca Ritz." loading="lazy" decoding="async"></div>
+  </div>
+</section>
+<section class="lrd-proj-cross">
+  <div class="lrd-proj-cross-inner">
+    <div class="lrd-proj-cross-label">Explore more</div>
+    <a href="/lrd-studio-interior-design/preview/whistler-interior-design/" class="lrd-proj-cross-link">More interior design projects in Whistler &rarr;</a>
+  </div>
+</section>
+<section class="lrd-proj-next">
+  <a href="/lrd-studio-interior-design/preview/projects/residential/toni-sailer/">
+    <div class="lrd-proj-next-label">Next Project</div>
+    <div class="lrd-proj-next-name">Toni Sailer</div>
+    <span class="lrd-proj-next-arrow">Whistler &rarr;</span>
+  </a>
 </section>
 
 <section class="lrd-cta">
@@ -301,22 +351,22 @@ body{background:#F6F4F0!important}
 })();
 </script>
 
-<title>Press & Recognition — LRD Studio</title>
-<meta name="description" content="Press features, magazine articles, and awards for LRD Studio interior design.">
+<title>Cypress — Interior Design Project | LRD Studio</title>
+<meta name="description" content="A simple palette that compliments the canvas of polished concrete floors throughout, we adorned this beautiful home with natural oak and kept the millwork ...">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F6F4F0">
-<link rel="canonical" href="https://www.lrdstudio.ca/press">
-<meta property="og:title" content="Press & Recognition — LRD Studio">
-<meta property="og:description" content="Press features, magazine articles, and awards for LRD Studio interior design.">
-<meta property="og:url" content="https://www.lrdstudio.ca/press">
-<meta property="og:type" content="website">
+<link rel="canonical" href="https://www.lrdstudio.ca/projects/residential/cypress">
+<meta property="og:title" content="Cypress — Interior Design Project | LRD Studio">
+<meta property="og:description" content="A simple palette that compliments the canvas of polished concrete floors throughout, we adorned this beautiful home with natural oak and kept the millwork ...">
+<meta property="og:url" content="https://www.lrdstudio.ca/projects/residential/cypress">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="LRD Studio">
 <meta property="og:locale" content="en_CA">
-<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg?format=1500w">
+<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/cc902fc0-63e7-4350-a570-33a9a0e91cf9/7-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Press & Recognition — LRD Studio">
-<meta name="twitter:description" content="Press features, magazine articles, and awards for LRD Studio interior design.">
-<meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/901fe1e7-bb04-47e4-9fc8-b873fa951d2f/Copyright-Darby-Magill-7156.jpg?format=1500w">
+<meta name="twitter:title" content="Cypress — Interior Design Project | LRD Studio">
+<meta name="twitter:description" content="A simple palette that compliments the canvas of polished concrete floors throughout, we adorned this beautiful home with natural oak and kept the millwork ...">
+<meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/cc902fc0-63e7-4350-a570-33a9a0e91cf9/7-LRD-DESIGNS-CYPRESS.jpg?format=1500w&auto=format">
 <link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -324,14 +374,71 @@ body{background:#F6F4F0!important}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://www.lrdstudio.ca/press#page",
-  "url": "https://www.lrdstudio.ca/press",
-  "name": "Press & Recognition \u2014 LRD Studio",
-  "description": "Press features and awards for LRD Studio: Western Living Design 25 Winner, West Coast North book, Elio Magazine.",
-  "mainEntity": {
+  "@type": "CreativeWork",
+  "@id": "https://www.lrdstudio.ca/projects/residential/cypress",
+  "name": "Cypress",
+  "url": "https://www.lrdstudio.ca/projects/residential/cypress",
+  "description": "A simple palette that compliments the canvas of polished concrete floors throughout, we adorned this beautiful home with natural oak and kept the millwork clean and linear with recessed channels. Our favorite features include the master ensuite with gorgeous freestanding tub, inset niche, and sexy integrated lit medicine cabinets, the tiered kitchen cabinets, the tiered island counter with wine bar waterfalled counter, and the subtle vaulted ceilings.",
+  "creator": {
     "@id": "https://www.lrdstudio.ca/#studio"
   },
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Whistler, BC"
+  },
+  "genre": "Residential Interior Design",
+  "image": [
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/cc902fc0-63e7-4350-a570-33a9a0e91cf9/7-LRD-DESIGNS-CYPRESS.jpg",
+      "creditText": "Adam Levitt & Rebecca Ritz",
+      "creator": {
+        "@type": "Person",
+        "name": "Adam Levitt & Rebecca Ritz"
+      },
+      "copyrightNotice": "\u00a9 Adam Levitt & Rebecca Ritz"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/6e92625a-0cf3-4363-983a-d4cc10429ebe/4-LRD-DESIGNS-CYPRESS.jpg",
+      "creditText": "Adam Levitt & Rebecca Ritz",
+      "creator": {
+        "@type": "Person",
+        "name": "Adam Levitt & Rebecca Ritz"
+      },
+      "copyrightNotice": "\u00a9 Adam Levitt & Rebecca Ritz"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/49e63bf6-c756-4b2a-aee3-c732141a7311/1-LRD-DESIGNS-CYPRESS.jpg",
+      "creditText": "Adam Levitt & Rebecca Ritz",
+      "creator": {
+        "@type": "Person",
+        "name": "Adam Levitt & Rebecca Ritz"
+      },
+      "copyrightNotice": "\u00a9 Adam Levitt & Rebecca Ritz"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/9c0b2ddb-5016-45e8-a577-40a221aefc4e/3-LRD-DESIGNS-CYPRESS.jpg",
+      "creditText": "Adam Levitt & Rebecca Ritz",
+      "creator": {
+        "@type": "Person",
+        "name": "Adam Levitt & Rebecca Ritz"
+      },
+      "copyrightNotice": "\u00a9 Adam Levitt & Rebecca Ritz"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/63dc0dfc345ed25a7efd5c5d/6aff4d22-51c3-4570-a13d-553e9d5d537b/5-LRD-DESIGNS-CYPRESS.jpg",
+      "creditText": "Adam Levitt & Rebecca Ritz",
+      "creator": {
+        "@type": "Person",
+        "name": "Adam Levitt & Rebecca Ritz"
+      },
+      "copyrightNotice": "\u00a9 Adam Levitt & Rebecca Ritz"
+    }
+  ],
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
@@ -344,8 +451,14 @@ body{background:#F6F4F0!important}
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Press",
-        "item": "https://www.lrdstudio.ca/press"
+        "name": "Projects",
+        "item": "https://www.lrdstudio.ca/projects"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Cypress",
+        "item": "https://www.lrdstudio.ca/projects/residential/cypress"
       }
     ]
   }
