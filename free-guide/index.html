@@ -403,7 +403,6 @@ var payload={firstName:fn,lastName:document.getElementById('fg-ln').value.trim()
 form.style.display='none';
 document.getElementById('fg-success').classList.add('visible');
 fetch('https://services.leadconnectorhq.com/hooks/6Nlxml1Rtjj35EjoKuLO/webhook-trigger/90f300f1-c408-4183-bbc5-4dc4640dd2ad',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
-setTimeout(function(){window.location.href='/free-guide-how-to-win'},3000);
 });
 })();
 </script>
