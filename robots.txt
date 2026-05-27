@@ -1,0 +1,6 @@
+# Marketing site is crawlable. Client/prospect work areas are not.
+User-agent: *
+Disallow: /matt-proposals/
+Disallow: /clients/
+Disallow: /project-briefs/
+Disallow: /content-assets/
