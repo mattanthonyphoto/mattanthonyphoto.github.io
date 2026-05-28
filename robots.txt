@@ -4,3 +4,4 @@ Disallow: /matt-proposals/
 Disallow: /clients/
 Disallow: /project-briefs/
 Disallow: /content-assets/
+Disallow: /share/
