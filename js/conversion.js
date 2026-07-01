@@ -113,7 +113,7 @@
     '/balmoral-construction',
     '/sitelines-architecture',
     '/the-window-merchant',
-    '/lrd-studio-interior-design',
+    '/sunridge-whistler',
     '/bio',
     '/process',
     '/projects',
