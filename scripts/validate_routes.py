@@ -68,6 +68,8 @@ def route_exists(route: str) -> bool:
     target = ROOT / relative
     if target.is_file():
         return True
+    if (ROOT / f"{relative}.html").is_file():
+        return True
     if (target / "index.html").is_file():
         return True
     return False
