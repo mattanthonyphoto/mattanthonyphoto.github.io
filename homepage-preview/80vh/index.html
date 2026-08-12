@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homepage preview — banner 80vh</title>
+<style>html,body{margin:0;padding:0}.hp-hero{height:80vh!important;min-height:600px!important}</style>
+</head>
+<body>
+<!-- ═══ CRITICAL: preload LCP hero + fonts BEFORE Squarespace parses CSS ═══ -->
+<link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+
+<style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}
+
+/* ── Headline gold underline on em ── */
+.hp-wrap h2 em {
+  position: relative;
+  display: inline;
+}
+
+.hp-wrap h2 em::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, #c9a96e, rgba(201,169,110,0.2));
+  transition: width 1.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-wrap h2.hp-underlined em::after {
+  width: 100%;
+}
+
+/* ── Divider draw animation ── */
+.hp-divider {
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-divider.hp-drawn {
+  width: 80px;
+}
+
+/* ── Eyebrow gold dash (animated) ── */
+.hp-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hp-eyebrow::before {
+  content: '';
+  width: 0;
+  height: 1px;
+  background: #c9a96e;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-eyebrow.hp-visible::before {
+  width: 24px;
+}
+
+/* ── Testimonial text (standard visible) ── */
+.hp-test-quote {
+  color: #d9d5cd !important;
+}
+
+/* ═══ SQUARESPACE OVERRIDES ═══ */
+#header,header,.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+#footer,footer#footer,.footer-wrapper,[data-section-type="footer"]{display:none!important}
+.item-pagination{display:none!important}
+.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}
+.sqs-announcement-bar-dropzone{display:none!important}
+body{background:#1a1a18!important}
+#page{background:transparent!important}
+#sections{background:transparent!important}
+.page-section{background:transparent!important;min-height:0!important;padding:0!important;margin:0!important}
+.page-section .content-wrapper{padding:0!important;max-width:none!important}
+.content-wrapper{background:transparent!important;max-width:none!important;padding:0!important}
+.fluid-engine{background:transparent!important;padding:0!important;max-width:none!important;grid-template-columns:none!important;display:block!important}
+.fe-block{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;grid-area:auto!important;position:relative!important}
+.sqs-block-code{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.sqs-block-content{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.sqs-code-container{padding:0!important;margin:0!important;max-width:none!important;width:100%!important;overflow:visible!important}
+/* Kill Squarespace global fade animations on page content */
+.hp-wrap,.hp-wrap>section,.hp-wrap>div,.hp-ft{animation:none!important;-webkit-animation:none!important;opacity:1!important;visibility:visible!important}
+/* Force nav visible — Squarespace animations hide it */
+#maHeader{animation:none!important;opacity:1!important;visibility:visible!important}
+#maHeader .ma-logo,#maHeader .ma-logo *,#maHeader .ma-nav,#maHeader .ma-nav-item,#maHeader .ma-nav-link,#maHeader .ma-toggle,#maHeader .ma-toggle span{animation:none!important;opacity:1!important;visibility:visible!important}
+
+/* ═══ PAGE WRAP ═══ */
+.hp-wrap{font-family:'DM Sans',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;color:#1a1a18;line-height:1.7;font-weight:300;overflow-x:hidden!important;max-width:100vw!important;width:100%!important;margin:0!important;padding:0!important;box-sizing:border-box!important}
+.hp-wrap *{box-sizing:border-box!important}
+.hp-wrap section{overflow-x:hidden!important}
+.hp-wrap a{color:inherit;text-decoration:none}
+.hp-wrap img{max-width:100%;display:block}
+.hp-label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:#b8975a;margin-bottom:1.5rem;font-weight:500}
+.hp-divider{width:60px;height:1px;background:#c9a96e;margin-bottom:2rem}
+
+/* ═══ HERO ═══ */
+.hp-wrap section,.hp-wrap>div{position:relative;z-index:1}
+.hp-hero{position:relative;width:100%;height:100vh;min-height:700px;display:flex!important;align-items:center;padding:0 5vw;padding-top:10rem;overflow:hidden!important;z-index:2}
+.hp-hero-bg{position:absolute;inset:0;z-index:0;will-change:transform}
+.hp-hero-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.45)}
+.hp-hero::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(26,26,24,.4) 0%,rgba(26,26,24,.15) 30%,rgba(26,26,24,.15) 60%,rgba(26,26,24,.7) 85%,rgba(26,26,24,.9) 100%)}
+.hp-hero-content{position:relative;z-index:2;max-width:850px}
+.hp-hero-tag{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:#c9a96e!important;font-weight:500;margin-bottom:1.5rem}
+.hp-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.6rem,5.5vw,4.8rem);font-weight:300;line-height:1.05;color:#f6f4f0!important;letter-spacing:-.02em;margin-bottom:1.5rem}
+.hp-hero h1 em{font-style:italic;color:#c9a96e!important}
+.hp-hero-desc{font-size:1.05rem;color:#d9d5cd!important;max-width:500px;line-height:1.8;margin-bottom:2.5rem}
+.hp-hero-btns{display:flex!important;gap:1rem;align-items:center}
+.hp-hero-cta{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;padding:1rem 2.5rem;border:1px solid #d4b06a!important;background:#d4b06a!important;color:#1a1a18!important;font-weight:500;transition:all .35s ease}
+.hp-hero-cta:hover{background:transparent!important;color:#d4b06a!important}
+
+/* ═══ FEATURED WORK ═══ */
+.hp-featured{padding:6rem 5vw}
+.hp-featured-header{display:flex!important;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+.hp-featured-header h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.15}
+.hp-view-all{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#b8975a;font-weight:500;border-bottom:1px solid #b8975a;padding-bottom:2px;transition:color .3s ease,border-color .3s ease}
+.hp-view-all:hover{color:#1a1a18;border-color:#1a1a18}
+div.hp-proj-grid{display:flex!important;flex-wrap:wrap!important;gap:2rem!important;width:100%!important}
+a.hp-proj-card{position:relative;overflow:hidden;cursor:pointer;display:block!important;width:calc(33.333% - 1.334rem)!important;aspect-ratio:4/3!important}
+.hp-proj-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease,filter .8s ease}
+.hp-proj-card:hover img{transform:scale(1.04);filter:brightness(.75)}
+
+/* ═══ SERVICES ═══ */
+.hp-services{background:#eeece6!important;padding:6rem 5vw}
+.hp-services .hp-label{color:#b8975a}
+.hp-services h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:#1a1a18;margin-bottom:4rem}
+
+/* ═══ CREATIVE PARTNER SPOTLIGHT ═══ */
+.hp-cp-spotlight{background:#f6f4f0!important;padding:6rem 5vw;position:relative;overflow:hidden}
+.hp-cp-split{display:flex!important;gap:0;max-width:1200px;margin:0 auto;align-items:stretch}
+.hp-cp-text{flex:1;padding:4rem 4rem 4rem 0;display:flex;flex-direction:column;justify-content:center}
+.hp-cp-spotlight .hp-label{color:#b8975a!important}
+.hp-cp-spotlight h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:#1a1a18!important;margin-bottom:1.5rem;line-height:1.2}
+.hp-cp-spotlight h2 em{font-style:italic;color:#b8975a!important}
+.hp-cp-spotlight .hp-cp-text>p{font-size:1rem;color:#4a4a46!important;line-height:1.85;margin-bottom:1.25rem}
+.hp-cp-img{flex:0 0 45%;position:relative;overflow:hidden;display:flex;align-items:center}
+.hp-cp-img img{width:100%;height:auto;display:block;border-radius:2px}
+.hp-cp-img::after{display:none}
+
+/* ── Quote + CTA row ── */
+.hp-cp-bottom{display:flex!important;align-items:flex-end;justify-content:space-between;gap:2rem;margin-top:.5rem}
+.hp-cp-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;padding:1rem 2.5rem;border:1px solid #d4b06a!important;background:#d4b06a!important;color:#1a1a18!important;font-weight:500;transition:all .35s ease;white-space:nowrap;flex-shrink:0}
+.hp-cp-btn:hover{background:transparent!important;color:#d4b06a!important}
+.hp-cp-case-link{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#b8975a!important;font-weight:500;border-bottom:1px solid rgba(184,151,90,.4);padding-bottom:2px;transition:border-color .3s ease;margin-bottom:1.5rem}
+.hp-cp-case-link:hover{border-color:#b8975a}
+
+@media(max-width:900px){
+  .hp-cp-spotlight{padding:3rem 6vw}
+  .hp-cp-split{flex-direction:column-reverse}
+  .hp-cp-text{padding:2.5rem 0 0}
+  .hp-cp-img{flex:none;min-height:50vw}
+  .hp-cp-img::after{display:none}
+  .hp-cp-bottom{flex-direction:column;align-items:flex-start}
+}
+
+/* ═══ SOCIAL PROOF ═══ */
+.hp-testimonials{background:#1a1a18!important;padding:6rem 5vw;color:#d9d5cd!important}
+.hp-testimonials .hp-label{color:#c9a96e!important;text-align:center}
+
+/* ── Featured testimonial (large) ── */
+.hp-test-featured{max-width:800px;margin:0 auto 4rem;text-align:center}
+.hp-test-featured .hp-test-quote{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:300;font-style:italic;line-height:1.55;color:#d9d5cd!important;margin-bottom:1.5rem}
+.hp-test-featured .hp-test-quote::before{content:'\201C';display:block;font-size:3.5rem;color:rgba(201,169,110,0.3)!important;line-height:1;margin-bottom:.75rem;font-style:normal}
+.hp-test-featured .hp-test-attr{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#8a8579!important;font-weight:500}
+.hp-test-featured .hp-test-cs{display:inline-block;margin-top:1rem;font-family:'DM Sans',-apple-system,sans-serif;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:#c9a96e!important;font-weight:500;border-bottom:1px solid rgba(201,169,110,.4);padding-bottom:2px;transition:border-color .3s ease}
+.hp-test-featured .hp-test-cs:hover{border-color:#c9a96e}
+
+/* ── Supporting testimonials (2-col) ── */
+.hp-test-row{display:flex!important;gap:2rem;max-width:900px;margin:0 auto}
+.hp-test-card{flex:1;padding:2.5rem;border:1px solid rgba(201,169,110,0.08);background:rgba(246,244,240,0.03)}
+.hp-test-card .hp-test-quote{font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:300;font-style:italic;line-height:1.6;color:rgba(246,244,240,0.65)!important;margin-bottom:1.25rem}
+.hp-test-card .hp-test-quote::before{content:'\201C';display:block;font-size:2rem;color:rgba(201,169,110,0.25)!important;line-height:1;margin-bottom:.4rem;font-style:normal}
+.hp-test-card .hp-test-attr{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8579!important;font-weight:500}
+.hp-test-card .hp-test-cs{display:inline-block;margin-top:.75rem;font-family:'DM Sans',-apple-system,sans-serif;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,0.5)!important;font-weight:500;border-bottom:1px solid rgba(201,169,110,.2);padding-bottom:2px;transition:all .3s ease}
+.hp-test-card .hp-test-cs:hover{color:#c9a96e!important;border-color:#c9a96e}
+
+@media(max-width:900px){
+  .hp-test-row{flex-direction:column}
+  .hp-test-featured .hp-test-quote{font-size:1.15rem}
+}
+@keyframes hpMarquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══ FINAL CTA ═══ */
+.hp-cta{position:relative;padding:8rem 5vw;text-align:center;overflow:hidden;min-height:100vh;display:flex!important;flex-direction:column;align-items:center;justify-content:center}
+.hp-cta::after{content:'';position:absolute;inset:0;z-index:1;background:rgba(26,26,24,.5)}
+.hp-cta-content{position:relative;z-index:2}
+.hp-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:300;color:#f6f4f0!important;margin-bottom:1rem;line-height:1.2}
+.hp-cta h2 em{font-style:italic;color:#c9a96e!important}
+.hp-cta p{font-size:1rem;color:rgba(246,244,240,0.6)!important;max-width:480px;margin:0 auto 2.5rem;line-height:1.8}
+.hp-cta-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;padding:1.1rem 3rem;border:1px solid #d4b06a!important;background:#d4b06a!important;color:#1a1a18!important;font-weight:500;transition:all .35s ease}
+.hp-cta-btn:hover{background:transparent!important;color:#d4b06a!important}
+.hp-alt-cta{margin-top:1.25rem;font-size:.75rem;color:#8a8579!important;letter-spacing:.05em;font-weight:300}
+.hp-alt-cta a{color:#c9a96e!important;text-decoration:underline;text-underline-offset:3px;transition:color .3s ease}
+.hp-alt-cta a:hover{color:#f6f4f0!important}
+
+/* ═══ FOOTER ═══ */
+.hp-ft{background:#1a1a18!important;border-top:1px solid rgba(201,169,110,.15)}
+.hp-ft-locs{display:flex!important;justify-content:center;gap:2rem;padding:1.75rem 5vw;border-bottom:1px solid rgba(201,169,110,.08);flex-wrap:wrap}
+.hp-ft-locs a{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,244,240,.35)!important;font-weight:500;transition:color .3s ease}
+.hp-ft-locs a:hover{color:#c9a96e!important}
+.hp-ft-row{display:flex!important;justify-content:space-between;align-items:center;padding:2.25rem 5vw;gap:2rem;flex-wrap:wrap}
+.hp-ft-item{display:flex!important;align-items:baseline;gap:10px}
+.hp-ft-label{font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:#c9a96e!important;font-weight:500;white-space:nowrap}
+.hp-ft-dot{width:3px;height:3px;border-radius:50%;background:rgba(201,169,110,.4);flex-shrink:0;position:relative;top:-2px}
+.hp-ft-item p,.hp-ft-item a{margin:0;font-size:12px;color:rgba(246,244,240,.8)!important;font-weight:300;white-space:nowrap;text-decoration:none;transition:color .3s ease}
+.hp-ft-item a:hover{color:#c9a96e!important}
+.hp-ft-social{display:flex!important;gap:18px}
+.hp-ft-social a{transition:color .3s ease}
+.hp-ft-social a:hover{color:#c9a96e!important}
+.hp-ft-rule{margin:0 5vw;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(201,169,110,.15) 20%,rgba(201,169,110,.15) 80%,transparent 100%)}
+.hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:center;padding:1.25rem 5vw}
+.hp-ft-copy{font-size:10px;color:rgba(246,244,240,.35)!important;letter-spacing:.08em}
+.hp-ft-nav{display:flex!important;gap:2.5rem}
+.hp-ft-nav a{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,244,240,.35)!important;text-decoration:none;transition:color .3s ease}
+.hp-ft-nav a:hover{color:#c9a96e!important}
+
+/* ═══ RESPONSIVE 900px ═══ */
+@media(max-width:900px){
+  .hp-hero{min-height:100vh;min-height:100svh;padding:0 6vw;padding-top:6rem}
+  .hp-hero h1{font-size:clamp(2rem,9vw,3.2rem)}
+  .hp-hero-desc{font-size:.95rem}
+  .hp-hero-btns{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .hp-featured{padding:3rem 4vw}
+  .hp-featured-header{flex-direction:column;align-items:flex-start;gap:1rem;margin-bottom:2rem}
+  div.hp-proj-grid{gap:1rem!important}
+  a.hp-proj-card{width:100%!important;aspect-ratio:16/10!important}
+    .hp-services{padding:3rem 6vw}
+  .hp-services h2{margin-bottom:2rem}
+  .hp-cp-spotlight{padding:4rem 6vw}
+  .hp-testimonials{padding:3rem 6vw}
+  .hp-test-quote{font-size:1rem}
+  .hp-cta{padding:4rem 6vw;min-height:50vh}
+  .hp-cta h2{font-size:clamp(1.5rem,6vw,2.2rem)}
+  .hp-cta p{font-size:.9rem}
+  .hp-cta-btn{padding:.9rem 2rem}
+  .hp-ft-locs{gap:1rem;padding:1.5rem 6vw;justify-content:flex-start}
+  .hp-ft-locs a{font-size:.55rem}
+  .hp-ft-row{flex-direction:column;gap:1.25rem;align-items:flex-start;padding:2rem 6vw}
+  .hp-ft-rule{margin:0 6vw}
+  .hp-ft-bottom{flex-direction:column;gap:.75rem;text-align:center;padding:1.25rem 6vw}
+}
+
+/* ═══ RESPONSIVE 600px ═══ */
+@media(max-width:600px){
+  .hp-wrap{overflow-x:hidden!important}
+  .hp-wrap h1,.hp-wrap h2,.hp-wrap h3,.hp-wrap p{word-wrap:break-word!important;overflow-wrap:break-word!important;max-width:100%!important}
+  .hp-hero{padding:0 5vw;padding-top:5rem}
+  .hp-hero h1{font-size:1.8rem}
+  .hp-hero-desc{font-size:.88rem;margin-bottom:2rem}
+  .hp-hero-cta{padding:.8rem 1.8rem;font-size:.6rem;max-width:100%!important}
+  .hp-hero-btns{width:100%!important}
+  .hp-featured{padding:2.5rem 5vw}
+  .hp-services{padding:2.5rem 5vw}
+  .hp-cp-spotlight{padding:3rem 5vw}
+  .hp-testimonials{padding:2.5rem 5vw}
+  .hp-test-quote{font-size:.95rem}
+  .hp-cta{padding:3rem 5vw}
+  .hp-ft-locs{gap:.75rem;justify-content:center}
+  .hp-ft-locs a{font-size:.5rem;letter-spacing:.15em}
+  .hp-ft-nav{gap:1.5rem;flex-wrap:wrap;justify-content:center}
+  .hp-ft-nav a{font-size:8px}
+}
+
+/* ── FIX: Featured Work was rendering invisible ──
+   The section sits on the dark body but declared no colour of its own, so its
+   heading inherited .hp-wrap's ink (#1a1a18) on a #1a1a18 background. The
+   "View All Projects" link had the same problem for a different reason:
+   .hp-wrap a{color:inherit} is class+element (0,1,1) and outranks
+   .hp-view-all{color:#b8975a} (0,1,0), so the link text inherited ink too
+   while its border-bottom stayed gold. Both were invisible on the live site. */
+.hp-featured{color:#f6f4f0}
+.hp-featured-header h2{color:#f6f4f0!important}
+.hp-wrap .hp-view-all{color:#b8975a!important}
+.hp-wrap .hp-view-all:hover,.hp-wrap .hp-view-all:focus-visible{color:#f6f4f0!important;border-color:#f6f4f0!important}
+
+/* ── Intro: what I do ──
+   Two columns so it reads wide rather than tall. Every fold pixel it spends is
+   a pixel the project grid loses, so the statement sits beside the facts
+   instead of above them. */
+.hp-intro{background:#f6f4f0;padding:2.1rem 5vw 2rem;border-bottom:1px solid rgba(26,26,24,.08)}
+.hp-intro-inner{display:flex!important;gap:3.5rem;align-items:flex-start;max-width:1500px}
+.hp-intro-lead{flex:1 1 54%;min-width:0}
+/* No character cap: the column already sets the measure, and a 44ch cap was
+   forcing a fourth line, which the project grid pays for in fold space. */
+.hp-intro-stmt{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.2rem,1.75vw,1.5rem);
+  font-weight:300;line-height:1.4;color:#1a1a18}
+.hp-intro-facts{flex:1 1 46%;min-width:0;margin:.25rem 0 0;display:flex!important;flex-direction:column;gap:.6rem}
+.hp-intro-facts>div{display:flex!important;gap:1rem;align-items:baseline;
+  border-top:1px solid rgba(26,26,24,.08);padding-top:.5rem}
+.hp-intro-facts>div:first-child{border-top:none;padding-top:0}
+.hp-intro-facts dt{flex:0 0 118px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#b8975a;font-weight:500}
+.hp-intro-facts dd{flex:1 1 auto;margin:0;font-size:.85rem;color:#4a4a46;line-height:1.6}
+/* Region links moved here from the About paragraph, where they had become a
+   word-for-word repeat of this block. .hp-wrap a{color:inherit} outranks a
+   single class, so these need the extra specificity to keep their colour. */
+.hp-wrap .hp-intro-facts dd a{color:#4a4a46!important;border-bottom:1px solid rgba(184,151,90,.45);
+  transition:color .25s ease,border-color .25s ease}
+.hp-wrap .hp-intro-facts dd a:hover,.hp-wrap .hp-intro-facts dd a:focus-visible{color:#1a1a18!important;border-bottom-color:#b8975a}
+@media (max-width:900px){
+  .hp-intro{padding:2.25rem 5vw}
+  .hp-intro-inner{flex-direction:column;gap:1.75rem}
+  .hp-intro-lead,.hp-intro-facts{flex:1 1 auto;width:100%}
+  .hp-intro-stmt{max-width:none}
+}
+@media (max-width:560px){
+  .hp-intro-facts>div{flex-direction:column;gap:.3rem}
+  .hp-intro-facts dt{flex:0 0 auto}
+}
+
+/* ── Services: three columns, not a stacked list ──
+   The list ran as four full-width rows of text, which on a page this visual read
+   as a dead zone. Three columns use the width the page already has and echo the
+   3-across rhythm of the grid above. Creative Partner is no longer one of them:
+   it had its own spotlight section directly below, so listing it here as a
+   fourth peer was saying the same thing twice in a row. */
+.hp-svc-head{display:flex!important;align-items:baseline;justify-content:space-between;
+  gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+/* the head owns the spacing now; the old h2 margin was doubling it */
+.hp-services h2{margin-bottom:0!important}
+.hp-svc-list{display:flex!important;gap:3rem;align-items:stretch}
+.hp-svc-row{flex:1 1 0;min-width:0;display:block;padding:1.4rem 0 0;
+  border-top:1px solid rgba(26,26,24,.16);border-bottom:none;
+  transition:border-top-color .35s ease}
+.hp-svc-row:hover,.hp-svc-row:focus-visible{border-top-color:#b8975a;padding-left:0}
+.hp-svc-row h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:400;
+  color:#1a1a18;margin:0 0 .6rem;transition:color .3s ease}
+.hp-svc-row:hover h3,.hp-svc-row:focus-visible h3{color:#b8975a}
+.hp-svc-row p{font-size:.88rem;color:#8a8579;line-height:1.7;margin:0;max-width:none}
+.hp-svc-row:focus-visible{outline:2px solid #b8975a;outline-offset:6px}
+@media (max-width:900px){
+  .hp-svc-list{flex-direction:column;gap:0}
+  .hp-svc-row{padding:1.4rem 0}
+  .hp-svc-row h3{font-size:1.2rem;margin-bottom:.4rem}
+  .hp-svc-head{margin-bottom:1.75rem}
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LIGHT GROUND
+   The page was dark end to end. Everything below the hero now sits on
+   paper; the footer stays dark as the only anchor. Declared last so it
+   wins without touching the rules above.
+   ══════════════════════════════════════════════════════════════════ */
+body{background:#f6f4f0!important}
+
+/* Hero photograph carries less darkening so the work reads brighter.
+   The bottom scrim stays, because the headline sits on it. */
+/* ── Banner slideshow ──
+   Four frames crossfading on a 32s loop, CSS only, no script.
+
+   Failure behaviour is the point of the structure: slide 1 sits at opacity:1 in
+   plain CSS and its keyframes only ever take it away and bring it back. If
+   Squarespace's animation layer strips these animations, slide 1 simply stays
+   on screen and the banner still works. Slides 2 to 4 default to opacity:0, so
+   a stripped animation hides them rather than stacking them. */
+.hp-hero-bg img{filter:saturate(.92) brightness(.78)!important}
+.hp-hero-bg .hp-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hp-slide-1{opacity:1;animation:hpSlide1 32s infinite}
+.hp-slide-2,.hp-slide-3,.hp-slide-4{opacity:0;animation:hpSlide 32s infinite}
+.hp-slide-2{animation-delay:8s}
+.hp-slide-3{animation-delay:16s}
+.hp-slide-4{animation-delay:24s}
+@keyframes hpSlide{0%{opacity:0}3%{opacity:1}25%{opacity:1}28%{opacity:0}100%{opacity:0}}
+@keyframes hpSlide1{0%{opacity:1}25%{opacity:1}28%{opacity:0}97%{opacity:0}100%{opacity:1}}
+
+/* Ghost button. Its rule was removed as dead CSS when the button came off the
+   page; without it the secondary renders solid gold and competes with the
+   primary instead of sitting behind it. */
+.hp-hero-cta-ghost{background:transparent!important;color:#d4b06a!important;
+  border:1px solid rgba(212,176,106,.55)!important}
+.hp-hero-cta-ghost:hover,.hp-hero-cta-ghost:focus-visible{background:#d4b06a!important;
+  color:#1a1a18!important;border-color:#d4b06a!important}
+
+/* A left-to-right scrim so the headline holds over all four frames, including
+   the bright Perch interior. The existing top/bottom gradient is not enough on
+   its own once the images change under the type. */
+.hp-hero::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(26,26,24,.72) 0%,rgba(26,26,24,.45) 38%,rgba(26,26,24,.05) 68%,rgba(26,26,24,0) 100%)}
+
+/* At phone width there is no "left side" to scrim, so the gradient turns
+   vertical and sits under the whole text block instead. */
+@media (max-width:900px){
+  .hp-hero::before{background:linear-gradient(180deg,rgba(26,26,24,.5) 0%,rgba(26,26,24,.62) 45%,rgba(26,26,24,.5) 100%)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hp-slide-1{opacity:1;animation:none}
+  .hp-slide-2,.hp-slide-3,.hp-slide-4{animation:none;opacity:0}
+}
+
+/* ── The work has to be visible without scrolling ──
+   The hero was height:100vh, so a visitor spent a whole screen on one photograph
+   before reaching a single project. It is now sized by its own content, which
+   puts the first row of tiles inside the fold on a 900px screen. */
+/* Banner geometry matches the live site exactly: height:100vh, min-height:700px,
+   padding-top:10rem. Those come from the base rule, so this override only needs
+   to clear the padding-bottom the shorter version had added. */
+.hp-hero{padding-bottom:0!important}
+/* The hero subhead was deleted: the intro section below now states what the
+   work is, and saying it twice cost the project grid ~75px of fold. */
+.hp-hero h1{font-size:clamp(2.1rem,4.1vw,3.5rem)!important;margin-bottom:1.6rem!important}
+.hp-hero-tag{margin-bottom:.9rem!important}
+.hp-featured{padding-top:1rem!important}
+.hp-featured .hp-label{margin-bottom:.9rem!important}
+/* Baseline-align so "View all projects" sits on the heading's line rather than
+   dropping to its own row and pushing the grid down. */
+.hp-featured-header{margin-bottom:1.25rem!important;align-items:baseline!important}
+@media (max-width:900px){
+  .hp-hero{padding-top:5.5rem!important;padding-bottom:2rem!important}
+  .hp-featured{padding-top:2rem!important}
+}
+
+/* ── The Work ── */
+.hp-featured{background:#f6f4f0!important;color:#1a1a18!important}
+.hp-featured-header h2{color:#1a1a18!important}
+.hp-wrap .hp-view-all{color:#b8975a!important}
+.hp-wrap .hp-view-all:hover,.hp-wrap .hp-view-all:focus-visible{color:#1a1a18!important;border-color:#1a1a18!important}
+
+/* ── Testimonials ── */
+.hp-testimonials{background:#f6f4f0!important;color:#4a4a46!important;border-top:1px solid rgba(26,26,24,.08)}
+.hp-testimonials .hp-label{color:#b8975a!important}
+.hp-test-quote,.hp-test-featured .hp-test-quote{color:#1a1a18!important}
+.hp-test-card{background:#eeece6!important;border:1px solid rgba(26,26,24,.07)!important}
+.hp-test-card .hp-test-quote{color:#4a4a46!important}
+.hp-test-featured .hp-test-quote::before,.hp-test-card .hp-test-quote::before{color:rgba(184,151,90,.45)!important}
+.hp-test-attr,.hp-test-featured .hp-test-attr,.hp-test-card .hp-test-attr{color:#8a8579!important}
+.hp-test-cs,.hp-test-featured .hp-test-cs,.hp-test-card .hp-test-cs{color:#b8975a!important}
+.hp-test-card .hp-test-cs:hover,.hp-test-featured .hp-test-cs:hover{color:#1a1a18!important}
+
+/* ── Final CTA: a photograph again, closing the page the way the banner opens it ── */
+.hp-cta{position:relative!important;overflow:hidden;background:#1a1a18!important;
+  min-height:520px!important;height:auto!important;padding:8rem 5vw!important;
+  display:flex!important;align-items:center;justify-content:center;text-align:center}
+.hp-cta-bg{position:absolute;inset:0;z-index:0}
+.hp-cta-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(.62)}
+/* A scrim rather than a heavier filter: the photograph keeps its own light and
+   the type still clears contrast over the brightest part of the frame. */
+.hp-cta::after{content:''!important;display:block!important;position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(26,26,24,.42),rgba(26,26,24,.62))}
+.hp-cta-content{position:relative;z-index:2;max-width:760px;margin:0 auto}
+.hp-cta h2{color:#f6f4f0!important}
+.hp-cta h2 em{color:#c9a96e!important}
+.hp-cta p{color:rgba(246,244,240,.72)!important}
+.hp-alt-cta{color:rgba(246,244,240,.55)!important}
+.hp-alt-cta a{color:#c9a96e!important}
+.hp-alt-cta a:hover{color:#f6f4f0!important}
+@media (max-width:900px){.hp-cta{min-height:420px!important;padding:5rem 5vw!important}}
+
+/* ── Project grid ──
+   Clean mosaic: uninterrupted images, names on hover. The captions-below
+   experiment chopped the grid into a directory listing and shrank the work,
+   which is the opposite of what a portfolio grid is for. */
+div.hp-proj-grid{gap:1.5rem!important}
+a.hp-proj-card{width:calc(33.333% - 1rem)!important;aspect-ratio:4/3!important;position:relative}
+.hp-proj-card img{width:100%;height:100%;object-fit:cover;filter:none;transition:transform .8s ease}
+.hp-proj-card:hover img{transform:scale(1.04)}
+.hp-proj-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.75rem;
+  background:linear-gradient(to top,rgba(26,26,24,.88),rgba(26,26,24,0));
+  opacity:0;transition:opacity .45s ease}
+.hp-proj-card:hover .hp-proj-overlay,.hp-proj-card:focus-visible .hp-proj-overlay{opacity:1}
+.hp-proj-overlay h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;font-weight:400;
+  color:#f6f4f0!important;margin:0 0 .2rem}
+.hp-proj-overlay p{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#d9d5cd!important;margin:0}
+.hp-proj-loc-link{display:inline-block;margin-top:.7rem;font-size:.58rem;letter-spacing:.2em;
+  text-transform:uppercase;color:#c9a96e!important;border-bottom:1px solid transparent;transition:border-color .3s ease}
+.hp-proj-card:hover .hp-proj-loc-link{border-color:#c9a96e}
+a.hp-proj-card:focus-visible{outline:2px solid #b8975a;outline-offset:4px}
+/* Touch has no hover, so the overlay rests visible there. */
+@media (hover:none){.hp-proj-overlay{opacity:1}}
+
+@media (max-width:900px){
+  a.hp-proj-card{width:calc(50% - .75rem)!important}
+}
+@media (max-width:560px){a.hp-proj-card{width:100%!important}}
+</style>
+
+<!-- ═══ JSON-LD STRUCTURED DATA ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Matt Anthony Photography — Architectural Photographer in BC",
+  "description": "Architectural photography for architects, custom builders, and interior designers across British Columbia. Based in Squamish, serving Whistler, Sunshine Coast, Vancouver, and beyond.",
+  "url": "https://www.mattanthonyphoto.com/",
+  "mainEntity": {
+    "@id": "https://www.mattanthonyphoto.com/#business"
+  },
+  "isPartOf": {
+    "@id": "https://www.mattanthonyphoto.com/#website"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.mattanthonyphoto.com/"
+      }
+    ]
+  }
+}
+</script>
+
+<!-- ═══ PAGE CONTENT ═══ -->
+<div class="hp-wrap">
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hp-hero" data-nav="Home">
+  <div class="hp-hero-bg">
+    <img class="hp-slide hp-slide-1" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" fetchpriority="high" decoding="async" width="2500" height="1667" alt="salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg">
+    <img class="hp-slide hp-slide-2" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" decoding="async" width="2500" height="1667" alt="desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg">
+    <img class="hp-slide hp-slide-3" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" decoding="async" width="2500" height="1667" alt="schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg">
+    <img class="hp-slide hp-slide-4" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=2500w 2500w" sizes="100vw" decoding="async" width="2500" height="1667" alt="The Perch Sunshine Coast architectural photography by Matt Anthony">
+  </div>
+  <div class="hp-hero-content">
+    <p class="hp-hero-tag">Architectural Photography &middot; British Columbia</p>
+    <h1>Your work deserves to be seen the way you <em>designed it</em></h1>
+    <div class="hp-hero-btns">
+      <a href="/discovery-call" class="hp-hero-cta">Book My Discovery Call</a>
+      <a href="/selected-work" class="hp-hero-cta hp-hero-cta-ghost">View Selected Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ INTRO ════════════ -->
+<section class="hp-intro" data-nav="Intro">
+  <div class="hp-intro-inner">
+    <div class="hp-intro-lead">
+      <p class="hp-label hp-eyebrow">What I Do</p>
+      <p class="hp-intro-stmt">I photograph completed architecture and interiors for the architects, builders and interior designers who make them. Exteriors, interiors, aerial and twilight, and film where a project calls for it.</p>
+    </div>
+    <dl class="hp-intro-facts">
+      <div><dt>Based in</dt><dd>Squamish, British Columbia</dd></div>
+      <div><dt>Working across</dt><dd><a href="/squamish-architectural-photography">Squamish</a>, <a href="/whistler-architectural-photography">Whistler</a>, <a href="/pemberton-photography">Pemberton</a>, the <a href="/sunshine-coast-photography">Sunshine Coast</a>, <a href="/vancouver-architectural-photographer">Vancouver</a>, the <a href="/fraser-valley-photography">Fraser Valley</a>, the <a href="/okanagan-architectural-photographer">Okanagan</a> and the Columbia Valley</dd></div>
+      <div><dt>Certified</dt><dd>Transport Canada Advanced Drone Pilot</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ════════════ FEATURED WORK ════════════ -->
+<section class="hp-featured" data-nav="Work">
+  <div class="hp-featured-header">
+    <div>
+      <h2>Selected work</h2>
+    </div>
+    <a href="/projects" class="hp-view-all">View All Projects</a>
+  </div>
+  <div class="hp-proj-grid">
+    <a href="/salt-spring-island" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Salt Spring Island</h3>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/oles-cove" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ecdec732-2e2a-47d2-88d5-40209adaf6f2/oles-cove-halfmoon-bay-front-elevation-red-door-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ecdec732-2e2a-47d2-88d5-40209adaf6f2/oles-cove-halfmoon-bay-front-elevation-red-door-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ecdec732-2e2a-47d2-88d5-40209adaf6f2/oles-cove-halfmoon-bay-front-elevation-red-door-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ecdec732-2e2a-47d2-88d5-40209adaf6f2/oles-cove-halfmoon-bay-front-elevation-red-door-architectural-photographer-matt-anthony.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="oles-cove-halfmoon-bay-front-elevation-red-door-architectural-photographer-matt-anthony.jpg" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Oles Cove</h3>
+        <p>Halfmoon Bay</p>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/the-perch-sunshine-coast" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="The Perch modern coastal home exterior on the Sunshine Coast BC architectural photography by Matt Anthony" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>The Perch</h3>
+        <p>Sunshine Coast</p>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/schmit" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg" loading="lazy" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Schmit</h3>
+        <p>Invermere</p>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/desolation-sound" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg" loading="lazy" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Desolation Sound</h3>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/johnstone-road" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg" loading="lazy" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Johnstone Road</h3>
+        <p>Madeira Park</p>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/warbler-whistler" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="Warbler Residence contemporary alpine home exterior in Whistler BC architectural photography by Matt Anthony" loading="lazy" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Warbler Residence</h3>
+        <p>Whistler</p>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/fitzsimmons-whistler" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="Fitzsimmons Residence Whistler angular alpine exterior snow architectural photography by Matt Anthony" loading="lazy" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Fitzsimmons Residence</h3>
+        <p>Whistler</p>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+    <a href="/fraser-valley-vista" class="hp-proj-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=1000w 1000w" sizes="(max-width: 900px) 100vw, 33vw" width="1000" height="750" alt="Fraser Valley Vista luxury residence Langley architectural photography by Matt Anthony" loading="lazy" decoding="async">
+      <div class="hp-proj-overlay">
+        <h3>Fraser Valley Vista</h3>
+        <p>Langley</p>
+        <span class="hp-proj-loc-link">View Project</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ════════════ SERVICES ════════════ -->
+<section class="hp-services" data-nav="Services">
+  <p class="hp-label hp-eyebrow">Services</p>
+  <div class="hp-svc-head">
+    <h2>Three ways to <em>start</em></h2>
+    <a href="/services" class="hp-view-all">View all services</a>
+  </div>
+  <div class="hp-svc-list">
+    <a class="hp-svc-row" href="/project-photography">
+      <h3>Project Photography</h3>
+      <p>Architectural, interiors, aerial and twilight photography of a finished build.</p>
+    </a>
+    <a class="hp-svc-row" href="/award-publication-imagery">
+      <h3>Award &amp; Publication Imagery</h3>
+      <p>Shot to meet juror expectations and editorial standards for submissions.</p>
+    </a>
+    <a class="hp-svc-row" href="/construction-team-content">
+      <h3>Build &amp; Team Content</h3>
+      <p>Video, lifestyle and on-site content for social, recruitment and the brand.</p>
+    </a>
+  </div>
+</section>
+
+<!-- ════════════ CREATIVE PARTNER SPOTLIGHT ════════════ -->
+<section class="hp-cp-spotlight" data-nav="Creative Partner">
+  <div class="hp-cp-split">
+    <div class="hp-cp-text">
+      <p class="hp-label hp-eyebrow">Or work together all year</p>
+      <div class="hp-divider" style="width:0;background:rgba(201,169,110,0.4)"></div>
+      <h2>Stop hiring photographers. Start <em>building a brand.</em></h2>
+      <p>If your firm completes more than a few projects per year, you don't need another vendor. You need one person who already knows your brand and shows up ready.</p>
+      <p>Photography, video, website, social and SEO, all under one retainer. No re-briefing. No brand drift.</p>
+      <a href="/balmoral-construction" class="hp-cp-case-link">Balmoral Construction Case Study &rarr;</a>
+      <div class="hp-cp-bottom">
+        <a href="/creative-partner" class="hp-cp-btn">Learn More</a>
+      </div>
+    </div>
+    <div class="hp-cp-img">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/650f671c-4064-400b-815b-f82ad24635ef/salt-spring-island-residence-living-room-from-the-stair-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/650f671c-4064-400b-815b-f82ad24635ef/salt-spring-island-residence-living-room-from-the-stair-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/650f671c-4064-400b-815b-f82ad24635ef/salt-spring-island-residence-living-room-from-the-stair-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/650f671c-4064-400b-815b-f82ad24635ef/salt-spring-island-residence-living-room-from-the-stair-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" alt="salt-spring-island-residence-living-room-from-the-stair-architectural-photographer-matt-anthony.jpg" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SOCIAL PROOF ════════════ -->
+<section class="hp-testimonials" data-nav="Testimonials">
+  <p class="hp-label">What Clients Say</p>
+  <!-- Featured testimonial -->
+  <div class="hp-test-featured">
+    <div class="hp-test-quote">Matt was a pleasure to work with on our recent architectural project shoots. He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor. His creative eye brought out the best in the design, and he easily adapted to changing conditions.</div>
+    <p class="hp-test-attr">Kyle Paisley, Summerhill Fine Homes</p>
+    <a href="/summerhill-fine-homes" class="hp-test-cs">View Case Study &rarr;</a>
+  </div>
+  <!-- Supporting testimonials -->
+  <div class="hp-test-row">
+    <div class="hp-test-card">
+      <div class="hp-test-quote">What first drew us to Matt's work was his use of natural light. He captures spaces in a way that feels authentic and honest, allowing the materials to shine. Matt truly understands what it takes to showcase a project.</div>
+      <p class="hp-test-attr">Jordan Maddox, Sitelines Architecture</p>
+      <a href="/sitelines-architecture" class="hp-test-cs">View Case Study &rarr;</a>
+    </div>
+    <div class="hp-test-card">
+      <div class="hp-test-quote">Working with Matt was an absolute pleasure from start to finish. The entire process, from our initial contact to the delivery of stunning photos and the completion of my website, was seamless and professional.</div>
+      <p class="hp-test-attr">Marc Harvey, Balmoral Construction</p>
+      <a href="/balmoral-construction" class="hp-test-cs">View Case Study &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FINAL CTA ════════════ -->
+<section class="hp-cta">
+  <div class="hp-cta-bg">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8c5058f8-1b90-4c0e-8ed5-caa88d29acf8/oles-cove-halfmoon-bay-twilight-aerial-glowing-house-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8c5058f8-1b90-4c0e-8ed5-caa88d29acf8/oles-cove-halfmoon-bay-twilight-aerial-glowing-house-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8c5058f8-1b90-4c0e-8ed5-caa88d29acf8/oles-cove-halfmoon-bay-twilight-aerial-glowing-house-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8c5058f8-1b90-4c0e-8ed5-caa88d29acf8/oles-cove-halfmoon-bay-twilight-aerial-glowing-house-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" width="2500" height="1667" alt="oles-cove-halfmoon-bay-twilight-aerial-glowing-house-architectural-photographer-matt-anthony.jpg" loading="lazy" decoding="async">
+  </div>
+  <div class="hp-cta-content">
+    <h2>Ready to show your work the way it <em>deserves to be seen?</em></h2>
+    <p>20 minutes. No pitch. Just a conversation about your projects and whether working together makes sense.</p>
+    <a href="/discovery-call" class="hp-cta-btn">Book My Discovery Call</a>
+    <p class="hp-alt-cta">Not ready to talk? <a href="/pricing-guide-landing">Get Pricing</a></p>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<div class="hp-ft">
+  <div class="hp-ft-locs">
+    <a href="/squamish-architectural-photography">Squamish</a>
+    <a href="/whistler-architectural-photography">Whistler</a>
+    <a href="/pemberton-photography">Pemberton</a>
+    <a href="/sunshine-coast-photography">Sunshine Coast</a>
+    <a href="/vancouver-architectural-photographer">Vancouver</a>
+    <a href="/fraser-valley-photography">Fraser Valley</a>
+    <a href="/okanagan-architectural-photographer">Okanagan</a>
+  </div>
+  <div class="hp-ft-row">
+    <div class="hp-ft-item">
+      <span class="hp-ft-label">Based In</span>
+      <span class="hp-ft-dot"></span>
+      <p>Squamish, British Columbia</p>
+    </div>
+    <div class="hp-ft-item">
+      <span class="hp-ft-label">Email</span>
+      <span class="hp-ft-dot"></span>
+      <a id="hp-ft-em" href="#">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a>
+    </div>
+    <div class="hp-ft-item">
+      <span class="hp-ft-label">Phone</span>
+      <span class="hp-ft-dot"></span>
+      <a href="tel:6047659270">604.765.9270</a>
+    </div>
+    <div class="hp-ft-social">
+      <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:rgba(246,244,240,.5)"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/mattanthonyphoto/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:rgba(246,244,240,.5)"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hp-ft-rule"></div>
+  <div class="hp-ft-bottom">
+    <span class="hp-ft-copy">&copy; 2026 Matt Anthony Photography</span>
+    <nav class="hp-ft-nav">
+      <a href="/projects">Projects</a>
+      <a href="/journal">Journal</a>
+      <a href="/bio">About</a>
+      <a href="/pricing-guide-landing">Get Pricing</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+</div>
+
+<!-- ═══ INTERACTIVE LAYER JS ═══ -->
+<script>
+(function(){
+function init(){
+  /* Gold underline, eyebrow dash, divider draw. These animate the width of
+     pseudo-elements, never opacity on text, so a Squarespace animation
+     conflict can never leave copy permanently invisible. */
+  function draw(sel, cls, threshold){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add(cls); obs.unobserve(e.target); }
+      });
+    }, {threshold: threshold});
+    document.querySelectorAll(sel).forEach(function(el){ obs.observe(el); });
+  }
+  draw('.hp-wrap h2', 'hp-underlined', 0.4);
+  draw('.hp-eyebrow', 'hp-visible', 0.5);
+  draw('.hp-divider', 'hp-drawn', 0.5);
+
+  var ftEm = document.getElementById('hp-ft-em');
+  if(ftEm){
+    ftEm.addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href = 'mailto:info@mattanthonyphoto.com';
+    });
+  }
+
+}
+  if('requestIdleCallback' in window){ requestIdleCallback(init, {timeout:2000}); }
+  else { setTimeout(init, 1); }
+})();
+</script>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Architectural photography for architects, custom builders, and interior designers across British Columbia. Based in Squamish, serving Whistler, Sunshine Coast, Vancouver, and beyond.">
+<link rel="canonical" href="https://www.mattanthonyphoto.com/">
+<meta property="og:title" content="Architectural Photographer in Vancouver, Squamish, Whistler & BC | Matt Anthony">
+<meta property="og:description" content="Documenting design intent for those who build with purpose. Architectural photography and film for architects, builders, and designers in British Columbia.">
+<meta property="og:url" content="https://www.mattanthonyphoto.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/808387ba-bee1-4c46-a4d3-354d7e1f8372/west-10th-vancouver-web--2.jpg?format=1500w">
+
+<!-- Review schema, merged onto the LocalBusiness the sitewide header already declares.
+     The March GEO audit graded testimonial schema C- because none existed.
+     Quotes are verbatim from the case studies. No reviewRating is declared,
+     because none of these clients gave a star rating and inventing one would be
+     a fabricated claim in structured data. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@id": "https://www.mattanthonyphoto.com/#business",
+  "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Kyle Paisley"},
+      "publisher": {"@type": "Organization", "name": "Summerhill Fine Homes"},
+      "itemReviewed": {"@id": "https://www.mattanthonyphoto.com/#business"},
+      "reviewBody": "Matt was a pleasure to work with on our recent architectural project shoots. He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor. His creative eye brought out the best in the design, and he easily adapted to changing conditions."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Jordan Maddox"},
+      "publisher": {"@type": "Organization", "name": "Sitelines Architecture"},
+      "itemReviewed": {"@id": "https://www.mattanthonyphoto.com/#business"},
+      "reviewBody": "What first drew us to Matt's work was his use of natural light. He captures spaces in a way that feels authentic and honest, allowing the materials to shine. Matt truly understands what it takes to showcase a project."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Marc Harvey"},
+      "publisher": {"@type": "Organization", "name": "Balmoral Construction"},
+      "itemReviewed": {"@id": "https://www.mattanthonyphoto.com/#business"},
+      "reviewBody": "Working with Matt was an absolute pleasure from start to finish. The entire process, from our initial contact to the delivery of stunning photos and the completion of my website, was seamless and professional."
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
