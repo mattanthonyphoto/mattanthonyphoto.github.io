@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Homepage preview — banner 100vh</title>
+<title>Homepage preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -281,40 +281,64 @@ a.hp-proj-card{position:relative;overflow:hidden;cursor:pointer;display:block!im
 .hp-wrap .hp-view-all{color:#b8975a!important}
 .hp-wrap .hp-view-all:hover,.hp-wrap .hp-view-all:focus-visible{color:#f6f4f0!important;border-color:#f6f4f0!important}
 
-/* ── Intro: what I do ──
-   Two columns so it reads wide rather than tall. Every fold pixel it spends is
-   a pixel the project grid loses, so the statement sits beside the facts
-   instead of above them. */
-.hp-intro{background:#f6f4f0;padding:2.1rem 5vw 2rem;border-bottom:1px solid rgba(26,26,24,.08)}
-.hp-intro-inner{display:flex!important;gap:3.5rem;align-items:flex-start;max-width:1500px}
-.hp-intro-lead{flex:1 1 54%;min-width:0}
-/* No character cap: the column already sets the measure, and a 44ch cap was
-   forcing a fourth line, which the project grid pays for in fold space. */
-.hp-intro-stmt{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.2rem,1.75vw,1.5rem);
-  font-weight:300;line-height:1.4;color:#1a1a18}
-.hp-intro-facts{flex:1 1 46%;min-width:0;margin:.25rem 0 0;display:flex!important;flex-direction:column;gap:.6rem}
-.hp-intro-facts>div{display:flex!important;gap:1rem;align-items:baseline;
-  border-top:1px solid rgba(26,26,24,.08);padding-top:.5rem}
-.hp-intro-facts>div:first-child{border-top:none;padding-top:0}
-.hp-intro-facts dt{flex:0 0 118px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
-  color:#b8975a;font-weight:500}
-.hp-intro-facts dd{flex:1 1 auto;margin:0;font-size:.85rem;color:#4a4a46;line-height:1.6}
-/* Region links moved here from the About paragraph, where they had become a
-   word-for-word repeat of this block. .hp-wrap a{color:inherit} outranks a
-   single class, so these need the extra specificity to keep their colour. */
-.hp-wrap .hp-intro-facts dd a{color:#4a4a46!important;border-bottom:1px solid rgba(184,151,90,.45);
-  transition:color .25s ease,border-color .25s ease}
-.hp-wrap .hp-intro-facts dd a:hover,.hp-wrap .hp-intro-facts dd a:focus-visible{color:#1a1a18!important;border-bottom-color:#b8975a}
+/* ── Hero slide caption + indicators (LRD pattern) ──
+   Bottom-right of the banner: the current project, then four 22px rules that
+   widen to 44px as their slide comes up. Driven by the same 32s timeline as the
+   slideshow, so no script is needed to keep them in sync. Caption 1 and dot 1
+   are the resting state, so if animations are stripped they stay correct. */
+.hp-hero-meta{position:absolute;z-index:3;bottom:clamp(28px,4vh,48px);right:clamp(28px,6vw,90px);
+  display:flex!important;align-items:center;gap:24px;
+  font-family:'DM Sans',-apple-system,sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(246,244,240,.78)}
+.hp-meta-cap{position:relative;display:block;min-width:210px;height:14px;text-align:right}
+.hp-meta{position:absolute;right:0;top:0;white-space:nowrap}
+.hp-meta-1{opacity:1;animation:hpSlide1 32s infinite}
+.hp-meta-2,.hp-meta-3,.hp-meta-4{opacity:0;animation:hpSlide 32s infinite}
+.hp-meta-2{animation-delay:8s}
+.hp-meta-3{animation-delay:16s}
+.hp-meta-4{animation-delay:24s}
+.hp-hero-dots{display:flex!important;gap:10px;flex:0 0 auto}
+.hp-dot{display:block;width:22px;height:1px;background:rgba(246,244,240,.28)}
+.hp-dot-1{animation:hpDot 32s infinite}
+.hp-dot-2{animation:hpDot 32s infinite;animation-delay:8s}
+.hp-dot-3{animation:hpDot 32s infinite;animation-delay:16s}
+.hp-dot-4{animation:hpDot 32s infinite;animation-delay:24s}
+@keyframes hpDot{0%{background:#f6f4f0;width:44px}25%{background:#f6f4f0;width:44px}
+  28%{background:rgba(246,244,240,.28);width:22px}100%{background:rgba(246,244,240,.28);width:22px}}
+@media (max-width:700px){
+  .hp-hero-meta{bottom:22px;right:22px;gap:14px}
+  .hp-meta-cap{display:none}
+}
+
+/* ── Proof band ──
+   Cream, ruled top and bottom, three columns with hairline dividers. Lifted
+   from LRD's proof band, which sits in the same place: straight under the hero,
+   before the page says anything about itself. */
+.hp-proof{background:#eeece6;padding:clamp(28px,4vw,46px) 5vw;
+  border-top:1px solid rgba(26,26,24,.1);border-bottom:1px solid rgba(26,26,24,.1)}
+.hp-proof-inner{max-width:1100px;margin:0 auto;display:flex!important;gap:clamp(20px,3vw,48px);
+  text-align:center;align-items:flex-start}
+.hp-proof-item{flex:1 1 0;min-width:0;position:relative;display:flex!important;flex-direction:column;gap:7px;padding:0 clamp(8px,1.5vw,20px)}
+.hp-proof-item:not(:last-child)::after{content:'';position:absolute;right:0;top:4px;bottom:4px;
+  width:1px;background:rgba(26,26,24,.12)}
+.hp-proof-item dt{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:#b8975a;font-weight:500}
+.hp-proof-item dd{margin:0;font-size:.86rem;line-height:1.6;color:#4a4a46}
+.hp-wrap .hp-proof-item dd a{color:#4a4a46!important;border-bottom:1px solid rgba(184,151,90,.4);transition:color .25s ease,border-color .25s ease}
+.hp-wrap .hp-proof-item dd a:hover,.hp-wrap .hp-proof-item dd a:focus-visible{color:#1a1a18!important;border-bottom-color:#b8975a}
 @media (max-width:900px){
-  .hp-intro{padding:2.25rem 5vw}
-  .hp-intro-inner{flex-direction:column;gap:1.75rem}
-  .hp-intro-lead,.hp-intro-facts{flex:1 1 auto;width:100%}
-  .hp-intro-stmt{max-width:none}
+  .hp-proof-inner{flex-direction:column;gap:20px;text-align:left}
+  .hp-proof-item{padding:0 0 20px;border-bottom:1px solid rgba(26,26,24,.1)}
+  .hp-proof-item:last-child{padding-bottom:0;border-bottom:none}
+  .hp-proof-item:not(:last-child)::after{display:none}
 }
-@media (max-width:560px){
-  .hp-intro-facts>div{flex-direction:column;gap:.3rem}
-  .hp-intro-facts dt{flex:0 0 auto}
-}
+
+/* ── Statement ──
+   The philosophy beat LRD runs between its proof band and its project grid:
+   a kicker and one large sentence, nothing else. */
+.hp-stmt{padding:clamp(56px,7vw,96px) 5vw clamp(40px,5vw,64px);max-width:1100px;margin:0 auto}
+.hp-stmt h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(1.35rem,2.4vw,1.95rem);line-height:1.45;color:#1a1a18;max-width:40ch;margin:0}
+@media (max-width:900px){.hp-stmt h2{max-width:none;font-size:1.2rem}}
 
 /* ── Services: three columns, not a stacked list ──
    The list ran as four full-width rows of text, which on a page this visual read
@@ -529,21 +553,32 @@ a.hp-proj-card:focus-visible{outline:2px solid #b8975a;outline-offset:4px}
       <a href="/selected-work" class="hp-hero-cta hp-hero-cta-ghost">View Selected Work</a>
     </div>
   </div>
+  <div class="hp-hero-meta">
+    <span class="hp-meta-cap">
+      <span class="hp-meta hp-meta-1">Salt Spring Island</span>
+      <span class="hp-meta hp-meta-2">Desolation Sound</span>
+      <span class="hp-meta hp-meta-3">Schmit &middot; Invermere</span>
+      <span class="hp-meta hp-meta-4">The Perch &middot; Sunshine Coast</span>
+    </span>
+    <span class="hp-hero-dots">
+      <i class="hp-dot hp-dot-1"></i><i class="hp-dot hp-dot-2"></i><i class="hp-dot hp-dot-3"></i><i class="hp-dot hp-dot-4"></i>
+    </span>
+  </div>
 </section>
 
-<!-- ════════════ INTRO ════════════ -->
-<section class="hp-intro" data-nav="Intro">
-  <div class="hp-intro-inner">
-    <div class="hp-intro-lead">
-      <p class="hp-label hp-eyebrow">What I Do</p>
-      <p class="hp-intro-stmt">I photograph completed architecture and interiors for the architects, builders and interior designers who make them. Exteriors, interiors, aerial and twilight, and film where a project calls for it.</p>
-    </div>
-    <dl class="hp-intro-facts">
-      <div><dt>Based in</dt><dd>Squamish, British Columbia</dd></div>
-      <div><dt>Working across</dt><dd><a href="/squamish-architectural-photography">Squamish</a>, <a href="/whistler-architectural-photography">Whistler</a>, <a href="/pemberton-photography">Pemberton</a>, the <a href="/sunshine-coast-photography">Sunshine Coast</a>, <a href="/vancouver-architectural-photographer">Vancouver</a>, the <a href="/fraser-valley-photography">Fraser Valley</a>, the <a href="/okanagan-architectural-photographer">Okanagan</a> and the Columbia Valley</dd></div>
-      <div><dt>Certified</dt><dd>Transport Canada Advanced Drone Pilot</dd></div>
-    </dl>
-  </div>
+<!-- ════════════ PROOF BAND ════════════ -->
+<div class="hp-proof">
+  <dl class="hp-proof-inner">
+    <div class="hp-proof-item"><dt>Based in</dt><dd>Squamish, British Columbia</dd></div>
+    <div class="hp-proof-item"><dt>Working across</dt><dd><a href="/squamish-architectural-photography">Squamish</a>, <a href="/whistler-architectural-photography">Whistler</a>, <a href="/pemberton-photography">Pemberton</a>, the <a href="/sunshine-coast-photography">Sunshine Coast</a>, <a href="/vancouver-architectural-photographer">Vancouver</a>, the <a href="/fraser-valley-photography">Fraser Valley</a>, the <a href="/okanagan-architectural-photographer">Okanagan</a> and the Columbia Valley</dd></div>
+    <div class="hp-proof-item"><dt>Certified</dt><dd>Transport Canada Advanced Drone Pilot</dd></div>
+  </dl>
+</div>
+
+<!-- ════════════ STATEMENT ════════════ -->
+<section class="hp-stmt" data-nav="Intro">
+  <p class="hp-label hp-eyebrow">What I do</p>
+  <h2>I photograph completed architecture and interiors for the architects, builders and interior designers who make them. Exteriors, interiors, aerial and twilight, and film where a project calls for it.</h2>
 </section>
 
 <!-- ════════════ FEATURED WORK ════════════ -->
