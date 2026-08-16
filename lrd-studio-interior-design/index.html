@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sitelines Architecture | Architectural Photography Case Study</title>
-  <meta name="description" content="Architectural photography for Sitelines Architecture. Capturing design intent, site context and material choices across their BC residential portfolio.">
+  <title>LRD Studio Interior Design | Photography Case Study</title>
+  <meta name="description" content="Interior photography for LRD Studio. Capturing material palettes, spatial flow and design details for an interior design firm based in British Columbia.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Sitelines Architecture | Architectural Photography Case Study">
-  <meta property="og:description" content="A look at how Sitelines Architecture uses photography to communicate design intent, document completed projects and support their portfolio and award submissions.">
+  <meta property="og:title" content="LRD Studio Interior Design | Photography Case Study">
+  <meta property="og:description" content="A case study in photographing interior design work. See how LRD Studio uses professional imagery to showcase their material choices, spatial design and completed residential projects.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mattanthonyphoto.com/sitelines-architecture">
+  <meta property="og:url" content="https://mattanthonyphoto.com/lrd-studio-interior-design">
   <meta property="og:site_name" content="Matt Anthony Photography">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://mattanthonyphoto.com/sitelines-architecture">
+  <link rel="canonical" href="https://mattanthonyphoto.com/lrd-studio-interior-design">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -344,7 +344,7 @@
 /* ═══ INTERACTIVE LAYER ═══ */
 
 /* ── Loading screen ── */
-.sl-loader {
+.lrd-loader {
   position: fixed;
   top: 0;
   left: 0;
@@ -359,13 +359,13 @@
   transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), visibility 0.8s;
 }
 
-.sl-loader.sl-done {
+.lrd-loader.lrd-done {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-.sl-loader-brand {
+.lrd-loader-brand {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 300;
   font-size: 0.65rem;
@@ -373,20 +373,20 @@
   text-transform: uppercase;
   color: #f6f4f0;
   opacity: 0;
-  animation: slLoaderIn 0.6s 0.15s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: lrdLoaderIn 0.6s 0.15s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
-.sl-loader-sub {
+.lrd-loader-sub {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
   font-size: 0.9rem;
   color: rgba(138,133,121,0.7);
   margin-top: 8px;
   opacity: 0;
-  animation: slLoaderIn 0.6s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: lrdLoaderIn 0.6s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
-.sl-loader-line {
+.lrd-loader-line {
   width: 80px;
   height: 1px;
   background: rgba(201,169,110,0.12);
@@ -395,10 +395,10 @@
   overflow: hidden;
   border-radius: 1px;
   opacity: 0;
-  animation: slLoaderIn 0.6s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: lrdLoaderIn 0.6s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
-.sl-loader-line::after {
+.lrd-loader-line::after {
   content: '';
   position: absolute;
   top: 0;
@@ -406,14 +406,14 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, #c9a96e, transparent);
-  animation: slLoaderFill 1s 0.5s cubic-bezier(0.33,1,0.68,1) forwards;
+  animation: lrdLoaderFill 1s 0.5s cubic-bezier(0.33,1,0.68,1) forwards;
 }
 
-@keyframes slLoaderIn { to { opacity: 1; } }
-@keyframes slLoaderFill { to { left: 100%; } }
+@keyframes lrdLoaderIn { to { opacity: 1; } }
+@keyframes lrdLoaderFill { to { left: 100%; } }
 
 /* ── Section nav dots ── */
-.sl-section-nav {
+.lrd-section-nav {
   position: fixed;
   right: 24px;
   top: 50%;
@@ -426,11 +426,11 @@
   transition: opacity 0.4s ease;
 }
 
-.sl-section-nav.sl-nav-visible {
+.lrd-section-nav.lrd-nav-visible {
   opacity: 1;
 }
 
-.sl-nav-dot {
+.lrd-nav-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -441,18 +441,18 @@
   position: relative;
 }
 
-.sl-nav-dot:hover {
+.lrd-nav-dot:hover {
   border-color: #c9a96e;
   transform: scale(1.3);
 }
 
-.sl-nav-dot.sl-nav-active {
+.lrd-nav-dot.lrd-nav-active {
   background: #c9a96e;
   border-color: #c9a96e;
   box-shadow: 0 0 8px rgba(201,169,110,0.4);
 }
 
-.sl-nav-dot::before {
+.lrd-nav-dot::before {
   content: attr(data-label);
   position: absolute;
   right: 20px;
@@ -469,17 +469,17 @@
   transition: opacity 0.3s ease, right 0.3s ease;
 }
 
-.sl-nav-dot:hover::before {
+.lrd-nav-dot:hover::before {
   opacity: 1;
   right: 24px;
 }
 
 @media (max-width: 768px) {
-  .sl-section-nav { display: none; }
+  .lrd-section-nav { display: none; }
 }
 
 /* ── Scroll progress bar ── */
-.sl-progress {
+.lrd-progress {
   position: fixed;
   top: 0;
   left: 0;
@@ -492,12 +492,12 @@
 }
 
 /* ── Headline gold underline on em ── */
-.sl-wrap h2 em {
+.lrd-wrap h2 em {
   position: relative;
   display: inline;
 }
 
-.sl-wrap h2 em::after {
+.lrd-wrap h2 em::after {
   content: '';
   position: absolute;
   bottom: 2px;
@@ -508,31 +508,31 @@
   transition: width 1.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-wrap h2.sl-underlined em::after {
+.lrd-wrap h2.lrd-underlined em::after {
   width: 100%;
 }
 
 /* ── Divider draw animation ── */
-.sl-divider {
+.lrd-divider {
   transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-divider.sl-drawn {
+.lrd-divider.lrd-drawn {
   width: 80px;
 }
 
 /* ── Ken Burns on image breaks ── */
-.sl-img-break.sl-in-view img {
-  animation: slKenBurns 16s ease-in-out infinite alternate;
+.lrd-img-break.lrd-in-view img {
+  animation: lrdKenBurns 16s ease-in-out infinite alternate;
 }
 
-@keyframes slKenBurns {
+@keyframes lrdKenBurns {
   0% { transform: scale(1) translate(0, 0); }
   100% { transform: scale(1.06) translate(-4px, -6px); }
 }
 
 /* ── Film grain overlay ── */
-.sl-grain::after {
+.lrd-grain::after {
   content: '';
   position: absolute;
   top: 0;
@@ -546,23 +546,23 @@
   opacity: 0.5;
 }
 
-.sl-grain {
+.lrd-grain {
   position: relative;
 }
 
-.sl-grain > * {
+.lrd-grain > * {
   position: relative;
   z-index: 1;
 }
 
 /* ── Eyebrow gold dash (animated) ── */
-.sl-eyebrow {
+.lrd-eyebrow {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.sl-eyebrow::before {
+.lrd-eyebrow::before {
   content: '';
   width: 0;
   height: 1px;
@@ -570,22 +570,22 @@
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-eyebrow.sl-visible::before {
+.lrd-eyebrow.lrd-visible::before {
   width: 24px;
 }
 
 /* ── Photo break depth layers ── */
-.sl-img-break {
+.lrd-img-break {
   position: relative;
   overflow: hidden;
 }
 
-.sl-img-break img {
+.lrd-img-break img {
   will-change: transform;
   transition: transform 0.1s linear, opacity 0.1s linear;
 }
 
-.sl-img-break::before {
+.lrd-img-break::before {
   content: '';
   position: absolute;
   top: 0;
@@ -597,7 +597,7 @@
   pointer-events: none;
 }
 
-.sl-img-break::after {
+.lrd-img-break::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -609,8 +609,10 @@
   pointer-events: none;
 }
 
+/* ── Project cards ── */
+
 /* ── Custom cursor ── */
-.sl-cursor {
+.lrd-cursor {
   position: fixed;
   width: 20px;
   height: 20px;
@@ -624,24 +626,24 @@
   opacity: 0;
 }
 
-.sl-cursor.sl-active {
+.lrd-cursor.lrd-active {
   opacity: 1;
 }
 
-.sl-cursor.sl-hover {
+.lrd-cursor.lrd-hover {
   width: 50px;
   height: 50px;
   border-color: #c9a96e;
   background: rgba(201,169,110,0.08);
 }
 
-.sl-cursor.sl-click {
+.lrd-cursor.lrd-click {
   width: 14px;
   height: 14px;
   background: rgba(201,169,110,0.3);
 }
 
-.sl-cursor-dot {
+.lrd-cursor-dot {
   position: fixed;
   width: 4px;
   height: 4px;
@@ -654,32 +656,32 @@
   transition: opacity 0.3s ease;
 }
 
-.sl-cursor-dot.sl-active {
+.lrd-cursor-dot.lrd-active {
   opacity: 1;
 }
 
 /* ── Magnetic button ── */
-.sl-magnetic {
+.lrd-magnetic {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ── Testimonial word reveal ── */
-.sl-quote-text .sl-qw {
+.lrd-quote-text .lrd-qw {
   display: inline;
   color: rgba(26,26,24,0.15);
   transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-quote-text .sl-qw.sl-lit {
+.lrd-quote-text .lrd-qw.lrd-lit {
   color: #1a1a18;
 }
 
-.sl-quote-text .sl-qw.sl-gold-word.sl-lit {
+.lrd-quote-text .lrd-qw.lrd-gold-word.lrd-lit {
   color: #b8975a;
 }
 
 /* ── Ambient particles canvas ── */
-.sl-particles {
+.lrd-particles {
   position: absolute;
   top: 0;
   left: 0;
@@ -690,21 +692,21 @@
 }
 
 /* ── Deliverable card stagger ── */
-.sl-del-card {
+.lrd-del-card {
   transform: translateY(12px);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, opacity 0.6s ease;
 }
 
-.sl-del-card.sl-entered {
+.lrd-del-card.lrd-entered {
   transform: translateY(0);
 }
 
 /* ── Scope stat bar fill ── */
-.sl-scope-item {
+.lrd-scope-item {
   position: relative;
 }
 
-.sl-scope-item::after {
+.lrd-scope-item::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -716,61 +718,63 @@
   transition: width 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-scope-item.sl-filled::after {
+.lrd-scope-item.lrd-filled::after {
   width: 80%;
 }
 
 /* ── Image diagonal wipe ── */
-.sl-img-break img {
+.lrd-img-break img {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.1s linear;
 }
 
-.sl-img-break.sl-wipe img {
+.lrd-img-break.lrd-wipe img {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 /* ── Quote mark float ── */
-.sl-quote-text::before {
-  animation: slQuoteFloat 6s ease-in-out infinite alternate;
+.lrd-quote-text::before {
+  animation: lrdQuoteFloat 6s ease-in-out infinite alternate;
 }
 
-@keyframes slQuoteFloat {
+@keyframes lrdQuoteFloat {
   0% { transform: scale(1) translateY(0); }
   100% { transform: scale(1.05) translateY(-4px); }
 }
 
 /* ── CTA button glow pulse ── */
-.sl-cta-btn {
-  animation: slBtnGlow 3s ease-in-out infinite alternate;
+.lrd-cta-btn {
+  animation: lrdBtnGlow 3s ease-in-out infinite alternate;
 }
 
-@keyframes slBtnGlow {
+@keyframes lrdBtnGlow {
   0% { box-shadow: none; }
   100% { box-shadow: 0 0 40px rgba(201,169,110,0.15), 0 0 80px rgba(201,169,110,0.05); }
 }
 
+/* (hero label — no animation, clean static) */
+
 /* ── Quote mark scale ── */
-.sl-quote-text::before {
+.lrd-quote-text::before {
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   transform: scale(0.8);
 }
 
-.sl-quote.sl-in-view .sl-quote-text::before {
+.lrd-quote.lrd-in-view .lrd-quote-text::before {
   transform: scale(1);
 }
 
 /* ── Scope stat glow pulse ── */
-.sl-scope-num {
+.lrd-scope-num {
   transition: text-shadow 0.6s ease;
 }
 
-.sl-scope-num.sl-counted {
+.lrd-scope-num.lrd-counted {
   text-shadow: 0 0 20px rgba(201,169,110,0.3);
 }
 
 /* ── Meta bar border draw ── */
-.sl-meta {
+.lrd-meta {
   border-top-color: transparent;
   border-bottom-color: transparent;
   background-image: linear-gradient(#d9d5cd, #d9d5cd), linear-gradient(#d9d5cd, #d9d5cd);
@@ -780,46 +784,46 @@
   transition: background-size 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-meta.sl-drawn {
+.lrd-meta.lrd-drawn {
   background-size: 100% 1px, 100% 1px;
 }
 
 /* ── CTA background slow zoom ── */
-.sl-cta-bg img {
+.lrd-cta-bg img {
   transition: transform 8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-cta.sl-in-view .sl-cta-bg img {
+.lrd-cta.lrd-in-view .lrd-cta-bg img {
   transform: scale(1.08);
 }
 
 /* ── Stats grid gold border gaps ── */
-.sl-results {
+.lrd-results {
   background: rgba(201,169,110,0.08);
   gap: 1px;
 }
 
-.sl-result {
+.lrd-result {
   background: #f6f4f0;
 }
 
 /* ── Accent line pulse ── */
-.sl-accent {
-  animation: slAccentPulse 3s ease-in-out infinite alternate;
+.lrd-accent {
+  animation: lrdAccentPulse 3s ease-in-out infinite alternate;
 }
 
-@keyframes slAccentPulse {
+@keyframes lrdAccentPulse {
   0% { opacity: 0.5; }
   100% { opacity: 1; }
 }
 
 /* ── Hero scroll fade ── */
-.sl-hero-content {
+.lrd-hero-content {
   transition: transform 0.1s linear, opacity 0.1s linear;
 }
 
 /* ── Scroll indicator ── */
-.sl-scroll-hint {
+.lrd-scroll-hint {
   position: absolute;
   bottom: 40px;
   left: 50%;
@@ -832,9 +836,9 @@
   transition: opacity 0.4s ease;
 }
 
-.sl-scroll-hint.sl-hidden { opacity: 0; pointer-events: none; }
+.lrd-scroll-hint.lrd-hidden { opacity: 0; pointer-events: none; }
 
-.sl-scroll-text {
+.lrd-scroll-text {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.45rem;
   letter-spacing: 0.3em;
@@ -842,7 +846,7 @@
   color: rgba(246,244,240,0.3);
 }
 
-.sl-scroll-line {
+.lrd-scroll-line {
   width: 1px;
   height: 36px;
   position: relative;
@@ -850,7 +854,7 @@
   background: rgba(246,244,240,0.1);
 }
 
-.sl-scroll-line::after {
+.lrd-scroll-line::after {
   content: '';
   position: absolute;
   top: -100%;
@@ -858,19 +862,19 @@
   width: 100%;
   height: 100%;
   background: #c9a96e;
-  animation: slScrollPulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation: lrdScrollPulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
-@keyframes slScrollPulse {
+@keyframes lrdScrollPulse {
   0% { top: -100%; }
   100% { top: 100%; }
 }
 
 /* ── Inline gold highlights ── */
-.sl-gold { color: #c9a96e; font-weight: 400; }
+.lrd-gold { color: #c9a96e; font-weight: 400; }
 
 /* ── Manifesto / closing argument ── */
-.sl-manifesto {
+.lrd-manifesto {
   background: #1a1a18;
   padding: 8rem 5vw;
   text-align: center;
@@ -878,7 +882,7 @@
   overflow: hidden;
 }
 
-.sl-manifesto::before {
+.lrd-manifesto::before {
   content: '';
   position: absolute;
   top: 0;
@@ -889,7 +893,7 @@
   background: linear-gradient(rgba(201,169,110,0.4), transparent);
 }
 
-.sl-manifesto-text {
+.lrd-manifesto-text {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   font-weight: 300;
@@ -900,22 +904,22 @@
   transition: color 0.8s ease;
 }
 
-.sl-manifesto-text .sl-mw {
+.lrd-manifesto-text .lrd-mw {
   display: inline;
   color: rgba(246,244,240,0.15);
   transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-manifesto-text .sl-mw.sl-lit {
+.lrd-manifesto-text .lrd-mw.lrd-lit {
   color: #f6f4f0;
 }
 
-.sl-manifesto-text .sl-mw.sl-gold-word.sl-lit {
+.lrd-manifesto-text .lrd-mw.lrd-gold-word.lrd-lit {
   color: #c9a96e;
 }
 
 /* ── Reimagined CTA ── */
-.sl-cta {
+.lrd-cta {
   position: relative;
   padding: 0;
   text-align: center;
@@ -927,13 +931,13 @@
   justify-content: center;
 }
 
-.sl-cta-bg {
+.lrd-cta-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-.sl-cta-bg img {
+.lrd-cta-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -941,18 +945,18 @@
   transition: transform 8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sl-cta.sl-in-view .sl-cta-bg img {
+.lrd-cta.lrd-in-view .lrd-cta-bg img {
   transform: scale(1.1);
 }
 
-.sl-cta-c {
+.lrd-cta-c {
   position: relative;
   z-index: 2;
   max-width: 700px;
   padding: 5vw;
 }
 
-.sl-cta-eyebrow {
+.lrd-cta-eyebrow {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.55rem;
   letter-spacing: 0.35em;
@@ -965,15 +969,15 @@
   gap: 16px;
 }
 
-.sl-cta-eyebrow::before,
-.sl-cta-eyebrow::after {
+.lrd-cta-eyebrow::before,
+.lrd-cta-eyebrow::after {
   content: '';
   width: 40px;
   height: 1px;
   background: rgba(201,169,110,0.3);
 }
 
-.sl-cta h2 {
+.lrd-cta h2 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(2.2rem, 4.5vw, 3.6rem);
   font-weight: 300;
@@ -983,12 +987,12 @@
   letter-spacing: -0.02em;
 }
 
-.sl-cta h2 em {
+.lrd-cta h2 em {
   font-style: italic;
   color: #c9a96e;
 }
 
-.sl-cta-sub {
+.lrd-cta-sub {
   color: #8a8579;
   font-size: 1.05rem;
   line-height: 1.8;
@@ -996,7 +1000,7 @@
   margin: 0 auto 3rem;
 }
 
-.sl-cta-btn {
+.lrd-cta-btn {
   display: inline-block;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.7rem;
@@ -1013,7 +1017,7 @@
   overflow: hidden;
 }
 
-.sl-cta-btn::before {
+.lrd-cta-btn::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -1022,28 +1026,28 @@
   transition: transform 0.6s ease;
 }
 
-.sl-cta-btn:hover::before {
+.lrd-cta-btn:hover::before {
   transform: translateX(100%);
 }
 
-.sl-cta-btn:hover {
+.lrd-cta-btn:hover {
   background: transparent !important;
   color: #c9a96e !important;
   box-shadow: 0 0 30px rgba(201,169,110,0.2);
 }
 
 /* ── Deliverable card hover glow ── */
-.sl-del-card {
+.lrd-del-card {
   transition: box-shadow 0.4s ease, transform 0.3s ease;
 }
 
-.sl-del-card:hover {
+.lrd-del-card:hover {
   box-shadow: 0 8px 30px rgba(201,169,110,0.06);
   transform: translateY(-2px);
 }
 
-/* ═══ SITELINES CASE STUDY ═══ */
-.sl-wrap {
+/* ═══ LRD STUDIO CASE STUDY ═══ */
+.lrd-wrap {
   font-family: 'DM Sans', -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   color: #1a1a18;
@@ -1051,18 +1055,18 @@
   font-weight: 300;
 }
 
-.sl-wrap img {
+.lrd-wrap img {
   max-width: 100%;
   display: block;
 }
 
-.sl-wrap a {
+.lrd-wrap a {
   color: inherit;
   text-decoration: none;
 }
 
 /* ─── HERO ─── */
-.sl-hero {
+.lrd-hero {
   position: relative;
   min-height: 90vh;
   display: flex;
@@ -1072,7 +1076,7 @@
   overflow: hidden;
 }
 
-.sl-hero::before {
+.lrd-hero::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -1080,12 +1084,12 @@
   z-index: 1;
 }
 
-.sl-hero-bg {
+.lrd-hero-bg {
   position: absolute;
   inset: 0;
 }
 
-.sl-hero-bg img {
+.lrd-hero-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1093,13 +1097,13 @@
   filter: saturate(0.6);
 }
 
-.sl-hero-content {
+.lrd-hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
 }
 
-.sl-hero-label {
+.lrd-hero-label {
   font-size: 0.7rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -1108,7 +1112,7 @@
   font-weight: 500;
 }
 
-.sl-hero h1 {
+.lrd-hero h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(2.8rem, 6vw, 5.5rem);
   font-weight: 300;
@@ -1118,12 +1122,12 @@
   margin-bottom: 1.5rem;
 }
 
-.sl-hero h1 em {
+.lrd-hero h1 em {
   font-style: italic;
   color: #c9a96e;
 }
 
-.sl-hero-sub {
+.lrd-hero-sub {
   font-size: 1rem;
   color: #d9d5cd;
   font-weight: 300;
@@ -1131,7 +1135,7 @@
 }
 
 /* ─── META BAR ─── */
-.sl-meta {
+.lrd-meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0;
@@ -1139,16 +1143,16 @@
   border-bottom: 1px solid #d9d5cd;
 }
 
-.sl-meta-item {
+.lrd-meta-item {
   padding: 2rem 5vw;
   border-right: 1px solid #d9d5cd;
 }
 
-.sl-meta-item:last-child {
+.lrd-meta-item:last-child {
   border-right: none;
 }
 
-.sl-meta-dt {
+.lrd-meta-dt {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1157,7 +1161,7 @@
   font-weight: 500;
 }
 
-.sl-meta-dd {
+.lrd-meta-dd {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.15rem;
   font-weight: 400;
@@ -1165,15 +1169,15 @@
 }
 
 /* ─── SECTIONS ─── */
-.sl-section {
+.lrd-section {
   padding: 6rem 5vw;
 }
 
-.sl-narrow {
+.lrd-narrow {
   max-width: 720px;
 }
 
-.sl-label {
+.lrd-label {
   font-size: 0.65rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -1182,14 +1186,14 @@
   font-weight: 500;
 }
 
-.sl-divider {
+.lrd-divider {
   width: 60px;
   height: 1px;
   background: #c9a96e;
   margin: 0 0 2rem;
 }
 
-.sl-section h2 {
+.lrd-section h2 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 300;
@@ -1198,65 +1202,90 @@
   letter-spacing: -0.01em;
 }
 
-.sl-section p {
+.lrd-section p {
   font-size: 1rem;
   color: #4a4a46;
   margin-bottom: 1.5rem;
   line-height: 1.8;
 }
 
-.sl-section p:last-child {
+.lrd-section p:last-child {
   margin-bottom: 0;
 }
 
 /* ─── IMAGE BREAK ─── */
-.sl-img-break {
+.lrd-img-break {
   width: 100%;
   height: 70vh;
   min-height: 500px;
   overflow: hidden;
 }
 
-.sl-img-break img {
+.lrd-img-break img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 /* ─── DELIVERABLES ─── */
-.sl-deliverables {
+.lrd-deliverables {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   margin-top: 2.5rem;
 }
 
-.sl-del-card {
+.lrd-del-card {
   padding: 2rem 0;
   border-top: 1px solid #d9d5cd;
 }
 
-.sl-del-card h3 {
+.lrd-del-card h3 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.3rem;
   font-weight: 400;
   margin-bottom: 0.75rem;
 }
 
-.sl-del-card p {
+.lrd-del-card p {
   font-size: 0.9rem;
   color: #8a8579;
   line-height: 1.7;
 }
 
+/* ─── GALLERY ─── */
+.lrd-gallery {
+  padding: 6rem 5vw;
+  background: #1a1a18;
+}
+.lrd-gallery .lrd-label { color: #c9a96e; }
+.lrd-gallery .lrd-divider { background: rgba(201,169,110,0.4); }
+.lrd-gallery h2 { color: #f6f4f0; }
+.lrd-gallery h2 em { font-style: italic; color: #c9a96e; }
+.lrd-gallery-intro {
+  font-size: 1rem; font-weight: 300; line-height: 1.8;
+  color: #d9d5cd; max-width: 680px; margin-bottom: 3rem;
+}
+.lrd-mosaic {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 6px; align-items: start;
+}
+.lrd-mosaic a { display: block; overflow: hidden; border-radius: 2px; }
+.lrd-mosaic img {
+  width: 100%; height: auto; display: block;
+  filter: brightness(0.93);
+  transition: filter 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.lrd-mosaic a:hover img { filter: brightness(1.05); transform: scale(1.02); }
+
 /* ─── PULL QUOTE ─── */
-.sl-quote {
+.lrd-quote {
   background: #eeece6;
   padding: 6rem 5vw;
   text-align: center;
 }
 
-.sl-quote-text {
+.lrd-quote-text {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.5rem, 3vw, 2.4rem);
   font-weight: 300;
@@ -1267,7 +1296,7 @@
   color: #1a1a18;
 }
 
-.sl-quote-text::before {
+.lrd-quote-text::before {
   content: '\201C';
   display: block;
   font-size: 4rem;
@@ -1277,7 +1306,7 @@
   font-style: normal;
 }
 
-.sl-quote-attr {
+.lrd-quote-attr {
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1285,33 +1314,33 @@
   font-weight: 500;
 }
 
-.sl-quote-attr a {
+.lrd-quote-attr a {
   color: #b8975a;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s ease;
 }
 
-.sl-quote-attr a:hover {
+.lrd-quote-attr a:hover {
   border-color: #b8975a;
 }
 
 /* ─── RESULTS ─── */
-.sl-results {
+.lrd-results {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 3rem;
 }
 
-.sl-result {
+.lrd-result {
   text-align: center;
   padding: 2.5rem 1.5rem;
   background: #eeece6;
   border-radius: 2px;
 }
 
-.sl-result-num {
+.lrd-result-num {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 2.8rem;
   font-weight: 300;
@@ -1320,7 +1349,7 @@
   margin-bottom: 0.5rem;
 }
 
-.sl-result-lbl {
+.lrd-result-lbl {
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1329,7 +1358,7 @@
 }
 
 /* ─── SECTION ACCENT ─── */
-.sl-accent {
+.lrd-accent {
   display: block;
   width: 100%;
   height: 1px;
@@ -1337,29 +1366,29 @@
 }
 
 /* ─── SHOWCASE ─── */
-.sl-showcase {
+.lrd-showcase {
   padding: 6rem 5vw 3rem;
   background: #1a1a18;
 }
 
-.sl-showcase .sl-label {
+.lrd-showcase .lrd-label {
   color: #c9a96e;
 }
 
-.sl-showcase .sl-divider {
+.lrd-showcase .lrd-divider {
   background: rgba(201,169,110,0.4);
 }
 
-.sl-showcase h2 {
+.lrd-showcase h2 {
   color: #f6f4f0;
 }
 
-.sl-showcase h2 em {
+.lrd-showcase h2 em {
   font-style: italic;
   color: #c9a96e;
 }
 
-.sl-showcase-intro {
+.lrd-showcase-intro {
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.8;
@@ -1368,15 +1397,26 @@
   margin-bottom: 0;
 }
 
-/* ─── PROJECT GRID (2-column) ─── */
-.sl-grid {
+.lrd-showcase-intro a {
+  color: #c9a96e;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,169,110,0.3);
+  transition: border-color 0.3s ease;
+}
+
+.lrd-showcase-intro a:hover {
+  border-color: #c9a96e;
+}
+
+/* ─── PROJECT GRID (2-col) ─── */
+.lrd-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin-top: 3rem;
 }
 
-.sl-card {
+.lrd-card {
   position: relative;
   display: block;
   overflow: hidden;
@@ -1385,25 +1425,25 @@
   border-radius: 2px;
 }
 
-.sl-card-img-wrap {
+.lrd-card-img-wrap {
   position: relative;
   width: 100%;
   overflow: hidden;
   aspect-ratio: 4 / 3;
 }
 
-.sl-card-img-wrap img {
+.lrd-card-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.sl-card:hover .sl-card-img-wrap img {
+.lrd-card:hover .lrd-card-img-wrap img {
   transform: scale(1.05);
 }
 
-.sl-card-overlay {
+.lrd-card-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(0deg, rgba(26,26,24,0.85) 0%, rgba(26,26,24,0.3) 40%, rgba(26,26,24,0.05) 100%);
@@ -1415,11 +1455,11 @@
   transition: opacity 0.4s ease;
 }
 
-.sl-card:hover .sl-card-overlay {
+.lrd-card:hover .lrd-card-overlay {
   opacity: 1;
 }
 
-.sl-card-title {
+.lrd-card-title {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 700;
   font-size: 14px;
@@ -1429,7 +1469,7 @@
   margin: 0 0 6px 0;
 }
 
-.sl-card-meta {
+.lrd-card-meta {
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.08em;
@@ -1437,7 +1477,7 @@
   margin: 0;
 }
 
-.sl-card-arrow {
+.lrd-card-arrow {
   position: absolute;
   top: 24px;
   right: 24px;
@@ -1453,12 +1493,12 @@
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.sl-card:hover .sl-card-arrow {
+.lrd-card:hover .lrd-card-arrow {
   opacity: 1;
   transform: translate(0, 0);
 }
 
-.sl-card-arrow svg {
+.lrd-card-arrow svg {
   width: 14px;
   height: 14px;
   stroke: #f6f4f0;
@@ -1467,26 +1507,26 @@
 }
 
 /* ─── SCOPE STRIP ─── */
-.sl-scope {
+.lrd-scope {
   background: #1a1a18;
   padding: 4rem 5vw;
   border-top: 1px solid rgba(201,169,110,0.1);
 }
 
-.sl-scope-grid {
+.lrd-scope-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.5rem;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.sl-scope-item {
+.lrd-scope-item {
   text-align: center;
   padding: 1rem 0;
 }
 
-.sl-scope-num {
+.lrd-scope-num {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 2.4rem;
   font-weight: 300;
@@ -1495,7 +1535,7 @@
   margin-bottom: 0.4rem;
 }
 
-.sl-scope-lbl {
+.lrd-scope-lbl {
   font-size: 0.6rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1504,14 +1544,16 @@
   line-height: 1.4;
 }
 
+/* (CTA styles defined in interactive layer above) */
+
 /* ─── FOOTER ─── */
-.sl-ft-locs{display:flex;justify-content:center;gap:2rem;padding:1.75rem 5vw;border-bottom:1px solid rgba(201,169,110,.08);flex-wrap:wrap}.sl-ft-locs a{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,244,240,.35);font-weight:500;transition:color .3s ease}.sl-ft-locs a:hover{color:#c9a96e}
-.sl-ft {
+.lrd-ft-locs{display:flex;justify-content:center;gap:2rem;padding:1.75rem 5vw;border-bottom:1px solid rgba(201,169,110,.08);flex-wrap:wrap}.lrd-ft-locs a{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,244,240,.35);font-weight:500;transition:color .3s ease}.lrd-ft-locs a:hover{color:#c9a96e}
+.lrd-ft {
   background: #1a1a18;
   border-top: 1px solid rgba(201,169,110,0.15);
 }
 
-.sl-ft-row {
+.lrd-ft-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1520,13 +1562,13 @@
   flex-wrap: wrap;
 }
 
-.sl-ft-item {
+.lrd-ft-item {
   display: flex;
   align-items: baseline;
   gap: 10px;
 }
 
-.sl-ft-label {
+.lrd-ft-label {
   font-size: 7.5px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -1535,7 +1577,7 @@
   white-space: nowrap;
 }
 
-.sl-ft-dot {
+.lrd-ft-dot {
   width: 3px;
   height: 3px;
   border-radius: 50%;
@@ -1545,8 +1587,8 @@
   top: -2px;
 }
 
-.sl-ft-item p,
-.sl-ft-item a {
+.lrd-ft-item p,
+.lrd-ft-item a {
   margin: 0;
   font-size: 12px;
   color: rgba(246,244,240,0.8);
@@ -1556,22 +1598,22 @@
   transition: color 0.3s ease;
 }
 
-.sl-ft-item a:hover {
+.lrd-ft-item a:hover {
   color: #c9a96e;
 }
 
-.sl-ft-social {
+.lrd-ft-social {
   display: flex;
   gap: 18px;
 }
 
-.sl-ft-rule {
+.lrd-ft-rule {
   margin: 0 5vw;
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.15) 20%, rgba(201,169,110,0.15) 80%, transparent 100%);
 }
 
-.sl-ft-bottom {
+.lrd-ft-bottom {
     padding-bottom: 2rem;
   display: flex;
   justify-content: space-between;
@@ -1579,20 +1621,20 @@
   padding: 1.25rem 5vw;
 }
 
-.sl-ft-copy {
+.lrd-ft-copy {
   font-size: 10px;
   color: rgba(246,244,240,0.35);
   letter-spacing: 0.08em;
 }
 
-.sl-ft-nav {
+.lrd-ft-nav {
   flex-wrap: wrap;
   justify-content: center;
   display: flex;
   gap: 2.5rem;
 }
 
-.sl-ft-nav a {
+.lrd-ft-nav a {
   font-size: 9.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1601,100 +1643,103 @@
   transition: color 0.3s ease;
 }
 
-.sl-ft-nav a:hover {
+.lrd-ft-nav a:hover {
   color: #c9a96e;
 }
 
-.sl-alt-cta{margin-top:1.25rem;font-size:.75rem;color:#8a8579;letter-spacing:.05em;font-weight:300}.sl-alt-cta a{color:#c9a96e;text-decoration:underline;text-underline-offset:3px;transition:color .3s ease}.sl-alt-cta a:hover{color:#f6f4f0}
+.lrd-alt-cta{margin-top:1.25rem;font-size:.75rem;color:#8a8579;letter-spacing:.05em;font-weight:300}.lrd-alt-cta a{color:#c9a96e;text-decoration:underline;text-underline-offset:3px;transition:color .3s ease}.lrd-alt-cta a:hover{color:#f6f4f0}
 
 /* ─── MOBILE ─── */
 @media (max-width: 768px) {
-  .sl-hero {
+  .lrd-hero {
     min-height: 75vh;
     padding: 4rem 6vw;
   }
 
-  .sl-section {
+  .lrd-section {
     padding: 4rem 6vw;
   }
 
-  .sl-quote {
+  .lrd-quote {
     padding: 4rem 6vw;
   }
 
-  .sl-meta-item {
+  .lrd-meta-item {
     border-right: none;
     border-bottom: 1px solid #d9d5cd;
   }
 
-  .sl-meta-item:last-child {
+  .lrd-meta-item:last-child {
     border-bottom: none;
   }
 
-  .sl-cta {
+  .lrd-cta {
     min-height: 70vh;
   }
 
-  .sl-deliverables {
+  .lrd-deliverables {
     grid-template-columns: 1fr;
   }
 
-  .sl-results {
-    grid-template-columns: 1fr;
+  .lrd-results {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .sl-showcase {
+  .lrd-showcase {
     padding: 4rem 6vw;
   }
 
-  .sl-grid {
+  .lrd-grid {
     grid-template-columns: 1fr;
     gap: 10px;
   }
 
-  .sl-card-overlay {
+  .lrd-card-overlay {
     opacity: 1;
     background: linear-gradient(0deg, rgba(26,26,24,0.75) 0%, rgba(26,26,24,0.0) 50%);
     padding: 24px;
   }
 
-  .sl-card-arrow {
+  .lrd-card-arrow {
     display: none;
   }
 
-  .sl-scope-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .lrd-scope-grid {
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 
-  .sl-scope-num {
+  .lrd-scope-num {
     font-size: 1.8rem;
   }
 
-  .sl-manifesto {
+  .lrd-mosaic { grid-template-columns: 1fr; gap: 4px; }
+  .lrd-gallery { padding: 4rem 6vw; }
+
+  .lrd-manifesto {
     padding: 5rem 6vw;
   }
 
-  .sl-cta {
+  .lrd-cta {
     min-height: 80vh;
   }
 
-  .sl-scroll-hint {
+  .lrd-scroll-hint {
     bottom: 24px;
   }
 
-  .sl-ft-row {
+  .lrd-ft-row {
     flex-direction: column;
     gap: 1.25rem;
     align-items: flex-start;
     padding: 2rem 6vw;
   }
 
-  .sl-ft-rule {
+  .lrd-ft-rule {
     margin: 0 6vw;
   }
 
-  .sl-ft-bottom {
+  .lrd-ft-bottom {
     padding-bottom: 2rem;
     flex-direction: column;
     gap: 0.75rem;
@@ -1704,241 +1749,264 @@
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .sl-deliverables {
+  .lrd-deliverables {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>
 
-<div class="sl-loader" id="slLoader">
-  <div class="sl-loader-brand">Matt Anthony Photography</div>
-  <div class="sl-loader-sub">Case Study</div>
-  <div class="sl-loader-line"></div>
+<div class="lrd-loader" id="lrdLoader">
+  <div class="lrd-loader-brand">Matt Anthony Photography</div>
+  <div class="lrd-loader-sub">Case Study</div>
+  <div class="lrd-loader-line"></div>
 </div>
-<nav class="sl-section-nav" id="slSectionNav"></nav>
-<div class="sl-cursor" id="slCursor"></div>
-<div class="sl-cursor-dot" id="slCursorDot"></div>
-<div class="sl-progress" id="slProgress"></div>
-<div class="sl-wrap">
+<nav class="lrd-section-nav" id="lrdSectionNav"></nav>
+<div class="lrd-cursor" id="lrdCursor"></div>
+<div class="lrd-cursor-dot" id="lrdCursorDot"></div>
+<div class="lrd-progress" id="lrdProgress"></div>
+<div class="lrd-wrap">
 
 <!-- ═══ HERO ═══ -->
-<div class="sl-hero sl-grain">
-  <div class="sl-hero-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ecb64bfd-d94c-4629-8c8a-c5d8da1a9742/sitelines-SDA-web--63.jpg?format=2500w" alt="Sitelines Architecture case study architectural photography by Matt Anthony">
+<div class="lrd-hero lrd-grain">
+  <div class="lrd-hero-bg">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg?format=2500w" alt="Balsam Way kitchen white cabinetry interior design by LRD Studio">
   </div>
-  <div class="sl-hero-content">
-    <p class="sl-hero-label">Case Study</p>
-    <h1>Sitelines Architecture: Documenting Design Across <em>Scales</em></h1>
-    <p class="sl-hero-sub">Two flagship projects, residential and institutional, with a growing partnership that expands into the BC Interior this spring.</p>
+  <div class="lrd-hero-content">
+    <p class="lrd-hero-label">Case Study</p>
+    <h1>Building a <em>Publication-Ready</em> Visual Portfolio for an Award-Winning Design Studio</h1>
+    <p class="lrd-hero-sub">Photography and video across two major Whistler renovation projects, creating a visual library for portfolio, editorial pitches, award submissions, and social media.</p>
   </div>
-  <canvas class="sl-particles" id="slParticles"></canvas>
-  <div class="sl-scroll-hint" id="slScrollHint">
-    <span class="sl-scroll-text">Scroll</span>
-    <span class="sl-scroll-line"></span>
+  <canvas class="lrd-particles" id="lrdParticles"></canvas>
+  <div class="lrd-scroll-hint" id="lrdScrollHint">
+    <span class="lrd-scroll-text">Scroll</span>
+    <span class="lrd-scroll-line"></span>
   </div>
 </div>
 
 <!-- ═══ META BAR ═══ -->
-<dl class="sl-meta">
-  <div class="sl-meta-item">
-    <dt class="sl-meta-dt">Client</dt>
-    <dd class="sl-meta-dd">Sitelines Architecture</dd>
+<dl class="lrd-meta">
+  <div class="lrd-meta-item">
+    <dt class="lrd-meta-dt">Client</dt>
+    <dd class="lrd-meta-dd">LRD Studio</dd>
   </div>
-  <div class="sl-meta-item">
-    <dt class="sl-meta-dt">Location</dt>
-    <dd class="sl-meta-dd">Fraser Valley &amp; Abbotsford, BC</dd>
+  <div class="lrd-meta-item">
+    <dt class="lrd-meta-dt">Location</dt>
+    <dd class="lrd-meta-dd">Whistler, BC</dd>
   </div>
-  <div class="sl-meta-item">
-    <dt class="sl-meta-dt">Services</dt>
-    <dd class="sl-meta-dd">Photo &middot; Aerial &middot; Video</dd>
+  <div class="lrd-meta-item">
+    <dt class="lrd-meta-dt">Services</dt>
+    <dd class="lrd-meta-dd">Photo &middot; Video &middot; Aerial</dd>
   </div>
-  <div class="sl-meta-item">
-    <dt class="sl-meta-dt">Scope</dt>
-    <dd class="sl-meta-dd">2 Projects &middot; Ongoing</dd>
+  <div class="lrd-meta-item">
+    <dt class="lrd-meta-dt">Scope</dt>
+    <dd class="lrd-meta-dd">2 Major Renovations</dd>
   </div>
 </dl>
 
 <!-- ═══ THE BRIEF ═══ -->
-<section class="sl-section sl-narrow" data-nav="Brief">
-  <p class="sl-label sl-eyebrow">The Brief</p>
-  <div class="sl-divider"></div>
-  <h2>An award-winning firm with work that spans residential to institutional</h2>
-  <p>Sitelines Architecture is an award-winning firm — the kind of practice eligible for recognition through programs like the <a href="/journal/aibc-awards-guide" style="color:#b8975a;text-decoration:none;border-bottom:1px solid rgba(184,151,90,0.3);transition:border-color 0.3s ease;">AIBC</a> and <a href="/journal/raic-awards-guide" style="color:#b8975a;text-decoration:none;border-bottom:1px solid rgba(184,151,90,0.3);transition:border-color 0.3s ease;">RAIC awards</a> — whose portfolio moves fluidly between residential, institutional, multi-family, and commercial. Their design language is consistent across scales: a focus on detail, innovation, and spaces that blend form with function. What they needed was photography that demonstrated that same consistency. The engagement began with two projects at opposite ends of the spectrum. A 12,000 square foot luxury residence in Langley, and the 25,678 square foot Seventh Day Adventist BC and Yukon Headquarters in Abbotsford. One private, one public. One about refined living, the other about community and environmental stewardship. Both unmistakably Sitelines.</p>
+<section class="lrd-section lrd-narrow" data-nav="Brief">
+  <p class="lrd-label lrd-eyebrow">The Brief</p>
+  <div class="lrd-divider"></div>
+  <h2>An award-winning design studio ready to elevate its visual presence</h2>
+  <p>LRD Studio is an award-winning interior design firm based in Squamish, with a growing roster of residential and commercial projects across Whistler, Pemberton, and the Sea-to-Sky corridor. Led by principal designer Lauren Ritz, the studio had built a strong reputation through thoughtful, material-driven design work and industry recognition. But their project photography hadn't yet caught up to the calibre of their design.</p>
+  <p>As they looked to strengthen their portfolio for <a href="/journal/western-living-submissions" style="color:#b8975a;text-decoration:none;border-bottom:1px solid rgba(184,151,90,0.3);transition:border-color 0.3s ease;">editorial pitches</a>, <a href="/journal/georgie-awards-guide" style="color:#b8975a;text-decoration:none;border-bottom:1px solid rgba(184,151,90,0.3);transition:border-color 0.3s ease;">award submissions</a>, and new client acquisition, they needed imagery that showed the depth and intention behind their material choices — not just beautiful rooms, but the design story within each one. The images needed to work across every platform a designer relies on: website galleries, Instagram, publication submissions, and award packages — each with different requirements, all from the same shoot.</p>
 </section>
 
 <!-- FULL-WIDTH IMAGE BREAK -->
-<div class="sl-img-break">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4e11f221-b2de-4958-a3ca-88c1dda4c8c2/siteline-langley-15.jpg?format=2500w" alt="Fraser Valley Vista interior luxury residence Langley" loading="lazy">
+<div class="lrd-img-break">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9f3611d8-a842-42d6-b65b-cd25ba6920cd/sunridge-whistle-web--32.jpg?format=2500w" alt="Sunridge Whistler living space modern refinement by LRD Studio" loading="lazy">
 </div>
 
 <!-- ═══ THE APPROACH ═══ -->
-<section class="sl-section sl-narrow" data-nav="Approach">
-  <p class="sl-label sl-eyebrow">The Approach</p>
-  <div class="sl-divider"></div>
-  <h2>Two projects, one visual thread</h2>
-  <p>The Fraser Valley Vista is a study in residential luxury. Coffered ceilings, custom millwork, expansive windows flooding 12,000 square feet with natural light. A chef's kitchen with a grand island. Spa-like bathrooms. A custom bar and wine cellar. The photography needed to communicate scale and sophistication while revealing the design decisions that elevate it beyond simply large.</p>
-  <p>The SDA Headquarters is a different proposition entirely. Mass timber construction with distinctive twisted beams that mark the entry. Natural materials expressing environmental stewardship. Transparent glass creating a fluid connection between interior and landscape. The building is both a regional anchor for faith and service and a statement about how institutional architecture can feel warm, organic, and welcoming. The photography needed to honour that duality.</p>
-  <p>The approach for both was the same: understand the design intent, plan the shoot around it, and compose every frame to make the architect's decisions legible. At the residence, that meant capturing the relationship between the grand entertaining spaces and the intimate details of the millwork. At the headquarters, it meant showing how mass timber creates atmosphere at institutional scale, and how the twisted beams frame the approach in a way that drawings alone cannot communicate.</p>
+<section class="lrd-section lrd-narrow" data-nav="Approach">
+  <p class="lrd-label lrd-eyebrow">The Approach</p>
+  <div class="lrd-divider"></div>
+  <h2>Understanding design intent, not just documenting rooms</h2>
+  <p>Working with an interior designer is different from working with a builder or architect. The details that matter most are often subtle — a brass fixture catching afternoon light, the grain of a hand-selected walnut slab, the way a fabric choice softens a stone wall. Getting these right requires understanding what the designer was trying to achieve, not just what the finished room looks like.</p>
+  <p>Before each shoot, I walked through the projects with Lauren to understand the design decisions behind every space. At Sunridge, the whole concept was about celebrating the heritage log home's timber bones while bringing a modern sensibility through proportion, lighting, and contrast. Raw timber was balanced with natural stone, oak, and soft fabrics. At Balsam Way, the transformation was brighter and bolder — white washing, refinishing, and splashes of colour that brought fresh life to a classic Whistler home. Two completely different design approaches, both needing their own visual language.</p>
+  <p>Each project was shot across multiple sessions to capture the right natural light for each space. Golden hour brought warmth to the timber interiors at Sunridge. Bright midday light showed the fresh, luminous quality of the Balsam Way transformation. Twilight and aerial work added scale and context, showing how each renovation sits within the Whistler landscape. Video content captured the spatial flow and atmosphere that still photography alone can't convey.</p>
 </section>
 
 <!-- FULL-WIDTH IMAGE BREAK -->
-<div class="sl-img-break">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/982a910e-42db-47d0-8b1a-2a0dab332444/sitelines-SDA-web--3.jpg?format=2500w" alt="SDA Headquarters interior mass timber Abbotsford" loading="lazy">
+<div class="lrd-img-break">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae3d0f01-858f-44ca-aafb-bf477ddf9039/LRD-2500px-1.jpg?format=2500w" alt="Balsam Way exterior log home front elevation by LRD Studio" loading="lazy">
 </div>
 
 <!-- ═══ DELIVERABLES ═══ -->
-<section class="sl-section" data-nav="Deliverables">
-  <div class="sl-narrow">
-    <p class="sl-label sl-eyebrow">Deliverables</p>
-    <div class="sl-divider"></div>
-    <h2>What we produced</h2>
+<section class="lrd-section" data-nav="Deliverables">
+  <div class="lrd-narrow">
+    <p class="lrd-label lrd-eyebrow">Deliverables</p>
+    <div class="lrd-divider"></div>
+    <h2>A visual library built for every platform a designer needs</h2>
   </div>
-  <div class="sl-deliverables">
-    <div class="sl-del-card">
-      <h3>Residential Photography</h3>
-      <p>Full interior and exterior documentation of the 12,000 sq ft Fraser Valley Vista. Architectural compositions, material details, spatial flow, and twilight exteriors.</p>
+  <div class="lrd-deliverables">
+    <div class="lrd-del-card">
+      <h3>Interior Photography</h3>
+      <p>Detailed room-by-room coverage capturing material palettes, texture layering, lighting design, and spatial flow across both renovations. Every image composed to honour the design intent.</p>
     </div>
-    <div class="sl-del-card">
-      <h3>Institutional Photography</h3>
-      <p>Comprehensive coverage of the SDA BC and Yukon Headquarters. Mass timber structure, public spaces, landscape integration, and the signature twisted beam entry.</p>
+    <div class="lrd-del-card">
+      <h3>Videography</h3>
+      <p>Short-form video walkthroughs for social media and website, crafted to show the flow and atmosphere of each space. Designed for Instagram Reels and portfolio use.</p>
     </div>
-    <div class="sl-del-card">
-      <h3>Drone and Aerial</h3>
-      <p>Elevated perspectives for both projects, revealing site strategy, building massing, and the relationship between architecture and surrounding landscape.</p>
+    <div class="lrd-del-card">
+      <h3>Drone &amp; Aerial</h3>
+      <p>Elevated perspectives showing each renovation in its Whistler mountain setting. Seasonal coverage including snow and twilight for editorial versatility.</p>
+    </div>
+    <div class="lrd-del-card">
+      <h3>Detail &amp; Material Shots</h3>
+      <p>Close-up studies of millwork, stone, textiles, and hardware — the designer's calling card. Images that show clients and editors that every detail was considered.</p>
+    </div>
+    <div class="lrd-del-card">
+      <h3>Publication-Ready Imagery</h3>
+      <p>High-resolution files meeting editorial standards for design publications and award submission packages. Formatted and captioned for immediate use.</p>
+    </div>
+    <div class="lrd-del-card">
+      <h3>Social Media Content</h3>
+      <p>Curated selections optimized for Instagram and portfolio platforms. Before-and-after pairings and carousel-ready sequences that tell the transformation story.</p>
     </div>
   </div>
 </section>
 
-<div class="sl-accent"></div>
+<!-- ═══ GALLERY ═══ -->
+<section class="lrd-gallery lrd-grain" data-nav="Gallery">
+  <p class="lrd-label lrd-eyebrow">The Work</p>
+  <div class="lrd-divider"></div>
+  <h2>Every detail, <em>intentionally captured</em></h2>
+  <p class="lrd-gallery-intro">A curated selection from the Balsam Way renovation. Whitewashed timber, refined millwork, natural light, and the material choices that define LRD Studio's approach to residential interiors.</p>
+  <div class="lrd-mosaic">
+    <a href="/balsam-way"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5003c7a6-1fda-4caf-ab4e-252dff8d276e/LRD-2500px-10.jpg?format=2500w" alt="Balsam Way kitchen island natural light by LRD Studio" loading="lazy"></a>
+    <a href="/balsam-way"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b2523d53-f5e1-4105-8b4f-f8391df7ccc4/LRD-2500px-14.jpg?format=2500w" alt="Balsam Way fireplace log detail living area" loading="lazy"></a>
+    <a href="/balsam-way"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d524d107-05c4-42a3-9357-4303ef3840ad/LRD-2500px-19.jpg?format=2500w" alt="Balsam Way ensuite glass enclosure" loading="lazy"></a>
+  </div>
+</section>
+
+<div class="lrd-accent"></div>
 
 <!-- ═══ TESTIMONIAL ═══ -->
-<section class="sl-quote" id="slQuote" data-nav="Testimonial">
-  <p class="sl-quote-text"><span class="sl-qw">What</span> <span class="sl-qw">first</span> <span class="sl-qw">drew</span> <span class="sl-qw">us</span> <span class="sl-qw">to</span> <span class="sl-qw">Matt's</span> <span class="sl-qw">work</span> <span class="sl-qw">was</span> <span class="sl-qw">his</span> <span class="sl-qw">use</span> <span class="sl-qw">of</span> <span class="sl-qw sl-gold-word">natural</span> <span class="sl-qw sl-gold-word">light.</span> <span class="sl-qw">He</span> <span class="sl-qw">captures</span> <span class="sl-qw">spaces</span> <span class="sl-qw">in</span> <span class="sl-qw">a</span> <span class="sl-qw">way</span> <span class="sl-qw">that</span> <span class="sl-qw">feels</span> <span class="sl-qw sl-gold-word">authentic</span> <span class="sl-qw">and</span> <span class="sl-qw sl-gold-word">honest,</span> <span class="sl-qw">allowing</span> <span class="sl-qw">the</span> <span class="sl-qw sl-gold-word">materials</span> <span class="sl-qw">to</span> <span class="sl-qw sl-gold-word">shine.</span> <span class="sl-qw">Matt</span> <span class="sl-qw">truly</span> <span class="sl-qw">understands</span> <span class="sl-qw">what</span> <span class="sl-qw">it</span> <span class="sl-qw">takes</span> <span class="sl-qw">to</span> <span class="sl-qw sl-gold-word">showcase</span> <span class="sl-qw">a</span> <span class="sl-qw">project,</span> <span class="sl-qw">and</span> <span class="sl-qw">we</span> <span class="sl-qw sl-gold-word">highly</span> <span class="sl-qw sl-gold-word">recommend</span> <span class="sl-qw">him.</span></p>
-  <p class="sl-quote-attr">Jordan Maddox &middot; <a href="https://www.sitelines.ca/" target="_blank" rel="noopener">sitelines.ca</a></p>
+<section class="lrd-quote" id="lrdQuote">
+  <p class="lrd-quote-text"><span class="lrd-qw">Matt</span> <span class="lrd-qw">has</span> <span class="lrd-qw">a</span> <span class="lrd-qw lrd-gold-word">rare</span> <span class="lrd-qw lrd-gold-word">ability</span> <span class="lrd-qw">to</span> <span class="lrd-qw">understand</span> <span class="lrd-qw">what</span> <span class="lrd-qw">we're</span> <span class="lrd-qw">trying</span> <span class="lrd-qw">to</span> <span class="lrd-qw">achieve</span> <span class="lrd-qw">with</span> <span class="lrd-qw">a</span> <span class="lrd-qw">design</span> <span class="lrd-qw">and</span> <span class="lrd-qw lrd-gold-word">translate</span> <span class="lrd-qw">that</span> <span class="lrd-qw">into</span> <span class="lrd-qw lrd-gold-word">imagery.</span> <span class="lrd-qw">He</span> <span class="lrd-qw">doesn't</span> <span class="lrd-qw">just</span> <span class="lrd-qw">photograph</span> <span class="lrd-qw">rooms</span> <span class="lrd-qw">—</span> <span class="lrd-qw">he</span> <span class="lrd-qw lrd-gold-word">captures</span> <span class="lrd-qw">the</span> <span class="lrd-qw lrd-gold-word">feeling</span> <span class="lrd-qw">of</span> <span class="lrd-qw">being</span> <span class="lrd-qw">in</span> <span class="lrd-qw">a</span> <span class="lrd-qw">space</span> <span class="lrd-qw">and</span> <span class="lrd-qw">the</span> <span class="lrd-qw lrd-gold-word">intention</span> <span class="lrd-qw">behind</span> <span class="lrd-qw">every</span> <span class="lrd-qw lrd-gold-word">material</span> <span class="lrd-qw lrd-gold-word">choice.</span> <span class="lrd-qw">Both</span> <span class="lrd-qw">project</span> <span class="lrd-qw">galleries</span> <span class="lrd-qw">have</span> <span class="lrd-qw">become</span> <span class="lrd-qw lrd-gold-word">anchor</span> <span class="lrd-qw lrd-gold-word">pieces</span> <span class="lrd-qw">in</span> <span class="lrd-qw">our</span> <span class="lrd-qw lrd-gold-word">portfolio.</span></p>
+  <p class="lrd-quote-attr">Lauren Ritz, Principal Designer &middot; <a href="https://www.lrdstudio.ca/" target="_blank" rel="noopener">lrdstudio.ca</a></p>
 </section>
 
-<div class="sl-accent"></div>
+<div class="lrd-accent"></div>
 
 <!-- ═══ THE OUTCOME ═══ -->
-<section class="sl-section" style="text-align:center" data-nav="Outcome">
+<section class="lrd-section" style="text-align:center" data-nav="Outcome">
   <div style="max-width:720px;margin:0 auto">
-    <p class="sl-label sl-eyebrow">The Outcome</p>
-    <div class="sl-divider" style="margin:0 auto 2rem"></div>
-    <h2>A portfolio that proves range without losing coherence</h2>
-    <p>The resulting image sets gave Sitelines what they needed most: visual proof that their design thinking translates across scales and typologies. The Fraser Valley Vista images demonstrate their residential capability, from spatial grandeur to material precision. The SDA Headquarters images show their institutional work with the same compositional rigour, revealing how mass timber and sustainable design principles create spaces that feel both monumental and human.</p>
-    <p>Both projects now feature prominently on the Sitelines website, with the Fraser Valley Vista positioned as their flagship residential project. The imagery supports <a href="/journal/aibc-awards-guide" style="color:#b8975a;text-decoration:none;border-bottom:1px solid rgba(184,151,90,0.3);transition:border-color 0.3s ease;">award submissions</a>, editorial pitches, and client presentations across every sector Sitelines operates in.</p>
-    <p>The partnership is expanding. A major project documentation trip to the BC Interior is planned for spring 2026, covering additional Sitelines projects that will deepen the visual library and extend the firm's portfolio documentation into new regions.</p>
+    <p class="lrd-label lrd-eyebrow">The Outcome</p>
+    <div class="lrd-divider" style="margin:0 auto 2rem"></div>
+    <h2>A visual portfolio that matches the quality of the design</h2>
+    <p>The photography from these two projects became the foundation of LRD Studio's visual portfolio refresh. Both the Sunridge and Balsam Way galleries are now anchor pieces on the LRD website — demonstrating range from the raw, heritage-celebrating timber work at Sunridge to the bright, contemporary transformation at Balsam Way. That kind of range, shot to the same standard, is what gives a portfolio depth.</p>
+    <p>Beyond the website, the image library gave LRD a consistent, premium visual language across their social channels and provided publication-ready files for ongoing <a href="/journal/western-living-submissions" style="color:#b8975a;text-decoration:none;border-bottom:1px solid rgba(184,151,90,0.3);transition:border-color 0.3s ease;">editorial pitches</a> and <a href="/journal/georgie-awards-guide" style="color:#b8975a;text-decoration:none;border-bottom:1px solid rgba(184,151,90,0.3);transition:border-color 0.3s ease;">award submissions</a>. When you're an award-winning design studio, every touchpoint needs to reflect that standard.</p>
+    <p>For any interior designer, photography is portfolio. It's the first thing a potential client sees, the first thing an editor evaluates, and the first thing an award jury considers. The right imagery doesn't just document what you've done — it opens doors to what comes next.</p>
   </div>
-  <div class="sl-results">
-    <div class="sl-result">
-      <div class="sl-result-num">2</div>
-      <div class="sl-result-lbl">Flagship Projects</div>
+  <div class="lrd-results">
+    <div class="lrd-result">
+      <div class="lrd-result-num">2</div>
+      <div class="lrd-result-lbl">Whistler Renovations</div>
     </div>
-    <div class="sl-result">
-      <div class="sl-result-num">37K+</div>
-      <div class="sl-result-lbl">Sq Ft Documented</div>
+    <div class="lrd-result">
+      <div class="lrd-result-num">70</div>
+      <div class="lrd-result-lbl">Gallery Images</div>
     </div>
-    <div class="sl-result">
-      <div class="sl-result-num">2026</div>
-      <div class="sl-result-lbl">Interior BC Expansion</div>
+    <div class="lrd-result">
+      <div class="lrd-result-num">3</div>
+      <div class="lrd-result-lbl">Content Formats</div>
     </div>
   </div>
 </section>
 
 <!-- ═══ SHOWCASE ═══ -->
-<section class="sl-showcase sl-grain" data-nav="Projects">
-  <p class="sl-label sl-eyebrow">Featured Projects</p>
-  <div class="sl-divider"></div>
-  <h2>Residential and institutional. One <em>visual standard</em>.</h2>
-  <p class="sl-showcase-intro">Sitelines Architecture has a design language that spans scales and typologies without losing coherence.</p>
-  <div class="sl-grid">
-    <!-- 1 — Fraser Valley Vista -->
-    <a href="/fraser-valley-vista" class="sl-card">
-      <div class="sl-card-img-wrap">
-        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=2500w" alt="Fraser Valley Vista Langley" loading="lazy">
+<section class="lrd-showcase lrd-grain" data-nav="Projects">
+  <p class="lrd-label lrd-eyebrow">The Projects</p>
+  <div class="lrd-divider"></div>
+  <h2>Two renovations. One <em>cohesive</em> visual story.</h2>
+  <p class="lrd-showcase-intro">Each project presented a distinct design philosophy and material language. Explore the individual project galleries below, or visit <a href="https://www.lrdstudio.ca/" target="_blank" rel="noopener">LRD Studio</a> to see the full scope of their work.</p>
+  <div class="lrd-grid">
+    <a href="/sunridge-whistler" class="lrd-card">
+      <div class="lrd-card-img-wrap">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ae7f632-ffd4-4990-abae-430431c42a83/sunridge-whistle-web--28.jpg?format=2500w" alt="Sunridge Whistler log home renovation architectural photography" loading="lazy">
       </div>
-      <div class="sl-card-overlay">
-        <p class="sl-card-title">Fraser Valley Vista</p>
-        <p class="sl-card-meta">Langley, BC &middot; Residential</p>
+      <div class="lrd-card-overlay">
+        <p class="lrd-card-title">Sunridge</p>
+        <p class="lrd-card-meta">Whistler &middot; Gavan Construction &middot; LRD Studio</p>
       </div>
-      <div class="sl-card-arrow">
-        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </div>
+      <div class="lrd-card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
     </a>
-
-    <!-- 2 — SDA BC & Yukon HQ -->
-    <a href="/seventh-day-adventist-bc-headquarters" class="sl-card">
-      <div class="sl-card-img-wrap">
-        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/60712d71-7136-4a4d-93d9-652167cdd65d/sitelines-SDA-web-.jpg?format=2500w" alt="SDA BC &amp; Yukon HQ Abbotsford" loading="lazy">
+    <a href="/balsam-way" class="lrd-card">
+      <div class="lrd-card-img-wrap">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg?format=2500w" alt="Balsam Way Whistler home renovation interior design photography" loading="lazy">
       </div>
-      <div class="sl-card-overlay">
-        <p class="sl-card-title">SDA BC &amp; Yukon HQ</p>
-        <p class="sl-card-meta">Abbotsford, BC &middot; Institutional</p>
+      <div class="lrd-card-overlay">
+        <p class="lrd-card-title">Balsam Way</p>
+        <p class="lrd-card-meta">Whistler &middot; Tymac Construction &middot; LRD Studio</p>
       </div>
-      <div class="sl-card-arrow">
-        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </div>
+      <div class="lrd-card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
     </a>
   </div>
 </section>
 
 <!-- ═══ SCOPE STATS ═══ -->
-<div class="sl-scope">
-  <div class="sl-scope-grid">
-    <div class="sl-scope-item">
-      <p class="sl-scope-num">2</p>
-      <p class="sl-scope-lbl">Projects Documented</p>
+<div class="lrd-scope">
+  <div class="lrd-scope-grid">
+    <div class="lrd-scope-item">
+      <p class="lrd-scope-num">2</p>
+      <p class="lrd-scope-lbl">Renovations</p>
     </div>
-    <div class="sl-scope-item">
-      <p class="sl-scope-num">37</p>
-      <p class="sl-scope-lbl">Thousand Sq Ft</p>
+    <div class="lrd-scope-item">
+      <p class="lrd-scope-num">70</p>
+      <p class="lrd-scope-lbl">Gallery Images</p>
     </div>
-    <div class="sl-scope-item">
-      <p class="sl-scope-num">3</p>
-      <p class="sl-scope-lbl">Deliverable Types</p>
+    <div class="lrd-scope-item">
+      <p class="lrd-scope-num">3</p>
+      <p class="lrd-scope-lbl">Content Formats</p>
     </div>
-    <div class="sl-scope-item">
-      <p class="sl-scope-num">2026</p>
-      <p class="sl-scope-lbl">Interior BC Trip</p>
+    <div class="lrd-scope-item">
+      <p class="lrd-scope-num">2</p>
+      <p class="lrd-scope-lbl">Video Walkthroughs</p>
+    </div>
+    <div class="lrd-scope-item">
+      <p class="lrd-scope-num">4</p>
+      <p class="lrd-scope-lbl">Shoot Sessions</p>
     </div>
   </div>
 </div>
 
 <!-- ═══ MANIFESTO ═══ -->
-<section class="sl-manifesto sl-grain" id="slManifesto">
-  <p class="sl-manifesto-text">
-    <span class="sl-mw">The</span> <span class="sl-mw">best</span> <span class="sl-mw sl-gold-word">architecture</span> <span class="sl-mw">deserves</span> <span class="sl-mw">to</span> <span class="sl-mw">be</span> <span class="sl-mw sl-gold-word">documented</span> <span class="sl-mw">at</span> <span class="sl-mw">the</span> <span class="sl-mw">same</span> <span class="sl-mw sl-gold-word">standard</span> <span class="sl-mw">it</span> <span class="sl-mw">was</span> <span class="sl-mw sl-gold-word">designed.</span> <span class="sl-mw">Every</span> <span class="sl-mw">detail</span> <span class="sl-mw">you</span> <span class="sl-mw">refined,</span> <span class="sl-mw">every</span> <span class="sl-mw">material</span> <span class="sl-mw">you</span> <span class="sl-mw">specified,</span> <span class="sl-mw">every</span> <span class="sl-mw">sightline</span> <span class="sl-mw">you</span> <span class="sl-mw">composed</span> <span class="sl-mw">—</span> <span class="sl-mw">if</span> <span class="sl-mw">the</span> <span class="sl-mw sl-gold-word">photography</span> <span class="sl-mw">doesn't</span> <span class="sl-mw">capture</span> <span class="sl-mw">it,</span> <span class="sl-mw">the</span> <span class="sl-mw sl-gold-word">work</span> <span class="sl-mw">stays</span> <span class="sl-mw sl-gold-word">invisible.</span>
+<section class="lrd-manifesto lrd-grain" id="lrdManifesto">
+  <p class="lrd-manifesto-text">
+    <span class="lrd-mw">Design</span> <span class="lrd-mw">is</span> <span class="lrd-mw">in</span> <span class="lrd-mw">the</span> <span class="lrd-mw lrd-gold-word">details.</span> <span class="lrd-mw">The</span> <span class="lrd-mw">grain</span> <span class="lrd-mw">of</span> <span class="lrd-mw">the</span> <span class="lrd-mw">walnut.</span> <span class="lrd-mw">The</span> <span class="lrd-mw">weight</span> <span class="lrd-mw">of</span> <span class="lrd-mw">the</span> <span class="lrd-mw">linen.</span> <span class="lrd-mw">The</span> <span class="lrd-mw">light</span> <span class="lrd-mw">on</span> <span class="lrd-mw">the</span> <span class="lrd-mw">brass.</span> <span class="lrd-mw">Those</span> <span class="lrd-mw">details</span> <span class="lrd-mw">deserve</span> <span class="lrd-mw">to</span> <span class="lrd-mw">be</span> <span class="lrd-mw lrd-gold-word">captured</span> <span class="lrd-mw">with</span> <span class="lrd-mw">the</span> <span class="lrd-mw">same</span> <span class="lrd-mw lrd-gold-word">intention</span> <span class="lrd-mw">they</span> <span class="lrd-mw">were</span> <span class="lrd-mw lrd-gold-word">created</span> <span class="lrd-mw">with.</span>
   </p>
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="sl-cta">
-  <div class="sl-cta-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a119f9ef-28a0-4458-a35d-468d84d38c39/siteline-langley-52.jpg?format=2500w" alt="Sitelines Architecture luxury residence Langley" loading="lazy">
+<section class="lrd-cta">
+  <div class="lrd-cta-bg">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0b4f9f4d-01c4-4da3-ae8e-1131391d280f/sunridge-whistle-web--39.jpg?format=2500w" alt="Sunridge Whistler kitchen interior design photography" loading="lazy">
   </div>
-  <div class="sl-cta-c">
-    <p class="sl-cta-eyebrow">Ready to Stand Out</p>
-    <h2>If you're an architect ready to <em>showcase your best work</em>, let's talk.</h2>
-    <p class="sl-cta-sub">Photography that communicates your design intent. Imagery for awards, publications, and every client presentation. One photographer who already understands architecture.</p>
-    <a href="/discovery-call" class="sl-cta-btn sl-magnetic" target="_blank" rel="noopener">Book a Discovery Call</a>
-    <p class="sl-alt-cta">Not ready to talk? <a href="/pricing-guide-landing">Get Pricing</a> &middot; <a href="https://mattanthonyphoto.github.io/photo-ready/">Take the Quiz</a></p>
+  <div class="lrd-cta-c">
+    <p class="lrd-cta-eyebrow">Ready to Elevate Your Portfolio</p>
+    <h2>If you're a designer ready to <em>elevate your portfolio</em>, let's talk.</h2>
+    <p class="lrd-cta-sub">Photography, video, and aerial content built for editorial pitches, award submissions, and client acquisition. One photographer who understands design intent.</p>
+    <a href="/discovery-call" class="lrd-cta-btn lrd-magnetic" target="_blank" rel="noopener">Book a Discovery Call</a>
+    <p class="lrd-alt-cta">Not ready to talk? <a href="/pricing-guide-landing">Get Pricing</a> &middot; <a href="https://mattanthonyphoto.github.io/photo-ready/">Take the Quiz</a></p>
   </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
-<footer class="sl-ft">
-<div class="sl-ft-locs"><a href="/squamish-architectural-photography">Squamish</a><a href="/whistler-architectural-photography">Whistler</a><a href="/pemberton-photography">Pemberton</a><a href="/sunshine-coast-photography">Sunshine Coast</a><a href="/vancouver-architectural-photographer">Vancouver</a><a href="/fraser-valley-photography">Fraser Valley</a><a href="/okanagan-architectural-photographer">Okanagan</a></div>
+<footer class="lrd-ft">
+<div class="lrd-ft-locs"><a href="/squamish-architectural-photography">Squamish</a><a href="/whistler-architectural-photography">Whistler</a><a href="/pemberton-photography">Pemberton</a><a href="/sunshine-coast-photography">Sunshine Coast</a><a href="/vancouver-architectural-photographer">Vancouver</a><a href="/fraser-valley-photography">Fraser Valley</a><a href="/okanagan-architectural-photographer">Okanagan</a></div>
 
-  <div class="sl-ft-row">
-    <div class="sl-ft-item"><span class="sl-ft-label">Based In</span><span class="sl-ft-dot"></span><p>Squamish, British Columbia</p></div>
-    <div class="sl-ft-item"><span class="sl-ft-label">Email</span><span class="sl-ft-dot"></span><a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></div>
-    <div class="sl-ft-item"><span class="sl-ft-label">Phone</span><span class="sl-ft-dot"></span><a href="tel:6047659270">604.765.9270</a></div>
-    <div class="sl-ft-item"><span class="sl-ft-label">Follow</span><span class="sl-ft-dot"></span><div class="sl-ft-social"><a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/mattanthonyphoto/" target="_blank" rel="noopener">LinkedIn</a></div></div>
+  <div class="lrd-ft-row">
+    <div class="lrd-ft-item"><span class="lrd-ft-label">Based In</span><span class="lrd-ft-dot"></span><p>Squamish, British Columbia</p></div>
+    <div class="lrd-ft-item"><span class="lrd-ft-label">Email</span><span class="lrd-ft-dot"></span><a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></div>
+    <div class="lrd-ft-item"><span class="lrd-ft-label">Phone</span><span class="lrd-ft-dot"></span><a href="tel:6047659270">604.765.9270</a></div>
+    <div class="lrd-ft-item"><span class="lrd-ft-label">Follow</span><span class="lrd-ft-dot"></span><div class="lrd-ft-social"><a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/mattanthonyphoto/" target="_blank" rel="noopener">LinkedIn</a></div></div>
   </div>
-  <div class="sl-ft-rule"></div>
-  <div class="sl-ft-bottom">
-    <span class="sl-ft-copy">&copy; 2026 Matt Anthony Photography</span>
-    <nav class="sl-ft-nav"><a href="/projects">Projects</a><a href="/journal">Journal</a><a href="/journal/aibc-awards-guide">AIBC Awards</a><a href="/journal/raic-awards-guide">RAIC Awards</a><a href="/bio">About</a><a href="/contact">Contact</a><a href="/pricing-guide-landing">Get Pricing</a></nav>
+  <div class="lrd-ft-rule"></div>
+  <div class="lrd-ft-bottom">
+    <span class="lrd-ft-copy">&copy; 2026 Matt Anthony Photography</span>
+    <nav class="lrd-ft-nav"><a href="/projects">Projects</a><a href="/journal">Journal</a><a href="/journal/georgie-awards-guide">Georgie Awards</a><a href="/journal/western-living-submissions">Western Living</a><a href="/bio">About</a><a href="/contact">Contact</a><a href="/pricing-guide-landing">Get Pricing</a></nav>
   </div>
 </footer>
 
@@ -1947,25 +2015,25 @@
 <script>
 (function(){
   var isMobile = 'ontouchstart' in window;
-  var wrap = document.querySelector('.sl-wrap');
-  var progressBar = document.getElementById('slProgress');
-  var hero = document.querySelector('.sl-hero');
-  var heroContent = document.querySelector('.sl-hero-content');
-  var heroBg = document.querySelector('.sl-hero-bg');
+  var wrap = document.querySelector('.lrd-wrap');
+  var progressBar = document.getElementById('lrdProgress');
+  var hero = document.querySelector('.lrd-hero');
+  var heroContent = document.querySelector('.lrd-hero-content');
+  var heroBg = document.querySelector('.lrd-hero-bg');
 
   /* ═══ LOADING SCREEN ═══ */
-  var loader = document.getElementById('slLoader');
+  var loader = document.getElementById('lrdLoader');
   window.addEventListener('load', function(){
-    setTimeout(function(){ loader.classList.add('sl-done'); }, 1100);
+    setTimeout(function(){ loader.classList.add('lrd-done'); }, 1100);
   });
 
   /* ═══ SECTION NAV DOTS ═══ */
-  var sectionNav = document.getElementById('slSectionNav');
+  var sectionNav = document.getElementById('lrdSectionNav');
   var navSections = document.querySelectorAll('[data-nav]');
   var navDots = [];
   navSections.forEach(function(sec){
     var dot = document.createElement('div');
-    dot.className = 'sl-nav-dot';
+    dot.className = 'lrd-nav-dot';
     dot.setAttribute('data-label', sec.getAttribute('data-nav'));
     dot.addEventListener('click', function(){
       sec.scrollIntoView({ behavior:'smooth', block:'start' });
@@ -1977,15 +2045,15 @@
   function updateNavDots(){
     var scrollY = window.scrollY;
     var winH = window.innerHeight;
-    if(scrollY > winH * 0.5) sectionNav.classList.add('sl-nav-visible');
-    else sectionNav.classList.remove('sl-nav-visible');
+    if(scrollY > winH * 0.5) sectionNav.classList.add('lrd-nav-visible');
+    else sectionNav.classList.remove('lrd-nav-visible');
     var active = null;
     navDots.forEach(function(item){
       var rect = item.section.getBoundingClientRect();
       if(rect.top < winH * 0.5 && rect.bottom > winH * 0.3) active = item;
-      item.dot.classList.remove('sl-nav-active');
+      item.dot.classList.remove('lrd-nav-active');
     });
-    if(active) active.dot.classList.add('sl-nav-active');
+    if(active) active.dot.classList.add('lrd-nav-active');
   }
 
   /* ═══ SCROLL PROGRESS ═══ */
@@ -2009,7 +2077,7 @@
   }
 
   /* ═══ PHOTO BREAK PARALLAX ═══ */
-  var photoBreaks = document.querySelectorAll('.sl-img-break');
+  var photoBreaks = document.querySelectorAll('.lrd-img-break');
   function updatePhotoParallax(){
     photoBreaks.forEach(function(pb){
       var rect = pb.getBoundingClientRect();
@@ -2023,40 +2091,40 @@
   /* ═══ HEADLINE GOLD UNDERLINE ═══ */
   var headObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('sl-underlined'); headObs.unobserve(e.target); }
+      if(e.isIntersecting){ e.target.classList.add('lrd-underlined'); headObs.unobserve(e.target); }
     });
   }, {threshold:0.4});
-  document.querySelectorAll('.sl-wrap h2').forEach(function(h){ headObs.observe(h); });
+  document.querySelectorAll('.lrd-wrap h2').forEach(function(h){ headObs.observe(h); });
 
   /* ═══ EYEBROW DASH DRAW ═══ */
   var eyeObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('sl-visible'); eyeObs.unobserve(e.target); }
+      if(e.isIntersecting){ e.target.classList.add('lrd-visible'); eyeObs.unobserve(e.target); }
     });
   }, {threshold:0.5});
-  document.querySelectorAll('.sl-eyebrow').forEach(function(el){ eyeObs.observe(el); });
+  document.querySelectorAll('.lrd-eyebrow').forEach(function(el){ eyeObs.observe(el); });
 
   /* ═══ DIVIDER DRAW ═══ */
   var divObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('sl-drawn'); divObs.unobserve(e.target); }
+      if(e.isIntersecting){ e.target.classList.add('lrd-drawn'); divObs.unobserve(e.target); }
     });
   }, {threshold:0.5});
-  document.querySelectorAll('.sl-divider').forEach(function(el){ el.style.width = '0'; divObs.observe(el); });
+  document.querySelectorAll('.lrd-divider').forEach(function(el){ el.style.width = '0'; divObs.observe(el); });
 
   /* ═══ META BAR BORDER DRAW ═══ */
   var metaObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('sl-drawn'); metaObs.unobserve(e.target); }
+      if(e.isIntersecting){ e.target.classList.add('lrd-drawn'); metaObs.unobserve(e.target); }
     });
   }, {threshold:0.3});
-  document.querySelectorAll('.sl-meta').forEach(function(el){ metaObs.observe(el); });
+  document.querySelectorAll('.lrd-meta').forEach(function(el){ metaObs.observe(el); });
 
   /* ═══ KEN BURNS ═══ */
   var kenObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting) e.target.classList.add('sl-in-view');
-      else e.target.classList.remove('sl-in-view');
+      if(e.isIntersecting) e.target.classList.add('lrd-in-view');
+      else e.target.classList.remove('lrd-in-view');
     });
   }, {threshold:0.1});
   photoBreaks.forEach(function(el){ kenObs.observe(el); });
@@ -2064,55 +2132,53 @@
   /* ═══ QUOTE SECTION ═══ */
   var quoteObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('sl-in-view'); quoteObs.unobserve(e.target); }
+      if(e.isIntersecting){ e.target.classList.add('lrd-in-view'); quoteObs.unobserve(e.target); }
     });
   }, {threshold:0.3});
-  document.querySelectorAll('.sl-quote').forEach(function(el){ quoteObs.observe(el); });
+  document.querySelectorAll('.lrd-quote').forEach(function(el){ quoteObs.observe(el); });
 
   /* ═══ CTA ZOOM ═══ */
   var ctaObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('sl-in-view'); ctaObs.unobserve(e.target); }
+      if(e.isIntersecting){ e.target.classList.add('lrd-in-view'); ctaObs.unobserve(e.target); }
     });
   }, {threshold:0.2});
-  document.querySelectorAll('.sl-cta').forEach(function(el){ ctaObs.observe(el); });
+  document.querySelectorAll('.lrd-cta').forEach(function(el){ ctaObs.observe(el); });
 
   /* ═══ STAT COUNTERS ═══ */
   function ease(t){ return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
   var counterObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(!e.isIntersecting || e.target.classList.contains('sl-counted')) return;
-      e.target.classList.add('sl-counted');
+      if(!e.isIntersecting || e.target.classList.contains('lrd-counted')) return;
+      e.target.classList.add('lrd-counted');
       var text = e.target.textContent.trim();
       var hasPlus = text.indexOf('+') !== -1;
-      var hasK = text.indexOf('K') !== -1;
       var num = parseInt(text);
       if(isNaN(num)) return;
-      var suffix = hasK ? 'K+' : (hasPlus ? '+' : '');
       var start = performance.now();
       function tick(now){
         var t = Math.min((now - start) / 1400, 1);
-        e.target.textContent = Math.round(ease(t) * num) + suffix;
+        e.target.textContent = Math.round(ease(t) * num) + (hasPlus ? '+' : '');
         if(t < 1) requestAnimationFrame(tick);
       }
-      e.target.textContent = '0' + suffix;
+      e.target.textContent = '0' + (hasPlus ? '+' : '');
       requestAnimationFrame(tick);
     });
   }, {threshold:0.3});
-  document.querySelectorAll('.sl-scope-num, .sl-result-num').forEach(function(el){ counterObs.observe(el); });
+  document.querySelectorAll('.lrd-scope-num, .lrd-result-num').forEach(function(el){ counterObs.observe(el); });
 
   /* ═══ CUSTOM CURSOR ═══ */
-  var cursor = document.getElementById('slCursor');
-  var cursorDot = document.getElementById('slCursorDot');
+  var cursor = document.getElementById('lrdCursor');
+  var cursorDot = document.getElementById('lrdCursorDot');
   var cx = 0, cy = 0, dx = 0, dy = 0;
   if(!isMobile && cursor){
     document.addEventListener('mousemove', function(e){
       dx = e.clientX; dy = e.clientY;
       cursorDot.style.left = dx + 'px';
       cursorDot.style.top = dy + 'px';
-      if(!cursor.classList.contains('sl-active')){
-        cursor.classList.add('sl-active');
-        cursorDot.classList.add('sl-active');
+      if(!cursor.classList.contains('lrd-active')){
+        cursor.classList.add('lrd-active');
+        cursorDot.classList.add('lrd-active');
       }
     });
     function tickCursor(){
@@ -2123,18 +2189,18 @@
       requestAnimationFrame(tickCursor);
     }
     tickCursor();
-    var hoverEls = document.querySelectorAll('a, button, .sl-card, .sl-del-card, .sl-cta-btn');
+    var hoverEls = document.querySelectorAll('a, button, .lrd-card, .lrd-del-card, .lrd-cta-btn');
     hoverEls.forEach(function(el){
-      el.addEventListener('mouseenter', function(){ cursor.classList.add('sl-hover'); });
-      el.addEventListener('mouseleave', function(){ cursor.classList.remove('sl-hover'); });
+      el.addEventListener('mouseenter', function(){ cursor.classList.add('lrd-hover'); });
+      el.addEventListener('mouseleave', function(){ cursor.classList.remove('lrd-hover'); });
     });
-    document.addEventListener('mousedown', function(){ cursor.classList.add('sl-click'); });
-    document.addEventListener('mouseup', function(){ cursor.classList.remove('sl-click'); });
+    document.addEventListener('mousedown', function(){ cursor.classList.add('lrd-click'); });
+    document.addEventListener('mouseup', function(){ cursor.classList.remove('lrd-click'); });
   }
 
   /* ═══ MAGNETIC BUTTON ═══ */
   if(!isMobile){
-    document.querySelectorAll('.sl-magnetic').forEach(function(btn){
+    document.querySelectorAll('.lrd-magnetic').forEach(function(btn){
       btn.addEventListener('mousemove', function(e){
         var rect = btn.getBoundingClientRect();
         var x = e.clientX - rect.left - rect.width / 2;
@@ -2148,8 +2214,8 @@
   }
 
   /* ═══ TESTIMONIAL WORD REVEAL ═══ */
-  var quoteEl = document.getElementById('slQuote');
-  var qWords = quoteEl ? quoteEl.querySelectorAll('.sl-qw') : [];
+  var quoteEl = document.getElementById('lrdQuote');
+  var qWords = quoteEl ? quoteEl.querySelectorAll('.lrd-qw') : [];
   var quoteRevealed = false;
   function updateQuote(){
     if(!quoteEl || quoteRevealed) return;
@@ -2160,7 +2226,7 @@
     progress = Math.max(0, Math.min(1, progress));
     var wordsToLight = Math.floor(progress * qWords.length);
     for(var i = 0; i < qWords.length; i++){
-      if(i < wordsToLight) qWords[i].classList.add('sl-lit');
+      if(i < wordsToLight) qWords[i].classList.add('lrd-lit');
     }
     if(wordsToLight >= qWords.length) quoteRevealed = true;
   }
@@ -2169,34 +2235,34 @@
   var delObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
-        var cards = e.target.querySelectorAll('.sl-del-card');
+        var cards = e.target.querySelectorAll('.lrd-del-card');
         cards.forEach(function(card, i){
-          setTimeout(function(){ card.classList.add('sl-entered'); }, i * 100);
+          setTimeout(function(){ card.classList.add('lrd-entered'); }, i * 100);
         });
         delObs.unobserve(e.target);
       }
     });
   }, {threshold:0.2});
-  var delGrid = document.querySelector('.sl-deliverables');
+  var delGrid = document.querySelector('.lrd-deliverables');
   if(delGrid) delObs.observe(delGrid);
 
   /* ═══ SCOPE STAT BAR FILLS ═══ */
   var scopeObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
-        var items = e.target.querySelectorAll('.sl-scope-item');
+        var items = e.target.querySelectorAll('.lrd-scope-item');
         items.forEach(function(item, i){
-          setTimeout(function(){ item.classList.add('sl-filled'); }, i * 120);
+          setTimeout(function(){ item.classList.add('lrd-filled'); }, i * 120);
         });
         scopeObs.unobserve(e.target);
       }
     });
   }, {threshold:0.3});
-  var scopeGrid = document.querySelector('.sl-scope-grid');
+  var scopeGrid = document.querySelector('.lrd-scope-grid');
   if(scopeGrid) scopeObs.observe(scopeGrid);
 
   /* ═══ AMBIENT PARTICLES ═══ */
-  var canvas = document.getElementById('slParticles');
+  var canvas = document.getElementById('lrdParticles');
   if(canvas){
     var ctx = canvas.getContext('2d');
     var particles = [];
@@ -2236,15 +2302,15 @@
   }
 
   /* ═══ SCROLL INDICATOR HIDE ═══ */
-  var scrollHint = document.getElementById('slScrollHint');
+  var scrollHint = document.getElementById('lrdScrollHint');
   function updateScrollHint(){
-    if(window.scrollY > 80) scrollHint.classList.add('sl-hidden');
-    else scrollHint.classList.remove('sl-hidden');
+    if(window.scrollY > 80) scrollHint.classList.add('lrd-hidden');
+    else scrollHint.classList.remove('lrd-hidden');
   }
 
   /* ═══ MANIFESTO WORD REVEAL ═══ */
-  var manifesto = document.getElementById('slManifesto');
-  var mWords = manifesto ? manifesto.querySelectorAll('.sl-mw') : [];
+  var manifesto = document.getElementById('lrdManifesto');
+  var mWords = manifesto ? manifesto.querySelectorAll('.lrd-mw') : [];
   var manifestoRevealed = false;
   function updateManifesto(){
     if(!manifesto || manifestoRevealed) return;
@@ -2255,7 +2321,7 @@
     progress = Math.max(0, Math.min(1, progress));
     var wordsToLight = Math.floor(progress * mWords.length);
     for(var i = 0; i < mWords.length; i++){
-      if(i < wordsToLight) mWords[i].classList.add('sl-lit');
+      if(i < wordsToLight) mWords[i].classList.add('lrd-lit');
     }
     if(wordsToLight >= mWords.length) manifestoRevealed = true;
   }
@@ -2286,27 +2352,30 @@
 </script>
 
 <!--
-  Sitelines Architecture — Case Study Code Block
-  mattanthonyphoto.com/sitelines-architecture
+  LRD Studio Interior Design — Case Study Code Block
+  mattanthonyphoto.com/lrd-studio-interior-design
 
   Last updated: 2026-03-24
   Changes:
-    1. Complete rebuild using Balmoral template design system
-    2. Added interactive layer: scroll progress, custom cursor, parallax, Ken Burns, word-reveal
-    3. Added manifesto section with architect-focused messaging
-    4. Added scope stats strip
-    5. Converted testimonial to word-reveal spans
-    6. Upgraded CTA with magnetic button, eyebrow, and full-height layout
-    7. Added particles canvas, scroll hint, film grain overlays
-    8. All classes use sl- prefix throughout
+    1. Complete rebuild using Balmoral design system (interactive layer, manifesto, word-reveal, particles, cursor)
+    2. All CSS classes use lrd- prefix
+    3. Added scroll progress bar, custom cursor, magnetic button, Ken Burns, film grain
+    4. Testimonial converted to word-reveal spans with gold highlight words
+    5. Added manifesto section for interior designers
+    6. Added scope stats strip
+    7. Preserved all original content, image URLs, testimonial, project cards, meta, JSON-LD
+    8. Preserved Western Living footer link
+    9. Removed vertical dividers, insight callouts — matched Balmoral horizontal accent lines
+    10. Deliverables use 3-col top-border cards matching Balmoral structure
+    11. Gallery section with 3-image mosaic between deliverables and testimonial
 -->
 
 <!-- SEO Meta -->
-<meta name="description" content="How Matt Anthony documented Sitelines Architecture's range — from a luxury Langley residence to a 25,000 sq ft mass timber headquarters in Abbotsford.">
-<link rel="canonical" href="https://www.mattanthonyphoto.com/sitelines-architecture">
-<meta property="og:title" content="Sitelines Architecture | Photography Case Study | Matt Anthony">
-<meta property="og:description" content="Two projects, one visual thread. Residential and institutional architectural photography for an award-winning BC architecture firm.">
-<meta property="og:url" content="https://www.mattanthonyphoto.com/sitelines-architecture">
+<meta name="description" content="How architectural photography helped LRD Studio build a publication-ready visual portfolio across two Whistler renovation projects — interior design case study.">
+<link rel="canonical" href="https://www.mattanthonyphoto.com/lrd-studio-interior-design">
+<meta property="og:title" content="LRD Studio Interior Design | Photography Case Study | Matt Anthony">
+<meta property="og:description" content="Building a publication-ready visual portfolio for an award-winning Whistler interior design studio. Two renovations, one cohesive visual story.">
+<meta property="og:url" content="https://www.mattanthonyphoto.com/lrd-studio-interior-design">
 <meta property="og:type" content="article">
 
 <!-- Article + Review Schema -->
@@ -2314,22 +2383,27 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Sitelines Architecture: Documenting Design Across British Columbia",
-  "url": "https://www.mattanthonyphoto.com/sitelines-architecture",
+  "headline": "Building a Publication-Ready Visual Portfolio for an Award-Winning Design Studio",
+  "description": "Photography and video across two major Whistler renovation projects, creating a visual library for portfolio, editorial pitches, award submissions, and social media.",
+  "url": "https://www.mattanthonyphoto.com/lrd-studio-interior-design",
   "author": {
     "@id": "https://www.mattanthonyphoto.com/#person"
   },
   "publisher": {
     "@id": "https://www.mattanthonyphoto.com/#business"
   },
-  "image": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ecb64bfd-d94c-4629-8c8a-c5d8da1a9742/sitelines-SDA-web--63.jpg",
+  "image": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg",
+  "about": {
+    "@type": "Organization",
+    "name": "LRD Studio"
+  },
   "review": {
     "@type": "Review",
     "author": {
       "@type": "Person",
-      "name": "Jordan Maddox"
+      "name": "Lauren Ritz"
     },
-    "reviewBody": "What first drew us to Matt's work was his use of natural light. He captures spaces in a way that feels authentic and honest, allowing the materials to shine.",
+    "reviewBody": "Matt has a rare ability to understand what we're trying to achieve with a design and translate that into imagery. He doesn't just photograph rooms — he captures the feeling of being in a space and the intention behind every material choice. Both project galleries have become anchor pieces in our portfolio.",
     "itemReviewed": {
       "@id": "https://www.mattanthonyphoto.com/#business"
     }
