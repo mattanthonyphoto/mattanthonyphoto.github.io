@@ -804,12 +804,13 @@
   var nav=document.getElementById('hpNav');
   var heroEl=document.querySelector('.sw-s-hero');
   if(swEl&&nav){
-    var navTick=false;
     function navCheck(){
       var t=(heroEl?heroEl.offsetHeight:window.innerHeight)-nav.offsetHeight;
-      nav.classList.toggle('hp-scrolled',swEl.scrollTop>t); navTick=false;
+      nav.classList.toggle('hp-scrolled',swEl.scrollTop>t);
     }
-    swEl.addEventListener('scroll',function(){ if(!navTick){navTick=true;requestAnimationFrame(navCheck);} },{passive:true});
+    // One class toggle per event is cheap enough to skip the rAF throttle; the snap
+    // container emits few scroll events, and this keeps the flip testable headless.
+    swEl.addEventListener('scroll',navCheck,{passive:true});
     navCheck();
   }
 
