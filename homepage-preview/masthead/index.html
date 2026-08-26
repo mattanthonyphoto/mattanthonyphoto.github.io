@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homepage: masthead</title>
+<style>html,body{margin:0;padding:0}</style>
+</head>
+<body>
+<style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}
+</style>
+
+<!-- ═══ Fonts: preconnect + Google Fonts, lifted verbatim from homepage-v2 ═══ -->
+<link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   HOMEPAGE — DIRECTION 2, "MASTHEAD"
+   The page opens on type, not on a photograph. Everything here is
+   plain CSS: no element on this page is hidden at rest and revealed
+   by script, so if the JS never runs, every word is still readable.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ═══ SQUARESPACE OVERRIDES ═══ */
+#header,header,.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+#footer,footer#footer,.footer-wrapper,[data-section-type="footer"]{display:none!important}
+.item-pagination{display:none!important}
+.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}
+.sqs-announcement-bar-dropzone{display:none!important}
+/* Ground is paper on this direction, not ink. Only the footer is dark. */
+body{background:#f6f4f0!important}
+#page{background:transparent!important}
+#sections{background:transparent!important}
+.page-section{background:transparent!important;min-height:0!important;padding:0!important;margin:0!important}
+.page-section .content-wrapper{padding:0!important;max-width:none!important}
+.content-wrapper{background:transparent!important;max-width:none!important;padding:0!important}
+.fluid-engine{background:transparent!important;padding:0!important;max-width:none!important;grid-template-columns:none!important;display:block!important}
+.fe-block{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;grid-area:auto!important;position:relative!important}
+.sqs-block-code{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.sqs-block-content{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.sqs-code-container{padding:0!important;margin:0!important;max-width:none!important;width:100%!important;overflow:visible!important}
+/* Kill Squarespace global fade animations on page content */
+.hp-wrap,.hp-wrap>section,.hp-wrap>div,.hp-ft{animation:none!important;-webkit-animation:none!important;opacity:1!important;visibility:visible!important}
+/* The nav is baked into this block; the injected sitewide header is hidden
+   here so the page never renders two navs. */
+#maHeader{display:none!important}
+
+/* ═══ PAGE WRAP ═══ */
+.hp-wrap{font-family:'DM Sans',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;color:#1a1a18;line-height:1.7;font-weight:300;overflow-x:hidden!important;max-width:100vw!important;width:100%!important;margin:0!important;padding:0!important;box-sizing:border-box!important;background:#f6f4f0}
+.hp-wrap *{box-sizing:border-box!important}
+.hp-wrap section{overflow-x:hidden!important;position:relative;z-index:1}
+.hp-wrap>div{position:relative;z-index:1}
+.hp-wrap a{color:inherit;text-decoration:none}
+.hp-wrap img{max-width:100%;display:block}
+
+/* ══════════════════════════════════════════════════════════════════
+   NAV — lifted verbatim from homepage-v2 (CSS, markup and scroll JS).
+   ══════════════════════════════════════════════════════════════════ */
+/* .hp-wrap>div{position:relative} is (0,1,1) and beats a bare class, so the
+   nav must out-rank it or it falls into the flow and shoves the hero down. */
+.hp-wrap .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
+  display:flex!important;align-items:center;justify-content:space-between;gap:24px;
+  padding:26px 5vw;
+  transition:background-color .45s cubic-bezier(.16,1,.3,1),padding .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:#f6f4f0!important;white-space:nowrap;
+  transition:color .45s cubic-bezier(.16,1,.3,1)}
+.hp-nav-links{display:flex!important;gap:clamp(20px,3vw,40px);align-items:center}
+.hp-nav-links a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,240,.78)!important;
+  transition:color .35s cubic-bezier(.16,1,.3,1)}
+.hp-nav-links a:hover,.hp-nav-links a:focus-visible{color:#fff!important}
+.hp-nav-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;white-space:nowrap;
+  background:#c9a96e!important;border:1px solid #c9a96e!important;color:#1a1a18!important;
+  transition:background-color .4s cubic-bezier(.16,1,.3,1),border-color .4s cubic-bezier(.16,1,.3,1)}
+.hp-nav-cta:hover,.hp-nav-cta:focus-visible{background:#b8975a!important;border-color:#b8975a!important;color:#1a1a18!important}
+/* scrolled state */
+.hp-nav.hp-scrolled{background-color:#f6f4f0;padding:14px 5vw;box-shadow:0 1px 0 rgba(26,26,24,.08)}
+.hp-nav.hp-scrolled .hp-nav-mark{color:#1a1a18!important}
+.hp-nav.hp-scrolled .hp-nav-links a{color:#8a8579!important}
+.hp-nav.hp-scrolled .hp-nav-links a:hover,.hp-nav.hp-scrolled .hp-nav-links a:focus-visible{color:#1a1a18!important}
+@media (max-width:820px){
+  .hp-nav{padding:18px 5vw}
+  .hp-nav-links{display:none!important}
+  .hp-nav-mark{font-size:11px;letter-spacing:.28em}
+  .hp-nav.hp-scrolled{padding:12px 5vw}
+}
+
+/* ── Nav, resting state for a page that opens on paper ──
+   The lifted nav above assumes a dark full-bleed photograph underneath, so
+   its resting wordmark and links are paper-coloured. This page opens on the
+   paper ground, where that resting state would paint #f6f4f0 text on an
+   #f6f4f0 background: invisible chrome, the exact failure this site has
+   shipped before. Nothing above is edited. These four rules restate the
+   already-defined scrolled colours as the resting colours, so the only
+   thing scrolling changes is the height and the hairline shadow. */
+.hp-wrap .hp-nav{background-color:#f6f4f0}
+.hp-nav .hp-nav-mark{color:#1a1a18!important}
+.hp-nav .hp-nav-links a{color:#8a8579!important}
+.hp-nav .hp-nav-links a:hover,.hp-nav .hp-nav-links a:focus-visible{color:#1a1a18!important}
+
+/* ══════════════════════════════════════════════════════════════════
+   SHARED MEASURE
+   One left edge governs the whole page: the name, the plate, the grid,
+   the quote and the closing line all hang off the same vertical.
+   ══════════════════════════════════════════════════════════════════ */
+.hm-rule{height:1px;background:#d9d5cd;width:100%;border:none;margin:0}
+.hm-eyebrow{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:10px;
+  letter-spacing:.36em;text-transform:uppercase;color:#8a8579;margin:0;line-height:1}
+
+/* ══════════════════════════════════════════════════════════════════
+   1. MASTHEAD — the title page. Type only. No photograph, no button,
+   no ornament. A referred visitor reads the name and the discipline
+   before a single image has decoded.
+   ══════════════════════════════════════════════════════════════════ */
+.hm-masthead{background:#f6f4f0;padding:clamp(128px,17vh,196px) 5vw clamp(48px,7vh,88px);
+  min-height:78vh;display:flex!important;align-items:center}
+.hm-masthead-inner{max-width:1280px;margin:0 auto;width:100%}
+.hm-name{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(2.9rem,12.5vw,10.5rem);line-height:.94;letter-spacing:-.015em;
+  color:#1a1a18;margin:0 0 clamp(28px,4vw,54px);text-indent:-.02em}
+.hm-colophon{display:flex!important;flex-wrap:wrap;justify-content:space-between;
+  align-items:baseline;gap:10px 32px;padding-top:clamp(18px,2vw,26px)}
+.hm-colophon p{margin:0;font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(13px,1.05vw,16px);letter-spacing:.05em;color:#1a1a18;line-height:1.6}
+.hm-colophon .hm-colophon-where{letter-spacing:.16em;text-transform:uppercase;
+  font-size:clamp(10.5px,.85vw,12.5px);color:#8a8579;white-space:nowrap}
+@media (max-width:640px){
+  .hm-masthead{min-height:0;padding-top:clamp(112px,20vh,150px)}
+  .hm-colophon{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   2. PLATE — one wide photograph, inset from the page edges on every
+   side so it reads as a plate tipped into a printed piece rather than
+   a web banner. The crop is the one Matt chose by eye for this frame.
+   ══════════════════════════════════════════════════════════════════ */
+.hm-plate{background:#f6f4f0;padding:0 5vw clamp(72px,10vw,132px)}
+.hm-plate-fig{margin:0;max-width:1280px;margin-left:auto;margin-right:auto}
+.hm-plate-frame{position:relative;width:100%;aspect-ratio:2/1;overflow:hidden;background:#eeece6}
+.hm-plate-frame img{width:100%;height:100%;object-fit:cover;object-position:30% 45%}
+.hm-plate-cap{display:flex!important;flex-wrap:wrap;justify-content:space-between;
+  align-items:baseline;gap:6px 24px;margin-top:14px}
+.hm-plate-cap .hm-plate-title{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1a1a18!important;
+  border-bottom:1px solid #d9d5cd;padding-bottom:2px;
+  transition:border-color .4s cubic-bezier(.16,1,.3,1)}
+.hm-plate-cap .hm-plate-title:hover,.hm-plate-cap .hm-plate-title:focus-visible{border-color:#1a1a18}
+.hm-plate-cap .hm-plate-where{margin:0;font-family:'DM Sans',-apple-system,sans-serif;
+  font-weight:300;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8a8579}
+@media (max-width:760px){
+  .hm-plate-frame{aspect-ratio:4/3}
+  .hm-plate-cap{flex-direction:column;align-items:flex-start}
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   3. SELECTED WORK — a tight two-up plate index. Eight projects, no
+   captions set beneath the tiles; the name arrives on hover and lives
+   in the alt text, so nothing is lost when the caption never paints.
+   Flexbox, because the host page disables CSS grid.
+   ══════════════════════════════════════════════════════════════════ */
+.hm-work{background:#f6f4f0;padding:0 5vw clamp(80px,11vw,140px)}
+.hm-work-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  gap:16px;padding-bottom:16px;margin-bottom:clamp(24px,3vw,40px);border-bottom:1px solid #d9d5cd}
+.hp-wrap .hm-allwork{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:border-color .4s cubic-bezier(.16,1,.3,1)}
+.hp-wrap .hm-allwork:hover,.hp-wrap .hm-allwork:focus-visible{border-color:#1a1a18}
+div.hm-grid{display:flex!important;flex-wrap:wrap!important;gap:14px!important;width:100%!important}
+a.hm-tile{position:relative;display:block!important;width:calc(50% - 7px)!important;
+  aspect-ratio:4/3!important;overflow:hidden;background:#eeece6}
+.hm-tile img{width:100%;height:100%;object-fit:cover;
+  transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.hm-tile:hover img,.hm-tile:focus-visible img{transform:scale(1.03)}
+.hm-tile-cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(14px,1.7vw,26px);
+  background:linear-gradient(to top,rgba(26,26,24,.66),rgba(26,26,24,0));
+  opacity:0;transition:opacity .5s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.hm-tile:hover .hm-tile-cap,.hm-tile:focus-visible .hm-tile-cap{opacity:1}
+.hm-tile-name{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1rem,1.5vw,1.45rem);line-height:1.2;color:#f6f4f0!important}
+.hm-tile-where{display:block;margin-top:4px;font-family:'DM Sans',-apple-system,sans-serif;
+  font-weight:300;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#d9d5cd!important}
+.hm-tile:focus-visible{outline:1px solid #1a1a18;outline-offset:3px}
+@media (max-width:640px){
+  div.hm-grid{gap:10px!important}
+  a.hm-tile{width:100%!important}
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   4. IN THEIR WORDS — one testimonial, verbatim, set as type. No card,
+   no border, no quotation ornament. The tonal band is the only frame.
+   ══════════════════════════════════════════════════════════════════ */
+.hm-word{background:#eeece6!important;padding:clamp(80px,11vw,140px) 5vw}
+.hm-word-inner{max-width:1280px;margin:0 auto}
+.hm-quote{margin:clamp(28px,3.5vw,48px) 0 0;padding:0;border:none;
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(1.4rem,2.9vw,2.5rem);line-height:1.34;letter-spacing:.002em;
+  color:#1a1a18;max-width:23em}
+.hm-quote-attr{margin:clamp(24px,3vw,40px) 0 0;font-family:'DM Sans',-apple-system,sans-serif;
+  font-weight:400;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:#1a1a18;line-height:1.9}
+.hm-quote-attr span{display:block;font-weight:300;color:#8a8579}
+
+/* ══════════════════════════════════════════════════════════════════
+   5. CLOSING — one line and one action. The button is ink at rest so
+   the page carries a single gold object, the one in the nav; gold
+   arrives on hover, as a reward rather than as standing ornament.
+   ══════════════════════════════════════════════════════════════════ */
+.hm-close{background:#f6f4f0;padding:clamp(80px,11vw,140px) 5vw clamp(88px,12vw,150px)}
+.hm-close-inner{max-width:1280px;margin:0 auto}
+.hm-close-line{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(1.35rem,2.6vw,2.2rem);line-height:1.38;color:#1a1a18;max-width:20em}
+.hp-wrap .hm-close-btn{display:inline-block;margin-top:clamp(28px,3.5vw,46px);
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;padding:16px 38px;
+  background:#1a1a18!important;border:1px solid #1a1a18!important;color:#f6f4f0!important;
+  transition:background-color .4s cubic-bezier(.16,1,.3,1),border-color .4s cubic-bezier(.16,1,.3,1),color .4s cubic-bezier(.16,1,.3,1)}
+.hp-wrap .hm-close-btn:hover,.hp-wrap .hm-close-btn:focus-visible{
+  background:#c9a96e!important;border-color:#c9a96e!important;color:#1a1a18!important}
+
+/* ══════════════════════════════════════════════════════════════════
+   FOOTER — lifted verbatim from homepage-v2.
+   (LRD pattern: statement / four columns / legal line.)
+   Flexbox throughout: the host page disables CSS grid.
+   ══════════════════════════════════════════════════════════════════ */
+.hp-ft{background:#1a1a18!important;padding:clamp(72px,10vw,120px) 5vw clamp(36px,4vw,56px);
+  border-top:1px solid rgba(201,169,110,.16)}
+.hp-ft-inner{max-width:1200px;margin:0 auto}
+
+/* statement */
+.hp-ft-statement{display:flex!important;flex-direction:column;gap:26px;
+  padding-bottom:clamp(56px,7vw,88px);border-bottom:1px solid rgba(246,244,240,.07);
+  margin-bottom:clamp(48px,6vw,72px)}
+.hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.85)!important;margin:0}
+.hp-ft-tagline{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(22px,2.4vw,32px);line-height:1.3;color:rgba(246,244,240,.92)!important;
+  max-width:720px;margin:0}
+.hp-ft-tagline span{display:block;margin-top:10px;font-family:'DM Sans',-apple-system,sans-serif;
+  font-weight:300;font-size:clamp(12px,1vw,14px);letter-spacing:.04em;color:rgba(246,244,240,.5)!important}
+.hp-ft-portal{display:inline-block;align-self:flex-start;margin-top:6px;
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;padding:14px 32px;border:1px solid rgba(246,244,240,.35)!important;
+  color:rgba(246,244,240,.92)!important;background:transparent!important;
+  transition:background-color .4s cubic-bezier(.16,1,.3,1),color .4s cubic-bezier(.16,1,.3,1),border-color .4s cubic-bezier(.16,1,.3,1)}
+.hp-ft-portal:hover,.hp-ft-portal:focus-visible{background:#f6f4f0!important;color:#1a1a18!important;border-color:#f6f4f0!important}
+.hp-ft-social{display:flex!important;gap:16px;align-items:center;margin-top:2px}
+.hp-ft-social a{display:inline-flex!important;align-items:center;justify-content:center;
+  width:38px;height:38px;color:rgba(246,244,240,.6)!important;border:1px solid rgba(246,244,240,.18);
+  transition:color .35s cubic-bezier(.16,1,.3,1),border-color .35s cubic-bezier(.16,1,.3,1)}
+.hp-ft-social a:hover,.hp-ft-social a:focus-visible{color:#c9a96e!important;border-color:rgba(201,169,110,.6)}
+
+/* four columns */
+.hp-ft-cols{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3vw,48px);
+  padding-bottom:clamp(48px,6vw,72px);border-bottom:1px solid rgba(246,244,240,.07)}
+.hp-ft-col{flex:1 1 0;min-width:150px}
+.hp-ft-col h4{font-family:'DM Sans',-apple-system,sans-serif;font-size:10px;letter-spacing:.32em;
+  text-transform:uppercase;color:rgba(246,244,240,.55)!important;margin:0 0 22px;font-weight:400}
+.hp-ft-col a,.hp-ft-col span{display:block;font-family:'DM Sans',-apple-system,sans-serif;
+  font-size:12.5px;font-weight:300;line-height:1.5;margin-bottom:13px;
+  color:rgba(246,244,240,.78)!important;transition:color .35s cubic-bezier(.16,1,.3,1)}
+.hp-ft-col a:hover,.hp-ft-col a:focus-visible{color:#c9a96e!important}
+.hp-ft-col span{color:rgba(246,244,240,.5)!important}
+
+/* legal line */
+.hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
+  padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
+.hp-ft-copy{display:flex!important;flex-direction:column;gap:6px;
+  font-family:'DM Sans',-apple-system,sans-serif;font-size:10px;font-weight:300;
+  letter-spacing:.06em;color:rgba(246,244,240,.45)!important}
+.hp-ft-rights{font-style:italic;color:rgba(246,244,240,.35)!important;letter-spacing:.04em}
+.hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:10px;font-weight:300;
+  max-width:520px;line-height:1.85;text-align:right;letter-spacing:.02em;color:rgba(246,244,240,.45)!important}
+@media (max-width:900px){
+  .hp-ft-col{flex:1 1 40%}
+  .hp-ft-bottom{flex-direction:column}
+  .hp-ft-land{text-align:left}
+}
+@media (max-width:560px){.hp-ft-col{flex:1 1 100%}}
+
+/* ── Motion preference ── */
+@media (prefers-reduced-motion:reduce){
+  .hp-wrap *{transition-duration:.01ms!important}
+  .hm-tile:hover img,.hm-tile:focus-visible img{transform:none}
+}
+</style>
+
+<!-- ═══ JSON-LD: WebPage + the person the page is about ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Matt Anthony, Architectural Photographer in Squamish BC",
+  "description": "Matt Anthony is an architectural and interiors photographer based in Squamish, British Columbia, working with architects, custom builders and interior designers across the province.",
+  "url": "https://www.mattanthonyphoto.com/",
+  "mainEntity": {
+    "@id": "https://www.mattanthonyphoto.com/#business"
+  },
+  "about": {
+    "@type": "Person",
+    "@id": "https://www.mattanthonyphoto.com/#person",
+    "name": "Matt Anthony",
+    "worksFor": {"@id": "https://www.mattanthonyphoto.com/#business"},
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Squamish",
+      "addressRegion": "BC",
+      "addressCountry": "CA"
+    },
+    "areaServed": {"@type": "AdministrativeArea", "name": "British Columbia"}
+  },
+  "isPartOf": {
+    "@id": "https://www.mattanthonyphoto.com/#website"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.mattanthonyphoto.com/"
+      }
+    ]
+  }
+}
+</script>
+
+<!-- ═══ PAGE CONTENT ═══ -->
+<div class="hp-wrap">
+
+<!-- ════════════ NAV (lifted verbatim from homepage-v2) ════════════ -->
+<div class="hp-nav" id="hpNav" role="navigation" aria-label="Main">
+  <a href="/" class="hp-nav-mark">Matt Anthony Photography</a>
+  <div class="hp-nav-links">
+    <a href="/projects">Projects</a>
+    <a href="/bio">About</a>
+    <a href="/journal">Journal</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <a href="/discovery-call" class="hp-nav-cta">Book a Call</a>
+</div>
+
+<!-- ════════════ 1. MASTHEAD ════════════
+     Type, not a photograph. A referred visitor confirms who this is and
+     what he does before any image has decoded. -->
+<section class="hm-masthead" data-nav="Home">
+  <div class="hm-masthead-inner">
+    <h1 class="hm-name">Matt Anthony</h1>
+    <hr class="hm-rule">
+    <div class="hm-colophon">
+      <p>Architectural and interiors photographer.</p>
+      <p class="hm-colophon-where">Squamish, British Columbia</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 2. PLATE ════════════
+     One photograph, inset on all four sides. Matt chose this frame and this
+     crop by eye for the banner; the crop is carried over unchanged. -->
+<section class="hm-plate">
+  <figure class="hm-plate-fig">
+    <div class="hm-plate-frame">
+      <img src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/b7448f8f-04d8-4093-baed-9aa1c54c140d/the-perch-sunshine-coast-4.jpg?format=1500w" width="1500" height="1125" fetchpriority="high" decoding="async" alt="The Perch: entry court with a stacked firewood wall and carport, Sunshine Coast, photographed by Matt Anthony">
+    </div>
+    <figcaption class="hm-plate-cap">
+      <a href="/the-perch-sunshine-coast" class="hm-plate-title">The Perch</a>
+      <p class="hm-plate-where">Sunshine Coast</p>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ════════════ 3. SELECTED WORK ════════════
+     Eight projects, two up. Matt's stated tile order, less The Perch, which
+     is carrying the plate above. No captions beneath the tiles. -->
+<section class="hm-work" data-nav="Work">
+  <div class="hm-work-head">
+    <h2 class="hm-eyebrow">Selected Work</h2>
+    <a href="/projects" class="hm-allwork">All Projects &rarr;</a>
+  </div>
+
+  <div class="hm-grid">
+
+    <a href="/salt-spring-island" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=1000w" width="1000" height="1000" decoding="async" alt="Salt Spring Island residence: green roof pavilion above the shore, Gulf Islands, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Salt Spring Island</span><span class="hm-tile-where">Gulf Islands</span></div>
+    </a>
+
+    <a href="/oles-cove" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w" width="1000" height="750" decoding="async" alt="Oles Cove at sunset, the house on its rock bluff in Halfmoon Bay, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Oles Cove</span><span class="hm-tile-where">Halfmoon Bay</span></div>
+    </a>
+
+    <a href="/schmit" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w" width="1000" height="750" loading="lazy" decoding="async" alt="Schmidt Residence, Invermere: covered upper deck looking out over the lake, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Schmidt Residence</span><span class="hm-tile-where">Invermere</span></div>
+    </a>
+
+    <a href="/desolation-sound" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w" width="1000" height="750" loading="lazy" decoding="async" alt="Desolation Sound residence at blue hour, moonrise reflected on the water, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Desolation Sound</span></div>
+    </a>
+
+    <a href="/johnstone-road" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w" width="1000" height="667" loading="lazy" decoding="async" alt="Johnstone Road, Madeira Park: waterside elevation with twin cedar gables, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Johnstone Road</span><span class="hm-tile-where">Madeira Park</span></div>
+    </a>
+
+    <a href="/warbler-whistler" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w" width="1000" height="667" loading="lazy" decoding="async" alt="Warbler Residence, Whistler: contemporary alpine home exterior, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Warbler Residence</span><span class="hm-tile-where">Whistler</span></div>
+    </a>
+
+    <a href="/fitzsimmons-whistler" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w" width="1000" height="667" loading="lazy" decoding="async" alt="Fitzsimmons Residence, Whistler: angular alpine exterior in snow, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Fitzsimmons Residence</span><span class="hm-tile-where">Whistler</span></div>
+    </a>
+
+    <a href="/fraser-valley-vista" class="hm-tile">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=1000w" width="1000" height="1250" loading="lazy" decoding="async" alt="Fraser Valley Vista, Langley: entry hall with a floating oak stair and inlaid marble floor, photographed by Matt Anthony">
+      <div class="hm-tile-cap" aria-hidden="true"><span class="hm-tile-name">Fraser Valley Vista</span><span class="hm-tile-where">Langley</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ════════════ 4. IN THEIR WORDS ════════════
+     One testimonial, verbatim, attributed exactly as given. Set as type. -->
+<section class="hm-word" data-nav="In their words">
+  <div class="hm-word-inner">
+    <h2 class="hm-eyebrow">In their words</h2>
+    <blockquote class="hm-quote">What first drew us to Matt&rsquo;s work was his use of natural light. He captures spaces in a way that feels authentic and honest, allowing the materials to shine. Matt truly understands what it takes to showcase a project.</blockquote>
+    <p class="hm-quote-attr">Jordan Maddox<span>Sitelines Architecture</span></p>
+  </div>
+</section>
+
+<!-- ════════════ 5. CLOSING ════════════ -->
+<section class="hm-close">
+  <div class="hm-close-inner">
+    <p class="hm-close-line">I document design intent for architects, builders and interior designers across British Columbia.</p>
+    <a href="/discovery-call" class="hm-close-btn">Book a Discovery Call</a>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER (lifted verbatim from homepage-v2) ════════════ -->
+<div class="hp-ft">
+  <div class="hp-ft-inner">
+
+    <div class="hp-ft-statement">
+      <p class="hp-ft-mark">Matt Anthony Photography</p>
+      <p class="hp-ft-tagline">Documenting design intent.<span>Architectural and interiors photography across British Columbia.</span></p>
+      <a href="/contact" class="hp-ft-portal">Get in Touch</a>
+      <div class="hp-ft-social">
+        <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/mattanthonyphoto/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hp-ft-cols">
+      <div class="hp-ft-col">
+        <h4>Explore</h4>
+        <a href="/projects">Projects</a>
+        <a href="/creative-partner">Creative Partner</a>
+        <a href="/summerhill-fine-homes">Case Studies</a>
+        <a href="/journal">Journal</a>
+      </div>
+      <div class="hp-ft-col">
+        <h4>Studio</h4>
+        <a href="/bio">About</a>
+        <a href="/process">Process</a>
+        <a href="/faqs">FAQs</a>
+        <a href="/pricing-guide-landing">Pricing Guide</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div class="hp-ft-col">
+        <h4>Regions</h4>
+        <a href="/squamish-architectural-photography">Squamish</a>
+        <a href="/whistler-architectural-photography">Whistler</a>
+        <a href="/pemberton-photography">Pemberton</a>
+        <a href="/sunshine-coast-photography">Sunshine Coast</a>
+        <a href="/vancouver-architectural-photographer">Vancouver</a>
+        <a href="/fraser-valley-photography">Fraser Valley</a>
+        <a href="/okanagan-architectural-photographer">Okanagan</a>
+      </div>
+      <div class="hp-ft-col">
+        <h4>Connect</h4>
+        <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a>
+        <a href="tel:6047659270">604.765.9270</a>
+        <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/mattanthonyphoto/" target="_blank" rel="noopener">LinkedIn</a>
+        <span>Squamish, British Columbia</span>
+      </div>
+    </div>
+
+    <div class="hp-ft-bottom">
+      <div class="hp-ft-copy">
+        <div>&copy; 2026 Matt Anthony Photography &middot; Squamish, BC</div>
+        <div class="hp-ft-rights">All images &copy; Matt Anthony</div>
+      </div>
+      <div class="hp-ft-land">I acknowledge the privilege of living and working on the unceded territory of the Skwx&#775;wu&#769;7mesh (Squamish) Nation.</div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<!-- ═══ INTERACTIVE LAYER ═══
+     The nav scroll state, lifted from homepage-v2, and nothing else. There
+     is no reveal-on-scroll layer on this page: every word is painted by CSS
+     at rest, so a stripped or failed script costs the page nothing. -->
+<script>
+(function(){
+function init(){
+  /* Nav: tightens and takes a hairline shadow once scrolled. */
+  var nav = document.getElementById('hpNav');
+  if(nav){
+    var navTick = false;
+    function navCheck(){ nav.classList.toggle('hp-scrolled', window.pageYOffset > 40); navTick = false; }
+    window.addEventListener('scroll', function(){
+      if(!navTick){ navTick = true; window.requestAnimationFrame(navCheck); }
+    }, {passive:true});
+    navCheck();
+  }
+}
+if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); }
+else { init(); }
+})();
+</script>
+
+<!-- Page meta (title, description, canonical, social image) lives in Squarespace:
+     Pages -> gear -> SEO tab, and Social Image. It is deliberately NOT in this code
+     block. A second description/og set injected into the body duplicates the one
+     Squarespace already emits in the head, which is a live SEO defect. -->
+
+<!-- Review schema, merged onto the LocalBusiness the sitewide header already declares.
+     Only the testimonial actually shown on the page is declared here. The quote is
+     verbatim. No star-rating property is declared: this client gave no rating, and
+     inventing one would be a fabricated claim in structured data. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@id": "https://www.mattanthonyphoto.com/#business",
+  "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Jordan Maddox"},
+      "publisher": {"@type": "Organization", "name": "Sitelines Architecture"},
+      "itemReviewed": {"@id": "https://www.mattanthonyphoto.com/#business"},
+      "reviewBody": "What first drew us to Matt's work was his use of natural light. He captures spaces in a way that feels authentic and honest, allowing the materials to shine. Matt truly understands what it takes to showcase a project."
+    }
+  ]
+}
+</script>
+
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  DIRECTION 2 — "MASTHEAD"
+
+  Sections, in order:
+    1. Nav ............ lifted verbatim from homepage-v2 (CSS, markup, scroll JS),
+                        with four rules restating its resting colours for a page
+                        that opens on paper instead of on a dark photograph.
+    2. Masthead ....... his name in Cormorant Garamond at title-page scale on the
+                        paper ground, a hairline, then one line: what he does and
+                        where he works. No photograph, no button, no ornament.
+    3. Plate .......... one wide photograph inset from all four page edges, with a
+                        small printed-plate caption linking to the project.
+    4. Selected Work .. eight projects, two up, tight gap, no captions beneath the
+                        tiles; one line above carrying the label and All Projects.
+    5. In their words . one verbatim testimonial set as type on the off-white
+                        ground. No card, no border, no quotation ornament.
+    6. Closing ........ one line and one action.
+    7. Footer ......... lifted verbatim from homepage-v2.
+
+  The argument: a visitor who already knows Matt is told who he is, what he does
+  and where he works in the first screen before a single photograph loads, and the
+  work then arrives as plates in a printed piece rather than as a web banner, so
+  the page earns its luxury from margin, type scale and restraint instead of from
+  ornament.
+  ══════════════════════════════════════════════════════════════════════════
+-->
+
+</body>
+</html>
