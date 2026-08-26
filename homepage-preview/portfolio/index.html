@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio</title>
+<style>html,body{margin:0;padding:0}</style>
+</head>
+<body>
+<style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
+
+<!-- preconnects + fonts; the LCP image carries fetchpriority="high" inline -->
+<link rel="preconnect" href="https://images.squarespace-cdn.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   Portfolio. Selected photographs in reading order, in flex rows.
+   Each frame's flex-grow is its aspect ratio, so a row shares one height
+   and portraits keep their shape. Same chrome as the homepage.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.hp-wrap{
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#8a8579; --rule:#d9d5cd; --off:#eeece6;
+  --section:clamp(88px,9vw,150px);
+  --ease:cubic-bezier(.16,1,.3,1);
+  font-family:'DM Sans',-apple-system,sans-serif;
+  font-weight:300; line-height:1.7; color:var(--ink);
+  background:var(--paper)!important;
+  -webkit-font-smoothing:antialiased;
+}
+.hp-wrap *{box-sizing:border-box}
+.hp-wrap img{max-width:100%;display:block}
+.hp-wrap a{color:inherit;text-decoration:none}
+#maHeader{display:none!important}
+.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+
+.hp-container{max-width:1360px;margin:0 auto;padding:0 clamp(24px,6vw,96px)}
+
+/* ── Eyebrow: gold rule, then wide-tracked caps. Used in every block. ── */
+.hp-eyebrow{
+  font-family:'Josefin Sans',sans-serif;font-weight:700;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--stone)!important;margin:0 0 28px;
+  display:inline-flex!important;align-items:center;gap:14px;
+}
+.hp-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
+
+/* ── Arrow link: the only link style below the nav ── */
+.hp-arrow-link{
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink)!important;border-bottom:1px solid var(--gold);
+  padding-bottom:5px;display:inline-block;transition:color .35s var(--ease),border-color .35s var(--ease);
+}
+.hp-arrow-link:hover,.hp-arrow-link:focus-visible{color:var(--gold-deep)!important;border-color:var(--gold-deep)}
+
+/* ════════════ NAV (lifted from homepage-v2, unchanged) ════════════ */
+.hp-wrap .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
+  display:flex!important;align-items:center;justify-content:space-between;gap:24px;
+  padding:26px 5vw;
+  transition:background-color .45s var(--ease)}
+.hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:#f6f4f0!important;white-space:nowrap;
+  transition:color .45s var(--ease)}
+.hp-nav-links{display:flex!important;gap:clamp(20px,3vw,40px);align-items:center}
+.hp-nav-links a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,240,.78)!important;
+  transition:color .35s var(--ease)}
+.hp-nav-links a:hover,.hp-nav-links a:focus-visible{color:#fff!important}
+.hp-nav.hp-scrolled{background-color:#f6f4f0}
+.hp-nav.hp-scrolled .hp-nav-mark{color:#1a1a18!important}
+.hp-nav.hp-scrolled .hp-nav-links a{color:#8a8579!important}
+.hp-nav.hp-scrolled .hp-nav-links a:hover,.hp-nav.hp-scrolled .hp-nav-links a:focus-visible{color:#1a1a18!important}
+@media (max-width:820px){
+  .hp-nav{padding:18px 5vw;gap:14px}
+  .hp-nav-links{gap:14px}
+  .hp-nav-links a{font-size:10px;letter-spacing:.1em}
+  .hp-nav-mark{font-size:11px;letter-spacing:.28em}
+}
+@media (max-width:480px){
+  .hp-nav{padding:16px 4vw;gap:10px}
+  .hp-nav-links{flex-wrap:wrap;justify-content:flex-end;gap:6px 11px}
+  .hp-nav-links a{font-size:10px;letter-spacing:.06em}
+  .hp-nav-mark{font-size:10px;letter-spacing:.2em}
+  .hp-hero-content .hp-eyebrow{font-size:10px;letter-spacing:.14em}
+  .hp-hero-content .hp-eyebrow::before{display:none}
+}
+
+
+/* On a paper page the nav is in its scrolled state from the first paint. */
+.hp-wrap .hp-nav{position:sticky!important}
+
+/* ════════════ HEADER ════════════ */
+.pf-head{padding:clamp(120px,14vw,190px) 0 clamp(36px,4vw,56px)}
+.pf-head .hp-container{max-width:1600px;padding-left:clamp(16px,4vw,60px);padding-right:clamp(16px,4vw,60px)}
+.pf-head h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink)!important;margin:0 0 14px}
+.pf-head p{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:15px;
+  color:var(--stone)!important;margin:0;max-width:52ch}
+
+/* ════════════ FRAMES ════════════ */
+.pf-gallery{padding:0 0 var(--section)}
+.pf-gallery .hp-container{max-width:1600px;padding-left:clamp(16px,4vw,60px);padding-right:clamp(16px,4vw,60px)}
+.pf-row{display:flex!important;gap:clamp(20px,2.4vw,36px);margin-bottom:clamp(20px,2.4vw,36px);align-items:stretch}
+.pf-inset{justify-content:center}
+.pf-inset .pf-frame{flex:0 1 70%}
+.pf-frame{position:relative;display:block;flex:var(--ar) 1 0;aspect-ratio:var(--ar);overflow:hidden;background:var(--off)!important;min-width:0}
+.pf-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s var(--ease),filter .7s var(--ease)}
+.pf-frame:hover img,.pf-frame:focus-visible img{transform:scale(1.03);filter:brightness(.92)}
+.pf-frame::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55) 100%);opacity:0;transition:opacity .6s var(--ease)}
+.pf-frame:hover::after,.pf-frame:focus-visible::after{opacity:1}
+.pf-cap{position:absolute;left:clamp(16px,2vw,28px);right:clamp(16px,2vw,28px);bottom:clamp(14px,1.8vw,24px);
+  display:flex!important;flex-direction:column;gap:3px;color:#f6f4f0!important;z-index:2;
+  opacity:0;transform:translateY(8px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.pf-frame:hover .pf-cap,.pf-frame:focus-visible .pf-cap{opacity:1;transform:none}
+.pf-cap-name{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.2;color:#f6f4f0!important}
+.pf-cap-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,244,240,.72)!important}
+@media (hover:none){.pf-frame::after{opacity:1}.pf-cap{opacity:1;transform:none}}
+@media (max-width:640px){
+  .pf-row{flex-direction:column}
+  .pf-frame{flex:0 0 auto;width:100%}
+  .pf-inset .pf-frame{flex:0 0 auto}
+}
+
+/* ════════════ CLOSE (text only, the page ends on the work) ════════════ */
+.pf-close{padding:0 0 var(--section);text-align:center}
+.pf-close .hp-eyebrow{justify-content:center}
+.pf-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink)!important;margin:0 0 clamp(28px,3vw,40px)}
+.pf-close-row{display:inline-flex!important;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center}
+.pf-close-btn{font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.pf-close-btn:hover,.pf-close-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.pf-close-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;letter-spacing:.04em;color:var(--stone)!important}
+.pf-close-or a{color:var(--ink)!important;border-bottom:1px solid var(--gold)}
+
+/* ════════════ FOOTER ════════════ */
+.hp-ft{background:#1a1a18!important;padding:clamp(72px,10vw,120px) 5vw clamp(36px,4vw,56px);
+  border-top:1px solid rgba(201,169,110,.16)}
+.hp-ft-inner{max-width:1200px;margin:0 auto}
+.hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.85)!important;margin:0}
+.hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
+  padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
+.hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:10px;font-weight:300;
+  max-width:640px;line-height:1.85;text-align:left;letter-spacing:.02em;
+  margin:clamp(24px,3vw,36px) 0 0;color:rgba(246,244,240,.35)!important}
+@media (max-width:900px){
+  .hp-ft-bottom{flex-direction:column}
+}
+/* footer, rebuilt: one block, no headed columns */
+.hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
+  padding-bottom:clamp(32px,4vw,48px);border-bottom:1px solid rgba(246,244,240,.07)}
+.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.6;color:rgba(246,244,240,.62)!important;margin:12px 0 0}
+.hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:12px;
+  line-height:2;color:rgba(246,244,240,.38)!important;margin:18px 0 0}
+.hp-ft-areas a{color:rgba(246,244,240,.62)!important;transition:color .3s var(--ease)}
+.hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
+.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  color:rgba(246,244,240,.72)!important;transition:color .3s var(--ease)}
+.hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
+.hp-ft-meta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.42)!important;margin:0}
+.hp-ft-contact{display:flex!important;flex-wrap:wrap;gap:18px}
+.hp-ft-contact a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.55)!important;transition:color .3s var(--ease)}
+.hp-ft-contact a:hover,.hp-ft-contact a:focus-visible{color:#c9a96e!important}
+@media (max-width:760px){.hp-ft-nav{flex-direction:row;flex-wrap:wrap;gap:14px 22px}}
+
+
+@media (prefers-reduced-motion:reduce){.hp-wrap *{animation:none!important;transition:none!important}}
+</style>
+
+<div class="hp-wrap">
+
+<div class="hp-nav hp-scrolled" id="hpNav" role="navigation" aria-label="Main">
+  <a href="/" class="hp-nav-mark">Matt Anthony</a>
+  <div class="hp-nav-links">
+    <a href="/projects">Projects</a>
+    <a href="/bio">About</a>
+    <a href="/discovery-call">Contact</a>
+  </div>
+</div>
+
+
+<section class="pf-head" aria-labelledby="pf-h">
+  <div class="hp-container">
+    <p class="hp-eyebrow">Work</p>
+    <h1 id="pf-h">Selected photographs</h1>
+    <p>42 frames from 24 projects across British Columbia. Each opens the project it came from.</p>
+  </div>
+</section>
+
+<section class="pf-gallery" aria-label="Selected photographs">
+  <div class="hp-container">
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/the-perch-sunshine-coast" style="--ar:1.33">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="The Perch, Sunshine Coast, photographed by Matt Anthony" fetchpriority="high" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">The Perch</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/fraser-valley-vista" style="--ar:0.8">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/52135c1c-0414-47aa-ba78-6d225bc11f6b/siteline-langley.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Fraser Valley Vista, Langley, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Fraser Valley Vista</span><span class="pf-cap-loc">Langley</span></span>
+      </a>
+      <a class="pf-frame" href="/art-deco-reno" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d8bd875-1e79-4242-b1b8-968db3b95e69/architectural-interiors-photographer-gillespie-sunshine-coast-6.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d8bd875-1e79-4242-b1b8-968db3b95e69/architectural-interiors-photographer-gillespie-sunshine-coast-6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d8bd875-1e79-4242-b1b8-968db3b95e69/architectural-interiors-photographer-gillespie-sunshine-coast-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d8bd875-1e79-4242-b1b8-968db3b95e69/architectural-interiors-photographer-gillespie-sunshine-coast-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d8bd875-1e79-4242-b1b8-968db3b95e69/architectural-interiors-photographer-gillespie-sunshine-coast-6.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Art Deco Reno, Roberts Creek, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Art Deco Reno</span><span class="pf-cap-loc">Roberts Creek</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/johnstone-road" style="--ar:1.33">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Johnstone Road, Madeira Park, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Johnstone Road</span><span class="pf-cap-loc">Madeira Park</span></span>
+      </a>
+      <a class="pf-frame" href="/coleman" style="--ar:0.75">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Coleman Residence, Invermere, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Coleman Residence</span><span class="pf-cap-loc">Invermere</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/desolation-sound" style="--ar:1.33">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="Desolation Sound, Sunshine Coast, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Desolation Sound</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-trio">
+      <a class="pf-frame" href="/fitzsimmons-whistler" style="--ar:0.67">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae2f9c3-e984-4c80-9f72-a828b5ac778d/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-37.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae2f9c3-e984-4c80-9f72-a828b5ac778d/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-37.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae2f9c3-e984-4c80-9f72-a828b5ac778d/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-37.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae2f9c3-e984-4c80-9f72-a828b5ac778d/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-37.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae2f9c3-e984-4c80-9f72-a828b5ac778d/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-37.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="Fitzsimmons Residence, Whistler, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Fitzsimmons Residence</span><span class="pf-cap-loc">Whistler</span></span>
+      </a>
+      <a class="pf-frame" href="/fraser-valley-vista" style="--ar:0.8">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/601c5692-775a-48f3-9229-7536a0414302/siteline-langley-32.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/601c5692-775a-48f3-9229-7536a0414302/siteline-langley-32.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/601c5692-775a-48f3-9229-7536a0414302/siteline-langley-32.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/601c5692-775a-48f3-9229-7536a0414302/siteline-langley-32.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/601c5692-775a-48f3-9229-7536a0414302/siteline-langley-32.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="Fraser Valley Vista, Langley, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Fraser Valley Vista</span><span class="pf-cap-loc">Langley</span></span>
+      </a>
+      <a class="pf-frame" href="/silver-star-residence" style="--ar:0.67">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef775d83-ba76-4c85-b839-25a516568574/architectural-interiors-photographer-silverstar-okanagan--9.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef775d83-ba76-4c85-b839-25a516568574/architectural-interiors-photographer-silverstar-okanagan--9.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef775d83-ba76-4c85-b839-25a516568574/architectural-interiors-photographer-silverstar-okanagan--9.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef775d83-ba76-4c85-b839-25a516568574/architectural-interiors-photographer-silverstar-okanagan--9.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef775d83-ba76-4c85-b839-25a516568574/architectural-interiors-photographer-silverstar-okanagan--9.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="Silver Star Residence, Okanagan, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Silver Star Residence</span><span class="pf-cap-loc">Okanagan</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/browns-residence" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f71343f0-f735-4640-8dc5-d77da72a7ce2/browns-road-sunshine-coast-architectural-photographer-matt-anthony-13.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f71343f0-f735-4640-8dc5-d77da72a7ce2/browns-road-sunshine-coast-architectural-photographer-matt-anthony-13.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f71343f0-f735-4640-8dc5-d77da72a7ce2/browns-road-sunshine-coast-architectural-photographer-matt-anthony-13.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f71343f0-f735-4640-8dc5-d77da72a7ce2/browns-road-sunshine-coast-architectural-photographer-matt-anthony-13.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f71343f0-f735-4640-8dc5-d77da72a7ce2/browns-road-sunshine-coast-architectural-photographer-matt-anthony-13.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Browns Residence, Sunshine Coast, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Browns Residence</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+      <a class="pf-frame" href="/oles-cove" style="--ar:0.8">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Oles Cove, Halfmoon Bay, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Oles Cove</span><span class="pf-cap-loc">Halfmoon Bay</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/wakefield-rooftop-oasis" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae29ab8e-bbff-4960-9352-f96e79f50f29/architectural-interiors-photographer-morden-project-sunshine-coast--40.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae29ab8e-bbff-4960-9352-f96e79f50f29/architectural-interiors-photographer-morden-project-sunshine-coast--40.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae29ab8e-bbff-4960-9352-f96e79f50f29/architectural-interiors-photographer-morden-project-sunshine-coast--40.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae29ab8e-bbff-4960-9352-f96e79f50f29/architectural-interiors-photographer-morden-project-sunshine-coast--40.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae29ab8e-bbff-4960-9352-f96e79f50f29/architectural-interiors-photographer-morden-project-sunshine-coast--40.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae29ab8e-bbff-4960-9352-f96e79f50f29/architectural-interiors-photographer-morden-project-sunshine-coast--40.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="Wakefield Rooftop Oasis, Sechelt, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Wakefield Rooftop Oasis</span><span class="pf-cap-loc">Sechelt</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/the-perch-sunshine-coast" style="--ar:1.33">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="The Perch, Sunshine Coast, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">The Perch</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+      <a class="pf-frame" href="/net-zero-build-whistler" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee07e631-7476-4825-87db-69bd3ac96295/architectural-interiors-photographer-netzero-whistler16.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee07e631-7476-4825-87db-69bd3ac96295/architectural-interiors-photographer-netzero-whistler16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee07e631-7476-4825-87db-69bd3ac96295/architectural-interiors-photographer-netzero-whistler16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee07e631-7476-4825-87db-69bd3ac96295/architectural-interiors-photographer-netzero-whistler16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee07e631-7476-4825-87db-69bd3ac96295/architectural-interiors-photographer-netzero-whistler16.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Net Zero Build, Whistler, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Net Zero Build</span><span class="pf-cap-loc">Whistler</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/salt-spring-island" style="--ar:1.0">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Salt Spring Island, Gulf Islands, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Salt Spring Island</span><span class="pf-cap-loc">Gulf Islands</span></span>
+      </a>
+      <a class="pf-frame" href="/salt-spring-island" style="--ar:1.0">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Salt Spring Island, Gulf Islands, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Salt Spring Island</span><span class="pf-cap-loc">Gulf Islands</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/west-10th-vancouver" style="--ar:1.33">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8ebfb361-d3d1-4206-b074-82e694256b40/west-10th-vancouver-web--53.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8ebfb361-d3d1-4206-b074-82e694256b40/west-10th-vancouver-web--53.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8ebfb361-d3d1-4206-b074-82e694256b40/west-10th-vancouver-web--53.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8ebfb361-d3d1-4206-b074-82e694256b40/west-10th-vancouver-web--53.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8ebfb361-d3d1-4206-b074-82e694256b40/west-10th-vancouver-web--53.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8ebfb361-d3d1-4206-b074-82e694256b40/west-10th-vancouver-web--53.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="West 10th Avenue, Vancouver, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">West 10th Avenue</span><span class="pf-cap-loc">Vancouver</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/west-10th-vancouver" style="--ar:1.33">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f3e0dd17-435e-4555-a58d-d848dfcd27f9/west-10th-vancouver-web--17.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f3e0dd17-435e-4555-a58d-d848dfcd27f9/west-10th-vancouver-web--17.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f3e0dd17-435e-4555-a58d-d848dfcd27f9/west-10th-vancouver-web--17.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f3e0dd17-435e-4555-a58d-d848dfcd27f9/west-10th-vancouver-web--17.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f3e0dd17-435e-4555-a58d-d848dfcd27f9/west-10th-vancouver-web--17.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="West 10th Avenue, Vancouver, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">West 10th Avenue</span><span class="pf-cap-loc">Vancouver</span></span>
+      </a>
+      <a class="pf-frame" href="/seventh-day-adventist-bc-headquarters" style="--ar:0.75">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb059a83-55ca-4394-8a42-feb000e95d85/sitelines-SDA-web--2.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb059a83-55ca-4394-8a42-feb000e95d85/sitelines-SDA-web--2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb059a83-55ca-4394-8a42-feb000e95d85/sitelines-SDA-web--2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb059a83-55ca-4394-8a42-feb000e95d85/sitelines-SDA-web--2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb059a83-55ca-4394-8a42-feb000e95d85/sitelines-SDA-web--2.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="SDA BC and Yukon HQ, Abbotsford, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">SDA BC and Yukon HQ</span><span class="pf-cap-loc">Abbotsford</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/osprey" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Osprey, Pitt Meadows, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Osprey</span><span class="pf-cap-loc">Pitt Meadows</span></span>
+      </a>
+      <a class="pf-frame" href="/oles-cove" style="--ar:0.8">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Oles Cove, Halfmoon Bay, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Oles Cove</span><span class="pf-cap-loc">Halfmoon Bay</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/gambier-island-residence" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/640a53a3-ed15-452a-9fa9-b87ffa45efee/linwood-gambier-web-22.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/640a53a3-ed15-452a-9fa9-b87ffa45efee/linwood-gambier-web-22.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/640a53a3-ed15-452a-9fa9-b87ffa45efee/linwood-gambier-web-22.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/640a53a3-ed15-452a-9fa9-b87ffa45efee/linwood-gambier-web-22.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/640a53a3-ed15-452a-9fa9-b87ffa45efee/linwood-gambier-web-22.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/640a53a3-ed15-452a-9fa9-b87ffa45efee/linwood-gambier-web-22.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="Gambier Island Residence, Gambier Island, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Gambier Island Residence</span><span class="pf-cap-loc">Gambier Island</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/browns-residence" style="--ar:0.67">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Browns Residence, Sunshine Coast, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Browns Residence</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+      <a class="pf-frame" href="/sugarloaf-residence" style="--ar:0.67">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Sugarloaf Residence, Pemberton, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Sugarloaf Residence</span><span class="pf-cap-loc">Pemberton</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/wakefield-rooftop-oasis" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bb31d092-5a13-43d8-babf-1f9aebed3108/architectural-interiors-photographer-morden-project-sunshine-coast--35.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bb31d092-5a13-43d8-babf-1f9aebed3108/architectural-interiors-photographer-morden-project-sunshine-coast--35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bb31d092-5a13-43d8-babf-1f9aebed3108/architectural-interiors-photographer-morden-project-sunshine-coast--35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bb31d092-5a13-43d8-babf-1f9aebed3108/architectural-interiors-photographer-morden-project-sunshine-coast--35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bb31d092-5a13-43d8-babf-1f9aebed3108/architectural-interiors-photographer-morden-project-sunshine-coast--35.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Wakefield Rooftop Oasis, Sechelt, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Wakefield Rooftop Oasis</span><span class="pf-cap-loc">Sechelt</span></span>
+      </a>
+      <a class="pf-frame" href="/balsam-way" style="--ar:0.8">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dd07d9b8-3f2f-4edd-9831-81a091e6d870/LRD-2500px-40.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dd07d9b8-3f2f-4edd-9831-81a091e6d870/LRD-2500px-40.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dd07d9b8-3f2f-4edd-9831-81a091e6d870/LRD-2500px-40.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dd07d9b8-3f2f-4edd-9831-81a091e6d870/LRD-2500px-40.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dd07d9b8-3f2f-4edd-9831-81a091e6d870/LRD-2500px-40.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Balsam Way, Whistler, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Balsam Way</span><span class="pf-cap-loc">Whistler</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/warbler-whistler" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="Warbler Residence, Whistler, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Warbler Residence</span><span class="pf-cap-loc">Whistler</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-trio">
+      <a class="pf-frame" href="/desolation-sound" style="--ar:0.75">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="Desolation Sound, Sunshine Coast, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Desolation Sound</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+      <a class="pf-frame" href="/the-perch-sunshine-coast" style="--ar:0.75">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="The Perch, Sunshine Coast, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">The Perch</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+      <a class="pf-frame" href="/sunridge-whistler" style="--ar:0.75">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/744da69d-8fb4-46ff-8866-1888025ce083/sunridge-whistle-web--27.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/744da69d-8fb4-46ff-8866-1888025ce083/sunridge-whistle-web--27.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/744da69d-8fb4-46ff-8866-1888025ce083/sunridge-whistle-web--27.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/744da69d-8fb4-46ff-8866-1888025ce083/sunridge-whistle-web--27.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/744da69d-8fb4-46ff-8866-1888025ce083/sunridge-whistle-web--27.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="Sunridge, Whistler, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Sunridge</span><span class="pf-cap-loc">Whistler</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-trio">
+      <a class="pf-frame" href="/silver-star-residence" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee377134-960d-4a1b-b9d6-199d02d9d5ec/architectural-interiors-photographer-silverstar-okanagan--27.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee377134-960d-4a1b-b9d6-199d02d9d5ec/architectural-interiors-photographer-silverstar-okanagan--27.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee377134-960d-4a1b-b9d6-199d02d9d5ec/architectural-interiors-photographer-silverstar-okanagan--27.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee377134-960d-4a1b-b9d6-199d02d9d5ec/architectural-interiors-photographer-silverstar-okanagan--27.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ee377134-960d-4a1b-b9d6-199d02d9d5ec/architectural-interiors-photographer-silverstar-okanagan--27.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="Silver Star Residence, Okanagan, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Silver Star Residence</span><span class="pf-cap-loc">Okanagan</span></span>
+      </a>
+      <a class="pf-frame" href="/seventh-day-adventist-bc-headquarters" style="--ar:0.67">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e9fcb49a-408b-4d27-ba54-c83cfe8a82ac/sitelines-SDA-web--32.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e9fcb49a-408b-4d27-ba54-c83cfe8a82ac/sitelines-SDA-web--32.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e9fcb49a-408b-4d27-ba54-c83cfe8a82ac/sitelines-SDA-web--32.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e9fcb49a-408b-4d27-ba54-c83cfe8a82ac/sitelines-SDA-web--32.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e9fcb49a-408b-4d27-ba54-c83cfe8a82ac/sitelines-SDA-web--32.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="SDA BC and Yukon HQ, Abbotsford, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">SDA BC and Yukon HQ</span><span class="pf-cap-loc">Abbotsford</span></span>
+      </a>
+      <a class="pf-frame" href="/eagle-residence" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/76e4a936-3e97-4510-b280-07e9cda4c3f1/eagle-pemberton-architectural-photography-matt-anthony-.jpg-7.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/76e4a936-3e97-4510-b280-07e9cda4c3f1/eagle-pemberton-architectural-photography-matt-anthony-.jpg-7.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/76e4a936-3e97-4510-b280-07e9cda4c3f1/eagle-pemberton-architectural-photography-matt-anthony-.jpg-7.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/76e4a936-3e97-4510-b280-07e9cda4c3f1/eagle-pemberton-architectural-photography-matt-anthony-.jpg-7.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/76e4a936-3e97-4510-b280-07e9cda4c3f1/eagle-pemberton-architectural-photography-matt-anthony-.jpg-7.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 493px, 30vw" alt="Eagle Residence, Pemberton, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Eagle Residence</span><span class="pf-cap-loc">Pemberton</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/sugarloaf-residence" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="Sugarloaf Residence, Pemberton, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Sugarloaf Residence</span><span class="pf-cap-loc">Pemberton</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/tranquil-retreat" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9ddbf3ee-ca8f-4867-9813-9c3973a0d4cf/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-19.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9ddbf3ee-ca8f-4867-9813-9c3973a0d4cf/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-19.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9ddbf3ee-ca8f-4867-9813-9c3973a0d4cf/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-19.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9ddbf3ee-ca8f-4867-9813-9c3973a0d4cf/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-19.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9ddbf3ee-ca8f-4867-9813-9c3973a0d4cf/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-19.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Tranquil Retreat, Sunshine Coast, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Tranquil Retreat</span><span class="pf-cap-loc">Sunshine Coast</span></span>
+      </a>
+      <a class="pf-frame" href="/fitzsimmons-whistler" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Fitzsimmons Residence, Whistler, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Fitzsimmons Residence</span><span class="pf-cap-loc">Whistler</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/schmit" style="--ar:1.33">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Schmidt Residence, Invermere, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Schmidt Residence</span><span class="pf-cap-loc">Invermere</span></span>
+      </a>
+      <a class="pf-frame" href="/eagle-residence" style="--ar:0.67">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3a14f435-a5a3-4e50-8901-7d45b78eaa89/eagle-pemberton-architectural-photography-matt-anthony-.jpg-14.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3a14f435-a5a3-4e50-8901-7d45b78eaa89/eagle-pemberton-architectural-photography-matt-anthony-.jpg-14.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3a14f435-a5a3-4e50-8901-7d45b78eaa89/eagle-pemberton-architectural-photography-matt-anthony-.jpg-14.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3a14f435-a5a3-4e50-8901-7d45b78eaa89/eagle-pemberton-architectural-photography-matt-anthony-.jpg-14.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3a14f435-a5a3-4e50-8901-7d45b78eaa89/eagle-pemberton-architectural-photography-matt-anthony-.jpg-14.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Eagle Residence, Pemberton, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Eagle Residence</span><span class="pf-cap-loc">Pemberton</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-full">
+      <a class="pf-frame" href="/fitzsimmons-whistler" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d2d70b4-7255-4c7f-b704-1a2778ae7042/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-49.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d2d70b4-7255-4c7f-b704-1a2778ae7042/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-49.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d2d70b4-7255-4c7f-b704-1a2778ae7042/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-49.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d2d70b4-7255-4c7f-b704-1a2778ae7042/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-49.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d2d70b4-7255-4c7f-b704-1a2778ae7042/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-49.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d2d70b4-7255-4c7f-b704-1a2778ae7042/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-49.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1480px, 92vw" alt="Fitzsimmons Residence, Whistler, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Fitzsimmons Residence</span><span class="pf-cap-loc">Whistler</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-pair">
+      <a class="pf-frame" href="/coleman" style="--ar:1.25">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Coleman Residence, Invermere, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Coleman Residence</span><span class="pf-cap-loc">Invermere</span></span>
+      </a>
+      <a class="pf-frame" href="/gambier-island-residence" style="--ar:0.67">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64fe5838-ce28-44c9-94cf-6f98da7be1d3/linwood-gambier-web-14.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64fe5838-ce28-44c9-94cf-6f98da7be1d3/linwood-gambier-web-14.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64fe5838-ce28-44c9-94cf-6f98da7be1d3/linwood-gambier-web-14.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64fe5838-ce28-44c9-94cf-6f98da7be1d3/linwood-gambier-web-14.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64fe5838-ce28-44c9-94cf-6f98da7be1d3/linwood-gambier-web-14.jpg?format=1500w 1500w" sizes="(max-width: 640px) 92vw, (min-width: 1600px) 740px, 46vw" alt="Gambier Island Residence, Gambier Island, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Gambier Island Residence</span><span class="pf-cap-loc">Gambier Island</span></span>
+      </a>
+    </div>
+    <div class="pf-row pf-inset">
+      <a class="pf-frame" href="/wakefield-rooftop-oasis" style="--ar:1.5">
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f4e119fd-b6cc-44d8-852c-c7cb9ccdbabb/architectural-interiors-photographer-morden-project-sunshine-coast--32.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f4e119fd-b6cc-44d8-852c-c7cb9ccdbabb/architectural-interiors-photographer-morden-project-sunshine-coast--32.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f4e119fd-b6cc-44d8-852c-c7cb9ccdbabb/architectural-interiors-photographer-morden-project-sunshine-coast--32.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f4e119fd-b6cc-44d8-852c-c7cb9ccdbabb/architectural-interiors-photographer-morden-project-sunshine-coast--32.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f4e119fd-b6cc-44d8-852c-c7cb9ccdbabb/architectural-interiors-photographer-morden-project-sunshine-coast--32.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 1040px, 64vw" alt="Wakefield Rooftop Oasis, Sechelt, photographed by Matt Anthony" loading="lazy" decoding="async">
+        <span class="pf-cap"><span class="pf-cap-name">Wakefield Rooftop Oasis</span><span class="pf-cap-loc">Sechelt</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="pf-close" aria-labelledby="pf-close-h">
+  <div class="hp-container">
+    <p class="hp-eyebrow">Contact</p>
+    <h2 id="pf-close-h">Tell me about your project.</h2>
+    <div class="pf-close-row">
+      <a class="pf-close-btn" href="/discovery-call">Get in touch</a>
+      <span class="pf-close-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<!-- Deliberately a div. Squarespace hides real footer elements, and a second
+     contentinfo landmark would sit alongside the host page's own. -->
+<div class="hp-ft">
+  <div class="hp-ft-inner">
+
+    <div class="hp-ft-top">
+      <div class="hp-ft-brand">
+        <p class="hp-ft-mark">Matt Anthony Photography</p>
+        <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
+        <p class="hp-ft-areas">
+          <a href="/squamish-architectural-photography">Squamish</a> &middot;
+          <a href="/whistler-architectural-photography">Whistler</a> &middot;
+          <a href="/pemberton-photography">Pemberton</a> &middot;
+          <a href="/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/vancouver-architectural-photographer">Vancouver</a> &middot;
+          <a href="/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
+          <a href="/okanagan-architectural-photographer">Okanagan</a>
+        </p>
+      </div>
+      <nav class="hp-ft-nav" aria-label="Footer">
+        <a href="/projects">Projects</a>
+        <a href="/creative-partner">Creative Partner</a>
+        <a href="/bio">About</a>
+        <a href="/journal">Journal</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="hp-ft-bottom">
+      <p class="hp-ft-meta">&copy; 2026 Matt Anthony Photography &middot; Squamish, BC &middot; All images &copy; Matt Anthony</p>
+      <div class="hp-ft-contact">
+        <a href="tel:6047659270">604.765.9270</a>
+        <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a>
+        <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="hp-ft-land">I acknowledge the privilege of living and working on the unceded territory of the Skwx&#775;wu&#769;7mesh (Squamish) Nation.</div>
+
+  </div>
+</div>
+
+</div><!-- /.hp-wrap -->
+
+<script>
+(function(){
+  /* No dark hero on this page: the nav is paper from the first paint. */
+  var nav = document.getElementById('hpNav');
+  if(nav){ nav.classList.add('hp-scrolled'); }
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Selected photographs",
+  "url": "https://www.mattanthonyphoto.com/portfolio",
+  "about": { "@id": "https://www.mattanthonyphoto.com/#person" },
+  "provider": { "@id": "https://www.mattanthonyphoto.com/#business" }
+}
+</script>
+
+</body>
+</html>
