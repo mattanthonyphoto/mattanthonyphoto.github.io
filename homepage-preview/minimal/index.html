@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>homepage-minimal</title>
+<title>Homepage: minimal</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -92,7 +92,7 @@
 }
 
 /* ════════════ HERO: full-bleed, four frames, one quiet line ════════════ */
-.hp-hero{position:relative;height:100vh;min-height:560px;max-height:1100px;overflow:hidden;
+.hp-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .hp-hero-slides{position:absolute;inset:0;z-index:0}
 .hp-hero-slides img{position:absolute;inset:0;width:100%;height:100%;
@@ -120,6 +120,7 @@
 .hp-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:-.02em;
   color:#f6f4f0!important;max-width:24ch;margin:0 0 clamp(28px,3vw,40px)}
+.hp-hero-btns{display:flex!important;flex-wrap:wrap;gap:12px 14px}
 .hp-hero-ghost{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
   background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
@@ -172,7 +173,11 @@
 
 /* ════════════ FULL-BLEED DIVIDER ════════════ */
 .hp-bleed{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:var(--ink)!important}
-.hp-bleed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.hp-bleed img,.hp-bleed video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+/* The still paints first and stays underneath; the loop fades over it once it can play, and if it never does the still is the banner. */
+.hp-bleed-v{opacity:0;transition:opacity .9s var(--ease)}
+.hp-bleed-v.hp-playing{opacity:1}
+@media (prefers-reduced-motion:reduce){.hp-bleed-v{display:none}}
 .hp-bleed::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to bottom,transparent 62%,rgba(26,26,24,.4) 100%)}
 .hp-bleed-cap{position:absolute;left:clamp(24px,5vw,60px);bottom:clamp(22px,3vw,36px);z-index:2;
@@ -284,7 +289,10 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
     <div class="hp-container">
       <p class="hp-eyebrow">Architectural Photographer &middot; Squamish BC</p>
       <h1 id="hp-hero-h">I photograph completed architecture.</h1>
-      <a class="hp-hero-ghost" href="/projects">View the work</a>
+      <div class="hp-hero-btns">
+        <a class="hp-hero-ghost" href="/projects">View all projects</a>
+        <a class="hp-hero-ghost" href="/selected-work">View selected work</a>
+      </div>
     </div>
   </div>
 </section>
@@ -381,9 +389,12 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 </section>
 
 <!-- ════════════ FULL-BLEED DIVIDER ════════════ -->
-<section class="hp-bleed" aria-label="Warbler Residence, Whistler">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=2500w 2500w" sizes="100vw" alt="Warbler Residence, Whistler, covered walkway in winter" loading="lazy" decoding="async">
-  <span class="hp-bleed-cap">Warbler Residence &middot; Whistler</span>
+<section class="hp-bleed" aria-label="Film: Johnstone Road, Cortis Island and Oles Cove">
+  <img class="hp-bleed-still" src="https://mattanthonyphoto.github.io/media/films/poster-banner.jpg" alt="" loading="lazy" decoding="async">
+  <video class="hp-bleed-v" autoplay muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture poster="https://mattanthonyphoto.github.io/media/films/poster-banner.jpg" width="1600" height="686">
+    <source src="https://mattanthonyphoto.github.io/media/films/banner-loop.mp4" type="video/mp4">
+  </video>
+  <span class="hp-bleed-cap">Film &middot; Johnstone Road, Cortis Island, Oles Cove</span>
 </section>
 
 <!-- ════════════ QUIET PROOF STRIP ════════════ -->
@@ -456,6 +467,13 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 
 <script>
 (function(){
+  /* Banner film: show the loop only once it is really playing; otherwise the still stays. */
+  var bv = document.querySelector('.hp-bleed-v');
+  if(bv){
+    bv.addEventListener('playing', function(){ bv.classList.add('hp-playing'); });
+    var p = bv.play(); if(p && p.catch){ p.catch(function(){}); }
+  }
+
   /* Nav: transparent over the hero, paper once scrolled. */
   var nav = document.getElementById('hpNav');
   if(nav){
