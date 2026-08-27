@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>faqs</title>
+<style>html,body{margin:0;padding:0}</style>
+</head>
+<body>
+<style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
+
+<!-- preconnects + fonts; the hero image carries fetchpriority="high" inline -->
+<link rel="preconnect" href="https://images.squarespace-cdn.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══ SHARED CHROME — lifted verbatim from sitewide/_chrome.html. Do not restyle. ═══ */
+/* Tokens the chrome expects. On the chrome itself so no page wrapper is needed,
+   and on :root so a page's own rules can use --gutter / --page too. */
+:root{--gutter:clamp(24px,5vw,80px);--page:1600px}
+.hp-nav,.hp-ft{
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#6f6b61; --rule:#d9d5cd;
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+.hp-nav *,.hp-ft *{box-sizing:border-box}
+.hp-ft *{margin:0;padding:0}
+.hp-nav a,.hp-ft a{text-decoration:none!important;border:0}
+#maHeader{display:none!important}
+
+/* ── NAV ──
+   Solid paper is the DEFAULT, so a content page is correct even if the script
+   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
+   markup to sit transparently over it; the script then removes that treatment
+   once you scroll past the hero. ── */
+.hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
+  display:flex!important;align-items:center;justify-content:space-between;gap:24px;
+  padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
+  background-color:#f6f4f0;
+  transition:background-color .45s var(--ease)}
+.hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
+  transition:color .45s var(--ease)}
+.hp-nav-links{display:flex!important;gap:clamp(20px,3vw,40px);align-items:center}
+.hp-nav-links a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
+  transition:color .35s var(--ease)}
+.hp-nav-links a:hover,.hp-nav-links a:focus-visible,.hp-nav-mark:focus-visible{color:#1a1a18!important}
+
+/* Over a dark full-bleed hero, until scrolled past it. */
+.hp-nav-over:not(.hp-scrolled){background-color:transparent}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-mark{color:#f6f4f0!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links a{color:rgba(246,244,240,.78)!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links a:hover,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links a:focus-visible,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-mark:focus-visible{color:#fff!important}
+
+/* Keeps content clear of the fixed nav on pages with no hero (script-inserted). */
+.hp-nav-spacer{width:100%}
+
+@media (max-width:820px){
+  .hp-nav{padding:18px var(--gutter);gap:14px}
+  .hp-nav-links{gap:14px}
+  .hp-nav-links a{font-size:10px;letter-spacing:.1em}
+  .hp-nav-mark{font-size:11px;letter-spacing:.28em}
+}
+@media (max-width:480px){
+  .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
+  .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
+  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 16px}
+  .hp-nav-links a{font-size:10px;letter-spacing:.06em}
+}
+
+/* ── FOOTER ── */
+.hp-ft{background:#1a1a18!important;padding:clamp(72px,10vw,120px) var(--gutter) clamp(36px,4vw,56px);
+  border-top:1px solid rgba(201,169,110,.16)}
+.hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
+.hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+.hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
+  padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
+.hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
+  max-width:640px;line-height:1.85;text-align:left;letter-spacing:.02em;
+  margin:clamp(24px,3vw,36px) 0 0;color:rgba(246,244,240,.60)!important}
+@media (max-width:900px){
+  .hp-ft-bottom{flex-direction:column}
+}
+/* footer, rebuilt: one block, no headed columns */
+.hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
+  padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
+.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
+.hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
+.hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
+.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
+.hp-ft-meta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:0}
+.hp-ft-contact{display:flex!important;flex-wrap:wrap;gap:18px}
+.hp-ft-contact a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-contact a:hover,.hp-ft-contact a:focus-visible{color:#c9a96e!important}
+@media (max-width:760px){.hp-ft-nav{flex:1 1 100%;width:100%;flex-direction:row;flex-wrap:wrap;gap:14px 22px}}
+
+@media (prefers-reduced-motion:reduce){
+  .hp-wrap *{animation:none!important;transition:none!important}
+  .hp-hero-slides img{opacity:0}
+  .hp-hero-slides img:first-child{opacity:1}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FAQs — brought onto the sitewide design system (Aug 27 2026).
+   One page width, one gutter, one small-caps style. Cormorant at
+   letter-spacing 0. No loader, no cursor, no parallax, no scroll reveals.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.faq-wrap{
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#6f6b61; --rule:#d9d5cd;
+  --section:clamp(88px,9vw,150px);
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  font-family:'DM Sans',-apple-system,sans-serif;
+  font-weight:300; line-height:1.7; color:var(--ink);
+  background:var(--paper)!important;
+  -webkit-font-smoothing:antialiased;
+}
+.faq-wrap *{box-sizing:border-box}
+.faq-wrap img{max-width:100%;display:block}
+.faq-wrap a{color:inherit;text-decoration:none}
+.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+
+/* One page width, one gutter. Every left edge lands here. */
+.faq-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
+
+/* ── The one small-caps style: 11px / .18em / DM Sans 400, gold rule ── */
+.faq-eyebrow{
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--stone)!important;margin:0 0 28px;
+  display:inline-flex!important;align-items:center;gap:14px;
+}
+.faq-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
+
+/* ════════════ HERO ════════════ */
+.faq-hero{position:relative;overflow:hidden;background:var(--ink)!important;
+  display:flex!important;align-items:flex-end;min-height:56vh;
+  padding:clamp(150px,18vw,230px) 0 clamp(48px,6vw,80px)}
+.faq-hero-bg{position:absolute;inset:0;z-index:0}
+.faq-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.62}
+.faq-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(26,26,24,.82) 0%,rgba(26,26,24,.40) 20%,rgba(26,26,24,.20) 40%,rgba(26,26,24,.56) 68%,rgba(26,26,24,.88) 100%)}
+.faq-hero-content{position:relative;z-index:2;width:100%}
+.faq-hero-content .faq-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
+.faq-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
+  color:#f6f4f0!important;max-width:22ch;margin:0 0 clamp(20px,2.4vw,28px)}
+.faq-hero h1 em{font-style:italic;color:inherit}
+.faq-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:13px;line-height:1.85;
+  color:rgba(246,244,240,.82)!important;max-width:58ch;margin:0}
+
+/* ════════════ FAQ BODY ════════════ */
+.faq-body{background:var(--paper)!important;padding:var(--section) 0}
+/* Reading measure, left aligned: the left edge stays on the gutter. */
+.faq-list{max-width:860px}
+.faq-category{margin:0 0 clamp(56px,6vw,88px)}
+.faq-category:last-child{margin-bottom:0}
+.faq-category .faq-eyebrow{margin-bottom:22px}
+
+.faq-item{border-bottom:1px solid var(--rule)}
+.faq-item:first-of-type{border-top:1px solid var(--rule)}
+.faq-question{display:block!important;width:100%;background:none;border:0;
+  text-align:left;position:relative;cursor:pointer;
+  padding:20px 44px 20px 0;margin:0;
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.35;letter-spacing:0;
+  color:var(--ink)!important;transition:color .3s var(--ease)}
+.faq-question:hover{color:#816a3f!important}
+.faq-question:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.faq-question::after{content:"";position:absolute;right:6px;top:50%;
+  width:9px;height:9px;border-right:1px solid var(--stone);border-bottom:1px solid var(--stone);
+  transform:translateY(-70%) rotate(45deg);
+  transition:transform .3s var(--ease),border-color .3s var(--ease)}
+.faq-item.open .faq-question::after{transform:translateY(-30%) rotate(-135deg);border-color:var(--ink)}
+
+/* Answers are open in plain CSS. The script adds .faq-js and only then collapses
+   them, so a failed script leaves every answer readable rather than invisible. */
+.faq-js .faq-answer{display:none}
+.faq-js .faq-item.open .faq-answer{display:block}
+.faq-answer{padding:0 0 26px}
+.faq-answer p{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:.95rem;line-height:1.85;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 16px;max-width:68ch}
+.faq-answer p:last-child{margin-bottom:0}
+.faq-answer a{color:var(--ink)!important;border-bottom:1px solid var(--stone);
+  transition:border-color .3s var(--ease)}
+.faq-answer a:hover{border-color:var(--ink)}
+.faq-answer a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* Hairline between the paper body and the dark close, on the same gutters. */
+.faq-accent{max-width:var(--page);margin:0 auto;padding:0 var(--gutter);
+  height:1px;background:var(--rule);background-clip:content-box}
+
+/* ════════════ CLOSE ════════════ */
+.faq-cta{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:center;
+  justify-content:center;text-align:center}
+.faq-cta-bg{position:absolute;inset:0;z-index:0}
+.faq-cta-bg img{width:100%;height:100%;object-fit:cover}
+.faq-cta::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(26,26,24,.62) 0%,rgba(26,26,24,.74) 46%,rgba(26,26,24,.88) 100%)}
+.faq-cta-c{position:relative;z-index:2;max-width:760px;
+  padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px)}
+.faq-cta-c .faq-eyebrow{color:rgba(246,244,240,.82)!important}
+.faq-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:#f6f4f0!important;margin:0 0 clamp(18px,2vw,24px)}
+.faq-cta h2 em{font-style:italic;color:inherit}
+.faq-cta-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:13px;line-height:1.8;
+  color:rgba(246,244,240,.82)!important;max-width:46ch;margin:0 auto clamp(28px,3vw,40px)}
+.faq-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
+.faq-cta-btn-primary,.faq-cta-btn-secondary{
+  display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
+.faq-cta-btn-primary{background:var(--gold)!important;border:1px solid var(--gold)!important;
+  color:#1a1a18!important}
+.faq-cta-btn-primary:hover,.faq-cta-btn-primary:focus-visible{
+  background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.faq-cta-btn-secondary{background:transparent!important;
+  border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important}
+.faq-cta-btn-secondary:hover,.faq-cta-btn-secondary:focus-visible{
+  background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
+.faq-cta-btn-primary:focus-visible,.faq-cta-btn-secondary:focus-visible{
+  outline:2px solid #f6f4f0;outline-offset:3px}
+.faq-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:12px;
+  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:clamp(18px,2vw,24px) 0 0}
+.faq-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.faq-alt-cta a:hover{border-color:#f6f4f0}
+.faq-alt-cta a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+
+/* ════════════ MOBILE ════════════ */
+@media (max-width:768px){
+  .faq-hero{min-height:46vh;padding:clamp(130px,26vw,180px) 0 clamp(36px,7vw,56px)}
+  .faq-question{font-size:1.02rem;padding:18px 36px 18px 0}
+  .faq-cta{min-height:62vh}
+  .faq-cta-links{flex-direction:column;align-items:stretch}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .faq-wrap *{animation:none!important;transition:none!important}
+}
+</style>
+
+<!-- ═══ NAV: first element in the block, outside the page wrapper ═══ -->
+<div class="hp-nav hp-nav-over" id="hpNav" role="navigation" aria-label="Main">
+  <a href="/" class="hp-nav-mark">Matt Anthony Photography</a>
+  <div class="hp-nav-links">
+    <a href="/projects">Projects</a>
+    <a href="/bio">About</a>
+    <a href="/contact">Contact</a>
+  </div>
+</div>
+
+<div class="faq-wrap">
+
+<!-- ═══ HERO ═══ -->
+<section class="faq-hero" data-hp-hero aria-labelledby="faq-hero-h">
+  <div class="faq-hero-bg">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=2500w 2500w" sizes="100vw" alt="Interior looking out through open sliding glass walls to a paved terrace, a glass guardrail and open water" width="1500" height="1000" fetchpriority="high" decoding="async">
+  </div>
+  <div class="faq-hero-content">
+    <div class="faq-container">
+      <p class="faq-eyebrow">Frequently Asked Questions</p>
+      <h1 id="faq-hero-h">Everything you need to know <em>before we start</em></h1>
+      <p class="faq-hero-sub">Answers to common questions about booking, pricing, drone work, deliverables, and what to expect working with Matt Anthony Photography.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ BODY ═══ -->
+<div class="faq-body">
+  <div class="faq-container">
+    <div class="faq-list">
+
+  <!-- Working Together -->
+  <div class="faq-category">
+    <p class="faq-eyebrow">Working Together</p>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-1" aria-controls="faq-a-1" aria-expanded="false">What areas do you serve as an architectural photographer?</button>
+      <div class="faq-answer" id="faq-a-1" role="region" aria-labelledby="faq-q-1">
+        <p>I'm based in Squamish, British Columbia and serve the entire Sea to Sky Corridor including Whistler, Pemberton, and the Sunshine Coast. I also regularly shoot in Vancouver, the Fraser Valley, and across BC. I'm happy to travel for the right project.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-2" aria-controls="faq-a-2" aria-expanded="false">Who do you typically work with?</button>
+      <div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2">
+        <p>Most of my clients are architects, custom home builders, interior designers, and construction companies across British Columbia. I also work with real estate developers, landscape architects, and design build firms who need professional imagery for their portfolios, websites, award submissions, and marketing.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-3" aria-controls="faq-a-3" aria-expanded="false">How far in advance should I book?</button>
+      <div class="faq-answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3">
+        <p>I recommend booking 2 to 4 weeks ahead to secure your preferred date and allow time for pre shoot planning. That said, I can sometimes accommodate shorter timelines depending on availability and season.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-4" aria-controls="faq-a-4" aria-expanded="false">Do you only photograph completed projects?</button>
+      <div class="faq-answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4">
+        <p>No. While completed project photography is the core of what I do, I also offer jobsite progression documentation, construction lifestyle photography, and team headshots. Some of my retainer clients have me on site at multiple stages throughout a build.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-5" aria-controls="faq-a-5" aria-expanded="false">What makes your approach different from other photographers?</button>
+      <div class="faq-answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5">
+        <p>I focus on documenting design intent, not just producing pretty images. Before I pick up a camera, I take the time to understand the architect's or builder's vision, the material choices, the spatial flow, and the story the project is trying to tell. The photography follows from that understanding.</p>
+        <p>I also offer full spectrum coverage under one roof: architectural photography, videography, drone, team portraits, and progression documentation. That means your visual identity stays cohesive across every touchpoint.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Process -->
+  <div class="faq-category">
+    <p class="faq-eyebrow">The Process</p>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-6" aria-controls="faq-a-6" aria-expanded="false">What does an architectural photography session include?</button>
+      <div class="faq-answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6">
+        <p>A typical session includes a pre shoot consultation to understand your project and goals, a full day or half day on site capturing exterior, interior, detail, and aerial photography, professional post production editing, and delivery of high resolution images through a curated online gallery within 5 to 10 business days.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-7" aria-controls="faq-a-7" aria-expanded="false">How do you prepare for a shoot?</button>
+      <div class="faq-answer" id="faq-a-7" role="region" aria-labelledby="faq-q-7">
+        <p>Before every shoot, I review architectural plans, renderings, or previous photos to understand orientation, light conditions, and composition opportunities. I'll send you a prep checklist covering staging tips, timing, and key design details to highlight. This ensures we make the most of our time on site.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-8" aria-controls="faq-a-8" aria-expanded="false">How long does a typical shoot take?</button>
+      <div class="faq-answer" id="faq-a-8" role="region" aria-labelledby="faq-q-8">
+        <p>Most residential architectural shoots take between 3 and 6 hours depending on the size of the property and the scope of coverage. Larger properties, multi building sites, or projects that include twilight photography may require a full day or a return visit.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-9" aria-controls="faq-a-9" aria-expanded="false">Do I need to be on site during the shoot?</button>
+      <div class="faq-answer" id="faq-a-9" role="region" aria-labelledby="faq-q-9">
+        <p>It's not required. I'm comfortable working independently and do so on most shoots. That said, many clients like to be present for part of the session, especially early on, to walk me through specific design details they want highlighted. Either way works well.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-10" aria-controls="faq-a-10" aria-expanded="false">Should the home be staged before the shoot?</button>
+      <div class="faq-answer" id="faq-a-10" role="region" aria-labelledby="faq-q-10">
+        <p>Ideally, yes. Professionally staged or well styled spaces photograph significantly better. I'll send you a pre shoot prep guide with specific tips on decluttering, styling, and what to expect. If you're working with an interior designer or stager, I'm happy to coordinate with them directly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drone & Technical -->
+  <div class="faq-category">
+    <p class="faq-eyebrow">Drone & Technical</p>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-11" aria-controls="faq-a-11" aria-expanded="false">Do you offer drone and aerial photography?</button>
+      <div class="faq-answer" id="faq-a-11" role="region" aria-labelledby="faq-q-11">
+        <p>Yes. I'm a Transport Canada certified Advanced Drone Pilot. Aerial photography is part of how I work and is included in most architectural shoots. It adds context, reveals a project's relationship to its surroundings, and gives clients a perspective that ground level photography can't achieve on its own.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-12" aria-controls="faq-a-12" aria-expanded="false">Are there any restrictions on where you can fly a drone?</button>
+      <div class="faq-answer" id="faq-a-12" role="region" aria-labelledby="faq-q-12">
+        <p>Yes. Drone flights are regulated by Transport Canada and certain areas have airspace restrictions, including near airports, helipads, and some national parks. I handle all flight planning and regulatory compliance. If a location has restrictions, I'll let you know during the planning stage and suggest alternative approaches if needed.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-13" aria-controls="faq-a-13" aria-expanded="false">Do you offer videography as well?</button>
+      <div class="faq-answer" id="faq-a-13" role="region" aria-labelledby="faq-q-13">
+        <p>Yes. I produce cinematic video content that showcases the flow, scale, and atmosphere of a property. This includes ground level walkthroughs, aerial flyovers, and detail sequences. Video is crafted for web, social media, and presentation use.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-14" aria-controls="faq-a-14" aria-expanded="false">What equipment do you use?</button>
+      <div class="faq-answer" id="faq-a-14" role="region" aria-labelledby="faq-q-14">
+        <p>I shoot with professional full frame mirrorless cameras and a range of architectural lenses including tilt shift glass for perspective correction. For aerial work, I use a commercial grade drone platform. All post production is done in Lightroom and Photoshop with a focus on natural, editorial quality results.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deliverables & Licensing -->
+  <div class="faq-category">
+    <p class="faq-eyebrow">Deliverables & Licensing</p>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-15" aria-controls="faq-a-15" aria-expanded="false">How long does it take to receive the final images?</button>
+      <div class="faq-answer" id="faq-a-15" role="region" aria-labelledby="faq-q-15">
+        <p>Final images are typically delivered within 5 to 10 business days through a curated online gallery. You'll receive both high resolution files for print and web optimized versions. Rush delivery is available if you're working toward a deadline.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-16" aria-controls="faq-a-16" aria-expanded="false">What file formats do you deliver?</button>
+      <div class="faq-answer" id="faq-a-16" role="region" aria-labelledby="faq-q-16">
+        <p>You'll receive high resolution JPEGs optimized for both print and digital use. Web sized versions and social media crops are available on request. If you need TIFF files or specific formats for a publication, I can accommodate that as well.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-17" aria-controls="faq-a-17" aria-expanded="false">Can I use the images on my website, social media, and in print?</button>
+      <div class="faq-answer" id="faq-a-17" role="region" aria-labelledby="faq-q-17">
+        <p>Yes. All images come with a commercial usage license that covers your website, social media, print marketing, award submissions, and editorial use. We'll discuss your specific needs during the booking process to make sure the license fits.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-18" aria-controls="faq-a-18" aria-expanded="false">Can you help with award submissions and publications?</button>
+      <div class="faq-answer" id="faq-a-18" role="region" aria-labelledby="faq-q-18">
+        <p>Absolutely. A large part of what I do is creating imagery specifically designed for <a href="/journal/architectural-photography-for-publications">award submissions and publication</a>. I understand the requirements for programs like the CHBA Awards, GVHBA Ovation Awards, and various design publications. I can provide images formatted and composed to meet those standards. For a deeper look at how we approach this, see our <a href="/journal/architectural-photography-for-publications">complete guide to architectural photography for awards and publications</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing & Packages -->
+  <div class="faq-category">
+    <p class="faq-eyebrow">Pricing & Packages</p>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-19" aria-controls="faq-a-19" aria-expanded="false">How much does architectural photography cost in BC?</button>
+      <div class="faq-answer" id="faq-a-19" role="region" aria-labelledby="faq-q-19">
+        <p>Pricing is based on the scope of each project including the number of images, time on site, location, and any additional services like drone photography or videography. I provide custom quotes after an initial conversation about your project.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-20" aria-controls="faq-a-20" aria-expanded="false">Do you offer retainer or ongoing photography packages?</button>
+      <div class="faq-answer" id="faq-a-20" role="region" aria-labelledby="faq-q-20">
+        <p>Yes. For builders, architects, and firms with multiple projects throughout the year, I offer retainer partnerships that include a set number of shoots at a preferred rate. This ensures consistent visual quality across your portfolio and gives you priority scheduling.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-21" aria-controls="faq-a-21" aria-expanded="false">What are your payment terms?</button>
+      <div class="faq-answer" id="faq-a-21" role="region" aria-labelledby="faq-q-21">
+        <p>A 50% deposit is required to secure your booking, with the balance due upon delivery of the final images. I accept e transfer, credit card, and bank transfer.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" type="button" id="faq-q-22" aria-controls="faq-a-22" aria-expanded="false">Is there an additional cost for drone photography?</button>
+      <div class="faq-answer" id="faq-a-22" role="region" aria-labelledby="faq-q-22">
+        <p>Aerial photography is included in most architectural packages. For standalone drone sessions or projects that require extended aerial coverage, it's quoted separately. I'll always be upfront about costs during the proposal stage.</p>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-accent"></div>
+
+<!-- ═══ CLOSE ═══ -->
+<section class="faq-cta" aria-labelledby="faq-cta-h">
+  <div class="faq-cta-bg">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Entry court with dark ribbed siding, a wood soffit and concrete steps up to a glass front door" width="1500" height="1000" loading="lazy" decoding="async">
+  </div>
+  <div class="faq-cta-c">
+    <p class="faq-eyebrow">Still Have Questions?</p>
+    <h2 id="faq-cta-h">Let's talk through <em>the details</em></h2>
+    <p class="faq-cta-sub">I'm happy to chat. Reach out and I'll get back to you within 24 hours.</p>
+    <div class="faq-cta-links">
+      <a href="/discovery-call" class="faq-cta-btn-primary" target="_blank" rel="noopener">Book a Discovery Call</a>
+      <a href="/contact" class="faq-cta-btn-secondary">Send a Message</a>
+    </div>
+    <p class="faq-alt-cta">Not ready to talk? <a href="/pricing-guide-landing">Get Pricing</a></p>
+  </div>
+</section>
+
+</div><!-- /.faq-wrap -->
+
+<!-- ═══ FOOTER: last element in the block, outside the page wrapper ═══ -->
+<div class="hp-ft">
+  <div class="hp-ft-inner">
+
+    <div class="hp-ft-top">
+      <div class="hp-ft-brand">
+        <p class="hp-ft-mark">Matt Anthony Photography</p>
+        <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
+        <p class="hp-ft-areas">
+          <a href="/squamish-architectural-photography">Squamish</a> &middot;
+          <a href="/whistler-architectural-photography">Whistler</a> &middot;
+          <a href="/pemberton-photography">Pemberton</a> &middot;
+          <a href="/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/vancouver-architectural-photographer">Vancouver</a> &middot;
+          <a href="/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
+          <a href="/okanagan-architectural-photographer">Okanagan</a>
+        </p>
+      </div>
+      <nav class="hp-ft-nav" aria-label="Footer">
+        <a href="/projects">Projects</a>
+        <a href="/creative-partner">Creative Partner</a>
+        <a href="/bio">About</a>
+        <a href="/journal">Journal</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="hp-ft-bottom">
+      <p class="hp-ft-meta">&copy; 2026 Matt Anthony Photography &middot; Squamish, BC &middot; All images &copy; Matt Anthony</p>
+      <div class="hp-ft-contact">
+        <a href="tel:6047659270">604.765.9270</a>
+        <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a>
+        <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="hp-ft-land">I acknowledge the privilege of living and working on the unceded territory of the Skwx&#775;wu&#769;7mesh (Squamish) Nation.</div>
+
+  </div>
+</div>
+
+<!-- FAQ accordion -->
+<script>
+(function(){
+  var wrap  = document.querySelector('.faq-wrap');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+  if(!wrap || !items.length) return;
+  /* Only now are the answers collapsible. Without this class they stay open. */
+  wrap.classList.add('faq-js');
+  items.forEach(function(item){
+    var btn = item.querySelector('.faq-question');
+    if(!btn) return;
+    btn.setAttribute('aria-expanded','false');
+    btn.addEventListener('click', function(){
+      var wasOpen = item.classList.contains('open');
+      items.forEach(function(el){
+        el.classList.remove('open');
+        var b = el.querySelector('.faq-question');
+        if(b) b.setAttribute('aria-expanded','false');
+      });
+      if(!wasOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
+</script>
+
+<!-- Shared chrome script -->
+<script>
+(function(){
+  var nav = document.getElementById('hpNav');
+  if(!nav) return;
+  /* A dark full-bleed hero the nav can sit over. Pages without one keep the
+     default solid nav and get a spacer so content is not hidden beneath it. */
+  var hero = nav.classList.contains('hp-nav-over')
+    ? document.querySelector('.hp-hero, [data-hp-hero]') : null;
+  if(!hero){
+    nav.classList.remove('hp-nav-over');
+    var sp = document.createElement('div');
+    sp.className = 'hp-nav-spacer';
+    nav.parentNode.insertBefore(sp, nav.nextSibling);
+    var size = function(){ sp.style.height = nav.offsetHeight + 'px'; };
+    size();
+    window.addEventListener('resize', size, {passive:true});
+    if(window.ResizeObserver){ new ResizeObserver(size).observe(nav); }
+    return;
+  }
+  var tick = false;
+  function check(){
+    nav.classList.toggle('hp-scrolled', window.pageYOffset > hero.offsetHeight - nav.offsetHeight);
+    tick = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; window.requestAnimationFrame(check); }
+  }, {passive:true});
+  check();
+})();
+</script>
+
+<!-- FAQPage schema — all 22 questions, unchanged -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What areas do you serve as an architectural photographer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I'm based in Squamish, British Columbia and serve the entire Sea to Sky Corridor including Whistler, Pemberton, and the Sunshine Coast. I also regularly shoot in Vancouver, the Fraser Valley, and across BC. I'm happy to travel for the right project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who do you typically work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most of my clients are architects, custom home builders, interior designers, and construction companies across British Columbia. I also work with real estate developers, landscape architects, and design build firms who need professional imagery for their portfolios, websites, award submissions, and marketing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should I book?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I recommend booking 2 to 4 weeks ahead to secure your preferred date and allow time for pre shoot planning. That said, I can sometimes accommodate shorter timelines depending on availability and season."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you only photograph completed projects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. While completed project photography is the core of what I do, I also offer jobsite progression documentation, construction lifestyle photography, and team headshots. Some of my retainer clients have me on site at multiple stages throughout a build."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes your approach different from other photographers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I focus on documenting design intent, not just producing pretty images. Before I pick up a camera, I take the time to understand the architect's or builder's vision, the material choices, the spatial flow, and the story the project is trying to tell. The photography follows from that understanding. I also offer full spectrum coverage under one roof: architectural photography, videography, drone, team portraits, and progression documentation. That means your visual identity stays cohesive across every touchpoint."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does an architectural photography session include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A typical session includes a pre shoot consultation to understand your project and goals, a full day or half day on site capturing exterior, interior, detail, and aerial photography, professional post production editing, and delivery of high resolution images through a curated online gallery within 5 to 10 business days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you prepare for a shoot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Before every shoot, I review architectural plans, renderings, or previous photos to understand orientation, light conditions, and composition opportunities. I'll send you a prep checklist covering staging tips, timing, and key design details to highlight. This ensures we make the most of our time on site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a typical shoot take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most residential architectural shoots take between 3 and 6 hours depending on the size of the property and the scope of coverage. Larger properties, multi building sites, or projects that include twilight photography may require a full day or a return visit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to be on site during the shoot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's not required. I'm comfortable working independently and do so on most shoots. That said, many clients like to be present for part of the session, especially early on, to walk me through specific design details they want highlighted. Either way works well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should the home be staged before the shoot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ideally, yes. Professionally staged or well styled spaces photograph significantly better. I'll send you a pre shoot prep guide with specific tips on decluttering, styling, and what to expect. If you're working with an interior designer or stager, I'm happy to coordinate with them directly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer drone and aerial photography?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. I'm a Transport Canada certified Advanced Drone Pilot. Aerial photography is part of how I work and is included in most architectural shoots. It adds context, reveals a project's relationship to its surroundings, and gives clients a perspective that ground level photography can't achieve on its own."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there any restrictions on where you can fly a drone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Drone flights are regulated by Transport Canada and certain areas have airspace restrictions, including near airports, helipads, and some national parks. I handle all flight planning and regulatory compliance. If a location has restrictions, I'll let you know during the planning stage and suggest alternative approaches if needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer videography as well?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. I produce cinematic video content that showcases the flow, scale, and atmosphere of a property. This includes ground level walkthroughs, aerial flyovers, and detail sequences. Video is crafted for web, social media, and presentation use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What equipment do you use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I shoot with professional full frame mirrorless cameras and a range of architectural lenses including tilt shift glass for perspective correction. For aerial work, I use a commercial grade drone platform. All post production is done in Lightroom and Photoshop with a focus on natural, editorial quality results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to receive the final images?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Final images are typically delivered within 5 to 10 business days through a curated online gallery. You'll receive both high resolution files for print and web optimized versions. Rush delivery is available if you're working toward a deadline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What file formats do you deliver?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll receive high resolution JPEGs optimized for both print and digital use. Web sized versions and social media crops are available on request. If you need TIFF files or specific formats for a publication, I can accommodate that as well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the images on my website, social media, and in print?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All images come with a commercial usage license that covers your website, social media, print marketing, award submissions, and editorial use. We'll discuss your specific needs during the booking process to make sure the license fits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you help with award submissions and publications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. A large part of what I do is creating imagery specifically designed for award submissions and publication. I understand the requirements for programs like the CHBA Awards, GVHBA Ovation Awards, and various design publications. I can provide images formatted and composed to meet those standards. For a deeper look, see our complete guide to architectural photography for awards and publications at mattanthonyphoto.com/architectural-photography-for-publications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does architectural photography cost in BC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pricing is based on the scope of each project including the number of images, time on site, location, and any additional services like drone photography or videography. I provide custom quotes after an initial conversation about your project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer retainer or ongoing photography packages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. For builders, architects, and firms with multiple projects throughout the year, I offer retainer partnerships that include a set number of shoots at a preferred rate. This ensures consistent visual quality across your portfolio and gives you priority scheduling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your payment terms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 50% deposit is required to secure your booking, with the balance due upon delivery of the final images. I accept e transfer, credit card, and bank transfer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an additional cost for drone photography?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aerial photography is included in most architectural packages. For standalone drone sessions or projects that require extended aerial coverage, it's quoted separately. I'll always be upfront about costs during the proposal stage."
+      }
+    }
+  ]
+}
+</script>
+
+<!--
+  FAQs PAGE — Squarespace code block
+  mattanthonyphoto.com/faqs
+
+  Last updated: 2026-08-27
+  Brought onto sitewide/_DESIGN-SYSTEM.md:
+    1. Shared chrome lifted verbatim from sitewide/_chrome.html. Nav is the first
+       element, footer the last, both outside .faq-wrap. The page's own real
+       footer element, which Squarespace hides, is gone.
+    2. Nav carries hp-nav-over: the page opens on a dark full-bleed hero, tagged
+       data-hp-hero so the chrome script finds it.
+    3. Every container is max-width:var(--page); padding:0 var(--gutter). The
+       question column keeps an 860px measure but stays left aligned on the gutter.
+    4. Cormorant at letter-spacing 0, weight 400 below hero size. One small-caps
+       style: 11px / .18em / DM Sans 400.
+    5. Contrast: the failing stone and the deep gold are gone as text colours.
+       Paper text is --ink
+       or --stone; text on ink is only rgba(246,244,240,.82) and .60.
+    6. Removed: loading screen, custom cursor, scroll progress bar, section nav
+       dots, hero parallax, film grain, magnetic button, CTA zoom, button glow,
+       scroll hint, and all four IntersectionObserver reveals (eyebrow dash,
+       divider draw, headline underline, CTA in-view).
+    7. Accordion answers are open in plain CSS and only collapse once the script
+       adds .faq-js, so a failed script cannot ship invisible text. The old
+       max-height:500px cap could clip a long answer; it is gone.
+    8. Images: srcset + sizes + real width/height, CDN ladder on both, alt text
+       rewritten to what is visibly in frame, hero not lazy.
+    9. Page-level meta (description, canonical, og:) removed. Squarespace emits
+       those from the SEO panel.
+   10. All 22 questions and answers and the FAQPage JSON-LD are unchanged.
+-->
+
+</body>
+</html>

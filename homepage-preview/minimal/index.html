@@ -60,6 +60,18 @@
 }
 .hp-arrow-link:hover,.hp-arrow-link:focus-visible{border-color:var(--ink)}
 
+:root{--gutter:clamp(24px,5vw,80px);--page:1600px}
+.hp-nav,.hp-ft{
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#6f6b61; --rule:#d9d5cd;
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+.hp-nav *,.hp-ft *{box-sizing:border-box}
+.hp-ft *{margin:0;padding:0}
+.hp-nav a,.hp-ft a{text-decoration:none!important;border:0}
+#maHeader{display:none!important}
+
 /* ── NAV ──
    Solid paper is the DEFAULT, so a content page is correct even if the script
    never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the

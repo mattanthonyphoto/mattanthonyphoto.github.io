@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>journal</title>
+<style>html,body{margin:0;padding:0}</style>
+</head>
+<body>
+<style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
+
+<!-- preconnects + fonts; the hero image carries fetchpriority="high" inline -->
+<link rel="preconnect" href="https://images.squarespace-cdn.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══ SHARED CHROME · lifted verbatim from sitewide/_chrome.html ═══ */
+/* Tokens the chrome expects. On the chrome itself so no page wrapper is needed,
+   and on :root so a page's own rules can use --gutter / --page too. */
+:root{--gutter:clamp(24px,5vw,80px);--page:1600px}
+.hp-nav,.hp-ft{
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#6f6b61; --rule:#d9d5cd;
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+.hp-nav *,.hp-ft *{box-sizing:border-box}
+.hp-ft *{margin:0;padding:0}
+.hp-nav a,.hp-ft a{text-decoration:none!important;border:0}
+#maHeader{display:none!important}
+
+/* ── NAV ──
+   Solid paper is the DEFAULT, so a content page is correct even if the script
+   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
+   markup to sit transparently over it; the script then removes that treatment
+   once you scroll past the hero. ── */
+.hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
+  display:flex!important;align-items:center;justify-content:space-between;gap:24px;
+  padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
+  background-color:#f6f4f0;
+  transition:background-color .45s var(--ease)}
+.hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
+  transition:color .45s var(--ease)}
+.hp-nav-links{display:flex!important;gap:clamp(20px,3vw,40px);align-items:center}
+.hp-nav-links a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
+  transition:color .35s var(--ease)}
+.hp-nav-links a:hover,.hp-nav-links a:focus-visible,.hp-nav-mark:focus-visible{color:#1a1a18!important}
+
+/* Over a dark full-bleed hero, until scrolled past it. */
+.hp-nav-over:not(.hp-scrolled){background-color:transparent}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-mark{color:#f6f4f0!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links a{color:rgba(246,244,240,.78)!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links a:hover,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links a:focus-visible,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-mark:focus-visible{color:#fff!important}
+
+/* Keeps content clear of the fixed nav on pages with no hero (script-inserted). */
+.hp-nav-spacer{width:100%}
+
+@media (max-width:820px){
+  .hp-nav{padding:18px var(--gutter);gap:14px}
+  .hp-nav-links{gap:14px}
+  .hp-nav-links a{font-size:10px;letter-spacing:.1em}
+  .hp-nav-mark{font-size:11px;letter-spacing:.28em}
+}
+@media (max-width:480px){
+  .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
+  .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
+  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 16px}
+  .hp-nav-links a{font-size:10px;letter-spacing:.06em}
+}
+
+/* ── FOOTER ── */
+.hp-ft{background:#1a1a18!important;padding:clamp(72px,10vw,120px) var(--gutter) clamp(36px,4vw,56px);
+  border-top:1px solid rgba(201,169,110,.16)}
+.hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
+.hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+.hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
+  padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
+.hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
+  max-width:640px;line-height:1.85;text-align:left;letter-spacing:.02em;
+  margin:clamp(24px,3vw,36px) 0 0;color:rgba(246,244,240,.60)!important}
+@media (max-width:900px){
+  .hp-ft-bottom{flex-direction:column}
+}
+/* footer, rebuilt: one block, no headed columns */
+.hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
+  padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
+.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
+.hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
+.hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
+.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
+.hp-ft-meta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:0}
+.hp-ft-contact{display:flex!important;flex-wrap:wrap;gap:18px}
+.hp-ft-contact a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-contact a:hover,.hp-ft-contact a:focus-visible{color:#c9a96e!important}
+@media (max-width:760px){.hp-ft-nav{flex:1 1 100%;width:100%;flex-direction:row;flex-wrap:wrap;gap:14px 22px}}
+
+@media (prefers-reduced-motion:reduce){
+  .hp-wrap *{animation:none!important;transition:none!important}
+  .hp-hero-slides img{opacity:0}
+  .hp-hero-slides img:first-child{opacity:1}
+}
+
+/* ═══ JOURNAL LANDING — built on the site design system ═══
+   One page width and one gutter: nav, hero line, filter bar, cards, CTA and
+   footer all sit on the same left edge at every viewport. Flexbox, not grid. */
+
+.jn-wrap{
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#6f6b61; --rule:#d9d5cd;
+  --section:clamp(88px,9vw,150px);
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
+  --g:clamp(20px,2.4vw,36px);
+  --ease:cubic-bezier(.16,1,.3,1);
+  font-family:'DM Sans',-apple-system,sans-serif;
+  font-weight:300; line-height:1.7; color:var(--ink);
+  background:var(--paper)!important;
+  -webkit-font-smoothing:antialiased;
+}
+.jn-wrap *{box-sizing:border-box}
+.jn-wrap img{max-width:100%;display:block}
+.jn-wrap a{color:inherit;text-decoration:none}
+.jn-wrap h1,.jn-wrap h2,.jn-wrap h3,.jn-wrap p{margin:0}
+#maHeader{display:none!important}
+.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+
+.jn-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
+
+/* ── One small-caps style: 11px / .18em / DM Sans 400. Eyebrows, labels,
+   filter buttons and the CTA button all use it. No second tracking value. ── */
+.jn-eyebrow{
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--stone)!important;margin:0 0 26px;
+  display:inline-flex!important;align-items:center;gap:14px;
+}
+.jn-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
+
+.jn-wrap a:focus-visible,.jn-wrap button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* ════ HERO ════ */
+.jn-hero{position:relative;min-height:clamp(360px,52vh,560px);overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:flex-end}
+.jn-hero-bg{position:absolute;inset:0;z-index:0}
+.jn-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 72%}
+.jn-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(26,26,24,.40) 0%,rgba(26,26,24,.58) 26%,rgba(26,26,24,.74) 58%,rgba(26,26,24,.90) 100%)}
+.jn-hero-content{position:relative;z-index:2;width:100%;padding:clamp(64px,9vw,120px) 0 clamp(44px,5vw,72px)}
+.jn-hero .jn-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
+.jn-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
+  color:#f6f4f0!important;max-width:22ch;margin:0 0 clamp(20px,2.4vw,28px)}
+.jn-hero h1 em{font-style:italic}
+.jn-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.85;letter-spacing:.02em;max-width:56ch;color:rgba(246,244,240,.82)!important}
+
+/* ════ CATEGORY FILTER ════ */
+.jn-cats-outer{padding:clamp(28px,3.2vw,44px) 0;border-bottom:1px solid var(--rule)}
+.jn-cats{display:flex!important;flex-wrap:wrap;gap:10px 12px}
+.jn-cat-btn{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  padding:12px 20px;border:1px solid var(--rule)!important;border-radius:0;
+  background:transparent!important;color:var(--stone)!important;cursor:pointer;
+  transition:color .3s var(--ease),border-color .3s var(--ease)}
+.jn-cat-btn:hover,.jn-cat-btn.active{color:var(--ink)!important;border-color:var(--ink)!important}
+
+/* ════ FEATURED ════ */
+.jn-featured{padding:var(--section) 0 clamp(56px,6vw,88px)}
+.jn-feat-card{display:flex!important;flex-wrap:wrap;align-items:stretch;
+  background:var(--paper)!important;border:1px solid var(--rule)}
+.jn-feat-img{position:relative;flex:1 1 55%;min-width:280px;background:var(--ink)!important;aspect-ratio:3/2}
+.jn-feat-img img{width:100%;height:100%;object-fit:cover}
+.jn-feat-badge{position:absolute;left:0;bottom:0;z-index:2;
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(246,244,240,.82)!important;background:rgba(26,26,24,.72)!important;padding:9px 16px}
+.jn-feat-txt{flex:1 1 45%;min-width:280px;display:flex!important;flex-direction:column;
+  justify-content:center;padding:clamp(32px,4vw,56px)}
+.jn-feat-txt h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.5rem,2.6vw,2.15rem);line-height:1.2;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 16px}
+.jn-feat-sum{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.7;color:var(--stone)!important;margin:0 0 26px}
+.jn-feat-link{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink)!important;border-bottom:1px solid var(--stone);padding-bottom:5px;
+  align-self:flex-start;transition:border-color .35s var(--ease)}
+.jn-feat-card:hover .jn-feat-link,.jn-feat-card:focus-visible .jn-feat-link{border-color:var(--ink)}
+@media (max-width:900px){.jn-feat-img{flex-basis:100%}.jn-feat-txt{flex-basis:100%}}
+
+/* ════ SECTION RULE ════ */
+.jn-accent{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
+.jn-accent::before{content:"";display:block;height:1px;background:var(--rule)}
+
+/* ════ SECTIONS + CARD GRID ════ */
+.jn-section{padding:var(--section) 0}
+.jn-section-head{margin-bottom:clamp(28px,3.5vw,48px)}
+.jn-section-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0;max-width:22ch}
+.jn-grid{display:flex!important;flex-wrap:wrap;gap:clamp(32px,3.4vw,48px) var(--g)}
+.jn-card,.jn-sub-card{flex:0 1 calc((100% - var(--g)*2)/3)}
+.jn-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;
+  aspect-ratio:16/10;margin-bottom:16px}
+.jn-card-frame img{width:100%;height:100%;object-fit:cover}
+.jn-card-cat{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0 0 8px}
+.jn-card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:1.35rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;
+  margin:0 0 8px;transition:color .3s var(--ease)}
+.jn-card:hover h3,.jn-card:focus-visible h3{color:#816a3f!important}
+.jn-card-sum{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.7;color:var(--stone)!important;margin:0}
+
+.jn-sub-card{display:flex!important;flex-direction:column;justify-content:center;
+  border:1px solid var(--rule);padding:clamp(28px,3vw,40px)}
+.jn-sub-card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:1.35rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
+.jn-sub-card p{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.7;color:var(--stone)!important;margin:0 0 24px}
+.jn-sub-link{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink)!important;
+  border-bottom:1px solid var(--stone);padding-bottom:5px;align-self:flex-start;
+  transition:border-color .35s var(--ease)}
+.jn-sub-card:hover .jn-sub-link,.jn-sub-card:focus-visible .jn-sub-link{border-color:var(--ink)}
+
+@media (max-width:1023px){.jn-card,.jn-sub-card{flex-basis:calc((100% - var(--g))/2)}}
+@media (max-width:639px){.jn-card,.jn-sub-card{flex-basis:100%}}
+
+/* ════ CLOSE ════ */
+.jn-cta{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:center;
+  justify-content:center;text-align:center}
+.jn-cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.jn-cta::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(26,26,24,.52) 0%,rgba(26,26,24,.80) 100%)}
+.jn-cta-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
+.jn-cta .jn-eyebrow{color:rgba(246,244,240,.82)!important}
+.jn-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:#f6f4f0!important;margin:0 0 clamp(18px,2vw,26px)}
+.jn-cta h2 em{font-style:italic}
+.jn-cta-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.85;letter-spacing:.02em;color:rgba(246,244,240,.82)!important;
+  max-width:54ch;margin:0 auto clamp(28px,3vw,40px)}
+.jn-cta-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.jn-cta-btn:hover,.jn-cta-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.jn-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.82)!important;margin:16px 0 0}
+/* .82 not .60 here: the surface is a photograph, not solid ink. Measured 5.5:1
+   against the brightest pixel behind this line; .60 measured 3.76:1 and failed. */
+.jn-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.jn-alt-cta a:focus-visible{border-color:#f6f4f0}
+.jn-cta a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+.jn-hero a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+</style>
+
+<!-- ═══ NAV: first element in the block, outside the page wrapper ═══ -->
+<div class="hp-nav hp-nav-over" id="hpNav" role="navigation" aria-label="Main">
+  <a href="/" class="hp-nav-mark">Matt Anthony Photography</a>
+  <div class="hp-nav-links">
+    <a href="/projects">Projects</a>
+    <a href="/bio">About</a>
+    <a href="/contact">Contact</a>
+  </div>
+</div>
+
+<div class="jn-wrap">
+
+<!-- ════════════ HERO ════════════ -->
+<section class="jn-hero" data-hp-hero aria-labelledby="jn-hero-h">
+  <div class="jn-hero-bg" aria-hidden="true">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8acad367-9f3e-4b80-8658-e96f7fc6c3a9/5322-backhouse-web-1.1.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8acad367-9f3e-4b80-8658-e96f7fc6c3a9/5322-backhouse-web-1.1.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8acad367-9f3e-4b80-8658-e96f7fc6c3a9/5322-backhouse-web-1.1.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8acad367-9f3e-4b80-8658-e96f7fc6c3a9/5322-backhouse-web-1.1.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8acad367-9f3e-4b80-8658-e96f7fc6c3a9/5322-backhouse-web-1.1.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8acad367-9f3e-4b80-8658-e96f7fc6c3a9/5322-backhouse-web-1.1.jpg?format=2500w 2500w" sizes="100vw" alt="Dark clad house among tall firs, entry steps and stacked firewood under the roof, gravel drive" width="1500" height="1125" fetchpriority="high" decoding="async">
+  </div>
+  <div class="jn-hero-content">
+    <div class="jn-container">
+      <p class="jn-eyebrow">Journal</p>
+      <h1 id="jn-hero-h">Strategy and insight for those who <em>build with purpose</em></h1>
+      <p class="jn-hero-sub">Practical guidance for architects, builders, and designers who want their work seen, recognized, and understood.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CATEGORY FILTER ════════════ -->
+<div class="jn-cats-outer">
+  <div class="jn-container">
+    <div class="jn-cats" role="group" aria-label="Filter articles by category">
+      <button type="button" class="jn-cat-btn active" data-cat="all" aria-pressed="true">All</button>
+      <button type="button" class="jn-cat-btn" data-cat="awards" aria-pressed="false">Awards</button>
+      <button type="button" class="jn-cat-btn" data-cat="guides" aria-pressed="false">Award Guides</button>
+      <button type="button" class="jn-cat-btn" data-cat="working" aria-pressed="false">Working Together</button>
+      <button type="button" class="jn-cat-btn" data-cat="casestudies" aria-pressed="false">Case Studies</button>
+      <button type="button" class="jn-cat-btn" data-cat="content" aria-pressed="false">Content &amp; Strategy</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ FEATURED ════════════ -->
+<div class="jn-featured" data-cat="awards working content">
+  <div class="jn-container">
+    <a class="jn-feat-card" href="/journal/roi-professional-architectural-photography-builders">
+      <div class="jn-feat-img">
+        <span class="jn-feat-badge">Featured</span>
+        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 792px, (min-width: 901px) 49.5vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Entry court with dark corrugated cladding, a cedar soffit and concrete steps between planted beds" width="1500" height="1000" loading="lazy" decoding="async">
+      </div>
+      <div class="jn-feat-txt">
+        <p class="jn-eyebrow">Business Case</p>
+        <h2>The ROI of Professional Architectural Photography for Custom Builders</h2>
+        <p class="jn-feat-sum">Why professional photography is the highest-ROI marketing investment a custom builder can make, and the simple math that proves it.</p>
+        <span class="jn-feat-link">Read article</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="jn-accent" aria-hidden="true"></div>
+
+<section class="jn-section" id="guides" data-cat="awards guides" aria-labelledby="jn-h-guides">
+  <div class="jn-container">
+    <div class="jn-section-head">
+      <p class="jn-eyebrow">Award &amp; Publication Guides</p>
+      <h2 id="jn-h-guides">Everything you need to know before you submit</h2>
+    </div>
+    <div class="jn-grid">
+      <a class="jn-card" href="/journal/georgie-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83a2955e-1bae-4f9f-a83d-a595dad1997f/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83a2955e-1bae-4f9f-a83d-a595dad1997f/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83a2955e-1bae-4f9f-a83d-a595dad1997f/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83a2955e-1bae-4f9f-a83d-a595dad1997f/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83a2955e-1bae-4f9f-a83d-a595dad1997f/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Mudroom with a slatted oak wall, coat hooks and an open riser stair beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete Georgie Awards Photography Guide</h3>
+        <p class="jn-card-sum">Categories, eligibility, image specs, and how to build a winning submission set for BC's top award.</p>
+      </a>
+      <a class="jn-card" href="/journal/havan-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Entry under a cedar soffit with a dark pivot door, rain chain and concrete pavers in snow" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete HAVAN Awards Photography Guide</h3>
+        <p class="jn-card-sum">Metro Vancouver's premier residential construction award. Naming conventions, deadlines, and photo strategy.</p>
+      </a>
+      <a class="jn-card" href="/journal/chba-national-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Dark clad house among firs with a ribbon window, gravel drive and stacked firewood" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete CHBA National Awards Photography Guide</h3>
+        <p class="jn-card-sum">Over 1,000 entries judged nationally. Categories, image requirements, and how to stand out at the federal level.</p>
+      </a>
+      <a class="jn-card" href="/care-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Entry hall looking through to a dining area, with a glazed courtyard and a carved wood sculpture in snow" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete CARE Awards Photography Guide</h3>
+        <p class="jn-card-sum">Canadian renovation excellence. What CARE judges look for and how to photograph before-and-after transformations.</p>
+      </a>
+      <a class="jn-card" href="/ovation-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6026f732-c55b-4410-9999-77435ce911f8/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-15.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6026f732-c55b-4410-9999-77435ce911f8/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-15.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6026f732-c55b-4410-9999-77435ce911f8/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-15.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6026f732-c55b-4410-9999-77435ce911f8/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-15.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6026f732-c55b-4410-9999-77435ce911f8/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-15.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Fluted glass screen beside a black framed window looking onto snow" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete Ovation Awards Photography Guide</h3>
+        <p class="jn-card-sum">GVHBA's premier recognition program. Submission requirements, categories, and photography best practices.</p>
+      </a>
+      <a class="jn-card" href="/journal/raic-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a3f3bbf1-98ff-4636-b992-8523fef2d08c/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-7.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a3f3bbf1-98ff-4636-b992-8523fef2d08c/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-7.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a3f3bbf1-98ff-4636-b992-8523fef2d08c/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-7.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a3f3bbf1-98ff-4636-b992-8523fef2d08c/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-7.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a3f3bbf1-98ff-4636-b992-8523fef2d08c/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-7.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Upstairs landing with a glass balustrade, oak floor and sunlight across the wall" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete RAIC Awards Photography Guide</h3>
+        <p class="jn-card-sum">Canada's national architecture awards. How to photograph projects for the highest level of professional recognition.</p>
+      </a>
+      <a class="jn-card" href="/journal/architectural-photography-for-publications" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Dark clad corner cantilevered over a rock outcrop above the water" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Publication Guide</p>
+        <h3>Architectural Photography for Publications</h3>
+        <p class="jn-card-sum">What editors and publishers look for and how to prepare images that get your project featured.</p>
+      </a>
+      <a class="jn-card" href="/gold-nugget-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8e511d08-b65b-4866-860c-4ed802f035e7/pit-meadows-architectural-interiors-photography-12.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8e511d08-b65b-4866-860c-4ed802f035e7/pit-meadows-architectural-interiors-photography-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8e511d08-b65b-4866-860c-4ed802f035e7/pit-meadows-architectural-interiors-photography-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8e511d08-b65b-4866-860c-4ed802f035e7/pit-meadows-architectural-interiors-photography-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8e511d08-b65b-4866-860c-4ed802f035e7/pit-meadows-architectural-interiors-photography-12.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="White kitchen with a pale oak island, brass pendants and a green tile backsplash" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete Gold Nugget Awards Photography Guide</h3>
+        <p class="jn-card-sum">North America's largest and most prestigious residential building award. Categories, specs, and submission strategy.</p>
+      </a>
+      <a class="jn-card" href="/ida-awards-guide" data-cat="awards guides">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Cedar shingle wall opening onto a white living room with a cluster pendant and a fireplace" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Award Guide</p>
+        <h3>The Complete IDA Awards Photography Guide</h3>
+        <p class="jn-card-sum">International Design Awards submission requirements. How to prepare photography that competes on a global stage.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="jn-accent" aria-hidden="true"></div>
+
+<section class="jn-section" id="awards" data-cat="awards" aria-labelledby="jn-h-awards">
+  <div class="jn-container">
+    <div class="jn-section-head">
+      <p class="jn-eyebrow">Awards &amp; Recognition</p>
+      <h2 id="jn-h-awards">Winning recognition for your work</h2>
+    </div>
+    <div class="jn-grid">
+      <a class="jn-card" href="/journal/how-to-photograph-your-project-for-award-submissions" data-cat="awards">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Dark metal and cedar entry elevation in snow with a mountain slope behind" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Awards</p>
+        <h3>How to Photograph Your Project for Award Submissions</h3>
+        <p class="jn-card-sum">What Georgie, HAVAN, and CHBA National Award judges actually look for in submission photography.</p>
+      </a>
+      <a class="jn-card" href="/journal/why-your-award-submission-photos-arent-working" data-cat="awards">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/659de228-5667-4354-bf0b-2e96b82db62e/pit-meadows-architectural-interiors-photography-14.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/659de228-5667-4354-bf0b-2e96b82db62e/pit-meadows-architectural-interiors-photography-14.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/659de228-5667-4354-bf0b-2e96b82db62e/pit-meadows-architectural-interiors-photography-14.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/659de228-5667-4354-bf0b-2e96b82db62e/pit-meadows-architectural-interiors-photography-14.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/659de228-5667-4354-bf0b-2e96b82db62e/pit-meadows-architectural-interiors-photography-14.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="White shaker kitchen with a green tile backsplash, brass fixtures and open shelving" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Awards</p>
+        <h3>Why Your Award Submission Photos Aren't Working</h3>
+        <p class="jn-card-sum">Common mistakes that cost firms recognition, and the compositional shifts that change outcomes.</p>
+      </a>
+      <a class="jn-card" href="/journal/what-georgie-award-judges-look-for-submission-photography" data-cat="awards">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e2ad4fcf-031d-47fc-a2db-f7e8e53f8b78/eagle-pemberton-architectural-photography-matt-anthony-.jpg-6.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e2ad4fcf-031d-47fc-a2db-f7e8e53f8b78/eagle-pemberton-architectural-photography-matt-anthony-.jpg-6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e2ad4fcf-031d-47fc-a2db-f7e8e53f8b78/eagle-pemberton-architectural-photography-matt-anthony-.jpg-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e2ad4fcf-031d-47fc-a2db-f7e8e53f8b78/eagle-pemberton-architectural-photography-matt-anthony-.jpg-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e2ad4fcf-031d-47fc-a2db-f7e8e53f8b78/eagle-pemberton-architectural-photography-matt-anthony-.jpg-6.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Kitchen island with six stools under slim pendants, oak and white cabinetry" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Awards</p>
+        <h3>What Georgie Award Judges Actually Look for in Submission Photography</h3>
+        <p class="jn-card-sum">Inside the evaluation criteria and how to compose specifically for BC's most prestigious award.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="jn-accent" aria-hidden="true"></div>
+
+<section class="jn-section" id="working" data-cat="working" aria-labelledby="jn-h-working">
+  <div class="jn-container">
+    <div class="jn-section-head">
+      <p class="jn-eyebrow">Working Together</p>
+      <h2 id="jn-h-working">Making the most of your investment</h2>
+    </div>
+    <div class="jn-grid">
+      <a class="jn-card" href="/journal/how-to-prepare-project-architectural-photo-shoot" data-cat="working">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b00b123a-10cc-4f9c-981d-f682da605ef7/warbler-whistler-architectural-photography-matt-anthony-.jpg-8.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b00b123a-10cc-4f9c-981d-f682da605ef7/warbler-whistler-architectural-photography-matt-anthony-.jpg-8.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b00b123a-10cc-4f9c-981d-f682da605ef7/warbler-whistler-architectural-photography-matt-anthony-.jpg-8.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b00b123a-10cc-4f9c-981d-f682da605ef7/warbler-whistler-architectural-photography-matt-anthony-.jpg-8.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b00b123a-10cc-4f9c-981d-f682da605ef7/warbler-whistler-architectural-photography-matt-anthony-.jpg-8.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Upper landing with a glass balustrade looking through to a dining table and a glazed wall onto snow" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Shoot Prep</p>
+        <h3>How to Prepare Your Project for an Architectural Photo Shoot</h3>
+        <p class="jn-card-sum">A practical guide to staging, timing, and coordination that ensures the best results.</p>
+      </a>
+      <a class="jn-card" href="/journal/project-photography-vs-real-estate-photography" data-cat="working">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Dining table and chairs beside a glass wall with a snow covered mountain beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Education</p>
+        <h3>Project Photography vs Real Estate Photography: Why They're Not the Same Thing</h3>
+        <p class="jn-card-sum">Drawing the line between documentation and listing photos.</p>
+      </a>
+      <a class="jn-card" href="/journal/documenting-design-intent-photography-before-build-finished" data-cat="working">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Double height living room with pendant lights and glazing onto snow covered mountains" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Philosophy</p>
+        <h3>Documenting Design Intent: Why the Best Photography Starts Before the Build is Finished</h3>
+        <p class="jn-card-sum">The case for bringing your photographer into the conversation early.</p>
+      </a>
+      <a class="jn-card" href="/journal/seasonal-considerations-architectural-photography-bc" data-cat="working">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Bedroom corner with a mitred corner window looking onto snow and rock" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Planning</p>
+        <h3>Seasonal Considerations for Architectural Photography in British Columbia</h3>
+        <p class="jn-card-sum">When to shoot, rain strategies, and golden hour timing by season in the Sea-to-Sky.</p>
+      </a>
+      <a class="jn-card" href="/journal/5-details-make-or-break-architectural-interior-photography" data-cat="working">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Close view of dark ribbed metal cladding with branch shadows across it" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Craft</p>
+        <h3>5 Details That Make or Break Architectural Interior Photography</h3>
+        <p class="jn-card-sum">Verticals, colour temperature, window exposure, camera height, and frame discipline.</p>
+      </a>
+      <a class="jn-card" href="/journal/what-architects-should-look-for-hiring-photographer" data-cat="working">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bd45b746-3623-41b7-8016-a94a135bd9b6/5322-backhouse-web-10.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bd45b746-3623-41b7-8016-a94a135bd9b6/5322-backhouse-web-10.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bd45b746-3623-41b7-8016-a94a135bd9b6/5322-backhouse-web-10.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bd45b746-3623-41b7-8016-a94a135bd9b6/5322-backhouse-web-10.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bd45b746-3623-41b7-8016-a94a135bd9b6/5322-backhouse-web-10.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="White kitchen with a long island, four stools and integrated ovens" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Hiring Guide</p>
+        <h3>What Architects Should Look for When Hiring an Architectural Photographer</h3>
+        <p class="jn-card-sum">The questions to ask, the portfolio signals to look for, and the red flags to avoid.</p>
+      </a>
+      <a class="jn-card" href="/journal/how-cost-sharing-works-architectural-photography" data-cat="working">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Close view of a dark veined stone island end with a black stool behind it" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Cost-Sharing</p>
+        <h3>How Cost-Sharing Works in Architectural Photography</h3>
+        <p class="jn-card-sum">Split the cost of a professional shoot with the other firms on your project. 90% of projects are cost-shared.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="jn-accent" aria-hidden="true"></div>
+
+<section class="jn-section" id="casestudies" data-cat="casestudies" aria-labelledby="jn-h-casestudies">
+  <div class="jn-container">
+    <div class="jn-section-head">
+      <p class="jn-eyebrow">Case Studies &amp; Process</p>
+      <h2 id="jn-h-casestudies">Stories from the field</h2>
+    </div>
+    <div class="jn-grid">
+      <a class="jn-card" href="/journal/summerhill-fine-homes-visual-brand-ongoing-photography" data-cat="casestudies">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8885e535-fd99-48e9-801f-020449535162/5322-backhouse-web-22.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Dark clad house cantilevered over a rock outcrop above the water at dusk, fire bowl on the terrace" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Case Study</p>
+        <h3>How Summerhill Fine Homes Built a Visual Brand Through Ongoing Photography</h3>
+        <p class="jn-card-sum">What a retainer partnership looks like in practice and the compounding value of consistency.</p>
+      </a>
+      <a class="jn-card" href="/journal/behind-the-shoot-the-perch-sunshine-coast" data-cat="casestudies">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/986386ba-6a96-4e7e-871c-19977ed61aa3/5322-backhouse-web-17.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/986386ba-6a96-4e7e-871c-19977ed61aa3/5322-backhouse-web-17.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/986386ba-6a96-4e7e-871c-19977ed61aa3/5322-backhouse-web-17.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/986386ba-6a96-4e7e-871c-19977ed61aa3/5322-backhouse-web-17.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/986386ba-6a96-4e7e-871c-19977ed61aa3/5322-backhouse-web-17.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Bedroom with a black framed sliding wall open to a deck, white bed and a round rug" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Behind the Shoot</p>
+        <h3>Behind the Shoot: The Perch, Sunshine Coast</h3>
+        <p class="jn-card-sum">Planning, site visit, light decisions, and the frames that tell the story of this coastal home.</p>
+      </a>
+      <a class="jn-card" href="/journal/architectural-photography-whistler-mountain-projects" data-cat="casestudies">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Covered walkway with a cedar soffit and steel columns, concrete pavers between snow banks" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Local SEO</p>
+        <h3>Architectural Photography in Whistler: What Makes Mountain Projects Different</h3>
+        <p class="jn-card-sum">Alpine light, snow, elevation, and seasonal timing that only someone who shoots here would know.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="jn-accent" aria-hidden="true"></div>
+
+<section class="jn-section" id="content" data-cat="content" aria-labelledby="jn-h-content">
+  <div class="jn-container">
+    <div class="jn-section-head">
+      <p class="jn-eyebrow">Content &amp; Strategy</p>
+      <h2 id="jn-h-content">Building your brand through visuals</h2>
+    </div>
+    <div class="jn-grid">
+      <a class="jn-card" href="/journal/construction-lifestyle-photography-best-social-media-investment-builders" data-cat="content">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/99381b00-0337-4207-afdf-fef0d9870acf/construction-lifestyle-photography-sunshine-coast-summerhill18.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/99381b00-0337-4207-afdf-fef0d9870acf/construction-lifestyle-photography-sunshine-coast-summerhill18.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/99381b00-0337-4207-afdf-fef0d9870acf/construction-lifestyle-photography-sunshine-coast-summerhill18.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/99381b00-0337-4207-afdf-fef0d9870acf/construction-lifestyle-photography-sunshine-coast-summerhill18.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/99381b00-0337-4207-afdf-fef0d9870acf/construction-lifestyle-photography-sunshine-coast-summerhill18.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="A tradesperson fitting dark vertical siding on a house under construction" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Social Strategy</p>
+        <h3>Why Construction Lifestyle Photography is the Best Social Media Investment for Builders</h3>
+        <p class="jn-card-sum">The content that fills the gaps, drives engagement, and builds the brand finished photos can't.</p>
+      </a>
+      <a class="jn-card" href="/journal/how-to-build-visual-library-website-proposals-awards" data-cat="content">
+        <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Cedar and dark metal exterior corner with glazing, snow and conifers in low sun" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <p class="jn-card-cat">Strategy</p>
+        <h3>How to Build a Visual Library That Works Across Your Website, Proposals, and Awards</h3>
+        <p class="jn-card-sum">One strategic relationship replaces a dozen one-off shoots — and compounds over time.</p>
+      </a>
+      <a class="jn-sub-card" href="/contact" data-cat="content">
+        <h3>Stay in the loop</h3>
+        <p>New articles on photography, awards, and visual strategy for the building industry.</p>
+        <span class="jn-sub-link">Get in Touch</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CLOSE ════════════ -->
+<section class="jn-cta" aria-labelledby="jn-cta-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Shingled pavilion lit from within at blue hour with the moon over the water" width="1500" height="1125" loading="lazy" decoding="async">
+  <div class="jn-cta-c">
+    <p class="jn-eyebrow">Let's Talk</p>
+    <h2 id="jn-cta-h">Want to discuss <em>your project</em>?</h2>
+    <p class="jn-cta-sub">Whether you're planning a shoot, preparing an award submission, or thinking about your visual strategy, I'm happy to talk it through.</p>
+    <a href="/discovery-call" class="jn-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
+    <p class="jn-alt-cta">Not ready to talk? <a href="/pricing-guide-landing">Get Pricing</a></p>
+  </div>
+</section>
+
+</div><!-- /.jn-wrap -->
+
+<!-- ═══ FOOTER: last element in the block, outside the page wrapper ═══ -->
+<div class="hp-ft">
+  <div class="hp-ft-inner">
+
+    <div class="hp-ft-top">
+      <div class="hp-ft-brand">
+        <p class="hp-ft-mark">Matt Anthony Photography</p>
+        <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
+        <p class="hp-ft-areas">
+          <a href="/squamish-architectural-photography">Squamish</a> &middot;
+          <a href="/whistler-architectural-photography">Whistler</a> &middot;
+          <a href="/pemberton-photography">Pemberton</a> &middot;
+          <a href="/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/vancouver-architectural-photographer">Vancouver</a> &middot;
+          <a href="/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
+          <a href="/okanagan-architectural-photographer">Okanagan</a>
+        </p>
+      </div>
+      <nav class="hp-ft-nav" aria-label="Footer">
+        <a href="/projects">Projects</a>
+        <a href="/creative-partner">Creative Partner</a>
+        <a href="/bio">About</a>
+        <a href="/journal">Journal</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="hp-ft-bottom">
+      <p class="hp-ft-meta">&copy; 2026 Matt Anthony Photography &middot; Squamish, BC &middot; All images &copy; Matt Anthony</p>
+      <div class="hp-ft-contact">
+        <a href="tel:6047659270">604.765.9270</a>
+        <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a>
+        <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="hp-ft-land">I acknowledge the privilege of living and working on the unceded territory of the Skwx&#775;wu&#769;7mesh (Squamish) Nation.</div>
+
+  </div>
+</div>
+
+<!-- ═══ CATEGORY FILTER SCRIPT ═══ -->
+<script>
+(function(){
+  var btns = document.querySelectorAll('.jn-cat-btn');
+  var blocks = document.querySelectorAll('.jn-section, .jn-featured');
+  Array.prototype.forEach.call(btns, function(btn){
+    btn.addEventListener('click', function(){
+      Array.prototype.forEach.call(btns, function(b){
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed','false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed','true');
+      var cat = btn.getAttribute('data-cat');
+      Array.prototype.forEach.call(blocks, function(s){
+        var show = (cat === 'all') || ((s.getAttribute('data-cat') || '').indexOf(cat) !== -1);
+        s.style.display = show ? '' : 'none';
+        /* the hairline that follows a hidden block goes with it, or the rules stack */
+        var next = s.nextElementSibling;
+        if(next && next.className.indexOf('jn-accent') !== -1){
+          next.style.display = show ? '' : 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
+
+<!-- ═══ SHARED CHROME SCRIPT · lifted verbatim ═══ -->
+<script>
+(function(){
+  var nav = document.getElementById('hpNav');
+  if(!nav) return;
+  /* A dark full-bleed hero the nav can sit over. Pages without one keep the
+     default solid nav and get a spacer so content is not hidden beneath it. */
+  var hero = nav.classList.contains('hp-nav-over')
+    ? document.querySelector('.hp-hero, [data-hp-hero]') : null;
+  if(!hero){
+    nav.classList.remove('hp-nav-over');
+    var sp = document.createElement('div');
+    sp.className = 'hp-nav-spacer';
+    nav.parentNode.insertBefore(sp, nav.nextSibling);
+    var size = function(){ sp.style.height = nav.offsetHeight + 'px'; };
+    size();
+    window.addEventListener('resize', size, {passive:true});
+    if(window.ResizeObserver){ new ResizeObserver(size).observe(nav); }
+    return;
+  }
+  var tick = false;
+  function check(){
+    nav.classList.toggle('hp-scrolled', window.pageYOffset > hero.offsetHeight - nav.offsetHeight);
+    tick = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; window.requestAnimationFrame(check); }
+  }, {passive:true});
+  check();
+})();
+</script>
+
+<!-- ═══ COLLECTIONPAGE SCHEMA ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Architectural Photography Journal",
+  "description": "Practical guidance for architects, builders, and designers on architectural photography, award submissions, and visual brand strategy.",
+  "url": "https://www.mattanthonyphoto.com/journal",
+  "publisher": {
+    "@id": "https://www.mattanthonyphoto.com/#business"
+  }
+}
+</script>
+
+<!--
+  JOURNAL LANDING PAGE — Code Block · mattanthonyphoto.com/journal
+  Brought onto the site design system (sitewide/_DESIGN-SYSTEM.md) 2026-08-27.
+
+    1.  Shared chrome lifted verbatim from sitewide/_chrome.html: solid nav first,
+        hp-ft footer last, chrome script once at the end. The page's own footer,
+        footer element and location strip are gone.
+    2.  Every container is .jn-container (max-width var(--page), padding var(--gutter)),
+        so the nav, hero line, filter bar, cards, CTA and footer share one left edge.
+    3.  Type on the scale: Cormorant 300 at hero size and 400 below it, letter-spacing 0
+        throughout; DM Sans 300 body; one small-caps style at 11px / .18em.
+    4.  #8a8579 (3.35:1, fails) replaced by --stone #6f6b61 everywhere. On ink only
+        .82 and .60 alpha. Filter-button active state is ink, not gold (gold is 2.51:1).
+    5.  srcset + sizes + real width/height on every image; hero carries fetchpriority.
+    6.  Removed: loader overlay, custom cursor, scroll progress bar, film grain,
+        hero parallax, magnetic button, CTA zoom, IntersectionObserver reveals,
+        hover zoom/overlay chips, ghost numerals, and the CSS behind all of it.
+    7.  Four duplicated images replaced so no photograph renders twice.
+    8.  Page-level meta (description, canonical, og:) removed; Squarespace emits those
+        from the SEO panel. CollectionPage JSON-LD kept.
+-->
+
+</body>
+</html>
