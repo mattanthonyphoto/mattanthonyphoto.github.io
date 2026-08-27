@@ -172,20 +172,21 @@
 .hp-work-foot{margin-top:clamp(28px,3.5vw,48px);text-align:center}
 
 /* ════════════ FULL-BLEED DIVIDER ════════════ */
-.hp-bleed{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:var(--ink)!important}
-.hp-bleed img,.hp-bleed video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-/* The still paints first and stays underneath; the loop fades over it once it can play, and if it never does the still is the banner. */
-.hp-bleed-v{opacity:0;transition:opacity .9s var(--ease)}
-.hp-bleed-v.hp-playing{opacity:1}
-@media (prefers-reduced-motion:reduce){.hp-bleed-v{display:none}}
-.hp-bleed::after{content:"";position:absolute;inset:0;pointer-events:none;
+.hp-bleed{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:var(--ink)!important;isolation:isolate}
+.hp-bleed img,.hp-bleed video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+/* Video is always opacity:1 (keeps Safari/Chrome on the hardware video plane). The still sits on top and fades out once the loop is presenting frames; if it never does, the still is the banner. */
+.hp-bleed-v{z-index:0}
+.hp-bleed-still{z-index:1;opacity:1;transition:opacity .7s var(--ease)}
+.hp-bleed.hp-playing .hp-bleed-still{opacity:0}
+.hp-bleed::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(to bottom,transparent 62%,rgba(26,26,24,.4) 100%)}
-.hp-bleed-cap{position:absolute;left:clamp(24px,5vw,60px);bottom:clamp(22px,3vw,36px);z-index:2;
+.hp-bleed-cap{position:absolute;left:clamp(24px,5vw,60px);bottom:clamp(22px,3vw,36px);z-index:3;
   font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:#f6f4f0!important}
 .hp-bleed-cap::before{content:"";display:inline-block;vertical-align:middle;
   width:24px;height:1px;background:var(--gold);margin-right:14px}
 @media (max-width:820px){.hp-bleed{aspect-ratio:4/3}}
+@media (prefers-reduced-motion:reduce){.hp-bleed-v{display:none}.hp-bleed-still{opacity:1!important}}
 
 /* ════════════ QUIET PROOF STRIP ════════════ */
 .hp-proof{background:var(--off)!important;padding:clamp(36px,4.5vw,56px) clamp(24px,6vw,80px);
@@ -391,10 +392,17 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 
 <!-- ════════════ FULL-BLEED DIVIDER ════════════ -->
 <section class="hp-bleed" aria-label="Film: Johnstone Road, Cortis Island and Oles Cove">
-  <img class="hp-bleed-still" src="https://mattanthonyphoto.github.io/media/films/poster-banner.jpg" alt="" loading="lazy" decoding="async">
-  <video class="hp-bleed-v" autoplay muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture poster="https://mattanthonyphoto.github.io/media/films/poster-banner.jpg" width="1600" height="686">
-    <source src="https://mattanthonyphoto.github.io/media/films/banner-loop.mp4" type="video/mp4">
+  <video class="hp-bleed-v" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
+         disablepictureinpicture disableremoteplayback width="3840" height="1646"
+         data-desk-hevc="https://mattanthonyphoto.github.io/media/films/banner-3840x1646-hevc.mp4"
+         data-desk-av1="https://mattanthonyphoto.github.io/media/films/banner-2560x1096-av1.mp4"
+         data-desk-h264="https://mattanthonyphoto.github.io/media/films/banner-1920x822-h264.mp4"
+         data-phone-h264="https://mattanthonyphoto.github.io/media/films/banner-1280x960-h264.mp4">
+    <source src="https://mattanthonyphoto.github.io/media/films/banner-3840x1646-hevc.mp4" type='video/mp4; codecs="hvc1.2.4.L153.B0"'>
+    <source src="https://mattanthonyphoto.github.io/media/films/banner-2560x1096-av1.mp4" type='video/mp4; codecs="av01.0.12M.10"'>
+    <source src="https://mattanthonyphoto.github.io/media/films/banner-1920x822-h264.mp4" type='video/mp4; codecs="avc1.640029"'>
   </video>
+  <img class="hp-bleed-still" src="https://mattanthonyphoto.github.io/media/films/poster-banner-3840.jpg" alt="" width="3840" height="1646" decoding="async" fetchpriority="low">
   <span class="hp-bleed-cap">Film &middot; Johnstone Road, Cortis Island, Oles Cove</span>
 </section>
 
@@ -468,13 +476,110 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 
 <script>
 (function(){
-  /* Banner film: show the loop only once it is really playing; otherwise the still stays. */
-  var bv = document.querySelector('.hp-bleed-v');
-  if(bv){
-    bv.addEventListener('playing', function(){ bv.classList.add('hp-playing'); });
-    var p = bv.play(); if(p && p.catch){ p.catch(function(){}); }
+  /* Banner film. Flow: skip entirely on reduced-motion / Data Saver / 2G; phone vs desktop on the page's own 820px breakpoint (same as the 4:3 crop); codec via MediaCapabilities (supported AND powerEfficient), falling back to canPlayType, then H.264; start on approach (IntersectionObserver, 800px early); on desktop fetch() the whole file into a Blob (github.io sends ACAO: *) so playback never touches the network and the loop wrap is an in-memory seek; on phones use a direct src and wait for the buffer to cover the file; reveal only after 3 presented frames; pause when far off-screen or tab hidden; on error keep the still. */
+  var wrap = document.querySelector('.hp-bleed');
+  var v = wrap && wrap.querySelector('.hp-bleed-v');
+  if(!v || !window.matchMedia) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var net = navigator.connection || {};
+  if(net.saveData || /(^|[^3-9])2g/.test(net.effectiveType || '')) return;
+
+  var phone = matchMedia('(max-width: 820px)').matches;
+  var d = v.dataset, FPS = 23.976;
+  var cands = phone
+    ? [{src:d.phoneH264, type:'video/mp4; codecs="avc1.640028"',      w:1280, h:960,  br:1500000}]
+    : [{src:d.deskHevc,  type:'video/mp4; codecs="hvc1.2.4.L153.B0"', w:3840, h:1646, br:12000000},
+       {src:d.deskAv1,   type:'video/mp4; codecs="av01.0.12M.10"',    w:2560, h:1096, br:5000000},
+       {src:d.deskH264,  type:'video/mp4; codecs="avc1.640029"',      w:1920, h:822,  br:8000000}];
+
+  function pick(){
+    var last = cands[cands.length-1];
+    var byType = function(){
+      return cands.filter(function(c){ return v.canPlayType(c.type) === 'probably'; })[0] ||
+             cands.filter(function(c){ return v.canPlayType(c.type); })[0] || last;
+    };
+    var mc = navigator.mediaCapabilities;
+    if(!mc || !mc.decodingInfo) return Promise.resolve(byType());
+    return Promise.all(cands.map(function(c){
+      return mc.decodingInfo({type:'file', video:{contentType:c.type, width:c.w, height:c.h, bitrate:c.br, framerate:FPS}})
+        .then(function(r){ return (r.supported && r.powerEfficient) ? c : null; }, function(){ return null; });
+    })).then(function(rs){ return rs.filter(Boolean)[0] || byType(); });
   }
 
+  var started = false, armed = false, revealed = false, blobUrl = null;
+
+  function reveal(){
+    if(revealed) return; revealed = true;
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ wrap.classList.add('hp-playing'); }); });
+  }
+  function fail(){ wrap.classList.remove('hp-playing'); revealed = false; }
+
+  function onPlaying(){
+    if(revealed) return;
+    if('requestVideoFrameCallback' in v){
+      var n = 0;
+      (function tick(){ v.requestVideoFrameCallback(function(){ if(++n >= 3) reveal(); else tick(); }); })();
+    } else {
+      var t = function(){ if(v.currentTime > 0.15){ v.removeEventListener('timeupdate', t); reveal(); } };
+      v.addEventListener('timeupdate', t);
+    }
+  }
+
+  function tryPlay(){
+    var p = v.play();
+    if(p && p.then) p.then(null, function(){ /* Low Power Mode / autoplay blocked: the still stays */ });
+  }
+
+  function fullyBuffered(){
+    var b = v.buffered;
+    return isFinite(v.duration) && v.duration > 0 && b.length &&
+           b.start(0) <= 0.05 && b.end(b.length-1) >= v.duration - 0.25;
+  }
+
+  function armWhenReady(){
+    var go = function(){ if(!armed){ armed = true; tryPlay(); } };
+    v.addEventListener('progress', function(){ if(fullyBuffered()) go(); });
+    v.addEventListener('loadeddata', function(){ if(fullyBuffered()) go(); });
+    v.addEventListener('canplaythrough', function(){ setTimeout(go, 1500); });
+    setTimeout(go, 8000);
+  }
+
+  function attach(src){
+    v.preload = 'auto';
+    v.addEventListener('playing', onPlaying);
+    v.addEventListener('error', fail);
+    v.addEventListener('stalled', function(){ if(!revealed) armed = false; });
+    v.src = src; v.load();
+    armWhenReady();
+  }
+
+  function start(){
+    if(started) return; started = true;
+    pick().then(function(c){
+      if(phone || !window.fetch || !window.URL || !URL.createObjectURL){ attach(c.src); return; }
+      fetch(c.src, {mode:'cors', credentials:'omit'})
+        .then(function(r){ if(!r.ok) throw 0; return r.blob(); })
+        .then(function(b){ blobUrl = URL.createObjectURL(b); attach(blobUrl); })
+        .catch(function(){ attach(c.src); });
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ start(); if(armed && v.paused) tryPlay(); }
+        else if(armed && !v.paused){ v.pause(); }
+      });
+    }, {rootMargin:'800px 0px 800px 0px', threshold:0}).observe(wrap);
+  } else { start(); }
+
+  document.addEventListener('visibilitychange', function(){
+    if(!armed) return;
+    if(document.hidden){ if(!v.paused) v.pause(); }
+    else { var r = wrap.getBoundingClientRect(); if(r.bottom > -800 && r.top < innerHeight + 800 && v.paused) tryPlay(); }
+  });
+})();
+(function(){
   /* Nav: transparent over the hero, paper once scrolled. */
   var nav = document.getElementById('hpNav');
   if(nav){
