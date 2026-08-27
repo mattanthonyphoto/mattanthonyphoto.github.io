@@ -402,7 +402,7 @@
 
 </style>
 
-<div class="hp-nav hp-nav-over" id="hpNav" role="navigation" aria-label="Main">
+<div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
     <a href="/homepage-preview/selected-work/">Portfolio</a>
@@ -859,6 +859,9 @@
   var nav=document.getElementById('hpNav');
   var heroEl=document.querySelector('.sw-s-hero');
   if(swEl&&nav){
+    /* The transparent treatment is applied here, not in the markup, so a failed
+       script leaves a solid readable nav rather than white text on paper. */
+    if(nav.hasAttribute('data-hp-over')&&heroEl) nav.classList.add('hp-nav-over');
     function navCheck(){
       var t=(heroEl?heroEl.offsetHeight:window.innerHeight)-nav.offsetHeight;
       nav.classList.toggle('hp-scrolled',swEl.scrollTop>t);

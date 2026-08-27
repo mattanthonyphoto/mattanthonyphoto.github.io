@@ -371,7 +371,7 @@
 }
 </style>
 
-<div class="hp-nav hp-nav-over" id="hpNav" role="navigation" aria-label="Main">
+<div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
     <a href="/homepage-preview/selected-work/">Portfolio</a>
@@ -620,12 +620,14 @@
 (function(){
   var nav = document.getElementById('hpNav');
   if(!nav) return;
-  /* A dark full-bleed hero the nav can sit over. Pages without one keep the
-     default solid nav and get a spacer so content is not hidden beneath it. */
-  var hero = nav.classList.contains('hp-nav-over')
+  /* A dark full-bleed hero the nav can sit over. The transparent treatment is
+     applied HERE, not in the markup, so a page whose script never runs falls back
+     to the solid nav instead of putting white text on a white page. This block
+     sits at the end of the code block, so the hero is already parsed and the
+     class lands before first paint. */
+  var hero = nav.hasAttribute('data-hp-over')
     ? document.querySelector('.hp-hero, [data-hp-hero]') : null;
   if(!hero){
-    nav.classList.remove('hp-nav-over');
     var sp = document.createElement('div');
     sp.className = 'hp-nav-spacer';
     nav.parentNode.insertBefore(sp, nav.nextSibling);
@@ -635,14 +637,14 @@
     if(window.ResizeObserver){ new ResizeObserver(size).observe(nav); }
     return;
   }
-  var tick = false;
+  nav.classList.add('hp-nav-over');
   function check(){
     nav.classList.toggle('hp-scrolled', window.pageYOffset > hero.offsetHeight - nav.offsetHeight);
-    tick = false;
   }
-  window.addEventListener('scroll', function(){
-    if(!tick){ tick = true; window.requestAnimationFrame(check); }
-  }, {passive:true});
+  /* One class toggle per scroll event is cheap enough to skip a rAF throttle, and
+     skipping it keeps the flip verifiable in a headless browser, where rAF does
+     not tick and the nav would silently never flip in testing. */
+  window.addEventListener('scroll', check, {passive:true});
   check();
 })();
 
