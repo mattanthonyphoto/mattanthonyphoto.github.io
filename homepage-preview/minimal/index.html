@@ -27,6 +27,7 @@
   --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
   --stone:#8a8579; --rule:#d9d5cd; --off:#eeece6;
   --section:clamp(88px,9vw,150px);
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
   --ease:cubic-bezier(.16,1,.3,1);
   font-family:'DM Sans',-apple-system,sans-serif;
   font-weight:300; line-height:1.7; color:var(--ink);
@@ -39,12 +40,12 @@
 #maHeader{display:none!important}
 .header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
 
-.hp-container{max-width:1360px;margin:0 auto;padding:0 clamp(24px,6vw,96px)}
+.hp-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
 
 /* ── Eyebrow: gold rule, then wide-tracked caps. Used in every block. ── */
 .hp-eyebrow{
   font-family:'Josefin Sans',sans-serif;font-weight:700;
-  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--stone)!important;margin:0 0 28px;
   display:inline-flex!important;align-items:center;gap:14px;
 }
@@ -53,16 +54,16 @@
 /* ── Arrow link: the only link style below the nav ── */
 .hp-arrow-link{
   font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink)!important;border-bottom:1px solid var(--gold);
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink)!important;border-bottom:1px solid var(--rule);
   padding-bottom:5px;display:inline-block;transition:color .35s var(--ease),border-color .35s var(--ease);
 }
-.hp-arrow-link:hover,.hp-arrow-link:focus-visible{color:var(--gold-deep)!important;border-color:var(--gold-deep)}
+.hp-arrow-link:hover,.hp-arrow-link:focus-visible{color:var(--ink)!important;border-color:var(--ink)}
 
 /* ════════════ NAV (lifted from homepage-v2, unchanged) ════════════ */
 .hp-wrap .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
-  padding:26px 5vw;
+  padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
   transition:background-color .45s var(--ease)}
 .hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:#f6f4f0!important;white-space:nowrap;
@@ -77,13 +78,13 @@
 .hp-nav.hp-scrolled .hp-nav-links a{color:#8a8579!important}
 .hp-nav.hp-scrolled .hp-nav-links a:hover,.hp-nav.hp-scrolled .hp-nav-links a:focus-visible{color:#1a1a18!important}
 @media (max-width:820px){
-  .hp-nav{padding:18px 5vw;gap:14px}
+  .hp-wrap .hp-nav{padding:18px var(--gutter);gap:14px}
   .hp-nav-links{gap:14px}
   .hp-nav-links a{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
 @media (max-width:480px){
-  .hp-nav{padding:14px 4vw;gap:6px 10px;flex-wrap:wrap}
+  .hp-wrap .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
   .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 16px}
   .hp-nav-links a{font-size:10px;letter-spacing:.06em}
@@ -118,7 +119,7 @@
 .hp-hero-content .hp-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
 .hp-hero-content .hp-eyebrow::before{background:var(--gold)}
 .hp-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:-.02em;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
   color:#f6f4f0!important;max-width:24ch;margin:0 0 clamp(28px,3vw,40px)}
 .hp-hero-btns{display:flex!important;flex-wrap:wrap;gap:12px 14px}
 .hp-hero-ghost{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
@@ -131,59 +132,46 @@
 .hp-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
 .hp-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
 .hp-statement .hp-eyebrow{justify-content:center;margin-bottom:32px}
-.hp-statement p{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:-.01em;
+.hp-statement p{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
   color:var(--ink)!important;margin:0 auto 40px;max-width:25em;text-wrap:pretty}
 
 /* ════════════ SELECTED WORK ════════════ */
 .hp-work{padding:0 0 var(--section);background:var(--paper)!important}
-.hp-work>.hp-container{max-width:1600px;padding-left:clamp(16px,4vw,60px);padding-right:clamp(16px,4vw,60px)}
-.hp-work-head{margin-bottom:clamp(28px,3.5vw,48px)}
-.hp-work-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:-.02em;
+.hp-work-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
+.hp-work-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
   color:var(--ink)!important;margin:0}
 /* Flexbox, not grid: Squarespace's fluid-engine reset breaks grid-template-columns. */
 .hp-work-stack{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
 .hp-proj{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));min-width:280px}
 .hp-proj-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
-.hp-proj-frame img{width:100%;height:100%;object-fit:cover;
-  transition:transform 1.4s var(--ease),filter .7s var(--ease)}
-.hp-proj:hover .hp-proj-frame img,.hp-proj:focus-within .hp-proj-frame img{transform:scale(1.04);filter:brightness(.9)}
-.hp-proj-frame::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,transparent 28%,rgba(0,0,0,.62) 100%);
-  opacity:0;transition:opacity .6s var(--ease)}
-.hp-proj:hover .hp-proj-frame::after,.hp-proj:focus-within .hp-proj-frame::after{opacity:1}
-.hp-proj-over{position:absolute;left:clamp(20px,2.6vw,40px);right:clamp(20px,2.6vw,40px);
-  bottom:clamp(18px,2.4vw,34px);z-index:2;color:#f6f4f0!important;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .55s var(--ease),transform .55s var(--ease)}
-.hp-proj:hover .hp-proj-over,.hp-proj:focus-within .hp-proj-over{opacity:1;transform:translateY(0)}
-.hp-proj-name{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.15rem,1.8vw,1.5rem);line-height:1.2;color:#f6f4f0!important;margin:0 0 5px}
+.hp-proj-frame img{width:100%;height:100%;object-fit:cover}
+/* Name and place sit under the frame, always readable. No hover reveal, no zoom. */
+.hp-proj-over{display:flex!important;justify-content:space-between;align-items:baseline;
+  gap:12px 20px;flex-wrap:wrap;padding:13px 0 0}
+.hp-proj-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:13px;line-height:1.4;color:var(--ink)!important;margin:0;
+  transition:color .3s var(--ease)}
+.hp-proj:hover .hp-proj-name,.hp-proj:focus-visible .hp-proj-name{color:var(--gold-deep)!important}
 .hp-proj-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:rgba(246,244,240,.72)!important;margin:0 0 10px}
-.hp-proj-go{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--gold)!important}
-/* Touch devices have no hover, so the names rest visible instead. */
-@media (hover:none){
-  .hp-proj-frame::after{opacity:1}
-  .hp-proj-over{opacity:1;transform:none}
-}
-.hp-work-foot{margin-top:clamp(28px,3.5vw,48px);text-align:center}
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
+.hp-work-foot{margin:0}
 
 /* ════════════ QUIET PROOF STRIP ════════════ */
-.hp-proof{background:var(--off)!important;padding:clamp(36px,4.5vw,56px) clamp(24px,6vw,80px);
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.hp-proof-inner{max-width:1240px;margin:0 auto;display:flex!important;flex-wrap:wrap;
-  gap:clamp(20px,2.5vw,36px);text-align:center}
-.hp-proof-item{flex:1 1 200px;display:flex!important;flex-direction:column;gap:6px;
+.hp-proof{background:var(--paper)!important;padding:clamp(30px,3.2vw,44px) var(--gutter);
+  border-top:1px solid var(--rule)}
+.hp-proof-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto;display:flex!important;flex-wrap:wrap;
+  gap:18px 40px;justify-content:space-between}
+.hp-proof-item{flex:0 1 auto;display:flex!important;flex-direction:column;gap:6px;
   position:relative;color:var(--ink)!important;
   transition:opacity .3s var(--ease)}
 a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 .hp-proof-item strong{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)!important}
 .hp-proof-item span{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
-  font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone)!important}
+  font-size:12px;letter-spacing:0;color:var(--stone)!important}
 
 /* ════════════ CLOSE ════════════ */
 .hp-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
@@ -193,8 +181,8 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
   background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
 .hp-close-content{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
 .hp-close-content .hp-eyebrow{color:rgba(246,244,240,.85)!important;justify-content:center}
-.hp-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:-.02em;
+.hp-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
   color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
 .hp-close-row{display:inline-flex!important;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center}
 .hp-close-btn{font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:11px;
@@ -207,38 +195,38 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 .hp-close-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
 
 /* ════════════ FOOTER ════════════ */
-.hp-ft{background:#1a1a18!important;padding:clamp(72px,10vw,120px) 5vw clamp(36px,4vw,56px);
+.hp-ft{background:#1a1a18!important;padding:clamp(72px,10vw,120px) var(--gutter) clamp(36px,4vw,56px);
   border-top:1px solid rgba(201,169,110,.16)}
-.hp-ft-inner{max-width:1200px;margin:0 auto}
+.hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
-  letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.85)!important;margin:0}
+  letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
-.hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:10px;font-weight:300;
+.hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
   max-width:640px;line-height:1.85;text-align:left;letter-spacing:.02em;
-  margin:clamp(24px,3vw,36px) 0 0;color:rgba(246,244,240,.35)!important}
+  margin:clamp(24px,3vw,36px) 0 0;color:rgba(246,244,240,.60)!important}
 @media (max-width:900px){
   .hp-ft-bottom{flex-direction:column}
 }
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
-  padding-bottom:clamp(32px,4vw,48px);border-bottom:1px solid rgba(246,244,240,.07)}
+  padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
 .hp-ft-brand{flex:1 1 420px;max-width:640px}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
-  line-height:1.6;color:rgba(246,244,240,.62)!important;margin:12px 0 0}
-.hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:12px;
-  line-height:2;color:rgba(246,244,240,.38)!important;margin:18px 0 0}
-.hp-ft-areas a{color:rgba(246,244,240,.62)!important;transition:color .3s var(--ease)}
+  line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
+.hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
+.hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
 .hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
-  color:rgba(246,244,240,.72)!important;transition:color .3s var(--ease)}
+  color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
 .hp-ft-meta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
-  letter-spacing:.04em;color:rgba(246,244,240,.42)!important;margin:0}
+  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:0}
 .hp-ft-contact{display:flex!important;flex-wrap:wrap;gap:18px}
 .hp-ft-contact a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
-  letter-spacing:.04em;color:rgba(246,244,240,.55)!important;transition:color .3s var(--ease)}
+  letter-spacing:.04em;color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-contact a:hover,.hp-ft-contact a:focus-visible{color:#c9a96e!important}
 @media (max-width:760px){.hp-ft-nav{flex:1 1 100%;width:100%;flex-direction:row;flex-wrap:wrap;gap:14px 22px}}
 
@@ -286,8 +274,8 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 <section class="hp-statement">
   <div class="hp-statement-inner">
     <p class="hp-eyebrow">Approach</p>
-    <p>I document design intent for architects, builders and interior designers, then edit each project to the frames that explain the building.</p>
-    <a class="hp-arrow-link" href="/bio">About Matt &rarr;</a>
+    <p>I document design intent for architects, builders and interior designers, then keep the frames that explain the building.</p>
+    <a class="hp-arrow-link" href="/bio">About &rarr;</a>
   </div>
 </section>
 
@@ -295,81 +283,69 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 <section class="hp-work" aria-labelledby="hp-work-h">
   <div class="hp-container">
     <div class="hp-work-head">
-      <p class="hp-eyebrow">Work</p>
       <h2 id="hp-work-h">Selected projects</h2>
+      <div class="hp-work-foot"><a class="hp-arrow-link" href="/projects">All projects &rarr;</a></div>
     </div>
 
     <div class="hp-work-stack">
 
-      <a class="hp-proj" href="/salt-spring-island">
-        <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Salt Spring Island residence, corrugated siding and red window frames" loading="lazy" decoding="async" width="1500" height="1125">
-          <div class="hp-proj-over">
-            <p class="hp-proj-name">Salt Spring Island</p>
-            <p class="hp-proj-loc">Gulf Islands</p>
-            <span class="hp-proj-go">View project &rarr;</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="hp-proj" href="/oles-cove">
-        <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Oles Cove, Halfmoon Bay, the house on the rock bluff at sunset" loading="lazy" decoding="async" width="1500" height="1000">
-          <div class="hp-proj-over">
-            <p class="hp-proj-name">Oles Cove</p>
-            <p class="hp-proj-loc">Halfmoon Bay</p>
-            <span class="hp-proj-go">View project &rarr;</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="hp-proj" href="/johnstone-road">
-        <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Johnstone Road, Madeira Park, waterside elevation with twin cedar gables" loading="lazy" decoding="async" width="1500" height="1000">
-          <div class="hp-proj-over">
-            <p class="hp-proj-name">Johnstone Road</p>
-            <p class="hp-proj-loc">Madeira Park</p>
-            <span class="hp-proj-go">View project &rarr;</span>
-          </div>
-        </div>
-      </a>
-
       <a class="hp-proj" href="/desolation-sound">
         <div class="hp-proj-frame">
           <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Desolation Sound residence, kitchen island under the vaulted fir ceiling" loading="lazy" decoding="async" width="1500" height="1000">
-          <div class="hp-proj-over">
-            <p class="hp-proj-name">Desolation Sound</p>
-            <p class="hp-proj-loc">Sunshine Coast</p>
-            <span class="hp-proj-go">View project &rarr;</span>
-          </div>
+        </div>
+        <div class="hp-proj-over">
+          <p class="hp-proj-name">Desolation Sound</p>
+          <p class="hp-proj-loc">Sunshine Coast</p>
         </div>
       </a>
-
+      <a class="hp-proj" href="/oles-cove">
+        <div class="hp-proj-frame">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Oles Cove, Halfmoon Bay, the house on the rock bluff at sunset" loading="lazy" decoding="async" width="1500" height="1000">
+        </div>
+        <div class="hp-proj-over">
+          <p class="hp-proj-name">Oles Cove</p>
+          <p class="hp-proj-loc">Halfmoon Bay</p>
+        </div>
+      </a>
       <a class="hp-proj" href="/the-perch-sunshine-coast">
         <div class="hp-proj-frame">
           <img src="https://mattanthonyphoto.github.io/media/banners/the-perch-022-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/the-perch-022-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/the-perch-022-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/the-perch-022-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/the-perch-022-2560.webp 2560w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="The Perch, Sunshine Coast, living room with suspended fireplace and glass corner to the water" loading="lazy" decoding="async" width="1500" height="938">
-          <div class="hp-proj-over">
-            <p class="hp-proj-name">The Perch</p>
-            <p class="hp-proj-loc">Sunshine Coast</p>
-            <span class="hp-proj-go">View project &rarr;</span>
-          </div>
+        </div>
+        <div class="hp-proj-over">
+          <p class="hp-proj-name">The Perch</p>
+          <p class="hp-proj-loc">Sunshine Coast</p>
         </div>
       </a>
-
       <a class="hp-proj" href="/schmit">
         <div class="hp-proj-frame">
           <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Schmidt Residence, Invermere, covered upper deck with lake view" loading="lazy" decoding="async" width="1500" height="1000">
-          <div class="hp-proj-over">
-            <p class="hp-proj-name">Schmidt Residence</p>
-            <p class="hp-proj-loc">Invermere</p>
-            <span class="hp-proj-go">View project &rarr;</span>
-          </div>
+        </div>
+        <div class="hp-proj-over">
+          <p class="hp-proj-name">Schmidt Residence</p>
+          <p class="hp-proj-loc">Invermere</p>
+        </div>
+      </a>
+      <a class="hp-proj" href="/johnstone-road">
+        <div class="hp-proj-frame">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Johnstone Road, Madeira Park, waterside elevation with twin cedar gables" loading="lazy" decoding="async" width="1500" height="1000">
+        </div>
+        <div class="hp-proj-over">
+          <p class="hp-proj-name">Johnstone Road</p>
+          <p class="hp-proj-loc">Madeira Park</p>
+        </div>
+      </a>
+      <a class="hp-proj" href="/warbler-whistler">
+        <div class="hp-proj-frame">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/837314ce-9695-41c7-9e64-252f067eaa67/warbler-whistler-architectural-photography-matt-anthony-.jpg-39.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/837314ce-9695-41c7-9e64-252f067eaa67/warbler-whistler-architectural-photography-matt-anthony-.jpg-39.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/837314ce-9695-41c7-9e64-252f067eaa67/warbler-whistler-architectural-photography-matt-anthony-.jpg-39.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/837314ce-9695-41c7-9e64-252f067eaa67/warbler-whistler-architectural-photography-matt-anthony-.jpg-39.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/837314ce-9695-41c7-9e64-252f067eaa67/warbler-whistler-architectural-photography-matt-anthony-.jpg-39.jpg?format=1500w 1500w" sizes="(max-width: 616px) 92vw, (min-width: 1600px) 732px, 45.4vw" alt="Warbler Residence, Whistler, at dusk: black metal cladding and cedar soffit, interior lit, snow and mountains behind" loading="lazy" decoding="async" width="1500" height="1000">
+        </div>
+        <div class="hp-proj-over">
+          <p class="hp-proj-name">Warbler Residence</p>
+          <p class="hp-proj-loc">Whistler</p>
         </div>
       </a>
 
     </div>
 
-    <div class="hp-work-foot"><a class="hp-arrow-link" href="/projects">All projects &rarr;</a></div>
   </div>
 </section>
 
@@ -390,7 +366,7 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
     <p class="hp-eyebrow">Contact</p>
     <h2 id="hp-close-h">Tell me about your project.</h2>
     <div class="hp-close-row">
-      <a class="hp-close-btn" href="/discovery-call">Get in touch</a>
+      <a class="hp-close-btn" href="/discovery-call">Book a call</a>
       <span class="hp-close-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
   </div>
