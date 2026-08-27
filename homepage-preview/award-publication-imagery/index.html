@@ -33,6 +33,15 @@
 .hp-nav a,.hp-ft a{text-decoration:none!important;border:0}
 #maHeader{display:none!important}
 
+/* ── NAV ──
+   Solid paper is the DEFAULT, so a content page is correct even if the script
+   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
+   markup to sit transparently over it; the script then removes that treatment
+   once you scroll past the hero.
+
+   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
+   Everything inside the About dropdown is ALSO in the footer, so if the script
+   never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -42,31 +51,58 @@
   letter-spacing:.4em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
   transition:color .45s var(--ease)}
 .hp-nav-links{display:flex!important;gap:clamp(20px,3vw,40px);align-items:center}
-.hp-nav-links a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+/* One small-caps style for every top level item, link or dropdown trigger. */
+.hp-nav-links>a,.hp-nav-trigger{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
   transition:color .35s var(--ease)}
-.hp-nav-links a:hover,.hp-nav-links a:focus-visible,.hp-nav-mark:focus-visible{color:#1a1a18!important}
+.hp-nav-trigger{background:none;border:0;padding:0;margin:0;cursor:pointer;
+  display:inline-flex!important;align-items:center;gap:7px;line-height:inherit;font-family:'DM Sans',-apple-system,sans-serif}
+.hp-nav-trigger::after{content:"";width:5px;height:5px;border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-1px);
+  transition:transform .3s var(--ease)}
+.hp-nav-trigger[aria-expanded="true"]::after{transform:rotate(225deg) translateY(-2px)}
+.hp-nav-links>a:hover,.hp-nav-links>a:focus-visible,
+.hp-nav-trigger:hover,.hp-nav-trigger:focus-visible,
+.hp-nav-mark:focus-visible{color:#1a1a18!important}
 
+/* Dropdown. Paper panel with ink text in BOTH nav states, so it never inherits
+   the over-hero light treatment and turn white on white. */
+.hp-nav-group{position:relative;display:inline-flex!important;align-items:center}
+.hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+  min-width:170px;display:flex!important;flex-direction:column;gap:0;
+  background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
+.hp-nav-menu[hidden]{display:none!important}
+.hp-nav-menu a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
+  padding:9px 20px;white-space:nowrap;transition:color .25s var(--ease),background-color .25s var(--ease)}
+.hp-nav-menu a:hover,.hp-nav-menu a:focus-visible{color:#1a1a18!important;background-color:#eeece6}
+
+/* Over a dark full-bleed hero, until scrolled past it. */
 .hp-nav-over:not(.hp-scrolled){background-color:transparent}
 .hp-nav-over:not(.hp-scrolled) .hp-nav-mark{color:#f6f4f0!important}
-.hp-nav-over:not(.hp-scrolled) .hp-nav-links a{color:rgba(246,244,240,.78)!important}
-.hp-nav-over:not(.hp-scrolled) .hp-nav-links a:hover,
-.hp-nav-over:not(.hp-scrolled) .hp-nav-links a:focus-visible,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-trigger{color:rgba(246,244,240,.78)!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a:hover,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a:focus-visible,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-trigger:hover,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-trigger:focus-visible,
 .hp-nav-over:not(.hp-scrolled) .hp-nav-mark:focus-visible{color:#fff!important}
 
+/* Keeps content clear of the fixed nav on pages with no hero (script-inserted). */
 .hp-nav-spacer{width:100%}
 
 @media (max-width:820px){
   .hp-nav{padding:18px var(--gutter);gap:14px}
   .hp-nav-links{gap:14px}
-  .hp-nav-links a{font-size:10px;letter-spacing:.1em}
+  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
 @media (max-width:480px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 16px}
-  .hp-nav-links a{font-size:10px;letter-spacing:.06em}
+  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
+  .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
 
 /* ── FOOTER ── */
@@ -378,8 +414,18 @@
 <div class="hp-nav hp-nav-over" id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
+    <a href="/homepage-preview/selected-work/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
-    <a href="/homepage-preview/bio/">About</a>
+    <div class="hp-nav-group">
+      <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
+      <div class="hp-nav-menu" id="hpAboutMenu" role="group" aria-labelledby="hpAboutBtn" hidden>
+        <a href="/homepage-preview/bio/">About</a>
+        <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/faqs/">FAQs</a>
+        <a href="/homepage-preview/journal/">Journal</a>
+      </div>
+    </div>
+    <a href="/homepage-preview/services/">Services</a>
     <a href="/homepage-preview/contact/">Contact</a>
   </div>
 </div>
@@ -767,6 +813,37 @@
     if(!tick){ tick = true; window.requestAnimationFrame(check); }
   }, {passive:true});
   check();
+})();
+
+(function(){
+  /* About dropdown. Everything inside it is also in the footer, so if this
+     script never runs those pages stay reachable and the trigger is inert. */
+  var btn = document.getElementById('hpAboutBtn');
+  var menu = document.getElementById('hpAboutMenu');
+  if(!btn || !menu) return;
+  var group = btn.parentNode, hoverOK = false, shutTimer;
+  try { hoverOK = window.matchMedia('(hover:hover) and (pointer:fine)').matches; } catch(e){}
+
+  function open(){ clearTimeout(shutTimer); menu.hidden = false; btn.setAttribute('aria-expanded','true'); }
+  function shut(){ menu.hidden = true; btn.setAttribute('aria-expanded','false'); }
+  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
+
+  btn.addEventListener('click', function(e){ e.preventDefault(); isOpen() ? shut() : open(); });
+
+  if(hoverOK){
+    group.addEventListener('mouseenter', open);
+    group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && isOpen()){ shut(); btn.focus(); }
+  });
+  document.addEventListener('click', function(e){
+    if(isOpen() && !group.contains(e.target)) shut();
+  });
+  group.addEventListener('focusout', function(e){
+    if(isOpen() && !group.contains(e.relatedTarget)) shut();
+  });
 })();
 </script>
 
