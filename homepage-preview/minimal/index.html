@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Matt Anthony Photography</title>
+<title>homepage-minimal</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -44,7 +44,7 @@
 
 /* ── Eyebrow: gold rule, then wide-tracked caps. Used in every block. ── */
 .hp-eyebrow{
-  font-family:'Josefin Sans',sans-serif;font-weight:700;
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--stone)!important;margin:0 0 28px;
   display:inline-flex!important;align-items:center;gap:14px;
@@ -141,10 +141,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -225,10 +229,10 @@
   border-top:1px solid var(--rule)}
 .hp-proof-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto;display:flex!important;flex-wrap:wrap;
   gap:18px 40px;justify-content:space-between}
-.hp-proof-item{flex:0 1 auto;display:flex!important;flex-direction:column;gap:6px;
+.hp-proof-item{flex:1 1 0;min-width:160px;display:flex!important;flex-direction:column;gap:6px;
   color:var(--ink)!important;
   transition:opacity .3s var(--ease)}
-a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
+a.hp-proof-item:hover strong,a.hp-proof-item:focus-visible strong{text-decoration:underline;text-underline-offset:4px}
 .hp-proof-item strong{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)!important}
 .hp-proof-item span{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
@@ -245,7 +249,7 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 .hp-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
   color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
-.hp-close-row{display:inline-flex!important;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center}
+.hp-close-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
 .hp-close-btn{font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
   background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
@@ -262,6 +266,13 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -273,14 +284,14 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -425,7 +436,6 @@ a.hp-proof-item:hover,a.hp-proof-item:focus-visible{opacity:.7}
 <section class="hp-proof" aria-label="What I do">
   <div class="hp-proof-inner">
     <a class="hp-proof-item" href="/homepage-preview/award-publication-imagery/"><strong>Award and publication imagery</strong><span>Made for submission</span></a>
-    <a class="hp-proof-item" href="/homepage-preview/projects-v2/"><strong>25 projects</strong><span>Seven regions</span></a>
     <a class="hp-proof-item" href="/homepage-preview/projects-v2/"><strong>Architecture and interiors</strong><span>Stills and film</span></a>
     <a class="hp-proof-item" href="/homepage-preview/bio/"><strong>Advanced Drone Pilot</strong><span>Transport Canada certified</span></a>
   </div>

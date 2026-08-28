@@ -103,10 +103,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -117,6 +121,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -128,14 +139,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -362,9 +373,9 @@
   </div>
   <div class="pr-hero-content">
     <div class="pr-container">
-      <p class="pr-eyebrow pr-eyebrow-dark">Our Process</p>
+      <p class="pr-eyebrow pr-eyebrow-dark">Process</p>
       <h1 id="pr-hero-h">From first conversation to <em>final delivery</em></h1>
-      <p class="pr-hero-sub">A calm, structured approach designed to honour your work and make the experience effortless. Five steps from consultation to finished images.</p>
+      <p class="pr-hero-sub">The same five steps run on every project.</p>
     </div>
   </div>
 </section>
@@ -373,10 +384,10 @@
 <section class="pr-phil" aria-labelledby="pr-phil-h">
   <div class="pr-phil-text">
     <div class="pr-phil-inner">
-      <p class="pr-eyebrow">Our Approach</p>
-      <h2 id="pr-phil-h">Every frame begins long before the camera comes out</h2>
-      <p>Photography that reflects the same intention you bring to your design. Working with architects, builders, and interior designers across British Columbia, I approach each project with the same care and attention you bring to your work.</p>
-      <p>From concept to delivery, the process is tailored to capture your project at its highest potential &mdash; visually, emotionally, and professionally. The structure exists so you can focus on your work while I focus on documenting it.</p>
+      <p class="pr-eyebrow">Approach</p>
+      <h2 id="pr-phil-h">Every frame begins long before the camera comes out.</h2>
+      <p>I work with architects, builders and interior designers across British Columbia. Each project starts with the drawings, the materials and the intent behind them.</p>
+      <p>The steps below exist so the shoot day stays quiet and nothing about the delivery is a surprise.</p>
     </div>
   </div>
   <div class="pr-phil-img">
@@ -393,8 +404,8 @@
     <div class="pr-container">
       <p class="pr-eyebrow pr-eyebrow-dark">Step 01</p>
       <h3 id="pr-step1-h">Pre-Shoot Consultation</h3>
-      <p class="pr-break-sub">Understanding Your Project and Vision</p>
-      <p class="pr-break-desc">Every project begins with a discovery call or email exchange. We discuss your goals &mdash; whether it's building a portfolio, entering an award, publishing, or client presentation. We'll cover design narrative and key architectural features, ideal image style, scope and access, intended usage, and any <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">publication or award submission specs</a>. This ensures the photography supports your design intent and professional objectives from the very beginning.</p>
+      <p class="pr-break-sub">Goals, scope and access</p>
+      <p class="pr-break-desc">A call or an email settles what the images are for: a portfolio, an award entry, a publication, a client presentation. That answer sets the shot list, the image style, the scope and access on the day, and any <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">publication or award submission specs</a> the work has to meet.</p>
     </div>
   </div>
 </section>
@@ -408,8 +419,8 @@
     <div class="pr-split-inner">
       <p class="pr-eyebrow">Step 02</p>
       <h3 id="pr-step2-h">Creative Planning &amp; Site Review</h3>
-      <p class="pr-split-sub">Strategic Preparation for Visual Impact</p>
-      <p class="pr-split-desc">Before the shoot, I review architectural plans, renderings, or previous photos to understand orientation and composition opportunities. We align on optimal natural light timing, drone permissions, on-site logistics, weather considerations, and any site-specific challenges. You'll receive a shoot prep checklist to ensure the space is photo-ready, including staging tips and key design details to highlight.</p>
+      <p class="pr-split-sub">Plans, light and logistics</p>
+      <p class="pr-split-desc">Before the shoot I read the plans, the renderings or earlier photos, and work out orientation and where the compositions sit. Then the practical questions: light timing, drone permissions, site access, weather. A prep checklist goes out ahead of the day, with staging notes and the design details I plan to photograph.</p>
     </div>
   </div>
 </section>
@@ -417,14 +428,14 @@
 <!-- ════════════ STEP 03 ════════════ -->
 <section class="pr-break" aria-labelledby="pr-step3-h">
   <div class="pr-break-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=2500w 2500w" sizes="100vw" alt="Sandy Hook, Sunshine Coast: a side courtyard held by a board formed concrete wall, a Japanese maple against it, glazing and cedar soffit at the left, forest above" width="1500" height="1000" loading="lazy" decoding="async">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=2500w 2500w" sizes="100vw" alt="Sandy Hook, Sunshine Coast: a side courtyard held by a concrete wall, a Japanese maple against it, glazing and cedar soffit at the left, forest above" width="1500" height="1000" loading="lazy" decoding="async">
   </div>
   <div class="pr-break-content">
     <div class="pr-container">
       <p class="pr-eyebrow pr-eyebrow-dark">Step 03</p>
       <h3 id="pr-step3-h">Photography Day</h3>
-      <p class="pr-break-sub">Intentional Composition. Calm, Professional Presence.</p>
-      <p class="pr-break-desc">On shoot day, I work independently or alongside your team. I carefully compose images that balance space, structure, light, and material. Coverage includes hero exterior shots, interior wide angles, intimate vignettes, architectural details, material intersections, and aerial perspectives where applicable. I work quietly and respectfully on site, always aligning with the rhythm of your team and environment.</p>
+      <p class="pr-break-sub">Composed on site, quietly</p>
+      <p class="pr-break-desc">On shoot day I work alone or alongside the build and design teams. Coverage runs from the hero exterior through interior wide angles, details, material intersections, and aerial frames where the site allows. I move quietly and stay clear of whoever else is working.</p>
     </div>
   </div>
 </section>
@@ -438,8 +449,8 @@
     <div class="pr-split-inner">
       <p class="pr-eyebrow">Step 04</p>
       <h3 id="pr-step4-h">Post-Production &amp; Editing</h3>
-      <p class="pr-split-sub">Subtle, Editorial-Grade Finishing</p>
-      <p class="pr-split-desc">Images are professionally edited with a restrained, natural approach that enhances clarity without artificial distortion. Post-processing includes colour correction, perspective alignment, retouching distractions, and tonal balancing to reflect how the space feels, not just how it looks. The final product: clean, timeless images with editorial polish. Ready for publication, awards, or portfolio use.</p>
+      <p class="pr-split-sub">Restrained, editorial finishing</p>
+      <p class="pr-split-desc">I edit every frame myself, in Lightroom and Photoshop. Colour correction, perspective alignment, tonal balance, and the distractions taken out. The approach stays restrained, so the room reads on screen the way it reads standing in it.</p>
     </div>
   </div>
 </section>
@@ -453,8 +464,8 @@
     <div class="pr-container">
       <p class="pr-eyebrow pr-eyebrow-dark">Step 05</p>
       <h3 id="pr-step5-h">Delivery &amp; Licensing</h3>
-      <p class="pr-break-sub">On-Brand Assets, Delivered Professionally</p>
-      <p class="pr-break-desc">Final high-resolution images are delivered in a curated online gallery, typically within 5 to 10 business days. You'll receive full-res files for print, web-optimized versions, social-ready crops if requested, and clear licensing terms suited to your usage. Optional add-ons include press kits, social-ready image sets, and <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">award submission preparation</a>.</p>
+      <p class="pr-break-sub">Files, gallery and terms</p>
+      <p class="pr-break-desc">Final images land in an online gallery, typically within 5 to 10 business days. Full resolution files for print, web sized versions, social crops on request, and licensing terms written for the actual use. Press kits and <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">award submission preparation</a> are available as add ons.</p>
     </div>
   </div>
 </section>
@@ -462,7 +473,7 @@
 <!-- ════════════ TIMELINE ════════════ -->
 <section class="pr-timeline" aria-labelledby="pr-tl-h">
   <div class="pr-container">
-    <p class="pr-eyebrow">Typical Project Timeline</p>
+    <p class="pr-eyebrow">Typical timeline</p>
     <h2 id="pr-tl-h">From conversation to delivery in <em>six weeks</em></h2>
     <div class="pr-tl-track">
       <div class="pr-tl-node">
@@ -473,16 +484,16 @@
       <div class="pr-tl-node">
         <div class="pr-tl-dot"></div>
         <p class="pr-tl-week">Week 2</p>
-        <p class="pr-tl-name">Site Visit</p>
+        <p class="pr-tl-name">Site visit</p>
       </div>
       <div class="pr-tl-node">
         <div class="pr-tl-dot"></div>
         <p class="pr-tl-week">Week 3</p>
-        <p class="pr-tl-name">Shoot Day</p>
+        <p class="pr-tl-name">Shoot day</p>
       </div>
       <div class="pr-tl-node">
         <div class="pr-tl-dot"></div>
-        <p class="pr-tl-week">Week 4 &ndash; 5</p>
+        <p class="pr-tl-week">Week 4 to 5</p>
         <p class="pr-tl-name">Editing</p>
       </div>
       <div class="pr-tl-node">
@@ -497,7 +508,7 @@
 <!-- ════════════ TESTIMONIAL ════════════ -->
 <section class="pr-quote" aria-label="Client comment">
   <div class="pr-container">
-    <p class="pr-quote-text">Matt was a pleasure to work with on our recent architectural project shoots. He was highly responsive and organized pre-shoot, and on site he worked efficiently with a professional, calm demeanor. His creative eye brought out the best in the design, and he easily adapted to changing conditions. Highly recommend!</p>
+    <p class="pr-quote-text">Matt was a pleasure to work with on our recent architectural project shoots. He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor. His creative eye brought out the best in the design, and he easily adapted to changing conditions. &hellip; Highly recommend!</p>
     <p class="pr-quote-attr">Kyle Paisley, Summerhill Fine Homes &middot; <a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">View Case Study</a></p>
   </div>
 </section>
@@ -505,7 +516,7 @@
 <!-- ════════════ MANIFESTO ════════════ -->
 <section class="pr-manifesto">
   <div class="pr-container">
-    <p class="pr-manifesto-text">Every project starts with understanding what you built and why. The photography follows.</p>
+    <p class="pr-manifesto-text">Every project starts with understanding what was built and why. The photography follows.</p>
   </div>
 </section>
 
@@ -515,11 +526,11 @@
     <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Sandy Hook, Sunshine Coast: the entry under a cedar soffit, dark corrugated siding, concrete steps up to the glass door, planting and a rock wall to the right" width="1500" height="1000" loading="lazy" decoding="async">
   </div>
   <div class="pr-cta-c">
-    <p class="pr-eyebrow pr-eyebrow-dark">Ready to Start</p>
-    <h2 id="pr-cta-h">Ready to start with <em>a conversation?</em></h2>
-    <p class="pr-cta-sub">Let's talk about your project, your goals, and how we can bring your vision to life through intentional photography.</p>
+    <p class="pr-eyebrow pr-eyebrow-dark">Contact</p>
+    <h2 id="pr-cta-h">Tell me about <em>your project</em>.</h2>
+    <p class="pr-cta-sub">A short call covers the scope, the timing and the budget.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="pr-cta-btn">Book a Discovery Call</a>
-    <p class="pr-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
+    <p class="pr-alt-cta">Or start with the <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">pricing guide</a>.</p>
   </div>
 </section>
 
@@ -645,31 +656,31 @@
     {
       "@type": "HowToStep",
       "name": "Pre-Shoot Consultation",
-      "text": "Review architectural plans, renderings, and project details to understand design intent, orientation, and composition opportunities.",
+      "text": "A call or an email settles what the images are for: a portfolio, an award entry, a publication, a client presentation. That answer sets the shot list, the image style, the scope and the access.",
       "position": 1
     },
     {
       "@type": "HowToStep",
       "name": "Creative Planning & Site Review",
-      "text": "Visit the site to assess natural light, identify key compositions, and plan the shoot schedule around optimal conditions.",
+      "text": "Reading the plans, renderings or earlier photos to fix orientation and composition, then light timing, drone permissions, site access and weather. A prep checklist goes out ahead of the day.",
       "position": 2
     },
     {
       "@type": "HowToStep",
       "name": "Photography Day",
-      "text": "Full-day shoot covering architecture, interiors, details, aerial, and twilight. Calm, professional presence with minimal disruption.",
+      "text": "Coverage from the hero exterior through interior wide angles, details, material intersections, and aerial frames where the site allows.",
       "position": 3
     },
     {
       "@type": "HowToStep",
       "name": "Post-Production & Editing",
-      "text": "Professional editing with a natural, restrained approach. Color correction, perspective alignment, and careful retouching.",
+      "text": "Editing in Lightroom and Photoshop. Colour correction, perspective alignment, tonal balance, and the distractions taken out.",
       "position": 4
     },
     {
       "@type": "HowToStep",
       "name": "Delivery & Licensing",
-      "text": "High-resolution files delivered via online gallery. Clear licensing terms for web, print, social media, and client presentations.",
+      "text": "Final images in an online gallery, typically within 5 to 10 business days. Full resolution files for print, web sized versions, and licensing terms written for the actual use.",
       "position": 5
     }
   ]
@@ -695,7 +706,29 @@
   page-level meta/canonical/og block (Squarespace emits those from the SEO
   panel), and the page's own footer.
 
-  Copy is unchanged. Alt text was rewritten to match what is visibly in frame.
+  Alt text was rewritten to match what is visibly in frame. Register pass 2026-08-27:
+  first person singular throughout, second person only in the closing call to action,
+  em and en dashes gone, and the banned words (capture, curated, timeless) removed.
+  The HowTo JSON-LD now mirrors the page copy; before this it described step 2 under
+  step 1 and claimed twilight coverage the page never offers.
+
+  Register pass 2 (2026-08-27): step 01 no longer opens with "Every project begins
+  with". Four sentences ran the same "every/each X begins or starts" construction
+  (the philosophy heading, the philosophy paragraph, step 01, the manifesto); three
+  remain, and step 01 now uses the HowTo JSON-LD's own wording. Nothing else in the
+  copy changed.
+
+  Kyle Paisley's quote is untouched. It is a real client's words, an excerpt of the
+  canonical text in business/website/testimonials.json with the dropped sentence
+  marked by an ellipsis, and tools/check_quotes.py passes on it.
+
+  NOT FIXED HERE, needs Matt: step 05 promises delivery "within 5 to 10 business
+  days", the timeline below it puts delivery in week 6 of a week-3 shoot (about 15
+  business days), and business/operations/service-agreements.md says 15 business days
+  for Project Photography. The three do not agree. The 5 to 10 figure was left alone
+  because it is what all four pricing guides already ship.
+  Also unresolved: the manifesto restates the philosophy section. Cutting one of them
+  is a design decision, not a register fix, so both are still here.
 -->
 
 </body>

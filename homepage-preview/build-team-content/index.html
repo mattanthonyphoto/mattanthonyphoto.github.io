@@ -102,10 +102,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -116,6 +120,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -127,14 +138,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -387,7 +398,7 @@
     <div class="sv-container">
       <p class="sv-eyebrow">Service 03</p>
       <h1 id="sv-hero-h">Build &amp; Team Content: The stories <em>behind the builds</em></h1>
-      <p class="sv-hero-sub">The people, progress, and culture behind your projects — captured for social media, recruitment, and brand storytelling.</p>
+      <p class="sv-hero-sub">The people, progress and culture behind your projects, documented for social media, recruitment and proposals.</p>
     </div>
   </div>
 </section>
@@ -407,10 +418,6 @@
       <dt class="sv-meta-dt">Format</dt>
       <dd class="sv-meta-dd">Quarterly Shoot Days</dd>
     </div>
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">ROI</dt>
-      <dd class="sv-meta-dd">3&ndash;4 Months of Content</dd>
-    </div>
   </div>
 </dl>
 
@@ -420,9 +427,8 @@
     <div class="sv-narrow">
       <p class="sv-eyebrow">The ROI</p>
       <h2 class="sv-h2" id="sv-roi-h">One shoot day. <em>Months</em> of content.</h2>
-      <p>Most builders know they need content. Few have the time to create it. That is where the quarterly embedded shoot day changes everything. We show up on an active job site, spend the day documenting the real work in progress, and deliver a library of assets that keeps your marketing running for months.</p>
-      <p>One shoot produces <span class="sv-gold">8 to 12 Instagram posts</span>, <span class="sv-gold">3 to 5 Reels</span>, <span class="sv-gold">4 to 6 LinkedIn posts</span>, recruitment content, and proposal imagery. No staging, no interruptions, no content calendars gathering dust. Just authentic documentation of the work your team does every day, turned into the most efficient content investment a builder can make.</p>
-      <p>While your competitors post phone photos and stock images, your feed shows the real work happening on real job sites. That is a competitive advantage that compounds.</p>
+      <p>Most builders know they need content. Few have the time to create it. That is what the quarterly shoot day is for. I spend a day on an active job site documenting the work in progress, and deliver a library of assets that keeps your marketing running for months.</p>
+      <p>One shoot produces <span class="sv-gold">8 to 12 Instagram posts</span>, <span class="sv-gold">3 to 5 Reels</span>, <span class="sv-gold">4 to 6 LinkedIn posts</span>, recruitment content, and proposal imagery. No staging, no interruptions. Just documentation of the work your team does every day.</p>
     </div>
   </div>
 </section>
@@ -439,19 +445,19 @@
     <h2 class="sv-h2" id="sv-stats-h">What one shoot day <em>produces</em></h2>
     <div class="sv-stats-grid">
       <div class="sv-stat-card">
-        <p class="sv-stat-num">12</p>
+        <p class="sv-stat-num">8-12</p>
         <p class="sv-stat-lbl">Instagram Posts</p>
-        <p class="sv-stat-sub">8-12 per shoot</p>
+        <p class="sv-stat-sub">Stills and carousels</p>
       </div>
       <div class="sv-stat-card">
-        <p class="sv-stat-num">5</p>
+        <p class="sv-stat-num">3-5</p>
         <p class="sv-stat-lbl">Reels</p>
-        <p class="sv-stat-sub">3-5 per shoot</p>
+        <p class="sv-stat-sub">Vertical, platform ready</p>
       </div>
       <div class="sv-stat-card">
-        <p class="sv-stat-num">6</p>
+        <p class="sv-stat-num">4-6</p>
         <p class="sv-stat-lbl">LinkedIn Posts</p>
-        <p class="sv-stat-sub">4-6 per shoot</p>
+        <p class="sv-stat-sub">Team and progress</p>
       </div>
       <div class="sv-stat-card">
         <p class="sv-stat-num">1</p>
@@ -472,7 +478,7 @@
   <div class="sv-container">
     <div class="sv-narrow">
       <p class="sv-eyebrow">What's Included</p>
-      <h2 class="sv-h2" id="sv-incl-h">Everything your brand needs from <em>one day on site</em></h2>
+      <h2 class="sv-h2" id="sv-incl-h">What your brand gets from <em>one day on site</em></h2>
     </div>
     <div class="sv-deliverables">
       <div class="sv-del-card">
@@ -489,11 +495,11 @@
       </div>
       <div class="sv-del-card">
         <h3>Short Form Video &amp; Reels</h3>
-        <p>Vertical video content ready for Instagram Reels, LinkedIn, and TikTok. Site walk-throughs, time-lapses, and crew spotlights that stop the scroll.</p>
+        <p>Vertical video ready for Instagram Reels, LinkedIn and TikTok. Site walk-throughs, time-lapses and crew spotlights.</p>
       </div>
       <div class="sv-del-card">
         <h3>Drone &amp; Aerial Documentation</h3>
-        <p>Transport Canada certified aerial photography and video. Site overviews, progress documentation, and dramatic angles that ground-level cameras cannot capture.</p>
+        <p>Transport Canada certified aerial photography and video. Site overviews, progress documentation and angles a ground-level camera cannot reach.</p>
       </div>
       <div class="sv-del-card">
         <h3>Social-Ready Deliverables</h3>
@@ -542,7 +548,7 @@
         <p>Major pours, beam sets, topping out. The moments that deserve more than a phone photo for your project records and client updates.</p>
       </div>
       <div class="sv-ideal-card">
-        <h3>Trades Showcasing Work</h3>
+        <h3>Trades and Fabricators</h3>
         <p>Millwork, glazing, structural steel, concrete. Your craft deserves to be seen in context, not isolated on a white background.</p>
       </div>
     </div>
@@ -552,7 +558,7 @@
 <!-- ════════════ MANIFESTO ════════════ -->
 <section class="sv-manifesto sv-dark">
   <div class="sv-manifesto-inner">
-    <p class="sv-manifesto-text">Every day on your job site is content. The crane lift at sunrise. The crew in the rain. The framing against the mountain. Your competitors aren't capturing it. You should be.</p>
+    <p class="sv-manifesto-text">Every day on your job site is content. The crane lift at sunrise. The crew in the rain. The framing against the mountain. Almost none of it gets photographed.</p>
   </div>
 </section>
 
@@ -562,9 +568,9 @@
     <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=2500w 1667w" sizes="100vw" alt="Dark stained wood siding with tree shadow, construction material detail" width="1667" height="2500" loading="lazy" decoding="async">
   </div>
   <div class="sv-cta-c">
-    <p class="sv-eyebrow">Start Capturing</p>
-    <h2 class="sv-h2" id="sv-cta-h">Your team builds something <em>remarkable</em> every day.<br>Let's show the world.</h2>
-    <p class="sv-cta-sub">Ready to turn your job sites into a content engine? Let's start with a conversation.</p>
+    <p class="sv-eyebrow">Contact</p>
+    <h2 class="sv-h2" id="sv-cta-h">Your team builds something <em>remarkable</em> every day</h2>
+    <p class="sv-cta-sub">A short call to talk through the sites, the timing and the scope.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
     <p class="sv-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
@@ -577,7 +583,7 @@
     <div class="sv-ot-g">
       <div class="sv-ot-c">
         <h3>Project Photography</h3>
-        <p>Complete visual documentation of your finished build.</p>
+        <p>Complete documentation of a finished build.</p>
         <a class="sv-arrow-link" href="/homepage-preview/project-photography/">Learn More</a>
       </div>
       <div class="sv-ot-c">
@@ -587,7 +593,7 @@
       </div>
       <div class="sv-ot-c">
         <h3>Creative Partner</h3>
-        <p>Your embedded creative department, handled.</p>
+        <p>An embedded creative department under one retainer.</p>
         <a class="sv-arrow-link" href="/homepage-preview/creative-partner/">Learn More</a>
       </div>
     </div>
@@ -779,6 +785,25 @@
 
   Page-level meta (description, canonical, og:) removed per the design system:
   Squarespace emits those from the SEO panel. JSON-LD kept.
+
+  Register pass 2026-08-27 (this one DID change copy, unlike the pass above):
+    Banned words out: "captured" in the hero sub, "capture" on the drone card,
+    "capturing" in the manifesto, "Start Capturing" as the CTA eyebrow,
+    "Showcasing" in an Ideal For heading, "storytelling" in the hero sub.
+    Dashes out: the em dash in the hero sub, the en dash in the meta strip.
+    Plural "we" out: "We show up on an active job site" is now "I spend a day".
+    Cut for being untraceable, not softened: "While your competitors post phone
+    photos and stock images ..." (a claim about the reader's competitors) and
+    "the most efficient content investment a builder can make".
+    The five What One Shoot Day Produces cards led with the TOP of each range
+    (12 / 5 / 6) and repeated the range underneath. They now lead with the range
+    itself (8-12 / 3-5 / 4-6). Those ranges are the offer as written on this page;
+    I could not find them in pricing.md or any other doc, so they still need
+    Matt's confirmation.
+    Other Services: the Project Photography blurb is now the agreed string,
+    "Complete documentation of a finished build.", and the Creative Partner blurb
+    is "An embedded creative department under one retainer." (it read
+    "Your embedded creative department, handled." only here).
 -->
 
 </body>

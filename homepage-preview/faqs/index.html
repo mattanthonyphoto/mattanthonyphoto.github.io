@@ -101,10 +101,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -115,6 +119,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -126,14 +137,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -327,8 +338,8 @@
   <div class="faq-hero-content">
     <div class="faq-container">
       <p class="faq-eyebrow">Frequently Asked Questions</p>
-      <h1 id="faq-hero-h">Everything you need to know <em>before we start</em></h1>
-      <p class="faq-hero-sub">Answers to common questions about booking, pricing, drone work, deliverables, and what to expect working with Matt Anthony Photography.</p>
+      <h1 id="faq-hero-h">Everything you need to know <em>before a shoot</em></h1>
+      <p class="faq-hero-sub">Answers on booking, pricing, drone work, deliverables and how a project runs.</p>
     </div>
   </div>
 </section>
@@ -345,7 +356,7 @@
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-1" aria-controls="faq-a-1" aria-expanded="false">What areas do you serve as an architectural photographer?</button>
       <div class="faq-answer" id="faq-a-1" role="region" aria-labelledby="faq-q-1">
-        <p>I'm based in Squamish, British Columbia and serve the entire Sea to Sky Corridor including Whistler, Pemberton, and the Sunshine Coast. I also regularly shoot in Vancouver, the Fraser Valley, and across BC. I'm happy to travel for the right project.</p>
+        <p>I'm based in Squamish, British Columbia and work across the Sea to Sky Corridor: Squamish, Whistler and Pemberton. I also shoot on the Sunshine Coast, in Vancouver, the Fraser Valley and the Okanagan. I travel for the right project.</p>
       </div>
     </div>
 
@@ -359,7 +370,7 @@
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-3" aria-controls="faq-a-3" aria-expanded="false">How far in advance should I book?</button>
       <div class="faq-answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3">
-        <p>I recommend booking 2 to 4 weeks ahead to secure your preferred date and allow time for pre shoot planning. That said, I can sometimes accommodate shorter timelines depending on availability and season.</p>
+        <p>Ideally 2 to 4 weeks ahead, which secures your preferred date and leaves time for pre shoot planning. Shorter notice is sometimes possible, depending on availability and season.</p>
       </div>
     </div>
 
@@ -374,7 +385,7 @@
       <button class="faq-question" type="button" id="faq-q-5" aria-controls="faq-a-5" aria-expanded="false">What makes your approach different from other photographers?</button>
       <div class="faq-answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5">
         <p>I focus on documenting design intent, not just producing pretty images. Before I pick up a camera, I take the time to understand the architect's or builder's vision, the material choices, the spatial flow, and the story the project is trying to tell. The photography follows from that understanding.</p>
-        <p>I also offer full spectrum coverage under one roof: architectural photography, videography, drone, team portraits, and progression documentation. That means your visual identity stays cohesive across every touchpoint.</p>
+        <p>Stills, video, drone, team portraits and progression documentation all come from the same person, so the work holds together across your website, your decks and your social.</p>
       </div>
     </div>
   </div>
@@ -386,14 +397,14 @@
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-6" aria-controls="faq-a-6" aria-expanded="false">What does an architectural photography session include?</button>
       <div class="faq-answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6">
-        <p>A typical session includes a pre shoot consultation to understand your project and goals, a full day or half day on site capturing exterior, interior, detail, and aerial photography, professional post production editing, and delivery of high resolution images through a curated online gallery within 5 to 10 business days.</p>
+        <p>A typical session includes a pre shoot consultation, a half or full day on site covering exterior, interior, detail and aerial photography, professional editing, and delivery of high resolution images through an online gallery within 5 to 10 business days.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-7" aria-controls="faq-a-7" aria-expanded="false">How do you prepare for a shoot?</button>
       <div class="faq-answer" id="faq-a-7" role="region" aria-labelledby="faq-q-7">
-        <p>Before every shoot, I review architectural plans, renderings, or previous photos to understand orientation, light conditions, and composition opportunities. I'll send you a prep checklist covering staging tips, timing, and key design details to highlight. This ensures we make the most of our time on site.</p>
+        <p>Before every shoot, I review architectural plans, renderings, or previous photos to understand orientation, light conditions, and composition opportunities. I'll send you a prep checklist covering staging tips, timing, and key design details to highlight.</p>
       </div>
     </div>
 
@@ -440,14 +451,14 @@
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-13" aria-controls="faq-a-13" aria-expanded="false">Do you offer videography as well?</button>
       <div class="faq-answer" id="faq-a-13" role="region" aria-labelledby="faq-q-13">
-        <p>Yes. I produce cinematic video content that showcases the flow, scale, and atmosphere of a property. This includes ground level walkthroughs, aerial flyovers, and detail sequences. Video is crafted for web, social media, and presentation use.</p>
+        <p>Yes. I shoot and cut video alongside the stills: ground level walkthroughs, aerial flyovers, and detail sequences. It is finished for web, social media, and presentation use.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-14" aria-controls="faq-a-14" aria-expanded="false">What equipment do you use?</button>
       <div class="faq-answer" id="faq-a-14" role="region" aria-labelledby="faq-q-14">
-        <p>I shoot with professional full frame mirrorless cameras and a range of architectural lenses including tilt shift glass for perspective correction. For aerial work, I use a commercial grade drone platform. All post production is done in Lightroom and Photoshop with a focus on natural, editorial quality results.</p>
+        <p>I shoot with professional mirrorless cameras and a range of architectural lenses including tilt shift glass for perspective correction. For aerial work, I use a commercial grade drone platform. All post production is done in Lightroom and Photoshop with a focus on natural, editorial quality results.</p>
       </div>
     </div>
   </div>
@@ -459,7 +470,7 @@
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-15" aria-controls="faq-a-15" aria-expanded="false">How long does it take to receive the final images?</button>
       <div class="faq-answer" id="faq-a-15" role="region" aria-labelledby="faq-q-15">
-        <p>Final images are typically delivered within 5 to 10 business days through a curated online gallery. You'll receive both high resolution files for print and web optimized versions. Rush delivery is available if you're working toward a deadline.</p>
+        <p>Final images are typically delivered within 5 to 10 business days through an online gallery. You'll receive both high resolution files for print and web optimized versions. Rush delivery is available if you're working toward a deadline.</p>
       </div>
     </div>
 
@@ -473,14 +484,14 @@
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-17" aria-controls="faq-a-17" aria-expanded="false">Can I use the images on my website, social media, and in print?</button>
       <div class="faq-answer" id="faq-a-17" role="region" aria-labelledby="faq-q-17">
-        <p>Yes. All images come with a commercial usage license that covers your website, social media, print marketing, award submissions, and editorial use. We'll discuss your specific needs during the booking process to make sure the license fits.</p>
+        <p>Yes. All images come with a commercial usage license that covers your website, social media, print marketing, award submissions, and editorial use. I go over the intended use at booking so the license fits.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question" type="button" id="faq-q-18" aria-controls="faq-a-18" aria-expanded="false">Can you help with award submissions and publications?</button>
       <div class="faq-answer" id="faq-a-18" role="region" aria-labelledby="faq-q-18">
-        <p>Absolutely. A large part of what I do is creating imagery specifically designed for <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">award submissions and publication</a>. I understand the requirements for programs like the CHBA Awards, GVHBA Ovation Awards, and various design publications. I can provide images formatted and composed to meet those standards. For a deeper look at how we approach this, see our <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">complete guide to architectural photography for awards and publications</a>.</p>
+        <p>Yes. I prepare imagery for <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">award submissions and publication</a>, formatted and composed to the specs those programmes set. The CHBA Awards and most design magazines each ask for something different, and I build to whichever one applies.</p>
       </div>
     </div>
   </div>
@@ -529,14 +540,14 @@
     <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Entry court with dark ribbed siding, a wood soffit and concrete steps up to a glass front door" width="1500" height="1000" loading="lazy" decoding="async">
   </div>
   <div class="faq-cta-c">
-    <p class="faq-eyebrow">Still Have Questions?</p>
-    <h2 id="faq-cta-h">Let's talk through <em>the details</em></h2>
-    <p class="faq-cta-sub">I'm happy to chat. Reach out and I'll get back to you within 24 hours.</p>
+    <p class="faq-eyebrow">Contact</p>
+    <h2 id="faq-cta-h">Tell me about <em>your project</em>.</h2>
+    <p class="faq-cta-sub">A short call covers anything not answered above.</p>
     <div class="faq-cta-links">
       <a href="https://www.mattanthonyphoto.com/discovery-call" class="faq-cta-btn-primary" target="_blank" rel="noopener">Book a Discovery Call</a>
       <a href="/homepage-preview/contact/" class="faq-cta-btn-secondary">Send a Message</a>
     </div>
-    <p class="faq-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
+    <p class="faq-alt-cta">Or start with the <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">pricing guide</a>.</p>
   </div>
 </section>
 
@@ -689,7 +700,7 @@
       "name": "What areas do you serve as an architectural photographer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "I'm based in Squamish, British Columbia and serve the entire Sea to Sky Corridor including Whistler, Pemberton, and the Sunshine Coast. I also regularly shoot in Vancouver, the Fraser Valley, and across BC. I'm happy to travel for the right project."
+        "text": "I'm based in Squamish, British Columbia and work across the Sea to Sky Corridor: Squamish, Whistler and Pemberton. I also shoot on the Sunshine Coast, in Vancouver, the Fraser Valley and the Okanagan. I travel for the right project."
       }
     },
     {
@@ -705,7 +716,7 @@
       "name": "How far in advance should I book?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "I recommend booking 2 to 4 weeks ahead to secure your preferred date and allow time for pre shoot planning. That said, I can sometimes accommodate shorter timelines depending on availability and season."
+        "text": "Ideally 2 to 4 weeks ahead, which secures your preferred date and leaves time for pre shoot planning. Shorter notice is sometimes possible, depending on availability and season."
       }
     },
     {
@@ -721,7 +732,7 @@
       "name": "What makes your approach different from other photographers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "I focus on documenting design intent, not just producing pretty images. Before I pick up a camera, I take the time to understand the architect's or builder's vision, the material choices, the spatial flow, and the story the project is trying to tell. The photography follows from that understanding. I also offer full spectrum coverage under one roof: architectural photography, videography, drone, team portraits, and progression documentation. That means your visual identity stays cohesive across every touchpoint."
+        "text": "I focus on documenting design intent, not just producing pretty images. Before I pick up a camera, I take the time to understand the architect's or builder's vision, the material choices, the spatial flow, and the story the project is trying to tell. The photography follows from that understanding. Stills, video, drone, team portraits and progression documentation all come from the same person, so the work holds together across your website, your decks and your social."
       }
     },
     {
@@ -729,7 +740,7 @@
       "name": "What does an architectural photography session include?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A typical session includes a pre shoot consultation to understand your project and goals, a full day or half day on site capturing exterior, interior, detail, and aerial photography, professional post production editing, and delivery of high resolution images through a curated online gallery within 5 to 10 business days."
+        "text": "A typical session includes a pre shoot consultation, a half or full day on site covering exterior, interior, detail and aerial photography, professional editing, and delivery of high resolution images through an online gallery within 5 to 10 business days."
       }
     },
     {
@@ -737,7 +748,7 @@
       "name": "How do you prepare for a shoot?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Before every shoot, I review architectural plans, renderings, or previous photos to understand orientation, light conditions, and composition opportunities. I'll send you a prep checklist covering staging tips, timing, and key design details to highlight. This ensures we make the most of our time on site."
+        "text": "Before every shoot, I review architectural plans, renderings, or previous photos to understand orientation, light conditions, and composition opportunities. I'll send you a prep checklist covering staging tips, timing, and key design details to highlight."
       }
     },
     {
@@ -785,7 +796,7 @@
       "name": "Do you offer videography as well?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. I produce cinematic video content that showcases the flow, scale, and atmosphere of a property. This includes ground level walkthroughs, aerial flyovers, and detail sequences. Video is crafted for web, social media, and presentation use."
+        "text": "Yes. I shoot and cut video alongside the stills: ground level walkthroughs, aerial flyovers, and detail sequences. It is finished for web, social media, and presentation use."
       }
     },
     {
@@ -793,7 +804,7 @@
       "name": "What equipment do you use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "I shoot with professional full frame mirrorless cameras and a range of architectural lenses including tilt shift glass for perspective correction. For aerial work, I use a commercial grade drone platform. All post production is done in Lightroom and Photoshop with a focus on natural, editorial quality results."
+        "text": "I shoot with professional mirrorless cameras and a range of architectural lenses including tilt shift glass for perspective correction. For aerial work, I use a commercial grade drone platform. All post production is done in Lightroom and Photoshop with a focus on natural, editorial quality results."
       }
     },
     {
@@ -801,7 +812,7 @@
       "name": "How long does it take to receive the final images?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Final images are typically delivered within 5 to 10 business days through a curated online gallery. You'll receive both high resolution files for print and web optimized versions. Rush delivery is available if you're working toward a deadline."
+        "text": "Final images are typically delivered within 5 to 10 business days through an online gallery. You'll receive both high resolution files for print and web optimized versions. Rush delivery is available if you're working toward a deadline."
       }
     },
     {
@@ -817,7 +828,7 @@
       "name": "Can I use the images on my website, social media, and in print?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. All images come with a commercial usage license that covers your website, social media, print marketing, award submissions, and editorial use. We'll discuss your specific needs during the booking process to make sure the license fits."
+        "text": "Yes. All images come with a commercial usage license that covers your website, social media, print marketing, award submissions, and editorial use. I go over the intended use at booking so the license fits."
       }
     },
     {
@@ -825,7 +836,7 @@
       "name": "Can you help with award submissions and publications?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Absolutely. A large part of what I do is creating imagery specifically designed for award submissions and publication. I understand the requirements for programs like the CHBA Awards, GVHBA Ovation Awards, and various design publications. I can provide images formatted and composed to meet those standards. For a deeper look, see our complete guide to architectural photography for awards and publications at mattanthonyphoto.com/architectural-photography-for-publications."
+        "text": "Yes. I prepare imagery for award submissions and publication, formatted and composed to the specs those programmes set. The CHBA Awards and most design magazines each ask for something different, and I build to whichever one applies."
       }
     },
     {
@@ -893,7 +904,38 @@
        rewritten to what is visibly in frame, hero not lazy.
     9. Page-level meta (description, canonical, og:) removed. Squarespace emits
        those from the SEO panel.
-   10. All 22 questions and answers and the FAQPage JSON-LD are unchanged.
+   10. Register pass 2026-08-27: first person singular throughout, "we"/"our" gone,
+       banned words removed (capturing, curated, showcases), the hero and the close
+       rewritten. Second person stays in the answers, where it is natural, and in the
+       closing call to action. All 22 questions remain; the FAQPage JSON-LD was
+       edited in step with the answers so the two never drift.
+   11. Register pass 2 (2026-08-27), five answers, each mirrored into the JSON-LD:
+       - "This ensures we make the most of our time on site" is gone from the prep
+         answer. It was the only plural first person left, so item 10's claim that
+         "we"/"our" were gone is now true rather than nearly true.
+       - RESTORED, not cut: the "2 to 4 weeks" booking lead time. An earlier note here
+         claimed "No file supports 2 to 4". That was wrong. pricing-guides/builders.html
+         and pricing-guides/interior-designers.html both answer this same question with
+         "Ideally 2 to 4 weeks", so the FAQ now matches the pricing guides. The 4 to 8
+         week figure in the Goosen and GD Nielsen proposals is a different thing: those
+         are full project timelines, not shoot booking lead time.
+       - Cut as untraceable: "full frame" in the equipment answer. No file states the
+         camera bodies, and the 2026 books record a Fujifilm GF lens, which is medium
+         format. Tilt shift stayed: shoot-checklist.md and visual-direction.md say it.
+       - Cut as OUT OF DATE, not untraceable: "the GVHBA Ovation Awards". An earlier
+         note here claimed "Nothing in the repo mentions GVHBA". That was wrong: it
+         appears four times in location-pages/vancouver-architectural-photographer.html.
+         The real reason to drop it is that the Ovation Awards belong to HAVAN, which is
+         what GVHBA renamed to. CHBA stayed, it is in the Georgie playbook and the
+         retainer pitch. THOSE FOUR INSTANCES ON THE VANCOUVER PAGE ARE STILL LIVE and
+         need the same correction.
+       - The service-area answer had the Sunshine Coast inside the Sea to Sky
+         Corridor. It is a separate region in business/CLAUDE.md. Rewritten, and the
+         Okanagan added, which the footer already links.
+       Second person stays in the questions and answers, per the page's own nature.
+       STILL UNRESOLVED, needs Matt: two answers say 5 to 10 business days, which
+       matches all four pricing guides but not service-agreements.md (15 business days
+       for Project Photography) or business/CLAUDE.md (SOP says 10 to 15).
 -->
 
 </body>

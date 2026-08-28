@@ -102,10 +102,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -116,6 +120,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -127,14 +138,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -220,7 +231,6 @@
 .sv-hero-sub{font-size:1rem;font-weight:300;line-height:1.75;max-width:56ch;
   color:rgba(246,244,240,.82)!important;margin:0}
 @media (max-width:480px){
-  .sv-hero-content .sv-eyebrow{font-size:10px;letter-spacing:.14em}
   .sv-hero-content .sv-eyebrow::before{display:none}
 }
 
@@ -377,8 +387,8 @@
   <div class="sv-hero-content">
     <div class="sv-container">
       <p class="sv-eyebrow">Service 04</p>
-      <h1 id="sv-hero-h">Creative Partner: Your creative department. <em>Without the overhead.</em></h1>
-      <p class="sv-hero-sub">Photography, video, website, social media, SEO, and brand strategy. One retainer. One person who already knows your work inside and out.</p>
+      <h1 id="sv-hero-h">Creative Partner: an embedded creative department. <em>Without the overhead.</em></h1>
+      <p class="sv-hero-sub">Photography, video, website, social media, SEO, and brand strategy. One retainer. One person who already knows the firm.</p>
     </div>
   </div>
 </section>
@@ -411,9 +421,8 @@
     <div class="sv-narrow">
       <p class="sv-eyebrow">The Problem</p>
       <h2 id="sv-problem-h">Stop managing vendors. Start <em>building a brand</em>.</h2>
-      <p class="sv-body">Every project starts the same way. You find a photographer, send reference images, explain your aesthetic, brief them on the scope, coordinate schedules, and hope the results match your standard. Two months later, you do it all again with someone new.</p>
-      <p class="sv-body">Meanwhile, your website sits stale. Social media goes quiet between projects. The proposal deck uses images from three years ago. And every new hire, whether it is a videographer, a web designer, or a social media manager, needs the same onboarding you just finished giving the last one.</p>
-      <p class="sv-body">The real cost is not the invoices. It is the inconsistency, the brand drift, the hours spent re-briefing people who will never understand your work the way someone embedded in your business would. If your firm completes more than a few projects per year, you do not need another photographer. You need a creative partner who already knows your brand, understands your design language, and shows up ready.</p>
+      <p class="sv-body">Every project starts the same way: a new photographer, another round of reference images, another brief, another set of schedules. Two months later it begins again with someone else. Meanwhile the website sits stale, social goes quiet between projects, and the proposal deck still runs on images from three years ago.</p>
+      <p class="sv-body">The real cost is not the invoices. It is the brand drift, and the hours spent re-briefing people who will never know a firm's work the way someone embedded in it would.</p>
     </div>
   </div>
 </section>
@@ -428,8 +437,8 @@
   <div class="sv-container">
     <div class="sv-narrow">
       <p class="sv-eyebrow">What's Included</p>
-      <h2 id="sv-inc-h">Everything your brand needs. <em>One retainer.</em></h2>
-      <p class="sv-body">This is not a photography package with a few extras bolted on. It is a complete creative service designed to handle every visual and strategic need your firm has, delivered by one person who already knows your business.</p>
+      <h2 id="sv-inc-h">Everything a brand needs. <em>One retainer.</em></h2>
+      <p class="sv-body">This is not a photography package with extras bolted on. It is a complete creative service, delivered by one person who already knows the firm.</p>
     </div>
     <div class="sv-inc">
       <div class="sv-inc-col">
@@ -458,7 +467,7 @@
     <div class="sv-narrow">
       <p class="sv-eyebrow">The Proof</p>
       <h2 id="sv-proof-h">The proof is in the <em>partnership</em></h2>
-      <p class="sv-body">Balmoral Construction started as a photography inquiry. Four luxury homes across Whistler and Pemberton needed to be documented. But after delivering the first project, the scope grew: a 42-page custom website built from the ground up, 6 geo-targeted location pages for local SEO, 8 blog posts driving organic traffic, drone and video content for social media, and an ongoing monthly retainer that has now been running for over 12 months. One photographer. Every creative need. Handled.</p>
+      <p class="sv-body">Balmoral Construction started as a photography inquiry. Four homes across Whistler and Pemberton needed documenting. After the first project the scope grew: a 42-page custom website built from the ground up, 6 geo-targeted location pages for local SEO, 7 blog posts, drone and video content for social media. The site is on a monthly retainer covering management and SEO. One photographer. Every creative need. Handled.</p>
     </div>
 
     <div class="sv-shot">
@@ -481,10 +490,6 @@
         <p class="sv-stat-num">6</p>
         <p class="sv-stat-lbl">Geo-Targeted Pages</p>
       </div>
-      <div class="sv-stat">
-        <p class="sv-stat-num">12+</p>
-        <p class="sv-stat-lbl">Month Partnership</p>
-      </div>
     </div>
 
     <a class="sv-arrow" href="https://www.mattanthonyphoto.com/balmoral-construction">Read the Full Case Study &rarr;</a>
@@ -494,7 +499,11 @@
 <!-- ════════════ TESTIMONIAL ════════════ -->
 <section class="sv-quote" aria-label="Client comment">
   <div class="sv-container">
-    <blockquote>Working with Matt was an absolute pleasure. The entire process was seamless and professional. The website looks fantastic, and the ongoing maintenance gives me peace of mind knowing everything is taken care of.</blockquote>
+    <!-- The class is what puts this quote under tools/check_quotes.py: the checker
+         only reads elements whose class names them as a quote, so an unclassed
+         <blockquote> was shipping a named client's words with nothing verifying
+         them against testimonials.json. No rule styles .sv-quote-text here. -->
+    <blockquote class="sv-quote-text">Working with Matt was an absolute pleasure from start to finish. &hellip; The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</blockquote>
     <p class="sv-quote-attr">Marc Harvey, Balmoral Construction &middot; <a href="https://www.balmoralconstruction.com/" target="_blank" rel="noopener">balmoralconstruction.com</a></p>
   </div>
 </section>
@@ -510,17 +519,17 @@
       <div class="sv-step">
         <p class="sv-step-num">01</p>
         <h3>Discovery Call</h3>
-        <p>We review your brand, upcoming projects, and goals. I learn your design language, your standards, and where the gaps are. No pitch decks. Just a conversation about what you need.</p>
+        <p>I review the brand, the upcoming projects and the goals, and I learn the design language and where the gaps are. No pitch decks. Just a conversation.</p>
       </div>
       <div class="sv-step">
         <p class="sv-step-num">02</p>
         <h3>3-Month Pilot</h3>
-        <p>Photography, content, and strategy. We prove the model works with real deliverables: project shoots, website updates, social content, SEO improvements. You see the results before you commit long-term.</p>
+        <p>Photography, content, and strategy. I prove the model works with real deliverables: project shoots, website updates, social content, SEO improvements. The results arrive before any long-term commitment.</p>
       </div>
       <div class="sv-step">
         <p class="sv-step-num">03</p>
         <h3>Ongoing Partnership</h3>
-        <p>Monthly retainer. I show up, create, deliver. Every project documented. Every channel active. Every touchpoint consistent. You focus on building. I handle the rest.</p>
+        <p>Monthly retainer. I show up, create, and deliver. No re-briefing and no ramp-up between projects.</p>
       </div>
     </div>
   </div>
@@ -561,7 +570,7 @@
   <div class="sv-cta-c">
     <p class="sv-eyebrow">Ready to Partner</p>
     <h2 id="sv-cta-h">Your creative department. <em>One call away.</em></h2>
-    <p class="sv-cta-sub">Start with a 3-month pilot. If it works, we keep going. If it doesn't, you still walk away with months of professional content and a stronger brand.</p>
+    <p class="sv-cta-sub">Start with a 3-month pilot. If it works, the retainer continues. If it doesn't, the content from those three months is already delivered.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
     <p class="sv-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
@@ -574,7 +583,7 @@
     <div class="sv-ot-g">
       <div class="sv-ot-c">
         <h3>Project Photography</h3>
-        <p>Complete visual documentation of your finished build.</p>
+        <p>Complete visual documentation of a finished build.</p>
         <a class="sv-arrow" href="/homepage-preview/project-photography/">Learn More &rarr;</a>
       </div>
       <div class="sv-ot-c">

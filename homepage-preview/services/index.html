@@ -99,10 +99,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -112,6 +116,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -122,14 +133,14 @@
 }
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -218,9 +229,15 @@
   font-weight:400;font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.12;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 clamp(24px,2.8vw,36px)}
 .sv-section h2 em,.sv-testimonials h2 em,.sv-serve h2 em{font-style:italic}
-.sv-section p{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:15px;
+/* The :not(.sv-eyebrow) is load-bearing, not tidiness. `.sv-section p` is (0,1,1)
+   and beats `.sv-eyebrow` at (0,1,0), so the two eyebrows that sit inside a
+   .sv-section ("The Approach", "What I Do") rendered at 15px / 2.7px tracking /
+   weight 300 in ink, while their four siblings outside the sections rendered
+   correctly at 11px / 1.98px / weight 400 in stone. Measured at 1440 and 390.
+   See _DESIGN-SYSTEM.md, "The specificity trap that keeps recurring". */
+.sv-section p:not(.sv-eyebrow){font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:15px;
   line-height:1.8;color:var(--ink)!important;margin:0 0 20px;max-width:66ch}
-.sv-section p:last-child{margin-bottom:0}
+.sv-section p:not(.sv-eyebrow):last-child{margin-bottom:0}
 .sv-head{margin-bottom:clamp(32px,4vw,56px)}
 .sv-head h2{margin-bottom:0}
 
@@ -257,10 +274,6 @@
   transition:border-color .35s var(--ease)}
 .sv-card:hover .sv-card-link,.sv-card:focus-visible .sv-card-link{border-color:var(--ink)}
 .sv-card-featured .sv-card-frame{outline:1px solid var(--gold);outline-offset:-1px}
-.sv-card-badge{position:absolute;top:14px;right:14px;z-index:2;
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:#1a1a18!important;
-  background:var(--gold);padding:6px 12px}
 @media (max-width:760px){.sv-card{flex:1 1 100%}}
 
 /* ════════════ CLIENTS ════════════ */
@@ -280,7 +293,7 @@
 @media (max-width:900px){.sv-quote{flex:1 1 calc(50% - var(--gap3))}}
 @media (max-width:600px){.sv-quote{flex:1 1 100%}}
 
-/* ════════════ WHO WE SERVE ════════════ */
+/* ════════════ WHO I WORK WITH ════════════ */
 .sv-serve{background:var(--paper)!important;padding:var(--section) 0;
   border-top:1px solid var(--rule)}
 .sv-serve-grid{display:flex!important;flex-wrap:wrap;gap:var(--gap3)}
@@ -373,7 +386,7 @@
   <div class="sv-hero-content">
     <div class="sv-container">
       <p class="sv-eyebrow">Services</p>
-      <h1>Your builds deserve a creative partner, not just <em>a photographer</em></h1>
+      <h1>A creative partner, not just <em>a photographer</em></h1>
       <p class="sv-hero-sub">Photography, video, web, SEO, and content strategy for architects, builders, and designers across British Columbia.</p>
     </div>
   </div>
@@ -394,10 +407,7 @@
       <dt class="sv-meta-dt">Clients</dt>
       <dd class="sv-meta-dd">Architects, Builders, Designers</dd>
     </div>
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Since</dt>
-      <dd class="sv-meta-dd">2019</dd>
-    </div>
+    
   </dl>
 </div>
 
@@ -407,8 +417,8 @@
     <div class="sv-narrow">
       <p class="sv-eyebrow">The Approach</p>
       <h2>Documenting design intent with <em>clarity and purpose</em></h2>
-      <p>We don't just photograph buildings. We document the decisions behind them — the material choices, the way light enters a room, the relationship between structure and site. Every engagement starts with understanding what you built and why. The result is imagery that communicates your work with the precision it deserves.</p>
-      <p>Whether it's a single project shoot or an ongoing creative partnership covering photography, video, website development, and content strategy — the standard stays the same.</p>
+      <p>I document the decisions behind a building: the material choices, the way light enters a room, the relationship between structure and site. Every engagement starts with understanding what was built and why.</p>
+      <p>Single project shoot or ongoing creative partnership, the standard stays the same.</p>
     </div>
   </div>
 </section>
@@ -416,8 +426,8 @@
 <!-- ════════════ STATS STRIP ════════════ -->
 <div class="sv-stats">
   <div class="sv-stats-inner sv-container">
-    <div class="sv-stat"><div class="sv-stat-num">19+</div><div class="sv-stat-lbl">Projects</div></div>
-    <div class="sv-stat"><div class="sv-stat-num">28</div><div class="sv-stat-lbl">Clients</div></div>
+    <div class="sv-stat"><div class="sv-stat-num">26</div><div class="sv-stat-lbl">Projects</div></div>
+    
     <div class="sv-stat"><div class="sv-stat-num">7</div><div class="sv-stat-lbl">Service Areas</div></div>
     <div class="sv-stat"><div class="sv-stat-num">5</div><div class="sv-stat-lbl">Case Studies</div></div>
   </div>
@@ -427,7 +437,7 @@
 <section class="sv-section">
   <div class="sv-container">
     <div class="sv-narrow sv-head">
-      <p class="sv-eyebrow">What We Do</p>
+      <p class="sv-eyebrow">What I Do</p>
       <h2>Four services, one standard of <em>craft</em></h2>
     </div>
     <div class="sv-cards">
@@ -437,7 +447,7 @@
         <div class="sv-card-body">
           <span class="sv-card-num">Service 01</span>
           <h3>Project Photography</h3>
-          <p>Complete visual documentation of your finished build. Exteriors, interiors, aerial, twilight, and short form film — composed to honour the design intent behind every detail.</p>
+          <p>Complete documentation of a finished build. Exteriors, interiors, aerial, twilight, and short form film.</p>
           <span class="sv-card-link">Learn More &rarr;</span>
         </div>
       </a>
@@ -447,7 +457,7 @@
         <div class="sv-card-body">
           <span class="sv-card-num">Service 02</span>
           <h3>Award &amp; Publication Imagery</h3>
-          <p>Photography crafted for jurors, editors, and design peers. Georgie Awards, CHBA, HAVAN, Western Living, Dwell — each image composed with the audience that matters most.</p>
+          <p>Photography made for jurors and editors.</p>
           <span class="sv-card-link">Learn More &rarr;</span>
         </div>
       </a>
@@ -457,17 +467,17 @@
         <div class="sv-card-body">
           <span class="sv-card-num">Service 03</span>
           <h3>Build &amp; Team Content</h3>
-          <p>The people, progress, and culture behind your builds. One quarterly shoot produces months of social content, recruitment material, and brand storytelling.</p>
+          <p>The people, progress, and culture behind a build. One quarterly shoot produces months of social content and recruitment material.</p>
           <span class="sv-card-link">Learn More &rarr;</span>
         </div>
       </a>
 
       <a href="/homepage-preview/creative-partner/" class="sv-card sv-card-featured">
-        <div class="sv-card-frame"><span class="sv-card-badge">Most Popular</span><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w" sizes="(max-width: 479px) calc(100vw - 48px), (max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="House cantilevered over a snow covered rock outcrop, cedar soffit and wire railing, forested mountain behind" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w" sizes="(max-width: 479px) calc(100vw - 48px), (max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="House cantilevered over a snow covered rock outcrop, cedar soffit and wire railing, forested mountain behind" width="1500" height="1000" loading="lazy" decoding="async"></div>
         <div class="sv-card-body">
           <span class="sv-card-num">Service 04</span>
           <h3>Creative Partner</h3>
-          <p>Your embedded creative department. Photography, video, website, social media, SEO, and brand strategy — all handled by someone who already knows your work inside and out.</p>
+          <p>An embedded creative department. Photography, video, website, social media, SEO, and brand strategy.</p>
           <span class="sv-card-link">Learn More &rarr;</span>
         </div>
       </a>
@@ -480,31 +490,31 @@
 <section class="sv-testimonials">
   <div class="sv-container">
     <div class="sv-narrow sv-head">
-      <p class="sv-eyebrow">What Clients Say</p>
-      <h2>Built on trust, proven by <em>results</em></h2>
+      <p class="sv-eyebrow">Clients</p>
+      <h2>In their <em>own words</em></h2>
     </div>
     <div class="sv-quotes">
       <div class="sv-quote">
-        <p class="sv-quote-text">Working with Matt was an absolute pleasure from start to finish. The entire process was seamless and professional.</p>
-        <p class="sv-quote-attr">Marc Harvey — <a href="https://www.mattanthonyphoto.com/balmoral-construction">Balmoral Construction</a></p>
+        <p class="sv-quote-text">Working with Matt was an absolute pleasure from start to finish.</p>
+        <p class="sv-quote-attr">Marc Harvey &middot; <a href="https://www.mattanthonyphoto.com/balmoral-construction">Balmoral Construction</a></p>
       </div>
       <div class="sv-quote">
-        <p class="sv-quote-text">Matt captured the craftsmanship and detail we put into every home. The images speak for themselves.</p>
-        <p class="sv-quote-attr">Kyle Paisley — <a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Summerhill Fine Homes</a></p>
+        <p class="sv-quote-text">His creative eye brought out the best in the design.</p>
+        <p class="sv-quote-attr">Kyle Paisley &middot; <a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Summerhill Fine Homes</a></p>
       </div>
       <div class="sv-quote">
-        <p class="sv-quote-text">Professional, easy to work with, and the quality of work is outstanding. Highly recommend.</p>
-        <p class="sv-quote-attr">Jeremy Kirbyson — <a href="https://www.mattanthonyphoto.com/the-window-merchant">The Window Merchant</a></p>
+        <p class="sv-quote-text">The new site looks incredible and really reflects the quality of our work.</p>
+        <p class="sv-quote-attr">Jeremy Kirbyson &middot; <a href="https://www.mattanthonyphoto.com/the-window-merchant">The Window Merchant</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════ WHO WE SERVE ════════════ -->
+<!-- ════════════ WHO I WORK WITH ════════════ -->
 <section class="sv-serve">
   <div class="sv-container">
     <div class="sv-narrow sv-head">
-      <p class="sv-eyebrow">Who We Serve</p>
+      <p class="sv-eyebrow">Who I Work With</p>
       <h2>Built for firms that take their work <em>seriously</em></h2>
     </div>
     <div class="sv-serve-grid">
@@ -514,11 +524,11 @@
       </div>
       <div class="sv-serve-item">
         <h3 class="sv-serve-title">Builders</h3>
-        <p class="sv-serve-desc">Your craftsmanship, shown at a level that wins clients and awards.</p>
+        <p class="sv-serve-desc">Craftsmanship documented in detail.</p>
       </div>
       <div class="sv-serve-item">
         <h3 class="sv-serve-title">Designers</h3>
-        <p class="sv-serve-desc">Materials, textures, and spatial design captured with intention.</p>
+        <p class="sv-serve-desc">Materials, textures, and spatial design documented with intention.</p>
       </div>
     </div>
   </div>
@@ -527,7 +537,7 @@
 <!-- ════════════ MANIFESTO ════════════ -->
 <section class="sv-manifesto">
   <div class="sv-container">
-    <p class="sv-manifesto-text">Every project you complete is either building your brand or being forgotten. The firms that win the best clients and the biggest awards are the ones who invest in how their work is seen. That's not marketing. That's strategy.</p>
+    <p class="sv-manifesto-text">Every finished project is either building a brand or being forgotten. That's not marketing. That's strategy.</p>
   </div>
 </section>
 
@@ -538,8 +548,8 @@
   </div>
   <div class="sv-cta-c">
     <p class="sv-eyebrow">Ready to Start</p>
-    <h2>Let's build something worth <em>showing off</em></h2>
-    <p class="sv-cta-sub">Every engagement starts with a conversation. No commitment, no pressure. Just two people talking about how to make your work look as good as it actually is.</p>
+    <h2>Tell me about your <em>project</em></h2>
+    <p class="sv-cta-sub">Every engagement starts with a conversation. No commitment, no pressure.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn">Book a Discovery Call</a>
     <p class="sv-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
@@ -677,8 +687,8 @@
     "name": "Photography & Creative Services",
     "itemListElement": [
       {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Project Photography", "description": "Complete visual documentation of finished builds including exteriors, interiors, aerial, twilight, and short form film.", "url": "https://www.mattanthonyphoto.com/project-photography"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Award & Publication Imagery", "description": "Photography crafted for jurors, editors, and design peers at Georgie Awards, CHBA, HAVAN, Western Living, and Dwell.", "url": "https://www.mattanthonyphoto.com/award-publication-imagery"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Build & Team Content", "description": "Construction progress, team culture, and brand storytelling photography for social content and recruitment.", "url": "https://www.mattanthonyphoto.com/construction-team-content"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Award & Publication Imagery", "description": "Photography made for jurors and editors.", "url": "https://www.mattanthonyphoto.com/award-publication-imagery"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Build & Team Content", "description": "Construction progress and team culture photography for social content and recruitment.", "url": "https://www.mattanthonyphoto.com/construction-team-content"}},
       {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Creative Partner", "description": "Ongoing embedded creative department covering photography, video, website, social media, SEO, and brand strategy.", "url": "https://www.mattanthonyphoto.com/creative-partner"}}
     ]
   }

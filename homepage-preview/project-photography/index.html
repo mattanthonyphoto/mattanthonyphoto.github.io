@@ -99,10 +99,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -113,6 +117,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -124,14 +135,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -265,19 +276,6 @@
   overflow:hidden;background:#111}
 .sv-masonry-item img{width:100%;height:auto}
 
-/* ════════════ FACTS STRIP (dark, full bleed) ════════════ */
-.sv-stats-strip{background:var(--ink)!important;
-  padding:clamp(40px,4.4vw,64px) var(--gutter);
-  border-top:1px solid rgba(201,169,110,.16)}
-.sv-stats-grid{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto;
-  display:flex!important;flex-wrap:wrap;gap:20px 40px;justify-content:space-between}
-.sv-stat-item{flex:0 1 auto;display:flex!important;flex-direction:column;gap:8px}
-.sv-stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:2.2rem;line-height:1;letter-spacing:0;color:var(--gold)!important;margin:0}
-.sv-stat-lbl{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(246,244,240,.82)!important;margin:0}
-
 /* ════════════ IDEAL FOR ════════════ */
 .sv-ideal{max-width:var(--page);margin:0 auto;padding:var(--section) var(--gutter)}
 .sv-ideal h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -345,7 +343,7 @@
   color:#1a1a18!important;transition:background-color .4s var(--ease),border-color .4s var(--ease)}
 .sv-cta-btn:hover,.sv-cta-btn:focus-visible{background:var(--gold-deep)!important;
   border-color:var(--gold-deep)!important;color:#1a1a18!important}
-.sv-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:12px;
+.sv-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .sv-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
 .sv-alt-cta a:hover,.sv-alt-cta a:focus-visible{border-color:#f6f4f0}
@@ -364,8 +362,6 @@
   .sv-ot-c{flex:1 1 100%}
   .sv-masonry{column-count:1}
   .sv-img-break{height:50vh;min-height:320px}
-  .sv-stats-grid{gap:20px 28px}
-  .sv-stat-num{font-size:1.8rem}
 }
 @media (max-width:480px){
   .sv-ideal-card{flex:1 1 100%}
@@ -405,7 +401,7 @@
   <div class="sv-hero-content">
     <p class="sv-eyebrow">Service 01</p>
     <h1>Project Photography: Documenting <em>design intent</em></h1>
-    <p class="sv-hero-sub">Complete visual documentation of your finished build — exteriors, interiors, aerial, twilight, and short form film. One shoot that tells the full story.</p>
+    <p class="sv-hero-sub">Complete documentation of a finished build. Exteriors, interiors, aerial, twilight and short form film, from one shoot.</p>
   </div>
 </div>
 
@@ -421,7 +417,7 @@
   </div>
   <div class="sv-meta-item">
     <dt class="sv-meta-dt">Turnaround</dt>
-    <dd class="sv-meta-dd">10&ndash;15 Business Days</dd>
+    <dd class="sv-meta-dd">10 to 15 Business Days</dd>
   </div>
   <div class="sv-meta-item">
     <dt class="sv-meta-dt">Areas</dt>
@@ -433,10 +429,9 @@
 <section class="sv-section">
   <div class="sv-narrow">
   <p class="sv-eyebrow">The Story</p>
-  <h2>Your project deserves imagery as considered as <em>the design itself</em></h2>
-  <p>You've spent months, sometimes years, getting every detail right. The material choices, the way light enters a room, the relationship between the structure and its site. We start every engagement by understanding what you built and why. We review plans, walk the site, and talk through your design intent before composing a single frame.</p>
-  <p>We don't just document rooms. We document decisions. The way a material palette resolves against natural light. The relationship between a structure and its landscape. The intentional proportions that a casual observer might miss but a juror, editor, or prospective client will feel immediately.</p>
-  <p>The result is photography and short form film that communicates your decisions with the clarity they deserve. A complete visual record of the project, ready for your website, proposals, social media, award submissions, and client presentations.</p>
+  <h2>Imagery as considered as <em>the design itself</em></h2>
+  <p>A build takes months, sometimes years. The material choices, the way light enters a room, the relationship between the structure and its site. I read the plans, walk the site and talk through design intent before composing a frame.</p>
+  <p>I document decisions, not just rooms. How a material palette resolves against natural light. How a structure sits in its landscape. The proportions a casual observer misses and a juror, an editor or a prospective client reads immediately.</p>
   </div>
 </section>
 
@@ -460,12 +455,12 @@
     <div class="sv-del-card">
       <div class="sv-del-num">02</div>
       <h3>Interior Spatial Flow</h3>
-      <p>Wide angles and composed vignettes that capture the spatial logic, sightlines, and proportional relationships of each room.</p>
+      <p>Wide angles and composed vignettes show the spatial logic, sightlines and proportional relationships of each room.</p>
     </div>
     <div class="sv-del-card">
       <div class="sv-del-num">03</div>
       <h3>Material Details &amp; Vignettes</h3>
-      <p>Close-up studies of material intersections, hardware selections, joinery, and the considered details that define craftsmanship.</p>
+      <p>Close-up studies of material intersections, hardware selections and joinery.</p>
     </div>
     <div class="sv-del-card">
       <div class="sv-del-num">04</div>
@@ -475,12 +470,12 @@
     <div class="sv-del-card">
       <div class="sv-del-num">05</div>
       <h3>Twilight &amp; Dusk</h3>
-      <p>Golden hour and blue hour exterior coverage that captures the warmth and atmosphere of a home when it comes alive at night.</p>
+      <p>Golden hour and blue hour exterior coverage shows the warmth and atmosphere of a house after dark.</p>
     </div>
     <div class="sv-del-card">
       <div class="sv-del-num">06</div>
       <h3>Short Form Project Film</h3>
-      <p>A 60-to-90-second cinematic walkthrough that brings the spatial experience to life for social media and client presentations.</p>
+      <p>A 60 to 90 second cinematic walkthrough for social media and client presentations.</p>
     </div>
   </div>
 </section>
@@ -507,24 +502,6 @@
   </div>
 </section>
 
-<!-- ═══ STATS STRIP ═══ -->
-<div class="sv-stats-strip">
-  <div class="sv-stats-grid">
-    <div class="sv-stat-item">
-      <p class="sv-stat-num">19</p>
-      <p class="sv-stat-lbl">Projects Delivered</p>
-    </div>
-    <div class="sv-stat-item">
-      <p class="sv-stat-num">4</p>
-      <p class="sv-stat-lbl">Case Studies</p>
-    </div>
-    <div class="sv-stat-item">
-      <p class="sv-stat-num">7</p>
-      <p class="sv-stat-lbl">Service Areas</p>
-    </div>
-  </div>
-</div>
-
 <!-- ═══ IDEAL FOR ═══ -->
 <section class="sv-ideal">
   <p class="sv-eyebrow">Ideal For</p>
@@ -532,35 +509,35 @@
   <div class="sv-ideal-grid">
     <div class="sv-ideal-card">
       <h3>Architects</h3>
-      <p>Document completed work for portfolio, awards, and publications. Show design intent with the precision it deserves.</p>
+      <p>Completed work documented for portfolio, awards and publications.</p>
     </div>
     <div class="sv-ideal-card">
       <h3>Custom Builders</h3>
-      <p>Showcase craftsmanship to prospective clients. Give every project the visual presence it earned on site.</p>
+      <p>Craftsmanship shown to prospective clients at the standard it was built.</p>
     </div>
     <div class="sv-ideal-card">
       <h3>Interior Designers</h3>
-      <p>Capture material palettes and spatial design. Communicate the atmosphere and intention behind each space.</p>
+      <p>Material palettes and spatial design recorded as intended.</p>
     </div>
     <div class="sv-ideal-card">
       <h3>Trades &amp; Suppliers</h3>
-      <p>Show your products installed in context. Glazing, millwork, stone, and metalwork photographed as built.</p>
+      <p>Products photographed installed in context. Glazing, millwork, stone and metalwork as built.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══ TESTIMONIAL ═══ -->
 <section class="sv-quote">
-  <p class="sv-quote-text">Matt made the entire process effortless. The photos captured exactly what we were going for with the design.</p>
-  <p class="sv-quote-attr"><a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Kyle Paisley</a> &mdash; Summerhill Fine Homes</p>
+  <p class="sv-quote-text">His creative eye brought out the best in the design, and he easily adapted to changing conditions.</p>
+  <p class="sv-quote-attr"><a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Kyle Paisley</a> &middot; Summerhill Fine Homes</p>
 </section>
 
 <!-- ═══ OTHER SERVICES ═══ -->
-<div class="sv-ot"><p class="sv-eyebrow">Other Services</p><div class="sv-ot-g"><div class="sv-ot-c"><h3>Award &amp; Publication Imagery</h3><p>Composed for jurors, editors, and industry recognition.</p><a class="sv-link" href="/homepage-preview/award-publication-imagery/">Learn More</a></div><div class="sv-ot-c"><h3>Build &amp; Team Content</h3><p>The people and process behind the builds.</p><a class="sv-link" href="/homepage-preview/build-team-content/">Learn More</a></div><div class="sv-ot-c"><h3>Creative Partner</h3><p>Your embedded creative department, handled.</p><a class="sv-link" href="/homepage-preview/creative-partner/">Learn More</a></div></div></div>
+<div class="sv-ot"><p class="sv-eyebrow">Other Services</p><div class="sv-ot-g"><div class="sv-ot-c"><h3>Award &amp; Publication Imagery</h3><p>Composed for jurors, editors, and industry recognition.</p><a class="sv-link" href="/homepage-preview/award-publication-imagery/">Learn More</a></div><div class="sv-ot-c"><h3>Build &amp; Team Content</h3><p>The people and process behind the builds.</p><a class="sv-link" href="/homepage-preview/build-team-content/">Learn More</a></div><div class="sv-ot-c"><h3>Creative Partner</h3><p>An embedded creative department under one retainer.</p><a class="sv-link" href="/homepage-preview/creative-partner/">Learn More</a></div></div></div>
 
 <!-- ═══ MANIFESTO ═══ -->
 <section class="sv-manifesto">
-  <p class="sv-manifesto-text">The best <span class="sv-gold-word">project photography</span> doesn't just show what you built. It shows why you built it that way. That distinction is what separates <span class="sv-gold-word">documentation</span> from <span class="sv-gold-word">design communication.</span></p>
+  <p class="sv-manifesto-text">The best <span class="sv-gold-word">project photography</span> does not just show what was built. It shows why it was built that way. That distinction separates <span class="sv-gold-word">documentation</span> from <span class="sv-gold-word">design communication.</span></p>
 </section>
 
 <!-- ═══ CTA ═══ -->
@@ -569,9 +546,9 @@
     <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Sunshine Coast architectural photography by Matt Anthony" width="2500" height="1667" loading="lazy" decoding="async">
   </div>
   <div class="sv-cta-c">
-    <p class="sv-eyebrow">Start a Conversation</p>
-    <h2>Your work defines the space. Let us show the world <em>its full potential</em></h2>
-    <p class="sv-cta-sub">Ready to create visuals that match the quality of your builds? Let's start with a conversation.</p>
+    <p class="sv-eyebrow">Contact</p>
+    <h2>Tell me about <em>your project</em></h2>
+    <p class="sv-cta-sub">A short call to talk through the build, the timing and the scope.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
     <p class="sv-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
@@ -690,7 +667,7 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Architectural Project Photography",
-  "description": "Complete visual documentation of finished builds including architecture, interiors, aerial, twilight, and short form project film.",
+  "description": "Complete documentation of a finished build. Exteriors, interiors, aerial, twilight and short form film, from one shoot.",
   "provider": {
     "@id": "https://www.mattanthonyphoto.com/#business"
   },
@@ -723,7 +700,7 @@
     1. Shared chrome lifted verbatim from sitewide/_chrome.html: nav first, footer last,
        both outside .sv-wrap, script once at the end. The page's own footer element is gone.
     2. One page width and one gutter (--page / --gutter). Hero line, meta bar, story,
-       deliverables, gallery, facts, ideal-for, quote, other services and footer share one left edge.
+       deliverables, gallery, ideal-for, quote, other services and footer share one left edge.
     3. Cormorant headlines at letter-spacing 0, weight 400 below hero size. One small-caps
        style: 11px / .18em / DM Sans 400.
     4. Contrast: the failing 3.35:1 stone and the 2.51:1 deep gold no longer carry text;
@@ -734,6 +711,19 @@
     7. srcset + sizes + real width/height on every image; the gallery duplicate is removed.
     8. Page-level meta (description, canonical, og:) removed: Squarespace emits those from
        the SEO panel. JSON-LD Service schema kept.
+
+  Register pass 2026-08-27:
+    9. .sv-alt-cta was 12px. The design system allows 13px and 11px on ink only, so it is
+       now 13px, matching build-team-content.html. services.html and creative-partner.html
+       are still 12px and are not mine to change.
+   10. The Service JSON-LD description said "Complete visual documentation of finished
+       builds ..." while the hero said something else. It now mirrors the hero sentence.
+   11. Cut, not rewritten: the channel list closing The Story, the "details that define
+       craftsmanship" tail, "brings the spatial experience to life", and the padded
+       "with the ..." clause on three of the four Ideal For cards.
+   12. Other Services blurbs on this page were already the agreed wording, so they are
+       untouched. The agreed Project Photography blurb is
+       "Complete documentation of a finished build."
 -->
 
 </body>

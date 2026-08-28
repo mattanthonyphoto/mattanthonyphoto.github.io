@@ -102,10 +102,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -116,6 +120,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -126,14 +137,14 @@
 }
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -367,7 +378,6 @@
 .sv-ap-manifesto-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.45;letter-spacing:0;max-width:25em;
   margin:0 auto;color:rgba(246,244,240,.82)!important;text-wrap:pretty}
-.sv-ap-mw{display:inline}
 .sv-ap-gold-word{color:var(--gold)}
 
 /* ── CTA (ink) ── */
@@ -443,8 +453,8 @@
   </div>
   <div class="sv-ap-hero-content">
     <p class="sv-ap-hero-label">Service</p>
-    <h1>One shoot. <em>Multiple credentials.</em></h1>
-    <p class="sv-ap-hero-sub">Photography and submission management for awards, publications, and industry recognition. I handle the entire process. You focus on what you build.</p>
+    <h1>One shoot, prepared for <em>every submission</em></h1>
+    <p class="sv-ap-hero-sub">Photography and submission management for award programs and design publications. I handle the entire process.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-ap-hero-cta" target="_blank" rel="noopener">Book a Discovery Call</a>
   </div>
 </div>
@@ -453,11 +463,11 @@
 <div class="sv-ap-meta">
   <div class="sv-ap-meta-item">
     <div class="sv-ap-meta-num">90<span class="sv-ap-meta-unit">%</span></div>
-    <div class="sv-ap-meta-lbl">Cost-Share Hit Rate</div>
+    <div class="sv-ap-meta-lbl">Cost-Share or Licensing</div>
   </div>
   <div class="sv-ap-meta-item">
     <div class="sv-ap-meta-num">3-5</div>
-    <div class="sv-ap-meta-lbl">Credentials Per Shoot</div>
+    <div class="sv-ap-meta-lbl">Submissions Per Project</div>
   </div>
   <div class="sv-ap-meta-item">
     <div class="sv-ap-meta-num">15<span class="sv-ap-meta-unit">+</span></div>
@@ -467,14 +477,12 @@
 
 <!-- ═══ THE TRIGGER ═══ -->
 <section class="sv-ap-section sv-ap-narrow">
-  <p class="sv-ap-label sv-ap-eyebrow">The Pattern We See</p>
-  <h2>Your competitor just got <em>published</em></h2>
-  <p>You saw it last week. A builder down the road won 17 Georgies and landed a Mike Holmes partnership. An architect you studied under just appeared in Dezeen. A designer you lost a project to is now featured in Western Living. Same market. Same caliber of work. Entirely different level of credibility.</p>
-  <p>That feeling is not jealousy. It is recognition of a gap. Their projects are not better than yours. Their craftsmanship is not superior. They simply submitted their work for recognition and you did not.</p>
-  <p>The difference is not quality. It is that someone submitted.</p>
+  <p class="sv-ap-label sv-ap-eyebrow">The Pattern</p>
+  <h2>Recognition goes to the firms that <em>submit</em></h2>
+  <p>One BC builder has collected 17 Georgie Awards and a Mike Holmes partnership. Same market, same caliber of work, a different level of credibility. The difference is not quality. It is that someone submitted.</p>
 
   <div class="sv-ap-insight">
-    <p><strong>Every unsubmitted project is a lost portfolio piece, a lost award entry, and a lost publication opportunity.</strong> One project, documented correctly, generates 3-5 credentials. That changes how every future prospect perceives your firm.</p>
+    <p><strong>Every unsubmitted project is a lost portfolio piece, a lost award entry and a lost publication opportunity.</strong> One project, documented correctly, supports 3-5 submissions.</p>
   </div>
 </section>
 
@@ -502,7 +510,7 @@
   <div class="sv-ap-narrow">
     <p class="sv-ap-label sv-ap-eyebrow">Your Time Investment</p>
     <h2>You provide three things. <em>I handle everything else.</em></h2>
-    <p>The reason most projects never get submitted is not quality or budget. It is time. Every firm we work with tells us the same thing: "We know we should be entering awards. We just never get around to it." This service exists to remove that barrier entirely.</p>
+    <p>The reason most projects never get submitted is not quality or budget. It is time. This service exists to remove that barrier.</p>
   </div>
 
   <div class="sv-ap-promise">
@@ -545,7 +553,7 @@
     <div class="sv-ap-step-card">
       <div class="sv-ap-step-num">02</div>
       <h3>Build the Package</h3>
-      <p>Curated image set, editorial description, compiled credits, and floor plan coordination. You review and approve.</p>
+      <p>Selected image set, editorial description, compiled credits and floor plan coordination. You review and approve.</p>
     </div>
     <div class="sv-ap-step-card">
       <div class="sv-ap-step-num">03</div>
@@ -555,12 +563,12 @@
     <div class="sv-ap-step-card">
       <div class="sv-ap-step-num">04</div>
       <h3>Submit to Awards</h3>
-      <p>Same photography package, targeted award categories. One shoot generates multiple credential opportunities.</p>
+      <p>Same photography package, targeted award categories. One shoot, prepared for several submissions.</p>
     </div>
     <div class="sv-ap-step-card">
       <div class="sv-ap-step-num">05</div>
-      <h3>Results Compound</h3>
-      <p>Published work strengthens award entries. Award wins generate press. Your reputation scales with each cycle.</p>
+      <h3>Reuse the Set</h3>
+      <p>The same images carry into publication pitches, the website, and the next round of submissions.</p>
     </div>
   </div>
 </section>
@@ -569,9 +577,9 @@
 <section class="sv-ap-costshare">
   <div class="sv-ap-narrow">
     <p class="sv-ap-label sv-ap-eyebrow">The Cost-Share Model</p>
-    <h2>90% of projects are <em>cost-shared</em></h2>
+    <h2>Most projects are <em>cost-shared</em></h2>
     <p>On most projects, the architect, designer, and builder all need the same images. I coordinate a single shoot and split the cost between collaborators. Your out-of-pocket drops significantly while everyone gets full licensing for their needs.</p>
-    <p>This is what turns "I can't afford professional photography" into "that's actually reasonable." One shoot, split three ways, and every firm walks away with a complete portfolio of images they will use for years.</p>
+    <p>One shoot, split three ways, and every firm walks away with a complete set of images they will use for years.</p>
   </div>
 
   <div class="sv-ap-cost-visual">
@@ -589,28 +597,28 @@
 
 <!-- ═══ TESTIMONIAL ═══ -->
 <section class="sv-ap-quote">
-  <p class="sv-ap-quote-text">Matt made the entire process effortless. The images captured exactly what we wanted to communicate about our builds.</p>
-  <p class="sv-ap-quote-attr"><a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Kyle Paisley</a> &mdash; Summerhill Fine Homes</p>
+  <p class="sv-ap-quote-text">If you need a talented photographer who combines professionalism with artistry, Matt is an excellent choice.</p>
+  <p class="sv-ap-quote-attr"><a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Kyle Paisley</a> &middot; Summerhill Fine Homes</p>
 </section>
 
 <!-- ═══ WHO THIS IS FOR ═══ -->
 <section class="sv-ap-section">
   <div class="sv-ap-narrow">
-    <p class="sv-ap-label sv-ap-eyebrow">Who This Is For</p>
-    <h2>Built for firms that <em>build exceptional work</em></h2>
+    <p class="sv-ap-label sv-ap-eyebrow">What It Is Prepared For</p>
+    <h2>Shot to the standard each <em>submission requires</em></h2>
   </div>
   <div class="sv-ap-ideal-grid">
     <div class="sv-ap-ideal-card">
-      <h3>Get Your Design Intent Published</h3>
-      <p>Publications like Dezeen, ArchDaily, and Canadian Architect want design stories, not spec sheets. I photograph to communicate your spatial logic, material choices, and site response, then prepare and submit the entire editorial package. Your firm gets credited. Your work gets seen by the global design community.</p>
+      <h3>Design Publications</h3>
+      <p>Dezeen, ArchDaily and Canadian Architect want design stories, not spec sheets. I photograph to communicate spatial logic, material choices and site response, then prepare and submit the editorial package.</p>
     </div>
     <div class="sv-ap-ideal-card">
-      <h3>Win the Awards Your Work Deserves</h3>
-      <p>The Georgie Awards, CHBA Nationals, and Wood Design Awards require professional photography. I shoot to submission standards from day one and handle the entry process. One credential changes how every prospect perceives your firm. "Award-winning builder" on your website shifts the conversation from price to trust.</p>
+      <h3>Award Programs</h3>
+      <p>The Georgie Awards, CHBA Nationals and Wood Design Awards all require professional photography. I shoot to submission standards from day one and handle the entry process.</p>
     </div>
     <div class="sv-ap-ideal-card">
-      <h3>Get Featured in Western Living</h3>
-      <p>Western Living DOTY, IDIBC SHINE, and Dwell features position your portfolio at the top of BC's design community. I photograph your interiors to editorial standards, capturing the styling, material palette, and lifestyle moments editors want. Then I pitch and submit on your behalf.</p>
+      <h3>Editorial Features</h3>
+      <p>Western Living DOTY, IDIBC SHINE and Dwell all turn on interiors. I photograph the styling, material palette and light to editorial standards, then pitch and submit on your behalf.</p>
     </div>
   </div>
 </section>
@@ -687,7 +695,7 @@
         <h3>We can't afford professional photography right now.</h3>
       </summary>
       <div class="sv-ap-faq-a">
-        <p>With cost-sharing, your out-of-pocket drops to $1,200-$2,500. That is less than 0.2% of a typical project value and generates images you will use across your website, proposals, awards, and publications for 3-5 years.</p>
+        <p>With cost-sharing, your out-of-pocket drops to $1,200-$2,500, and the images carry your website, proposals, awards and publications for years.</p>
       </div>
     </details>
 
@@ -705,7 +713,7 @@
         <h3>We've never submitted to awards before. Is it worth starting?</h3>
       </summary>
       <div class="sv-ap-faq-a">
-        <p>One submission changes the trajectory. You go from zero credentials to "Award-nominated" or "Award-winning" on every piece of marketing. The first entry is the hardest, and I handle the entire process so you can test the waters without investing your own time.</p>
+        <p>The first entry is the hardest. I handle the entire process, so the only thing it costs you is the approval to submit.</p>
       </div>
     </details>
 
@@ -714,7 +722,7 @@
         <h3>How long does the submission process take?</h3>
       </summary>
       <div class="sv-ap-faq-a">
-        <p>For you, almost no time. I need your approval, a credits list, and floor plans from the architect. From there, I handle the photography, descriptions, pitches, and submissions. Most projects go from shoot to submission in 2-3 weeks.</p>
+        <p>For you, almost no time. I need your approval, a credits list and floor plans from the architect. Photography is delivered in 10 to 15 business days and the submission package follows from it.</p>
       </div>
     </details>
 
@@ -726,7 +734,7 @@
 <!-- ═══ MANIFESTO ═══ -->
 <section class="sv-ap-manifesto">
   <p class="sv-ap-manifesto-text">
-    <span class="sv-ap-mw">The</span> <span class="sv-ap-mw">best</span> <span class="sv-ap-mw">projects</span> <span class="sv-ap-mw">don't</span> <span class="sv-ap-mw">just</span> <span class="sv-ap-mw">get</span> <span class="sv-ap-mw">built.</span> <span class="sv-ap-mw">They</span> <span class="sv-ap-mw">get</span> <span class="sv-ap-mw sv-ap-gold-word">recognized.</span> <span class="sv-ap-mw sv-ap-gold-word">Awards</span> <span class="sv-ap-mw">validate</span> <span class="sv-ap-mw">your</span> <span class="sv-ap-mw">craft.</span> <span class="sv-ap-mw sv-ap-gold-word">Publications</span> <span class="sv-ap-mw">amplify</span> <span class="sv-ap-mw">your</span> <span class="sv-ap-mw">reach.</span> <span class="sv-ap-mw">One</span> <span class="sv-ap-mw">submission</span> <span class="sv-ap-mw">changes</span> <span class="sv-ap-mw sv-ap-gold-word">everything.</span>
+    The best projects do not just get <span class="sv-ap-gold-word">built</span>. They get <span class="sv-ap-gold-word">submitted</span>. Awards and publications go to the firms that enter them.
   </p>
 </section>
 
@@ -735,14 +743,14 @@
   <div class="sv-ap-cta-c">
     <p class="sv-ap-cta-eyebrow">Get Started</p>
     <h2>Your best project is <em>waiting</em></h2>
-    <p class="sv-ap-cta-sub">A 20-minute discovery call to identify which projects to submit and map the timeline.</p>
+    <p class="sv-ap-cta-sub">A short call to identify which projects to submit and map the timeline.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-ap-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
     <a href="mailto:info@mattanthonyphoto.com" class="sv-ap-cta-alt">or email info@mattanthonyphoto.com</a>
   </div>
 </section>
 
 <!-- ═══ OTHER SERVICES ═══ -->
-<div class="sv-ap-ot"><p class="sv-ap-ot-l">Other Services</p><div class="sv-ap-ot-g"><div class="sv-ap-ot-c"><h3>Project Photography</h3><p>Complete visual documentation of your finished build.</p><a href="/homepage-preview/project-photography/">Learn More</a></div><div class="sv-ap-ot-c"><h3>Build &amp; Team Content</h3><p>In-progress construction and crew documentation.</p><a href="/homepage-preview/build-team-content/">Learn More</a></div><div class="sv-ap-ot-c"><h3>Creative Partner</h3><p>Your embedded creative department under one retainer.</p><a href="/homepage-preview/creative-partner/">Learn More</a></div></div></div>
+<div class="sv-ap-ot"><p class="sv-ap-ot-l">Other Services</p><div class="sv-ap-ot-g"><div class="sv-ap-ot-c"><h3>Project Photography</h3><p>Complete documentation of a finished build.</p><a href="/homepage-preview/project-photography/">Learn More</a></div><div class="sv-ap-ot-c"><h3>Build &amp; Team Content</h3><p>The people and process behind the builds.</p><a href="/homepage-preview/build-team-content/">Learn More</a></div><div class="sv-ap-ot-c"><h3>Creative Partner</h3><p>An embedded creative department under one retainer.</p><a href="/homepage-preview/creative-partner/">Learn More</a></div></div></div>
 
 </div>
 
@@ -879,6 +887,41 @@
     17. Uses flexbox only (no CSS grid) per Squarespace guidelines
     18. No custom cursor per feedback rules
     19. All image URLs verified working (Perch, Warbler, Eagle)
+
+  Register pass 2026-08-27. The 2026-03-30 pass above is what this one is undoing
+  in places: the "conversion-psychology" copy it describes is the source of most of
+  what follows.
+    20. Credential framing, not service framing, was the main defect. Fixed: the h1
+        ("One shoot. Multiple credentials."), the meta stat ("3-5 Credentials Per
+        Shoot"), the insight box ("generates 3-5 credentials"), the three Ideal For
+        headings ("Get Featured in Western Living", "Win the Awards Your Work
+        Deserves", "Get Your Design Intent Published"), and the FAQ answer promising
+        "Award-nominated" or "Award-winning" marketing. Naming the programs and the
+        magazines is kept: the work IS prepared for them. The section is now headed
+        "What It Is Prepared For".
+    21. Plural "we" out: "The Pattern We See" and "Every firm we work with tells us".
+        The FAQ questions keep their "We", because there it is the PROSPECT speaking.
+    22. Cut for being untraceable, not softened: "less than 0.2% of a typical project
+        value", "for 3-5 years", "shoot to submission in 2-3 weeks" (replaced with the
+        documented 10 to 15 business day delivery window), "A 20-minute discovery
+        call", and three sentences of invented detail about the reader ("You saw it
+        last week", "An architect you studied under", "A designer you lost a project
+        to"). The 17 Georgies / Mike Holmes fact is kept: it traces to
+        clients/balmoral/CLAUDE.md and awards-directory-lead-research.md.
+    23. Banned word "Curated" out of process step 02.
+    24. Both FAQ JSON-LD answers were edited in step with the visible copy. They must
+        stay identical.
+    25. The manifesto's 25 .sv-ap-mw spans were dead markup from the removed word
+        reveal. Gone, and the now-unused rule with them.
+    26. Kyle Paisley's quote is untouched. Only the &mdash; in the attribution line
+        became &middot;, matching the other service pages.
+    27. NOT changed, needs Matt: the cost-share visual still shows $3,500 -> ~$1,750,
+        which is a straight halving. The documented model (feedback_cost_share_parties)
+        is +30% per extra party then divide, so a $3,500 shoot split three ways is
+        ~$1,850, and the paragraph beside the visual says "split three ways". The FAQ
+        says out-of-pocket is $1,200-$2,500 while the journal post
+        how-cost-sharing-works-architectural-photography.html says $1,050-$1,500.
+        Prices are not mine to change.
 -->
 
 <script type="application/ld+json">
@@ -932,7 +975,7 @@
       "name": "We can't afford professional photography right now.",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "With cost-sharing, your out-of-pocket drops to $1,200-$2,500. That is less than 0.2% of a typical project value and generates images you will use across your website, proposals, awards, and publications for 3-5 years."
+        "text": "With cost-sharing, your out-of-pocket drops to $1,200-$2,500, and the images carry your website, proposals, awards and publications for years."
       }
     },
     {
@@ -948,7 +991,7 @@
       "name": "We've never submitted to awards before. Is it worth starting?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "One submission changes the trajectory. You go from zero credentials to Award-nominated or Award-winning on every piece of marketing. The first entry is the hardest, and I handle the entire process so you can test the waters without investing your own time."
+        "text": "The first entry is the hardest. I handle the entire process, so the only thing it costs you is the approval to submit."
       }
     },
     {
@@ -956,7 +999,7 @@
       "name": "How long does the submission process take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For you, almost no time. I need your approval, a credits list, and floor plans from the architect. From there, I handle the photography, descriptions, pitches, and submissions. Most projects go from shoot to submission in 2-3 weeks."
+        "text": "For you, almost no time. I need your approval, a credits list and floor plans from the architect. Photography is delivered in 10 to 15 business days and the submission package follows from it."
       }
     }
   ]

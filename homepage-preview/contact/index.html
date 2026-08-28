@@ -115,10 +115,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -129,6 +133,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -140,14 +151,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -220,7 +231,7 @@
 /* ════════════ CONTACT + FORM ════════════ */
 .ct-body{background:var(--paper)!important;padding:var(--section) 0}
 .ct-body-inner{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:clamp(40px,5vw,90px)}
-.ct-info{flex:1 1 380px;min-width:280px}
+.ct-info{flex:1 1 380px;min-width:min(280px,100%)}
 .ct-form-panel{flex:1 1 420px;min-width:280px}
 
 .ct-info-section{margin:0 0 clamp(40px,4.5vw,64px)}
@@ -364,7 +375,7 @@
   .ct-form-row{gap:0}
   .ct-form-row .ct-form-group{flex:1 1 100%}
   .ct-submit-btn{width:100%;text-align:center}
-  .ct-stat{flex:1 1 40%}
+  .ct-stat{flex:0 1 calc(50% - 20px)}
 }
 @media (prefers-reduced-motion:reduce){
   .ct-wrap *{animation:none!important;transition:none!important}
@@ -402,7 +413,7 @@
     <div class="ct-container">
       <p class="ct-eyebrow">Get in Touch</p>
       <h1 id="ct-hero-h">Let's start a <em>conversation</em></h1>
-      <p class="ct-hero-sub">Whether you're planning a single project shoot or looking for an ongoing creative partner, I'd love to hear about what you're building.</p>
+      <p class="ct-hero-sub">A single project shoot or an ongoing creative partnership: I'd like to hear about the work.</p>
     </div>
   </div>
 </section>
@@ -437,12 +448,11 @@
         <div class="ct-info-section">
           <p class="ct-eyebrow">Availability</p>
           <p class="ct-hours">Monday through Friday, 9am to 5pm PST. Shoots are scheduled on evenings and weekends as needed for optimal light.</p>
-          <p class="ct-hours-note">I typically respond within 24 hours.</p>
         </div>
 
         <div class="ct-info-section">
           <div class="ct-testimonial">
-            <p class="ct-testimonial-text">Working with Matt was an absolute pleasure. The entire process was seamless and professional. The website looks fantastic, and the ongoing maintenance gives me peace of mind knowing everything is taken care of.</p>
+            <p class="ct-testimonial-text">Working with Matt was an absolute pleasure from start to finish. &hellip; The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</p>
             <p class="ct-testimonial-attr">Marc Harvey, Balmoral Construction &middot; <a href="https://www.balmoralconstruction.com/" target="_blank" rel="noopener">balmoralconstruction.com</a></p>
           </div>
         </div>
@@ -455,20 +465,20 @@
         <p class="ct-form-sub">Tell me about your project and I'll get back to you with next steps. Prefer to talk? <a href="https://www.mattanthonyphoto.com/discovery-call">Book a call</a> instead.</p>
         <form class="ct-form" id="ctForm">
           <div class="ct-form-row">
-            <div class="ct-form-group"><label for="ct-fname">Name</label><input type="text" id="ct-fname" name="firstName" placeholder="Your name" required></div>
-            <div class="ct-form-group"><label for="ct-email-input">Email</label><input type="email" id="ct-email-input" name="email" placeholder="you@company.com" required></div>
+            <div class="ct-form-group"><label for="ct-fname">Name</label><input type="text" id="ct-fname" name="firstName" placeholder="Your name" autocomplete="name" required></div>
+            <div class="ct-form-group"><label for="ct-email-input">Email</label><input type="email" id="ct-email-input" name="email" placeholder="you@company.com" autocomplete="email" required></div>
           </div>
           <div class="ct-form-group"><label for="ct-message">Tell Me About Your Project</label><textarea id="ct-message" name="notes" placeholder="What's being built, who you are, your timeline, and what you're hoping to achieve with the imagery."></textarea></div>
           <div class="ct-form-submit">
             <button type="submit" class="ct-submit-btn" id="ctSubmitBtn">Send Inquiry</button>
             <p class="ct-form-note">I'll get back to you within 24 hours, typically sooner.</p>
-            <p class="ct-form-error" id="ctError">Something went wrong. Please email <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a> directly.</p>
+            <p class="ct-form-error" id="ctError" role="alert">Something went wrong. Please email <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a> directly.</p>
           </div>
         </form>
-        <div class="ct-success" id="ctSuccess">
+        <div class="ct-success" id="ctSuccess" role="status" tabindex="-1">
           <div class="ct-success-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>
           <h3>Message sent</h3>
-          <p>Thanks for reaching out. Want to skip the back-and-forth? Book a time now and we'll jump straight to the conversation.</p>
+          <p>Thanks for reaching out. Want to skip the back-and-forth? Book a time now.</p>
           <a href="https://www.mattanthonyphoto.com/discovery-call" class="ct-submit-btn">Book My Discovery Call</a>
           <p class="ct-success-note">I'll also reply to your inquiry within 24 hours.</p>
         </div>
@@ -482,16 +492,12 @@
 <section class="ct-stats" aria-label="At a glance">
   <div class="ct-stats-inner">
     <div class="ct-stat">
-      <div class="ct-stat-num">19</div>
+      <div class="ct-stat-num">26</div>
       <div class="ct-stat-label">Projects Documented</div>
     </div>
     <div class="ct-stat">
       <div class="ct-stat-num">7</div>
       <div class="ct-stat-label">Regions Served</div>
-    </div>
-    <div class="ct-stat">
-      <div class="ct-stat-num">24</div>
-      <div class="ct-stat-label">Hour Response Time</div>
     </div>
     <div class="ct-stat">
       <div class="ct-stat-num">4</div>
@@ -508,7 +514,7 @@
   <div class="ct-cta-c">
     <p class="ct-eyebrow">Prefer to Talk</p>
     <h2 id="ct-cta-h">Skip the form. <em>Book a call.</em></h2>
-    <p class="ct-cta-sub">A 15-minute discovery call to discuss your project scope, timeline, and creative goals. No pitch decks, just a conversation.</p>
+    <p class="ct-cta-sub">A 15-minute discovery call to discuss project scope, timeline, and creative goals. No pitch decks, just a conversation.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="ct-cta-btn">Book My Discovery Call</a>
     <p class="ct-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
@@ -658,6 +664,13 @@
 /* ── Contact Form → n8n Webhook ── */
 /* STALE: the LIVE contact page dual-submits Formspree + the command hub.
    Endpoint, reCAPTCHA key and payload keys are left exactly as found. */
+/* Register pass 2026-08-27 touched COPY ONLY, above this script: the hero sub
+   and the CTA sub lost their second person, the duplicate "I typically respond
+   within 24 hours" line and the "24 Hour Response Time" stat were cut. The form
+   (labels, placeholders, "I'll get back to you", the submit handler below) is
+   untouched. The same four strings also sit in core-pages/contact-formspree-hub.txt,
+   which is the live-form variant and was NOT edited: it will drift until someone
+   mirrors these cuts there and into the Squarespace block. */
 /* Payload keys map 1:1 to Lead Database spreadsheet columns (Pipeline sheet) */
 (function(){
   var WEBHOOK = 'https://n8n.srv1277163.hstgr.cloud/webhook/contact-form';
@@ -727,7 +740,9 @@
       form.style.display = 'none';
       document.querySelector('.ct-form-heading').style.display = 'none';
       document.querySelector('.ct-form-sub').style.display = 'none';
-      document.getElementById('ctSuccess').style.display = 'block';
+      var okEl = document.getElementById('ctSuccess');
+      okEl.style.display = 'block';
+      okEl.focus();
     })
     .catch(function(err){
       console.error('Contact form error:', err);

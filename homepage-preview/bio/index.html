@@ -107,10 +107,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -121,6 +125,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -132,14 +143,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -376,7 +387,7 @@ body{background:#f6f4f0!important}
         <p class="bio-eyebrow">About</p>
         <h1 id="bio-hero-h">Matt Anthony</h1>
         <p class="bio-hero-title">Architectural Photographer &middot; Squamish, BC</p>
-        <p class="bio-hero-intro">I photograph architecture with the same care and intention that goes into designing and building it. My work is about <strong>documenting design intent</strong> — capturing not just how a space looks, but how it feels, how it sits in the landscape, and why it matters.</p>
+        <p class="bio-hero-intro">I photograph architecture with the same care and intention that goes into designing and building it. My work is about <strong>documenting design intent</strong>: not just how a space looks, but how it feels, how it sits in the landscape, and why it matters.</p>
       </div>
     </div>
   </div>
@@ -397,10 +408,7 @@ body{background:#f6f4f0!important}
       <dt class="bio-meta-dt">Certified</dt>
       <dd class="bio-meta-dd">Transport Canada Advanced Drone Pilot</dd>
     </div>
-    <div class="bio-meta-item">
-      <dt class="bio-meta-dt">Since</dt>
-      <dd class="bio-meta-dd">2019</dd>
-    </div>
+    
   </dl>
 </section>
 
@@ -411,10 +419,10 @@ body{background:#f6f4f0!important}
       <p class="bio-eyebrow">The Story</p>
       <h2 id="bio-story-h">I got into this work because I believe <em>great design deserves to be seen</em></h2>
       <p>I'm based in Squamish, British Columbia, right in the heart of the Sea to Sky Corridor. It's a place where the built environment meets some of the most dramatic natural landscapes in the country, and that tension between architecture and nature is something I think about constantly in my work.</p>
-      <p>I started Matt Anthony Photography with a straightforward belief: the people who design and build remarkable spaces deserve imagery that does that work justice. Not overly stylized, not artificially staged. Just honest, refined photography that captures the real character of a project and the intent behind it.</p>
-      <p>Most of my clients are architects, custom home builders, and interior designers across the <a href="/homepage-preview/projects-v2/" class="bio-inline-link">Sea to Sky</a> and <a href="/homepage-preview/projects-v2/" class="bio-inline-link">Sunshine Coast</a>. I work with them not just as a photographer, but as a creative partner — someone who takes the time to understand design language, material choices, and the story a project is trying to tell before I pick up a camera.</p>
+      <p>I started Matt Anthony Photography with a straightforward belief: the people who design and build remarkable spaces deserve imagery that does that work justice. Not overly stylized, not artificially staged. Just honest photography that shows the real character of a project and the intent behind it.</p>
+      <p>Most of my clients are architects, custom home builders, and interior designers across the <a href="/homepage-preview/projects-v2/" class="bio-inline-link">Sea to Sky</a> and <a href="/homepage-preview/projects-v2/" class="bio-inline-link">Sunshine Coast</a>. I work with them as a creative partner, not just a photographer. I take the time to understand design language and material choices before I pick up a camera.</p>
       <p>Whether it's a single <a href="/homepage-preview/project-photography/" class="bio-inline-link">completed residence</a> or an <a href="/homepage-preview/creative-partner/" class="bio-inline-link">ongoing retainer</a> across multiple builds, I approach every project the same way: with preparation, presence, and a commitment to getting it right.</p>
-      <p>I'm also a certified Advanced Drone Pilot. Aerial perspectives are part of how I work. They add context, reveal a project's relationship to its surroundings, and give clients a dimension of their work that ground level photography can't capture on its own.</p>
+      <p>I'm also a certified Advanced Drone Pilot. Aerial perspectives are part of how I work. They add context and show a project's relationship to its surroundings.</p>
     </div>
   </div>
 </section>
@@ -430,7 +438,7 @@ body{background:#f6f4f0!important}
     <div class="bio-measure">
       <p class="bio-eyebrow">The Approach</p>
       <h2 id="bio-approach-h">How I work with <em>architects and builders</em></h2>
-      <p>Every shoot starts long before I arrive on site. I review drawings, study material palettes, and understand the design intent behind every decision. This is not about showing up and taking photos. It is about translating the architect's or builder's vision into imagery that communicates the same care and intelligence that went into the build itself.</p>
+      <p>Every shoot starts long before I arrive on site. I review drawings, study material palettes, and understand the design intent behind every decision. The work is translating the architect's or builder's vision into imagery that communicates the same care and intelligence that went into the build itself.</p>
     </div>
     <div class="bio-cards bio-cards-3">
       <div class="bio-card">
@@ -443,7 +451,7 @@ body{background:#f6f4f0!important}
       </div>
       <div class="bio-card">
         <h3>Design Intent Framing</h3>
-        <p>Every composition is built around the decisions you made: the cantilever, the material transition, the way a hallway frames a view. I photograph the intelligence of the design, not just the surfaces.</p>
+        <p>Every composition is built around the decisions behind the build: the cantilever, the material transition, the way a hallway frames a view. I photograph the intelligence of the design, not just the surfaces.</p>
       </div>
     </div>
   </div>
@@ -453,7 +461,7 @@ body{background:#f6f4f0!important}
 <section class="bio-values" aria-labelledby="bio-values-h">
   <div class="bio-container">
     <div class="bio-measure">
-      <p class="bio-eyebrow">What Sets Us Apart</p>
+      <p class="bio-eyebrow">What Sets My Work Apart</p>
       <h2 id="bio-values-h">Every frame is built on the same <em>principles</em></h2>
     </div>
     <div class="bio-cards bio-cards-3">
@@ -467,11 +475,11 @@ body{background:#f6f4f0!important}
       </div>
       <div class="bio-card">
         <h3>Calm, Professional Presence</h3>
-        <p>I work quietly, independently, and with respect for the site. Whether I'm shooting alongside a construction crew or in a staged home, I adapt to the rhythm of your team and environment.</p>
+        <p>I work quietly, independently, and with respect for the site. Whether I'm shooting alongside a construction crew or in a staged home, I adapt to the rhythm of the site.</p>
       </div>
       <div class="bio-card">
         <h3>Built for Recognition</h3>
-        <p>The imagery I deliver is designed to perform — in <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">award submissions and publications</a>, on refreshed websites, across social media, and in editorial features. Every image is composed with your professional goals in mind.</p>
+        <p>The imagery I deliver is designed to perform in <a href="https://www.mattanthonyphoto.com/journal/architectural-photography-for-publications">award submissions and publications</a>, on websites, and across social media.</p>
       </div>
       <div class="bio-card">
         <h3>Partnership, Not Transactions</h3>
@@ -479,7 +487,7 @@ body{background:#f6f4f0!important}
       </div>
       <div class="bio-card">
         <h3>Full Spectrum Coverage</h3>
-        <p>Photography, videography, drone, team portraits, progression documentation. I offer everything under one roof so your visual identity stays cohesive across every touchpoint.</p>
+        <p>Photography, videography, drone, team portraits, progression documentation. I offer everything under one roof, so the visual identity stays cohesive across every touchpoint.</p>
       </div>
     </div>
   </div>
@@ -488,8 +496,8 @@ body{background:#f6f4f0!important}
 <!-- ════════════ COUNT STRIP ════════════ -->
 <section class="bio-stats" aria-label="By the numbers">
   <div class="bio-stats-row bio-strip">
-    <div class="bio-stat"><span class="bio-stat-num">19</span><span class="bio-stat-lbl">Projects</span></div>
-    <div class="bio-stat"><span class="bio-stat-num">28</span><span class="bio-stat-lbl">Clients</span></div>
+    <div class="bio-stat"><span class="bio-stat-num">26</span><span class="bio-stat-lbl">Projects</span></div>
+    
     <div class="bio-stat"><span class="bio-stat-num">7</span><span class="bio-stat-lbl">Service Areas</span></div>
     <div class="bio-stat"><span class="bio-stat-num">5</span><span class="bio-stat-lbl">Case Studies</span></div>
   </div>
@@ -499,18 +507,18 @@ body{background:#f6f4f0!important}
 <section class="bio-section" aria-labelledby="bio-services-h">
   <div class="bio-container">
     <div class="bio-measure">
-      <p class="bio-eyebrow">What We Deliver</p>
+      <p class="bio-eyebrow">What I Do</p>
       <h2 id="bio-services-h">Services built for the <em>design and construction industry</em></h2>
     </div>
     <div class="bio-cards bio-cards-4">
       <div class="bio-card">
         <h3>Project Photography</h3>
-        <p>Complete visual documentation of your finished build. Architecture, interiors, aerial, twilight, and short form film.</p>
+        <p>Complete visual documentation of a finished build. Architecture, interiors, aerial, twilight, and short form film.</p>
         <a class="bio-arrow-link" href="/homepage-preview/project-photography/">Learn More &rarr;</a>
       </div>
       <div class="bio-card">
         <h3>Award &amp; Publication Imagery</h3>
-        <p>Photography composed for jurors, editors, and industry recognition. Georgie Awards, Western Living, and beyond.</p>
+        <p>Photography composed for jurors, editors, and industry recognition.</p>
         <a class="bio-arrow-link" href="/homepage-preview/award-publication-imagery/">Learn More &rarr;</a>
       </div>
       <div class="bio-card">
@@ -520,7 +528,7 @@ body{background:#f6f4f0!important}
       </div>
       <div class="bio-card">
         <h3>Creative Partner</h3>
-        <p>Your embedded creative department. Photography, video, website, social, and SEO under one monthly retainer.</p>
+        <p>An embedded creative department. Photography, video, website, social, and SEO under one monthly retainer.</p>
         <a class="bio-arrow-link" href="/homepage-preview/creative-partner/">Learn More &rarr;</a>
       </div>
     </div>
@@ -530,7 +538,7 @@ body{background:#f6f4f0!important}
 <!-- ════════════ QUOTE ════════════ -->
 <section class="bio-quote">
   <div class="bio-quote-inner">
-    <p class="bio-quote-text">Working with Matt was an absolute pleasure. The entire process was seamless and professional. The website looks fantastic, and the ongoing maintenance gives me peace of mind knowing everything is taken care of.</p>
+    <p class="bio-quote-text">Working with Matt was an absolute pleasure from start to finish. &hellip; The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</p>
     <p class="bio-quote-attr">Marc Harvey, Balmoral Construction &middot; <a href="https://www.balmoralconstruction.com/" target="_blank" rel="noopener">balmoralconstruction.com</a></p>
   </div>
 </section>
@@ -546,7 +554,7 @@ body{background:#f6f4f0!important}
 <section class="bio-cta" aria-labelledby="bio-cta-h">
   <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Entry of a house on the Sunshine Coast: dark vertical metal cladding, a wood soffit over the door and broad concrete steps between planting" width="1500" height="1000" loading="lazy" decoding="async">
   <div class="bio-cta-c">
-    <p class="bio-eyebrow">Let's Connect</p>
+    <p class="bio-eyebrow">Contact</p>
     <h2 id="bio-cta-h">Ready to <em>work together?</em></h2>
     <p class="bio-cta-sub">If you're building something worth seeing, I'd love to hear about it. Start with a conversation.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="bio-cta-btn">Book a Discovery Call</a>
@@ -688,12 +696,23 @@ body{background:#f6f4f0!important}
        (hero 1366x2048, photographs 1500x1000), lazy only below the fold.
     7. Flexbox throughout, with no CSS grid for the fluid engine reset to eat.
 
-  Copy is unchanged. Open register issues are logged with the rebuild notes,
-  not fixed here: "What Sets Us Apart" / "What We Deliver" and the plural voice
-  in the Services and Values copy, the em dash in the hero paragraph, "capture"
-  and "seamless", the second person outside the closing CTA, and the counts in
-  the strip (19 projects / 28 clients / 5 case studies) which need checking
-  against what is actually live before this is pasted.
+  Register pass 2026-08-27 (copy only, no CSS or structure touched):
+    a. The Award & Publication Imagery card lost its trailing "Georgie Awards,
+       Western Living, and beyond". As a bare list after the sentence it read as
+       a claim to have been published there. Being published in Western Living
+       is a 2027 goal in business/CLAUDE.md, not something that has happened.
+    b. "Your embedded creative department" is now "An embedded creative
+       department": second person belongs only in the closing CTA.
+    c. Cut "This is not about showing up and taking photos." from Approach. The
+       sentence after it opened "It is about", which had nothing left to refer
+       back to, so it now opens "The work is".
+    d. Built for Recognition dropped "on refreshed websites" and "and in
+       editorial features" (the latter repeats "publications").
+    NOT changed: the Marc Harvey quote, and the 26 / 7 / 5 count strip. 26 and 5
+    trace to 26 files in code-blocks/project-pages and 5 in case-studies, but the
+    LIVE /projects still lists 19 because projects-v2 is undeployed, so a reader
+    cannot count to 26 today. Flagged, not silently softened.
+
 -->
 
 <!-- ProfilePage Schema -->

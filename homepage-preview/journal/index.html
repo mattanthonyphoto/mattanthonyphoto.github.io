@@ -101,10 +101,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -115,6 +119,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -126,14 +137,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -151,7 +162,7 @@
   .hp-hero-slides img:first-child{opacity:1}
 }
 
-/* ═══ JOURNAL LANDING — built on the site design system ═══
+/* ═══ JOURNAL LANDING · built on the site design system ═══
    One page width and one gutter: nav, hero line, filter bar, cards, CTA and
    footer all sit on the same left edge at every viewport. Flexbox, not grid. */
 
@@ -382,7 +393,7 @@
   <div class="jn-container">
     <div class="jn-section-head">
       <p class="jn-eyebrow">Award &amp; Publication Guides</p>
-      <h2 id="jn-h-guides">Everything you need to know before you submit</h2>
+      <h2 id="jn-h-guides">Everything to know before submitting</h2>
     </div>
     <div class="jn-grid">
       <a class="jn-card" href="https://www.mattanthonyphoto.com/journal/georgie-awards-guide" data-cat="awards guides">
@@ -413,7 +424,7 @@
         <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Dark clad corner cantilevered over a rock outcrop above the water" width="1500" height="1125" loading="lazy" decoding="async"></div>
         <p class="jn-card-cat">Publication Guide</p>
         <h3>Architectural Photography for Publications</h3>
-        <p class="jn-card-sum">What editors and publishers look for and how to prepare images that get your project featured.</p>
+        <p class="jn-card-sum">What editors and publishers look for and how to prepare images that get a project featured.</p>
       </a>
       <a class="jn-card" href="https://www.mattanthonyphoto.com/journal/aibc-awards-guide" data-cat="awards guides">
         <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Street level entrance of a multi storey building, glass doors under a signed canopy with young trees set into the paving" width="1500" height="1000" loading="lazy" decoding="async"></div>
@@ -449,7 +460,7 @@
   <div class="jn-container">
     <div class="jn-section-head">
       <p class="jn-eyebrow">Awards &amp; Recognition</p>
-      <h2 id="jn-h-awards">Winning recognition for your work</h2>
+      <h2 id="jn-h-awards">What award judges look for</h2>
     </div>
     <div class="jn-grid">
       <a class="jn-card" href="https://www.mattanthonyphoto.com/journal/how-to-photograph-your-project-for-award-submissions" data-cat="awards">
@@ -480,7 +491,7 @@
   <div class="jn-container">
     <div class="jn-section-head">
       <p class="jn-eyebrow">Working Together</p>
-      <h2 id="jn-h-working">Making the most of your investment</h2>
+      <h2 id="jn-h-working">How a shoot comes together</h2>
     </div>
     <div class="jn-grid">
       <a class="jn-card" href="https://www.mattanthonyphoto.com/journal/how-to-prepare-project-architectural-photo-shoot" data-cat="working">
@@ -499,7 +510,7 @@
         <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Double height living room with pendant lights and glazing onto snow covered mountains" width="1500" height="2250" loading="lazy" decoding="async"></div>
         <p class="jn-card-cat">Philosophy</p>
         <h3>Documenting Design Intent: Why the Best Photography Starts Before the Build is Finished</h3>
-        <p class="jn-card-sum">The case for bringing your photographer into the conversation early.</p>
+        <p class="jn-card-sum">The case for bringing a photographer into the conversation early.</p>
       </a>
       <a class="jn-card" href="https://www.mattanthonyphoto.com/journal/seasonal-considerations-architectural-photography-bc" data-cat="working">
         <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9e10cdbc-5c6d-4746-934b-3884628143f1/warbler-whistler-architectural-photography-matt-anthony-.jpg-30.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Bedroom corner with a mitred corner window looking onto snow and rock" width="1500" height="1000" loading="lazy" decoding="async"></div>
@@ -523,7 +534,7 @@
         <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Close view of a dark veined stone island end with a black stool behind it" width="1500" height="2250" loading="lazy" decoding="async"></div>
         <p class="jn-card-cat">Cost-Sharing</p>
         <h3>How Cost-Sharing Works in Architectural Photography</h3>
-        <p class="jn-card-sum">Split the cost of a professional shoot with the other firms on your project. 90% of projects are cost-shared.</p>
+        <p class="jn-card-sum">Split the cost of a shoot with the other firms on the project.</p>
       </a>
     </div>
   </div>
@@ -566,7 +577,7 @@
   <div class="jn-container">
     <div class="jn-section-head">
       <p class="jn-eyebrow">Content &amp; Strategy</p>
-      <h2 id="jn-h-content">Building your brand through visuals</h2>
+      <h2 id="jn-h-content">Building a brand through visuals</h2>
     </div>
     <div class="jn-grid">
       <a class="jn-card" href="https://www.mattanthonyphoto.com/journal/construction-lifestyle-photography-best-social-media-investment-builders" data-cat="content">
@@ -579,7 +590,7 @@
         <div class="jn-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62400a12-3f4b-4f40-bd83-82b3f40690f9/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-48.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 456px, (min-width: 1024px) 28.4vw, (min-width: 640px) 43.8vw, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Cedar and dark metal exterior corner with glazing, snow and conifers in low sun" width="1500" height="2250" loading="lazy" decoding="async"></div>
         <p class="jn-card-cat">Strategy</p>
         <h3>How to Build a Visual Library That Works Across Your Website, Proposals, and Awards</h3>
-        <p class="jn-card-sum">One strategic relationship replaces a dozen one-off shoots — and compounds over time.</p>
+        <p class="jn-card-sum">One strategic relationship replaces a dozen one-off shoots and compounds over time.</p>
       </a>
       <a class="jn-sub-card" href="/homepage-preview/contact/" data-cat="content">
         <h3>Stay in the loop</h3>
@@ -596,7 +607,7 @@
   <div class="jn-cta-c">
     <p class="jn-eyebrow">Let's Talk</p>
     <h2 id="jn-cta-h">Want to discuss <em>your project</em>?</h2>
-    <p class="jn-cta-sub">Whether you're planning a shoot, preparing an award submission, or thinking about your visual strategy, I'm happy to talk it through.</p>
+    <p class="jn-cta-sub">Shoot planning, award submissions, visual strategy: I'm happy to talk it through.</p>
     <a href="https://www.mattanthonyphoto.com/discovery-call" class="jn-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
     <p class="jn-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
@@ -755,7 +766,7 @@
 </script>
 
 <!--
-  JOURNAL LANDING PAGE — Code Block · mattanthonyphoto.com/journal
+  JOURNAL LANDING PAGE · Code Block · mattanthonyphoto.com/journal
   Brought onto the site design system (sitewide/_DESIGN-SYSTEM.md) 2026-08-27.
 
     1.  Shared chrome lifted verbatim from sitewide/_chrome.html: solid nav first,
@@ -774,6 +785,13 @@
     7.  Four duplicated images replaced so no photograph renders twice.
     8.  Page-level meta (description, canonical, og:) removed; Squarespace emits those
         from the SEO panel. CollectionPage JSON-LD kept.
+    9.  Register pass 2026-08-27: "90% of projects are cost-shared" cut from the
+        cost-sharing card. The cost-share practice is documented; the 90% is not
+        sourced anywhere on the site, so the number is gone rather than softened.
+        Second person cut from four section headings and three card summaries and
+        trimmed out of the CTA subhead: it now appears once in the CTA h2, plus the
+        five article card titles, which are the destination articles' own h1 text
+        and are left verbatim so card, link and page title still agree.
 -->
 
 </body>

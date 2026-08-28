@@ -102,10 +102,14 @@
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
   .hp-nav-mark{font-size:11px;letter-spacing:.28em}
 }
-@media (max-width:480px){
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
-  .hp-nav-links{width:100%;justify-content:flex-start;gap:6px 14px}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
@@ -116,6 +120,13 @@
 .hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
 .hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
 .hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
   padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
 .hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
@@ -127,14 +138,14 @@
 /* footer, rebuilt: one block, no headed columns */
 .hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
   padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
-.hp-ft-brand{flex:1 1 420px;max-width:640px}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
 .hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
 .hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
 .hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
-.hp-ft-nav{display:flex!important;flex-direction:column;gap:9px;flex:0 0 auto}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
 .hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
   color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
 .hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
@@ -367,8 +378,8 @@
   <div class="sv-ws-hero-content">
     <div class="sv-ws-container">
       <p class="sv-ws-eyebrow">Service 05</p>
-      <h1 id="sv-ws-hero-h">Your website should work as hard as <em>your builds do.</em></h1>
-      <p class="sv-ws-hero-sub">We design and optimize websites for builders, architects, and designers. Built to rank. Built to convert. Built to reflect the quality of your work.</p>
+      <h1 id="sv-ws-hero-h">I design and build websites for <em>architects and builders.</em></h1>
+      <p class="sv-ws-hero-sub">The work runs on Squarespace, and the SEO and GEO structure goes in before launch.</p>
       <a class="sv-ws-btn" href="https://www.mattanthonyphoto.com/discovery-call" target="_blank" rel="noopener">Get Pricing</a>
     </div>
   </div>
@@ -388,7 +399,7 @@
       </div>
       <div class="sv-ws-meta-item">
         <dt class="sv-ws-caps">Timeline</dt>
-        <dd class="sv-ws-meta-dd">4 &ndash; 8 Weeks</dd>
+        <dd class="sv-ws-meta-dd">4 to 8 Weeks</dd>
       </div>
       <div class="sv-ws-meta-item">
         <dt class="sv-ws-caps">Proof</dt>
@@ -403,25 +414,10 @@
   <div class="sv-ws-container">
     <div class="sv-ws-narrow">
       <p class="sv-ws-eyebrow">The Problem</p>
-      <h2 id="sv-ws-problem-h">Your best work is invisible if <em>no one can find it</em></h2>
-      <p class="sv-ws-body">You build homes that people walk into and stop talking. Kitchens that make designers pause. Exteriors that hold their own against the landscape. But when a prospective client searches for a builder in your area, your website does not show up. Or worse, it does, and it looks like it was built in 2014.</p>
-      <p class="sv-ws-body">Most builder and architect websites share the same problems: outdated design that does not reflect current work, no SEO foundation so Google ignores them, slow load times that drive visitors away, and zero strategy for appearing in AI-generated search results. Meanwhile, the firms winning the best projects have clean, fast, portfolio-driven sites that rank locally and convert visitors into discovery calls.</p>
-      <p class="sv-ws-body">Your website is your most important salesperson. It works around the clock, it is the first thing prospects check, and it shapes their impression before you ever speak. If it is not performing, you are leaving projects on the table.</p>
-    </div>
-
-    <div class="sv-ws-figs">
-      <div class="sv-ws-fig">
-        <p class="sv-ws-fig-num">75%</p>
-        <p class="sv-ws-caps">Check Your Website First</p>
-      </div>
-      <div class="sv-ws-fig">
-        <p class="sv-ws-fig-num">53%</p>
-        <p class="sv-ws-caps">Leave if Load Time &gt; 3s</p>
-      </div>
-      <div class="sv-ws-fig">
-        <p class="sv-ws-fig-num">68%</p>
-        <p class="sv-ws-caps">Start With a Search Engine</p>
-      </div>
+      <h2 id="sv-ws-problem-h">The best work is invisible if <em>no one can find it</em></h2>
+      <p class="sv-ws-body">A builder finishes a house people walk into and stop talking. Then a prospective client searches for a builder in the area and the site does not come up. Or it comes up, and it looks like it was built in 2014.</p>
+      <p class="sv-ws-body">Most builder and architect sites share the same problems: a design that does not reflect current work, no SEO foundation, slow load times, and no plan for AI search. The firms winning the best projects have clean, fast, portfolio-led sites that rank locally.</p>
+      <p class="sv-ws-body">A website is the first thing a prospect checks, and it sets the impression before anyone picks up the phone.</p>
     </div>
   </div>
 </section>
@@ -435,20 +431,20 @@
 <section class="sv-ws-section" aria-labelledby="sv-ws-deliver-h">
   <div class="sv-ws-container">
     <div class="sv-ws-narrow">
-      <p class="sv-ws-eyebrow">What We Deliver</p>
-      <h2 id="sv-ws-deliver-h">Two services. <em>One integrated strategy.</em></h2>
-      <p class="sv-ws-body">A website without SEO is a brochure nobody reads. SEO without a well-designed site sends visitors to a poor first impression. We handle both together so every piece of your online presence works toward the same goal: bringing qualified clients to your door.</p>
+      <p class="sv-ws-eyebrow">What I Do</p>
+      <h2 id="sv-ws-deliver-h">Two services. <em>One engagement.</em></h2>
+      <p class="sv-ws-body">A website without SEO is a brochure nobody reads. SEO without a well built site sends visitors to a poor first impression. I do both in the same engagement.</p>
     </div>
     <div class="sv-ws-cols">
       <div class="sv-ws-col">
         <p class="sv-ws-caps">Website Design &amp; Build</p>
         <ul>
-          <li>Custom Squarespace design tailored to your brand and portfolio</li>
-          <li>Dedicated project pages with professional image galleries</li>
-          <li>Fully responsive across all devices and screen sizes</li>
-          <li>Fast load times with optimized images and clean code</li>
+          <li>Custom Squarespace design built around the brand and the portfolio</li>
+          <li>Dedicated project pages with image galleries</li>
+          <li>Responsive across devices and screen sizes</li>
+          <li>Fast load times from optimized images and clean code</li>
           <li>SEO-ready structure from day one (schema, meta, sitemap)</li>
-          <li>Contact forms and discovery call booking integration</li>
+          <li>Contact forms and discovery call booking</li>
         </ul>
       </div>
       <div class="sv-ws-col">
@@ -477,22 +473,22 @@
       <div class="sv-ws-step">
         <p class="sv-ws-caps">01</p>
         <h3>Audit</h3>
-        <p>We assess your current website, review competitor sites, analyze search performance, and identify the gaps. You receive a detailed report with clear priorities before we touch any code.</p>
+        <p>I assess the current site, review competitor sites, and read the search data. The report comes first, before any code is written.</p>
       </div>
       <div class="sv-ws-step">
         <p class="sv-ws-caps">02</p>
         <h3>Design</h3>
-        <p>Wireframes and visual design built around your brand, your portfolio, and how your clients actually navigate a builder or architecture website. Every layout decision is intentional.</p>
+        <p>I wireframe and design around the brand, the portfolio, and how people actually move through a builder or architecture site.</p>
       </div>
       <div class="sv-ws-step">
         <p class="sv-ws-caps">03</p>
         <h3>Build</h3>
-        <p>Custom Squarespace development with clean code, structured data, optimized images, and a mobile-first approach. We test across devices, check every link, and launch when it is ready.</p>
+        <p>I build in Squarespace with clean code, structured data and optimized images, mobile first. I test across devices, check every link, and launch when it is ready.</p>
       </div>
       <div class="sv-ws-step">
         <p class="sv-ws-caps">04</p>
         <h3>Grow</h3>
-        <p>Ongoing SEO, content updates, blog posts, and GEO optimization. We track rankings, refine strategy, and keep your site working harder every month. The launch is the starting line, not the finish.</p>
+        <p>SEO, content updates, blog posts and GEO work continue after launch. I track rankings and adjust as the results come in.</p>
       </div>
     </div>
   </div>
@@ -504,7 +500,7 @@
     <div class="sv-ws-narrow">
       <p class="sv-ws-eyebrow">The Proof</p>
       <h2 id="sv-ws-proof-h">Balmoral Construction: <em>from scratch to search-ready</em></h2>
-      <p class="sv-ws-body">Balmoral Construction needed a website that matched the quality of their luxury builds across Whistler and Pemberton. We designed and built a 42-page custom Squarespace site from the ground up, complete with dedicated project pages, 6 geo-targeted location pages, structured data across every page, and an ongoing SEO strategy that continues to drive organic growth month over month.</p>
+      <p class="sv-ws-body">Balmoral Construction builds custom homes across Whistler, Pemberton and Squamish. I designed and built a 42-page Squarespace site from the ground up: project pages, six geo-targeted location pages, structured data across every page, and an SEO plan that runs on a monthly retainer.</p>
     </div>
 
     <div class="sv-ws-frame">
@@ -524,16 +520,12 @@
         <p class="sv-ws-caps">Geo-Targeted Pages</p>
       </div>
       <div class="sv-ws-fig">
-        <p class="sv-ws-fig-num">7.5</p>
-        <p class="sv-ws-caps">GEO Visibility Score</p>
-      </div>
-      <div class="sv-ws-fig">
-        <p class="sv-ws-fig-num">8</p>
+        <p class="sv-ws-fig-num">7</p>
         <p class="sv-ws-caps">Blog Posts Live</p>
       </div>
     </div>
 
-    <p class="sv-ws-more"><a class="sv-ws-arrow" href="https://www.mattanthonyphoto.com/balmoral-construction">Read the Full Case Study &rarr;</a></p>
+    <p class="sv-ws-more"><a class="sv-ws-arrow" href="https://www.mattanthonyphoto.com/balmoral-construction">Read the case study &rarr;</a></p>
   </div>
 </section>
 
@@ -561,7 +553,7 @@
       <div class="sv-ws-card sv-ws-card--feat">
         <p class="sv-ws-caps">Tier 02</p>
         <p class="sv-ws-plan">Full Rebuild</p>
-        <p class="sv-ws-price">$5,000 &ndash; $10,000 <span>/ based on scope</span></p>
+        <p class="sv-ws-price">$5,000 to $10,000 <span>/ based on scope</span></p>
         <ul class="sv-ws-plan-list">
           <li>Complete custom Squarespace design and build</li>
           <li>Dedicated project pages with image galleries</li>
@@ -576,7 +568,7 @@
       <div class="sv-ws-card">
         <p class="sv-ws-caps">Tier 03</p>
         <p class="sv-ws-plan">Growth Retainer</p>
-        <p class="sv-ws-price">$1,500 &ndash; $3,500 <span>/ month</span></p>
+        <p class="sv-ws-price">$1,500 to $3,500 <span>/ month</span></p>
         <ul class="sv-ws-plan-list">
           <li>Monthly SEO monitoring and optimization</li>
           <li>Content updates and new project pages</li>
@@ -589,7 +581,7 @@
 
     </div>
 
-    <p class="sv-ws-note">These tiers can be combined or bundled with our <a href="/homepage-preview/creative-partner/">Creative Partner</a> retainer for firms that need photography, video, and web under one roof. Every engagement starts with a discovery call to scope the right fit.</p>
+    <p class="sv-ws-note">These tiers can be combined, or bundled into the <a href="/homepage-preview/creative-partner/">Creative Partner</a> retainer for firms that want photography, video and web under one agreement. Every engagement starts with a discovery call.</p>
   </div>
 </section>
 
@@ -604,35 +596,35 @@
       <details class="sv-ws-faq-item">
         <summary><h3>Why Squarespace instead of WordPress or a custom build?</h3><span class="sv-ws-sign" aria-hidden="true"></span></summary>
         <div class="sv-ws-faq-a">
-          <p>Squarespace gives us the best balance of design flexibility, speed, and maintainability for portfolio-driven businesses. It handles hosting, security, and SSL out of the box, so you never worry about plugin updates or server maintenance. With custom code blocks, we achieve the same visual quality as a fully custom site at a fraction of the ongoing cost.</p>
+          <p>Squarespace gives the best balance of design flexibility, speed and maintainability for a portfolio-led business. It handles hosting, security and SSL out of the box, so there are no plugin updates or server maintenance to manage. With custom code blocks it reaches the same visual quality as a fully custom site at a fraction of the ongoing cost.</p>
         </div>
       </details>
 
       <details class="sv-ws-faq-item">
         <summary><h3>How long does a full website build take?</h3><span class="sv-ws-sign" aria-hidden="true"></span></summary>
         <div class="sv-ws-faq-a">
-          <p>Most builds take 4 to 8 weeks from kickoff to launch. The timeline depends on the number of pages, how quickly we receive content and feedback, and whether photography is being delivered alongside the build. We set clear milestones so you always know where things stand.</p>
+          <p>Most builds take 4 to 8 weeks from kickoff to launch. The timeline depends on the number of pages, how quickly content and feedback come back, and whether photography is being delivered alongside the build. I set a milestone at each stage.</p>
         </div>
       </details>
 
       <details class="sv-ws-faq-item">
         <summary><h3>What is GEO and why does it matter?</h3><span class="sv-ws-sign" aria-hidden="true"></span></summary>
         <div class="sv-ws-faq-a">
-          <p>GEO stands for Generative Engine Optimization. It is the practice of optimizing your website so that AI-powered search tools like ChatGPT, Gemini, and Perplexity reference your business in their responses. As more people use AI to find service providers, GEO ensures your firm shows up in those conversations alongside traditional search results.</p>
+          <p>GEO stands for Generative Engine Optimization. It is the practice of structuring a site so that AI search tools like ChatGPT, Gemini and Perplexity reference the business in their answers. As more people use AI to find service providers, GEO is what puts a firm into those answers alongside traditional search results.</p>
         </div>
       </details>
 
       <details class="sv-ws-faq-item">
-        <summary><h3>Do I need a growth retainer after the site launches?</h3><span class="sv-ws-sign" aria-hidden="true"></span></summary>
+        <summary><h3>Is a growth retainer required after launch?</h3><span class="sv-ws-sign" aria-hidden="true"></span></summary>
         <div class="sv-ws-faq-a">
-          <p>A website launch is the starting line. Without ongoing SEO, content updates, and technical maintenance, your rankings plateau and your site becomes stale. The growth retainer keeps your site active, your content fresh, and your search visibility improving month over month. That said, it is not required. The site we build will be strong on its own.</p>
+          <p>No. A launch is the starting line, and without ongoing SEO, content updates and technical maintenance rankings plateau and a site goes stale. The retainer keeps the content moving and the search work going. The site stands on its own without it.</p>
         </div>
       </details>
 
       <details class="sv-ws-faq-item">
-        <summary><h3>Can I bundle this with photography or social media?</h3><span class="sv-ws-sign" aria-hidden="true"></span></summary>
+        <summary><h3>Can this be bundled with photography or social media?</h3><span class="sv-ws-sign" aria-hidden="true"></span></summary>
         <div class="sv-ws-faq-a">
-          <p>Yes. Many of our clients pair website and SEO with our Creative Partner retainer, which covers photography, video, social media, and web under one monthly agreement. It is the most efficient way to keep every channel consistent without managing multiple vendors.</p>
+          <p>Yes. Website and SEO can run inside the Creative Partner retainer, which covers photography, video, social media and web under one monthly agreement. One agreement, one point of contact.</p>
         </div>
       </details>
 
@@ -646,7 +638,7 @@
   <div class="sv-ws-cta-c">
     <p class="sv-ws-eyebrow">Ready to Start</p>
     <h2 id="sv-ws-cta-h">Let your website do <em>the selling.</em></h2>
-    <p class="sv-ws-cta-sub">Book a discovery call. We will review your current site, discuss your goals, and outline exactly what it takes to get your online presence where it needs to be.</p>
+    <p class="sv-ws-cta-sub">Book a discovery call. I will look at your current site and tell you what it would take.</p>
     <a class="sv-ws-btn" href="https://www.mattanthonyphoto.com/discovery-call" target="_blank" rel="noopener">Book a Discovery Call</a>
   </div>
 </section>
@@ -658,12 +650,12 @@
     <div class="sv-ws-other-g">
       <div class="sv-ws-other-c">
         <h3>Project Photography</h3>
-        <p>Complete visual documentation of your finished build.</p>
+        <p>Complete visual documentation of the finished build.</p>
         <a class="sv-ws-arrow" href="/homepage-preview/project-photography/">Learn More &rarr;</a>
       </div>
       <div class="sv-ws-other-c">
         <h3>Creative Partner</h3>
-        <p>Your embedded creative department under one retainer.</p>
+        <p>An embedded creative department under one retainer.</p>
         <a class="sv-ws-arrow" href="/homepage-preview/creative-partner/">Learn More &rarr;</a>
       </div>
       <div class="sv-ws-other-c">
@@ -865,7 +857,7 @@
       "name": "Why Squarespace instead of WordPress or a custom build?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Squarespace gives us the best balance of design flexibility, speed, and maintainability for portfolio-driven businesses. It handles hosting, security, and SSL out of the box, so you never worry about plugin updates or server maintenance. With custom code blocks, we achieve the same visual quality as a fully custom site at a fraction of the ongoing cost."
+        "text": "Squarespace gives the best balance of design flexibility, speed and maintainability for a portfolio-led business. It handles hosting, security and SSL out of the box, so there are no plugin updates or server maintenance to manage. With custom code blocks it reaches the same visual quality as a fully custom site at a fraction of the ongoing cost."
       }
     },
     {
@@ -873,7 +865,7 @@
       "name": "How long does a full website build take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most builds take 4 to 8 weeks from kickoff to launch. The timeline depends on the number of pages, how quickly we receive content and feedback, and whether photography is being delivered alongside the build."
+        "text": "Most builds take 4 to 8 weeks from kickoff to launch. The timeline depends on the number of pages, how quickly content and feedback come back, and whether photography is being delivered alongside the build. I set a milestone at each stage."
       }
     },
     {
@@ -881,23 +873,23 @@
       "name": "What is GEO and why does it matter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "GEO stands for Generative Engine Optimization. It is the practice of optimizing your website so that AI-powered search tools like ChatGPT, Gemini, and Perplexity reference your business in their responses. As more people use AI to find service providers, GEO ensures your firm shows up in those conversations alongside traditional search results."
+        "text": "GEO stands for Generative Engine Optimization. It is the practice of structuring a site so that AI search tools like ChatGPT, Gemini and Perplexity reference the business in their answers. As more people use AI to find service providers, GEO is what puts a firm into those answers alongside traditional search results."
       }
     },
     {
       "@type": "Question",
-      "name": "Do I need a growth retainer after the site launches?",
+      "name": "Is a growth retainer required after launch?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A website launch is the starting line. Without ongoing SEO, content updates, and technical maintenance, your rankings plateau and your site becomes stale. The growth retainer keeps your site active, your content fresh, and your search visibility improving month over month. That said, it is not required."
+        "text": "No. A launch is the starting line, and without ongoing SEO, content updates and technical maintenance rankings plateau and a site goes stale. The retainer keeps the content moving and the search work going. The site stands on its own without it."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I bundle this with photography or social media?",
+      "name": "Can this be bundled with photography or social media?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Many of our clients pair website and SEO with our Creative Partner retainer, which covers photography, video, social media, and web under one monthly agreement."
+        "text": "Yes. Website and SEO can run inside the Creative Partner retainer, which covers photography, video, social media and web under one monthly agreement. One agreement, one point of contact."
       }
     }
   ]
@@ -925,6 +917,14 @@
       reveals had left the deliver list and the pricing cards invisible whenever
       the observer did not fire.
     - FAQ is now details/summary: keyboard reachable, works with no JS at all.
+    - Register pass 2026-08-27: first person singular throughout (every we/our/us
+      gone), second person now only in the closing CTA, no en dashes. The three
+      unsourced percentages under The Problem were cut, and so was the untraceable
+      GEO visibility score; Balmoral blog posts corrected 8 to 7.
+    - FAQ JSON-LD 2026-08-27: two acceptedAnswer strings were short of the visible
+      answers ("I set a milestone at each stage." and "One agreement, one point of
+      contact." were missing). Both restored; all five question/answer pairs now
+      match the rendered details/summary text character for character.
 -->
 
 </body>
