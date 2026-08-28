@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>deck (pre-rebuild)</title>
+<style>html,body{margin:0;padding:0}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  /* ═══ SQUARESPACE OVERRIDES ═══ */
+  #footer,footer#footer,.footer-wrapper,[data-section-type="footer"]{display:none!important}
+  .item-pagination{display:none!important}
+  .page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}
+  .sqs-announcement-bar-dropzone{display:none!important}
+  body{background:#F6F4F0!important}
+  #page{background:transparent!important}
+  #sections{background:transparent!important}
+  .page-section{background:transparent!important;padding:0!important;margin:0!important}
+  .page-section .content-wrapper{padding:0!important;max-width:none!important}
+  .content-wrapper{background:transparent!important;max-width:none!important;padding:0!important}
+  .fluid-engine{background:transparent!important;padding:0!important;max-width:none!important;grid-template-columns:none!important;display:block!important}
+  .fe-block{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;grid-area:auto!important;position:relative!important}
+  .sqs-block-code{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+  .sqs-block-content{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+  .sqs-code-container{padding:0!important;margin:0!important;max-width:none!important;width:100%!important;overflow:visible!important}
+
+
+  :root {
+    --gutter: clamp(24px,5vw,80px);
+    --page: 1600px;
+    --sw-ink: #1A1A18;
+    --sw-gold: #C9A96E;
+    --sw-stone: #6F6B61;
+    --sw-light-stone: #D9D5CD;
+    --sw-text: #1A1A18;
+  }
+
+  .sw { scroll-snap-type:y mandatory; overflow-y:auto; height:100vh; height:100svh; scroll-behavior:smooth; }
+
+  .sw { font-family:'DM Sans',-apple-system,sans-serif; font-weight:300; color:var(--sw-ink); -webkit-font-smoothing:antialiased; }
+  .sw * { margin:0; padding:0; box-sizing:border-box; }
+  .sw img { display:block; }
+  .sw a { color:inherit; text-decoration:none; }
+  .sw-fc { display:block; padding:12px 0 0; font-family:'DM Sans',sans-serif; font-weight:300; font-size:0.78rem; color:var(--sw-stone); line-height:1.55; text-align:center; max-width:440px; margin:0 auto; }
+
+  /* loader */
+  .sw-load { position:fixed; inset:0; background:#F6F4F0; z-index:99999; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; transition:opacity 1.2s cubic-bezier(0.16,1,0.3,1), visibility 1.2s; }
+  .sw-load.off { opacity:0; visibility:hidden; pointer-events:none; }
+  .sw-load span { font-family:'Josefin Sans',sans-serif; font-weight:200; font-size:0.55rem; letter-spacing:0.6em; text-transform:uppercase; color:var(--sw-ink); opacity:0; animation:swI 1s 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .sw-load em { font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:0.85rem; color:var(--sw-stone); opacity:0; animation:swI 1s 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .sw-load-line { width:60px; height:1px; background:var(--sw-gold); opacity:0; animation:swLine 1.4s 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  @keyframes swI { to { opacity:1 } }
+  @keyframes swLine { 0%{opacity:0;width:0} 100%{opacity:0.4;width:60px} }
+
+  /* header */
+
+  /* section — every snap point */
+  .sw-s { width:100%; height:100vh; height:100svh; scroll-snap-align:start; scroll-snap-stop:always; position:relative; overflow:hidden; }
+
+  /* hero */
+  .sw-s-hero { display:flex; align-items:flex-end; }
+  .sw-s-hero > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.4) saturate(0.9); animation:swKB 20s ease-in-out infinite alternate; }
+  @keyframes swKB { 0%{transform:scale(1)} 100%{transform:scale(1.05)} }
+  .sw-s-hero .sw-hero-c { position:relative; z-index:1; padding:10vh max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter))); }
+  .sw-s-hero h1 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; color:#F6F4F0; font-size:clamp(2.6rem,5vw,4.2rem); line-height:1.05; letter-spacing:-0.02em; opacity:0; transform:translateY(20px); animation:swHI 1.6s 1.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .sw-s-hero h1 em { font-style:italic; font-weight:400; }
+  @keyframes swHI { to { opacity:1; transform:translateY(0); } }
+
+  /* chapter */
+  .sw-s-ch { display:flex; align-items:center; justify-content:center; flex-direction:column; background:#EEECE6; }
+  .sw-s-ch::before { content:''; display:block; width:40px; height:1px; background:var(--sw-gold); opacity:0.35; margin-bottom:32px; }
+  .sw-s-ch-lab { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--sw-gold); margin-bottom:18px; }
+  .sw-s-ch h2 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; font-size:clamp(1.8rem,3vw,2.6rem); line-height:1.18; text-align:center; }
+  .sw-s-ch h2 em { font-style:italic; font-weight:400; }
+
+  /* spread — text + image side by side */
+  .sw-s-sp { display:grid; grid-template-columns:38% 62%; }
+  .sw-s-sp.rv { grid-template-columns:62% 38%; }
+  .sw-s-sp.rv .sw-txt { order:2; }
+  .sw-s-sp.rv .sw-img { order:1; }
+  .sw-s-sp .sw-txt { padding:0 5vw; display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:10vh; }
+  .sw-s-sp .sw-lbl a { color:inherit; border-bottom:1px solid rgba(201,169,110,0.45); padding-bottom:3px; transition:border-color 0.3s ease, color 0.3s ease; }
+  .sw-lbl a:hover, .sw-lbl a:focus-visible { color:var(--sw-ink); border-color:var(--sw-ink); }
+  .sw-lbl { font-family:'Josefin Sans',sans-serif; font-weight:200; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--sw-gold); margin-bottom:18px; }
+  .sw-s-sp .sw-txt h2 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; font-size:clamp(1.6rem,2.5vw,2.4rem); line-height:1.18; margin-bottom:20px; letter-spacing:-0.01em; }
+  .sw-s-sp .sw-txt h2 em { font-style:italic; font-weight:400; }
+  .sw-s-sp .sw-txt p { font-size:0.95rem; color:var(--sw-stone); line-height:1.85; max-width:400px; }
+  .sw-s-sp .sw-cr { margin-top:28px; font-family:'Josefin Sans',sans-serif; font-size:0.42rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sw-stone); line-height:2.2; }
+  .sw-s-sp .sw-img { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3vh 3vw; }
+  .sw-s-sp .sw-img img { max-width:100%; max-height:calc(100vh - 6vh); object-fit:contain; }
+
+  /* pair — two images side by side */
+  .sw-s-pair { display:grid; grid-template-columns:62% 38%; gap:4px; }
+  .sw-s-pair.rv { grid-template-columns:38% 62%; }
+  .sw-s-pair .sw-pi { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3vh 3vw; overflow:hidden; }
+  .sw-s-pair .sw-pi img { max-width:100%; max-height:calc(100vh - 6vh); object-fit:contain; }
+
+  /* trio — three images side by side */
+  .sw-s-trio { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; }
+  .sw-s-trio .sw-pi { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3vh 2vw; overflow:hidden; }
+  .sw-s-trio .sw-pi img { max-width:100%; max-height:calc(100vh - 6vh); object-fit:contain; }
+
+  /* single image */
+  .sw-s-single { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3vh 6vw; }
+  .sw-s-single img { max-width:100%; max-height:calc(100vh - 6vh); object-fit:contain; }
+
+  /* cinematic entrance — elements fade up when section comes into view */
+  .sw-s .sw-txt { opacity:0; transform:translateY(20px); transition:opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+  .sw-s .sw-img { opacity:0; transform:translateY(16px); transition:opacity 1.2s cubic-bezier(0.16,1,0.3,1) 0.15s, transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.15s; }
+  .sw-s .sw-pi { opacity:0; transform:translateY(16px); transition:opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+  .sw-s .sw-pi:nth-child(2) { transition-delay:0.12s; }
+  .sw-s-single > img { opacity:0; transform:translateY(16px); transition:opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+  .sw-s-ch .sw-s-ch-lab, .sw-s-ch h2 { opacity:0; transform:translateY(16px); transition:opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+  .sw-s-ch h2 { transition-delay:0.1s; }
+  .sw-s-ch::before { opacity:0; transition:opacity 0.8s ease 0.05s; }
+  .sw-s-q p { opacity:0; transform:translateY(12px); transition:opacity 1.2s cubic-bezier(0.16,1,0.3,1) 0.1s, transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.1s; }
+  .sw-s-q::before { opacity:0; transition:opacity 0.8s ease; }
+  .sw-s-bleed img { opacity:0; transition:opacity 1.4s ease; }
+
+  /* active state */
+  .sw-s.in-view .sw-txt, .sw-s.in-view .sw-img, .sw-s.in-view .sw-pi, .sw-s-single.in-view > img,
+  .sw-s-ch.in-view .sw-s-ch-lab, .sw-s-ch.in-view h2, .sw-s-ch.in-view::before,
+  .sw-s-q.in-view p, .sw-s-q.in-view::before,
+  .sw-s-bleed.in-view img { opacity:1; transform:translateY(0); }
+  /* pair/trio children on mobile */
+  .sw-pi.in-view { opacity:1 !important; transform:translateY(0) !important; }
+  .sw-pi.in-view img { opacity:1; transform:translateY(0); }
+
+  /* bleed */
+  .sw-s-bleed { display:flex; }
+  .sw-s-bleed img { width:100%; height:100%; object-fit:cover; animation:swKB 18s ease-in-out infinite alternate; }
+
+  /* video */
+  .sw-s-vid { display:flex; background:#000; }
+  .sw-s-vid video { width:100%; height:100%; object-fit:cover; }
+
+  /* pullquote */
+  .sw-s-q { display:flex; align-items:center; justify-content:center; flex-direction:column; padding:0 10vw; }
+  .sw-s-q::before { content:''; display:block; width:40px; height:1px; background:var(--sw-gold); opacity:0.3; margin-bottom:36px; }
+  .sw-s-q p { font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:clamp(1.4rem,2.2vw,1.9rem); line-height:1.6; color:var(--sw-stone); max-width:600px; text-align:center; }
+
+  /* closing */
+  /* CTA */
+  .sw-s-cta { display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:0 5vw; }
+  .sw-s-cta h2 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; font-size:clamp(1.8rem,3vw,2.6rem); line-height:1.18; margin-bottom:16px; letter-spacing:-0.01em; }
+  .sw-s-cta h2 em { font-style:italic; font-weight:400; }
+  .sw-s-cta p { font-size:0.95rem; color:var(--sw-stone); line-height:1.85; max-width:440px; margin:0 auto 32px; }
+  .sw-s-cta .sw-cta-btn { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:0.5rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--sw-ink); background:var(--sw-gold); padding:16px 48px; display:inline-block; transition:all 0.4s ease; text-decoration:none; }
+  .sw-s-cta .sw-cta-btn:hover { background:#B8975A; color:var(--sw-ink); }
+
+
+  /* intro */
+  .sw-s-intro { display:flex; align-items:center; justify-content:center; flex-direction:column; background:#F6F4F0; padding:0 8vw; }
+  .sw-s-intro::before { content:''; display:block; width:40px; height:1px; background:var(--sw-gold); opacity:0.35; margin-bottom:32px; }
+  .sw-s-intro .sw-intro-lab { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--sw-gold); margin-bottom:28px; }
+  .sw-s-intro .sw-intro-body { max-width:620px; }
+  .sw-s-intro .sw-intro-body p { font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; font-style:italic; font-size:clamp(1.15rem,1.6vw,1.45rem); line-height:1.65; color:var(--sw-text); margin-bottom:18px; text-align:center; letter-spacing:0.005em; }
+  .sw-s-intro .sw-intro-body p em { font-style:normal; font-weight:400; color:var(--sw-ink); }
+  .sw-s-intro .sw-intro-sig { margin-top:32px; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .sw-s-intro .sw-intro-sig .sig-line { width:24px; height:1px; background:var(--sw-gold); opacity:0.5; margin-bottom:14px; }
+  .sw-s-intro .sw-intro-sig .sig-name { font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:1.1rem; color:var(--sw-ink); }
+  .sw-s-intro .sw-intro-sig .sig-title { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:0.5rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--sw-stone); }
+
+  .sw-s-intro::before, .sw-s-intro .sw-intro-lab, .sw-s-intro .sw-intro-body, .sw-s-intro .sw-intro-sig { opacity:0; transform:translateY(16px); transition:opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+  .sw-s-intro .sw-intro-lab { transition-delay:0.1s; }
+  .sw-s-intro .sw-intro-body { transition-delay:0.2s; }
+  .sw-s-intro .sw-intro-sig { transition-delay:0.4s; }
+  .sw-s-intro.in-view::before, .sw-s-intro.in-view .sw-intro-lab, .sw-s-intro.in-view .sw-intro-body, .sw-s-intro.in-view .sw-intro-sig { opacity:1; transform:translateY(0); }
+
+  /* hover on images */
+  .sw-s-sp .sw-img img, .sw-s-pair .sw-pi img, .sw-s-single img, .sw-s-trio .sw-pi img { transition:transform 1s cubic-bezier(0.16,1,0.3,1); cursor:pointer; }
+  .sw-s-sp .sw-img:hover img, .sw-s-pair .sw-pi:hover img, .sw-s-single:hover img, .sw-s-trio .sw-pi:hover img { transform:scale(1.015); }
+
+  /* lightbox */
+  .sw-lb { position:fixed; inset:0; z-index:99998; background:rgba(26,26,24,0.95); display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity 0.4s ease, visibility 0.4s; cursor:pointer; }
+  .sw-lb.open { opacity:1; visibility:visible; }
+  .sw-lb img { max-width:92vw; max-height:92vh; object-fit:contain; transform:scale(0.95); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .sw-lb.open img { transform:scale(1); }
+  .sw-lb-close { position:absolute; top:24px; right:28px; width:28px; height:28px; cursor:pointer; opacity:0.5; transition:opacity 0.3s; }
+  .sw-lb-close:hover { opacity:1; }
+  .sw-lb-close::before, .sw-lb-close::after { content:''; position:absolute; top:50%; left:0; width:100%; height:1px; background:#F6F4F0; }
+  .sw-lb-close::before { transform:rotate(45deg); }
+  .sw-lb-close::after { transform:rotate(-45deg); }
+
+
+  /* ═══ FOOTER (from homepage) ═══ */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media(max-width:900px){
+    
+    
+    
+    
+    
+    
+  }
+
+  /* ═══ MOBILE ═══ */
+  @media(max-width:900px) {
+          .sw-s-hero h1 { font-size:2.2rem; }
+    .sw-s-hero .sw-hero-c { padding:0 20px 10vh; }
+
+    /* JS-created mobile slides */
+    .sw-mob-title { display:flex !important; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 28px; width:100%; height:100vh; scroll-snap-align:start; scroll-snap-stop:always; }
+    .sw-mob-title .sw-txt { padding:0; }
+    .sw-mob-title .sw-txt p, .sw-mob-title .sw-txt .sw-cr { display:none; }
+    .sw-mob-title .sw-txt h2 { font-size:1.8rem; margin-bottom:0; }
+    .sw-mob-title .sw-lbl { font-size:0.6rem; margin-bottom:14px; }
+    .sw-mob-title .sw-txt::after { content:''; display:block; width:1px; height:28px; background:var(--sw-stone); opacity:0.3; margin-top:28px; }
+
+    .sw-mob-img { display:flex !important; align-items:center; justify-content:center; padding:16px; overflow:hidden; width:100%; height:100vh; scroll-snap-align:start; scroll-snap-stop:always; }
+    .sw-mob-img .sw-img { padding:0; display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+    .sw-mob-img .sw-img img, .sw-mob-img .sw-pi img { max-height:85vh; max-width:100%; object-fit:contain; }
+    .sw-mob-img .sw-pi { padding:0; display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+
+    /* hide original spreads/pairs/trios (JS removes them, but just in case) */
+    .sw-s-sp, .sw-s-pair, .sw-s-trio { display:none !important; }
+
+    /* single */
+    .sw-s-single { padding:16px; display:flex; align-items:center; justify-content:center; }
+    .sw-s-single img { max-height:85vh; width:100%; object-fit:contain; }
+
+    /* bleed */
+    .sw-s-bleed { display:flex; align-items:center; justify-content:center; padding:16px; }
+    .sw-s-bleed img { width:100%; height:auto; max-height:85vh; object-fit:contain; animation:none; }
+
+    /* video */
+    .sw-s-vid video { width:100%; height:100%; object-fit:cover; }
+
+    /* chapter */
+    .sw-s-ch { padding:0 28px; }
+    .sw-s-ch h2 { font-size:1.5rem; }
+
+    /* pullquote */
+    .sw-s-q { padding:0 28px; }
+    .sw-s-q p { font-size:1.05rem; }
+
+    /* closing */
+    .sw-s-cta { padding:0 24px; }
+    .sw-s-cta h2 { font-size:1.4rem; }
+    .sw-s-cta p { font-size:0.82rem; }
+
+    /* hide captions on mobile */
+    .sw-fc { display:none; }
+
+    /* intro */
+    .sw-s-intro { padding:0 28px; }
+    .sw-s-intro .sw-intro-body p { font-size:1rem; }
+    .sw-s-intro .sw-intro-lab { font-size:0.55rem; }
+  }
+
+  @media(max-width:480px) {
+    .sw-s-hero h1 { font-size:1.8rem; }
+    .sw-s-ch h2 { font-size:1.3rem; }
+    .sw-s-sp .sw-txt h2 { font-size:1.4rem; }
+    .sw-s-sp .sw-lbl { font-size:0.48rem; }
+    .sw-s-q p { font-size:0.92rem; }
+  }
+
+/* ════════════ NAV + FOOTER (lifted from homepage-minimal) ════════════ */
+/* tokens the lifted nav/footer rules expect (this page has no .hp-wrap) */
+:root{
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#6f6b61; --rule:#d9d5cd;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+.hp-nav,.hp-ft{
+  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
+  --stone:#6f6b61; --rule:#d9d5cd;
+  --gutter:clamp(24px,5vw,80px); --page:1600px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+.hp-nav *,.hp-ft *{box-sizing:border-box}
+.hp-ft *{margin:0;padding:0}
+.hp-nav a,.hp-ft a{text-decoration:none!important;border:0}
+#maHeader{display:none!important}
+.hp-ft{scroll-snap-align:start;font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7}
+/* ── NAV ──
+   Solid paper is the DEFAULT, so a content page is correct even if the script
+   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
+   markup to sit transparently over it; the script then removes that treatment
+   once you scroll past the hero.
+
+   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
+   Everything inside the About dropdown is ALSO in the footer, so if the script
+   never runs those pages are still reachable. ── */
+.hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
+  display:flex!important;align-items:center;justify-content:space-between;gap:24px;
+  padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
+  background-color:#f6f4f0;
+  transition:background-color .45s var(--ease)}
+.hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
+  transition:color .45s var(--ease)}
+.hp-nav-links{display:flex!important;gap:clamp(20px,3vw,40px);align-items:center}
+/* One small-caps style for every top level item, link or dropdown trigger. */
+.hp-nav-links>a,.hp-nav-trigger{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
+  transition:color .35s var(--ease)}
+.hp-nav-trigger{background:none;border:0;padding:0;margin:0;cursor:pointer;
+  display:inline-flex!important;align-items:center;gap:7px;line-height:inherit;font-family:'DM Sans',-apple-system,sans-serif}
+.hp-nav-trigger::after{content:"";width:5px;height:5px;border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-1px);
+  transition:transform .3s var(--ease)}
+.hp-nav-trigger[aria-expanded="true"]::after{transform:rotate(225deg) translateY(-2px)}
+.hp-nav-links>a:hover,.hp-nav-links>a:focus-visible,
+.hp-nav-trigger:hover,.hp-nav-trigger:focus-visible,
+.hp-nav-mark:focus-visible{color:#1a1a18!important}
+
+/* Dropdown. Paper panel with ink text in BOTH nav states, so it never inherits
+   the over-hero light treatment and turn white on white. */
+.hp-nav-group{position:relative;display:inline-flex!important;align-items:center}
+.hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+  min-width:170px;display:flex!important;flex-direction:column;gap:0;
+  background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
+.hp-nav-menu[hidden]{display:none!important}
+.hp-nav-menu a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
+  padding:9px 20px;white-space:nowrap;transition:color .25s var(--ease),background-color .25s var(--ease)}
+.hp-nav-menu a:hover,.hp-nav-menu a:focus-visible{color:#1a1a18!important;background-color:#eeece6}
+
+/* Over a dark full-bleed hero, until scrolled past it. */
+.hp-nav-over:not(.hp-scrolled){background-color:transparent}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-mark{color:#f6f4f0!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-trigger{color:rgba(246,244,240,.78)!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a:hover,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a:focus-visible,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-trigger:hover,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-trigger:focus-visible,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-mark:focus-visible{color:#fff!important}
+
+/* Keeps content clear of the fixed nav on pages with no hero (script-inserted). */
+.hp-nav-spacer{width:100%}
+
+@media (max-width:820px){
+  .hp-nav{padding:18px var(--gutter);gap:14px}
+  .hp-nav-links{gap:14px}
+  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.1em}
+  .hp-nav-mark{font-size:11px;letter-spacing:.28em}
+}
+/* Wrap tier is 700, not 480. The nav is position:fixed, so when the links overflow
+   they are clipped with NO scrollbar to reach them: measured at 520, .hp-nav-links
+   spans 298->629 and SERVICES/CONTACT were simply unreachable. Links need ~331px and
+   the wordmark ~230px, so the single row stops fitting around 640. */
+@media (max-width:700px){
+  .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
+  .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
+  .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
+  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
+  .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
+}
+
+/* ════════════ FOOTER ════════════ */
+.hp-ft{background:#1a1a18!important;padding:clamp(72px,10vw,120px) var(--gutter) clamp(36px,4vw,56px);
+  border-top:1px solid rgba(201,169,110,.16)}
+.hp-ft-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
+.hp-ft-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.4em;text-transform:uppercase;color:rgba(246,244,240,.82)!important;margin:0}
+/* MUST stay AFTER the base rule above. Same (0,1,0) specificity, so source order is
+   the only tiebreak. Declared earlier in the file, only white-space:nowrap survived
+   while the font shrink lost, and a 13px/.4em nowrap wordmark held every page open
+   to 367px at a 320 viewport. */
+@media (max-width:480px){
+  .hp-ft-mark{font-size:10px;letter-spacing:.2em;white-space:nowrap}
+}
+.hp-ft-bottom{display:flex!important;justify-content:space-between;align-items:flex-start;
+  padding-top:clamp(28px,3vw,40px);flex-wrap:wrap;gap:20px}
+.hp-ft-land{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:300;
+  max-width:640px;line-height:1.85;text-align:left;letter-spacing:.02em;
+  margin:clamp(24px,3vw,36px) 0 0;color:rgba(246,244,240,.60)!important}
+@media (max-width:900px){
+  .hp-ft-bottom{flex-direction:column}
+}
+/* footer, rebuilt: one block, no headed columns */
+.hp-ft-top{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:clamp(28px,4vw,64px);
+  padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid rgba(246,244,240,.07)}
+.hp-ft-brand{flex:1 1 420px;max-width:640px;min-width:0}
+.hp-ft-tag{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:1.6;color:rgba(246,244,240,.60)!important;margin:12px 0 0}
+.hp-ft-areas{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  line-height:2;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
+.hp-ft-areas a{color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-areas a:hover,.hp-ft-areas a:focus-visible{color:#c9a96e!important}
+.hp-ft-nav{display:flex!important;flex-wrap:wrap;flex:0 1 420px;gap:9px 32px}
+.hp-ft-nav a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
+  color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-nav a:hover,.hp-ft-nav a:focus-visible{color:#c9a96e!important}
+.hp-ft-meta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:0}
+.hp-ft-contact{display:flex!important;flex-wrap:wrap;gap:18px}
+.hp-ft-contact a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.82)!important;transition:color .3s var(--ease)}
+.hp-ft-contact a:hover,.hp-ft-contact a:focus-visible{color:#c9a96e!important}
+@media (max-width:760px){.hp-ft-nav{flex:1 1 100%;width:100%;flex-direction:row;flex-wrap:wrap;gap:14px 22px}}
+
+
+</style>
+
+<div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
+  <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
+  <div class="hp-nav-links">
+    <a href="https://www.mattanthonyphoto.com/selected-work">Portfolio</a>
+    <a href="/homepage-preview/projects-v2/">Projects</a>
+    <div class="hp-nav-group">
+      <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
+      <div class="hp-nav-menu" id="hpAboutMenu" role="group" aria-labelledby="hpAboutBtn" hidden>
+        <a href="/homepage-preview/bio/">About</a>
+        <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/faqs/">FAQs</a>
+        <a href="/homepage-preview/journal/">Journal</a>
+      </div>
+    </div>
+    <a href="/homepage-preview/services/">Services</a>
+    <a href="/homepage-preview/contact/">Contact</a>
+  </div>
+</div>
+
+<div class="sw">
+<div class="sw-load" id="swLoad"><span>Matt Anthony Photography</span><div class="sw-load-line"></div><em>Selected Work</em></div>
+
+
+<!-- HERO -->
+<div class="sw-s sw-s-hero">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg" fetchpriority="high" alt="Gravel drive to a recessed entry, dark vertical cladding with firewood stacked beneath" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async">
+  <div class="sw-hero-c"><h1>Selected <em>Work</em></h1></div>
+</div>
+
+<!-- INTRODUCTION -->
+<div class="sw-s sw-s-intro">
+  <div class="sw-intro-lab">Before You Begin</div>
+  <div class="sw-intro-body">
+    <p>Welcome. Thank you for being here.</p>
+    <p>What follows is a curated selection of recent work across British Columbia, organized by the landscapes that shape it. <em>Coastal projects</em> on the Sunshine Coast and Howe Sound, <em>alpine builds</em> in Whistler and Pemberton, <em>lakefront homes</em> in the Columbia Valley, and a handful of <em>interiors</em>.</p>
+    <p>Each project is shown the way I'd present it in person — design intent first, materials second, the moment of light that made the frame third. Captions are kept short on purpose. The work should carry its own weight.</p>
+    <p>Take your time.</p>
+  </div>
+  <div class="sw-intro-sig">
+    <div class="sig-line"></div>
+    <div class="sig-name">Matt</div>
+    <div class="sig-title">Architectural Photography + Documentary Video</div>
+  </div>
+</div>
+
+<!-- SHORELINE -->
+<div class="sw-s sw-s-ch">
+  <div class="sw-s-ch-lab">Shoreline</div>
+  <h2>Cedar, Steel, <em>and Salt Air</em></h2>
+</div>
+
+<!-- THE PERCH — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/the-perch-sunshine-coast/">The Perch — Sunshine Coast</a></div>
+    <h2>Cantilevered Over <em>the Shoreline</em></h2>
+    <p>A building shaped entirely by its relationship to the site.</p>
+    <div class="sw-cr">Architect: Michel Laflamme &nbsp;|&nbsp; Builder: Summerhill Fine Homes</div>
+  </div>
+  <div class="sw-img"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg" alt="A dark clad corner projecting out over rock, the sea and low cloud beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Late afternoon side light. The cantilever reads as a shadow line against the rock.</span></div>
+</div>
+
+<!-- THE PERCH — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg" alt="Corridor along full height glazing, a pale runner laid on the polished concrete floor" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/34ff99ae-5592-488a-bfd6-ff7b4744ea8d/5322-backhouse-web-15.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="2000" decoding="async"><span class="sw-fc">One-point perspective. The corridor pulls you through to the Pacific.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg" alt="Low sofa and a wide table facing the water, the suspended fireplace burning at right" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Overcast sky softening everything. The fireplace floating, the firs framed, the water audible.</span></div>
+</div>
+
+<!-- THE PERCH — aerial -->
+<div class="sw-s sw-s-single">
+  <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8a674d33-4176-43dd-89c1-a565c1c3df48/5322-backhouse-web-24.jpg" alt="The house at dusk above the rock, warm light behind the glass and a fire lit below" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8a674d33-4176-43dd-89c1-a565c1c3df48/5322-backhouse-web-24.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8a674d33-4176-43dd-89c1-a565c1c3df48/5322-backhouse-web-24.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8a674d33-4176-43dd-89c1-a565c1c3df48/5322-backhouse-web-24.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8a674d33-4176-43dd-89c1-a565c1c3df48/5322-backhouse-web-24.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8a674d33-4176-43dd-89c1-a565c1c3df48/5322-backhouse-web-24.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Blue hour. Fire pit on granite, interior glowing warm. The shot that justifies staying late.</span>
+</div>
+
+<!-- THE PERCH — video -->
+<div class="sw-s sw-s-vid">
+  <video autoplay muted loop playsinline poster="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg" data-src="https://mattanthonyphoto.github.io/matt-proposals/stark/video/the-perch-twilight.mp4"><source src="https://mattanthonyphoto.github.io/matt-proposals/stark/video/the-perch-twilight.mp4" type="video/mp4"></video>
+</div>
+
+<!-- TRANQUIL RETREAT — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/tranquil-retreat/">Tranquil Retreat — Sandy Hook</a></div>
+    <h2>Corrugated Steel Against <em>Tidal Forest</em></h2>
+    <p>The material palette was selected to converge with the site over time, not resist it.</p>
+    <div class="sw-cr">Designer: Rob Milstead &nbsp;|&nbsp; Builder: Summerhill Fine Homes</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?content-type=image%2Fjpeg" alt="Entry door standing open under a wood soffit, dark ribbed cladding and a planted bed alongside" srcset="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Entry compression. Dark steel overhead, then the eye releases straight through to green.</span></div>
+</div>
+
+<!-- TRANQUIL RETREAT — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8dab354d-32d7-4e2a-8a71-7ef3b5d5482c/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-15.jpg" alt="Terrace seating under a wood soffit, glazing at right and treetops falling away beyond a cable rail" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8dab354d-32d7-4e2a-8a71-7ef3b5d5482c/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-15.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8dab354d-32d7-4e2a-8a71-7ef3b5d5482c/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-15.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8dab354d-32d7-4e2a-8a71-7ef3b5d5482c/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-15.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8dab354d-32d7-4e2a-8a71-7ef3b5d5482c/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-15.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8dab354d-32d7-4e2a-8a71-7ef3b5d5482c/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-15.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Golden hour through the canopy. Steel, cedar, glass converging at the corner.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg" alt="Planted side yard against a concrete retaining wall, a red leafed tree over exposed rock and moss" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Last warm light on the Japanese maple. Concrete holding back the hillside.</span></div>
+</div>
+
+<!-- NET ZERO — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/net-zero-build-whistler/">Net Zero Build — Whistler</a></div>
+    <h2>Built <em>to Net Zero</em></h2>
+    <p>Bold form and purposeful material choices against Whistler's dramatic mountain backdrop.</p>
+    <div class="sw-cr">Builder: Peak Ventures &nbsp;|&nbsp; Interiors: Gnar Interior Design</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?content-type=image%2Fjpeg" alt="Lawn and planted beds below a house with a stone base and pale vertical cladding" srcset="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Stone pilaster catching dappled light through the evergreens. The building already belongs.</span></div>
+</div>
+
+<!-- NET ZERO — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/7199e20e-015a-4f85-8473-9d3d74f49e88/peak-ventures-whistler-16.jpg?content-type=image%2Fjpeg" alt="The house across a lawn seen under a conifer bough, stone base and glazed living rooms" srcset="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/7199e20e-015a-4f85-8473-9d3d74f49e88/peak-ventures-whistler-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/7199e20e-015a-4f85-8473-9d3d74f49e88/peak-ventures-whistler-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/7199e20e-015a-4f85-8473-9d3d74f49e88/peak-ventures-whistler-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/7199e20e-015a-4f85-8473-9d3d74f49e88/peak-ventures-whistler-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/7199e20e-015a-4f85-8473-9d3d74f49e88/peak-ventures-whistler-16.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Rear elevation through young birch. The full scale of the facade reads at this distance.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/9735ee44-cdd3-463c-91e7-057ce01c798e/peak-ventures-whistler-14.jpg?content-type=image%2Fjpeg" alt="Aerial over the roof and solar panels, a lawn and stone steps enclosed by trees" srcset="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/9735ee44-cdd3-463c-91e7-057ce01c798e/peak-ventures-whistler-14.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/9735ee44-cdd3-463c-91e7-057ce01c798e/peak-ventures-whistler-14.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/9735ee44-cdd3-463c-91e7-057ce01c798e/peak-ventures-whistler-14.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/9735ee44-cdd3-463c-91e7-057ce01c798e/peak-ventures-whistler-14.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/9735ee44-cdd3-463c-91e7-057ce01c798e/peak-ventures-whistler-14.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Straight down. Solar array, garden clearing, canopy edge. Performance visible from above.</span></div>
+</div>
+
+<!-- SALT SPRING ISLAND — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/salt-spring-island/">Salt Spring Island — Gulf Islands</a></div>
+    <h2>A Green Roof <em>Above the Shore</em></h2>
+    <p>A low pavilion under a planted roof, glazed edge to edge toward the strait.</p>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg" alt="Salt Spring Island residence glazed elevation with red mullions in afternoon sun" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Clear afternoon sun. Red mullions and a dark roof plane, the rock garden holding the edge of the frame.</span></div>
+</div>
+
+<!-- SALT SPRING ISLAND — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg" alt="Salt Spring Island green roof pavilion and the strait" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d21262ea-7a2c-4ced-b4f6-79cfa1d33459/salt-spring-island-residence-green-roof-pavilion-and-the-shore-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1500" decoding="async"><span class="sw-fc">Low afternoon sun. The pavilion in front, the house and the big tree behind, water beyond all of it.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg" alt="Salt Spring Island bath with a strip of sun on the oak wall" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f8875c55-49c9-4b08-8787-6972c57eee41/salt-spring-island-residence-freestanding-tub-with-ocean-view-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1500" decoding="async"><span class="sw-fc">A strip of raking light on oak. Islands in the window, the tub left alone.</span></div>
+</div>
+
+<!-- SALT SPRING ISLAND — single -->
+<div class="sw-s sw-s-single">
+  <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a25c4c66-00ec-46f9-90ad-677e5fd293bd/salt-spring-island-residence-under-the-green-roof-pavilion-architectural-photographer-matt-anthony.jpg" alt="Salt Spring Island dining terrace open to the water" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a25c4c66-00ec-46f9-90ad-677e5fd293bd/salt-spring-island-residence-under-the-green-roof-pavilion-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a25c4c66-00ec-46f9-90ad-677e5fd293bd/salt-spring-island-residence-under-the-green-roof-pavilion-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a25c4c66-00ec-46f9-90ad-677e5fd293bd/salt-spring-island-residence-under-the-green-roof-pavilion-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a25c4c66-00ec-46f9-90ad-677e5fd293bd/salt-spring-island-residence-under-the-green-roof-pavilion-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a25c4c66-00ec-46f9-90ad-677e5fd293bd/salt-spring-island-residence-under-the-green-roof-pavilion-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Late sun off the water. Under the sweep of the roof the terrace runs straight out to the mountains.</span>
+</div>
+
+<!-- DESOLATION SOUND — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/desolation-sound/">Desolation Sound — Sunshine Coast</a></div>
+    <h2>Shingle, Cedar, <em>and Moonrise</em></h2>
+    <p>A shingled pavilion on the rock, the moon coming up over the water.</p>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg" alt="Desolation Sound pavilion lit from within with the moon over the water" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Blue hour. Interior light in the shingle walls, the moon up over the far shore.</span></div>
+</div>
+
+<!-- DESOLATION SOUND — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg" alt="Desolation Sound covered walkway with post and beam structure" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5e15c240-b0dd-424c-99f8-78e7559d3d62/desolation-sound-residence-fir-colonnade-glass-canopy-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="2000" decoding="async"><span class="sw-fc">Hard sun through the beams. Shadow bars down the walkway, the structure doing the talking.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6aeca8b4-bf06-431c-8b6b-b55f4e9073c1/desolation-sound-residence-kitchen-through-the-open-glass-wall-architectural-photographer-matt-anthony.jpg" alt="Desolation Sound great room from the terrace" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6aeca8b4-bf06-431c-8b6b-b55f4e9073c1/desolation-sound-residence-kitchen-through-the-open-glass-wall-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6aeca8b4-bf06-431c-8b6b-b55f4e9073c1/desolation-sound-residence-kitchen-through-the-open-glass-wall-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6aeca8b4-bf06-431c-8b6b-b55f4e9073c1/desolation-sound-residence-kitchen-through-the-open-glass-wall-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6aeca8b4-bf06-431c-8b6b-b55f4e9073c1/desolation-sound-residence-kitchen-through-the-open-glass-wall-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6aeca8b4-bf06-431c-8b6b-b55f4e9073c1/desolation-sound-residence-kitchen-through-the-open-glass-wall-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Clerestory light on the floor. Kitchen, great room and terrace read as one volume.</span></div>
+</div>
+
+<!-- JOHNSTONE ROAD — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/johnstone-road/">Johnstone Road — Madeira Park</a></div>
+    <h2>Twin Gables <em>at the Water's Edge</em></h2>
+    <p>Grey stained cedar, raw concrete and black steel, stepping down to the water.</p>
+    <div class="sw-cr">Architect: Keck Architecture + Design &nbsp;|&nbsp; Builder: Summerhill Fine Homes</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg" alt="Johnstone Road twin gable elevation at blue hour" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1875" decoding="async"><span class="sw-fc">Blue hour from the bank. Both gables lit, the planting still holding the last of the light.</span></div>
+</div>
+
+<!-- JOHNSTONE ROAD — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg" alt="Johnstone Road blank gable over a concrete plinth with tree shadow" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00076997-574e-410e-808d-07b7e41d6098/johnstone-road-madeira-park-garage-gable-cedar-siding-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">A blank gable and its plinth. The tree does the drawing.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/25ed4333-98a5-434f-ad6e-c1f745165e79/johnstone-road-madeira-park-living-space-open-to-the-bay-architectural-photographer-matt-anthony.jpg" alt="Johnstone Road living space open to the deck and the water" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/25ed4333-98a5-434f-ad6e-c1f745165e79/johnstone-road-madeira-park-living-space-open-to-the-bay-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/25ed4333-98a5-434f-ad6e-c1f745165e79/johnstone-road-madeira-park-living-space-open-to-the-bay-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/25ed4333-98a5-434f-ad6e-c1f745165e79/johnstone-road-madeira-park-living-space-open-to-the-bay-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/25ed4333-98a5-434f-ad6e-c1f745165e79/johnstone-road-madeira-park-living-space-open-to-the-bay-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/25ed4333-98a5-434f-ad6e-c1f745165e79/johnstone-road-madeira-park-living-space-open-to-the-bay-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Doors pulled back. Deck, water, a sailboat at anchor; the room becomes a frame.</span></div>
+</div>
+
+<!-- JOHNSTONE ROAD — single -->
+<div class="sw-s sw-s-single">
+  <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg" alt="Johnstone Road courtyard at dusk with the rain chain" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Dusk in the courtyard. Rain chain in the foreground, the sunset seen straight through the glazed room.</span>
+</div>
+
+<!-- OLES COVE — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/oles-cove/">Oles Cove — Halfmoon Bay</a></div>
+    <h2>A Black Box <em>on the Bluff</em></h2>
+    <p>Corrugated black cladding lifted on posts above the slope, white inside and open to the west.</p>
+    <div class="sw-cr">Builder: Summerhill Fine Homes &nbsp;|&nbsp; Design: Second Nature Designs</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg" alt="Oles Cove west elevation in golden light" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Golden hour on the west face. Cedar, glass and the posts that carry the house over the slope.</span></div>
+</div>
+
+<!-- OLES COVE — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg" alt="Oles Cove living room with raking sun" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b9f9cedf-1f54-4217-8b42-bce68a19878f/oles-cove-halfmoon-bay-reading-by-the-wood-stove-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1875" decoding="async"><span class="sw-fc">Raking sun cutting the white room into planes. Stove flue, clerestory, a chair by the window.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg" alt="The circular skylight well from below, its white curve cut against blue sky" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f1f7a654-731b-4ba2-beed-a6285e3bfb1f/oles-cove-halfmoon-bay-circular-skylight-well-detail-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1875" decoding="async"><span class="sw-fc">The entry oculus reduced to two circles, plaster and sky.</span></div>
+</div>
+
+<!-- PULLQUOTE -->
+<div class="sw-s sw-s-q">
+  <p>I don't photograph buildings. I photograph the decisions that shaped them — why this cladding, why that angle on the slope, why the window meets the horizon exactly where it does. The architect spent months getting it right. The photography should make that obvious in a single frame.</p>
+</div>
+
+<!-- ALPINE -->
+<div class="sw-s sw-s-ch">
+  <div class="sw-s-ch-lab">Alpine</div>
+  <h2>Dark Timber, <em>Shifting Light</em></h2>
+</div>
+
+<!-- WARBLER — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/warbler-whistler/">Warbler Residence — Whistler</a></div>
+    <h2>Dark Timber, <em>Winter Light</em></h2>
+    <p>Photographed across one winter day, from morning light through dusk.</p>
+    <div class="sw-cr">Architect: Shelter Residential Design &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop &nbsp;|&nbsp; Windows: The Window Merchant</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg" alt="Covered walkway on slim steel columns under a pale wood soffit, a concrete path through snow" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Winter entry. Cedar soffit framing the mountains, concrete path cutting through snow.</span></div>
+</div>
+
+<!-- WARBLER — bleed -->
+<div class="sw-s sw-s-bleed">
+  <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg" alt="The house along the rock outcrop, dark cladding under a pale wood soffit with snow below" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async">
+</div>
+
+<!-- WARBLER — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/02772fb5-a65d-4ec6-82e1-4774876c7693/warbler-whistler-architectural-photography-matt-anthony-.jpg-20.jpg" alt="Living room with a low sectional, sliding glass to the terrace and the ridge beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/02772fb5-a65d-4ec6-82e1-4774876c7693/warbler-whistler-architectural-photography-matt-anthony-.jpg-20.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/02772fb5-a65d-4ec6-82e1-4774876c7693/warbler-whistler-architectural-photography-matt-anthony-.jpg-20.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/02772fb5-a65d-4ec6-82e1-4774876c7693/warbler-whistler-architectural-photography-matt-anthony-.jpg-20.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/02772fb5-a65d-4ec6-82e1-4774876c7693/warbler-whistler-architectural-photography-matt-anthony-.jpg-20.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/02772fb5-a65d-4ec6-82e1-4774876c7693/warbler-whistler-architectural-photography-matt-anthony-.jpg-20.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">The telescope says everything. The mountains are the furniture.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c938566f-ee96-40da-aec4-d51ac9fa7e09/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg" alt="Dark stained horizontal siding in raking light, branch shadows across the boards" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c938566f-ee96-40da-aec4-d51ac9fa7e09/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c938566f-ee96-40da-aec4-d51ac9fa7e09/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c938566f-ee96-40da-aec4-d51ac9fa7e09/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c938566f-ee96-40da-aec4-d51ac9fa7e09/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c938566f-ee96-40da-aec4-d51ac9fa7e09/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Window light raking across charred grain. Tree shadows on timber. Pure texture.</span></div>
+</div>
+
+<!-- FITZSIMMONS — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/fitzsimmons-whistler/">Fitzsimmons Residence — Whistler</a></div>
+    <h2>Angular Form, <em>Material Contrast</em></h2>
+    <p>The contrast between dark cladding and white ground is at its most graphic in winter.</p>
+    <div class="sw-cr">Architect: Shelter Residential Design &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg" alt="Street elevation above a cleared drive, dark cladding below and wood siding above, mountains beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Fresh snow compressing the tonal range. Standing seam and cedar sharp against white.</span></div>
+</div>
+
+<!-- FITZSIMMONS — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg" alt="Branch shadows across dark vertical cladding, a slim handle marking a flush door" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ab8c0b1a-742e-4485-9d50-a19c698594bf/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-4.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="2250" decoding="async"><span class="sw-fc">Tree shadow on standing seam ribs. This frame is about the light, not the building.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg" alt="Bedroom beside a window onto snowy trees, the exercise room through an opening beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3483950e-abb8-4248-a445-b00c83b5d7f1/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-16.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Two rooms, one view. The river in winter through black-framed glass.</span></div>
+</div>
+
+<!-- SUGARLOAF — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/sugarloaf-residence/">Sugarloaf Residence — Pemberton</a></div>
+    <h2>Framing <em>Mount Currie</em></h2>
+    <p>At twilight, interior light turns the glazing into a series of lanterns against the mountain.</p>
+    <div class="sw-cr">Architect: STARK Architecture &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop &nbsp;|&nbsp; Millwork: Blueprint</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg" alt="The house low on a snowy slope, a long dark elevation with snow covered peaks beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Golden hour on Mount Currie. The house in shadow, the peak in direct light. Timing.</span></div>
+</div>
+
+<!-- SUGARLOAF — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aaf09b1e-0c8f-4362-bb6b-d1078581c875/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg" alt="Kitchen island in dark veined stone above wood fronts, four stools, pale cabinetry behind" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aaf09b1e-0c8f-4362-bb6b-d1078581c875/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aaf09b1e-0c8f-4362-bb6b-d1078581c875/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aaf09b1e-0c8f-4362-bb6b-d1078581c875/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aaf09b1e-0c8f-4362-bb6b-d1078581c875/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aaf09b1e-0c8f-4362-bb6b-d1078581c875/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-2.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">The painting holds its own against Mount Currie. Dark stone, warm oak, deliberate colour.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edac2720-7248-47f1-be25-3a5ffaa91a3d/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-10.jpg" alt="Hallway in low sun, a black dog walking toward the camera, dining room and pendant beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edac2720-7248-47f1-be25-3a5ffaa91a3d/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-10.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edac2720-7248-47f1-be25-3a5ffaa91a3d/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-10.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edac2720-7248-47f1-be25-3a5ffaa91a3d/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-10.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edac2720-7248-47f1-be25-3a5ffaa91a3d/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-10.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edac2720-7248-47f1-be25-3a5ffaa91a3d/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-10.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="2250" decoding="async"><span class="sw-fc">The dog refused to leave the frame. Sometimes the unplanned shot is the honest one.</span></div>
+</div>
+
+<!-- LAKESIDE -->
+<div class="sw-s sw-s-ch">
+  <div class="sw-s-ch-lab">Lakeside</div>
+  <h2>Stone, Timber, <em>and Still Water</em></h2>
+</div>
+
+<!-- COLEMAN RESIDENCE — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/coleman/">Coleman Residence — Invermere</a></div>
+    <h2>Stone Gable, <em>Dark Timber</em></h2>
+    <p>A stone gable set against a dark timber wing, the lake showing up in the glass.</p>
+    <div class="sw-cr">Architect: Sitelines Architecture</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg" alt="Coleman Residence entry portico with a cedar ceiling" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1200" decoding="async"><span class="sw-fc">Head on at the entry. Cedar ceiling, black cladding one side and stone the other, the view straight through the house.</span></div>
+</div>
+
+<!-- COLEMAN RESIDENCE — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg" alt="Coleman Residence charred cedar cladding reflecting the lake" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4c7b505f-0bdc-4f13-975b-509ecdfafab5/coleman-residence-invermere-wood-siding-window-lake-reflection-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="2000" decoding="async"><span class="sw-fc">Shou sugi ban up close. The lake and the range in the glass beside it.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8cad4e69-03a9-403c-81ba-8f6a2a7bfb59/coleman-residence-invermere-stone-gable-sliding-glass-door-architectural-photographer-matt-anthony.jpg" alt="Coleman Residence stone gable with a weeping cedar" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8cad4e69-03a9-403c-81ba-8f6a2a7bfb59/coleman-residence-invermere-stone-gable-sliding-glass-door-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8cad4e69-03a9-403c-81ba-8f6a2a7bfb59/coleman-residence-invermere-stone-gable-sliding-glass-door-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8cad4e69-03a9-403c-81ba-8f6a2a7bfb59/coleman-residence-invermere-stone-gable-sliding-glass-door-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8cad4e69-03a9-403c-81ba-8f6a2a7bfb59/coleman-residence-invermere-stone-gable-sliding-glass-door-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8cad4e69-03a9-403c-81ba-8f6a2a7bfb59/coleman-residence-invermere-stone-gable-sliding-glass-door-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">The stone gable as one volume. Weeping cedar and salvia for scale and colour.</span></div>
+</div>
+
+<!-- SCHMIDT RESIDENCE — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/schmit/">Schmidt Residence — Invermere</a></div>
+    <h2>Timber Posts, <em>Still Water</em></h2>
+    <p>Two storeys of glass under cedar soffits, the covered deck an outdoor room facing the lake.</p>
+    <div class="sw-cr">Architect: Sitelines Architecture</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg" alt="Schmidt Residence glass elevation at dusk over the lake" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Dusk. Lit soffits, timber posts, the lake and mountains behind the glass.</span></div>
+</div>
+
+<!-- SCHMIDT RESIDENCE — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg" alt="Schmidt Residence covered deck framing the lake" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">The covered deck as a room. Cedar ceiling and posts framing the range dead centre.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f079352-f958-4890-bb35-323d1396b078/schmidt-residence-invermere-lake-view-sitting-corner-architectural-photographer-matt-anthony.jpg" alt="Schmidt Residence living room under a cedar ceiling" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f079352-f958-4890-bb35-323d1396b078/schmidt-residence-invermere-lake-view-sitting-corner-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f079352-f958-4890-bb35-323d1396b078/schmidt-residence-invermere-lake-view-sitting-corner-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f079352-f958-4890-bb35-323d1396b078/schmidt-residence-invermere-lake-view-sitting-corner-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f079352-f958-4890-bb35-323d1396b078/schmidt-residence-invermere-lake-view-sitting-corner-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f079352-f958-4890-bb35-323d1396b078/schmidt-residence-invermere-lake-view-sitting-corner-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1159" decoding="async"><span class="sw-fc">Living room in daylight. The chandelier under cedar, floor to ceiling glass to the water.</span></div>
+</div>
+
+<!-- INTERIORS -->
+<div class="sw-s sw-s-ch">
+  <div class="sw-s-ch-lab">Interiors</div>
+  <h2>Timber, Stone, <em>and Warm Light</em></h2>
+</div>
+
+<!-- BALSAM WAY — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/balsam-way/">Balsam Way — Whistler</a></div>
+    <h2>A Classic Whistler Home, <em>Renewed</em></h2>
+    <p>The character of the original timber, feeling completely current.</p>
+    <div class="sw-cr">Builder: Tymac Construction &nbsp;|&nbsp; Interiors: LRD Studio</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg" alt="Entry door standing open onto the walk, a sheepskin over a basket beside a bench" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Whitewashed fir, soft light, sheepskin. The warmth starts before you cross the threshold.</span></div>
+</div>
+
+<!-- BALSAM WAY — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg" alt="Kitchen island and pale wood cabinetry, tall open shelving at the end of the run" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8baad882-d517-4bdd-98fd-09ad2530273d/LRD-2500px-7.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Zellige tile, blonde oak, black pendants. Colour without competition.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/93a486f5-3280-4e92-b5fe-34729e29a5f7/LRD-2500px-20.jpg" alt="Walk through closet of open shelves and drawers, a skylight above the run" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/93a486f5-3280-4e92-b5fe-34729e29a5f7/LRD-2500px-20.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/93a486f5-3280-4e92-b5fe-34729e29a5f7/LRD-2500px-20.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/93a486f5-3280-4e92-b5fe-34729e29a5f7/LRD-2500px-20.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/93a486f5-3280-4e92-b5fe-34729e29a5f7/LRD-2500px-20.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/93a486f5-3280-4e92-b5fe-34729e29a5f7/LRD-2500px-20.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="2250" decoding="async"><span class="sw-fc">Skylight centred perfectly. Natural light falling straight down the millwork. Quiet precision.</span></div>
+</div>
+
+<!-- FRASER VALLEY — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/fraser-valley-vista/">Fraser Valley Vista — Langley</a></div>
+    <h2>High <em>on the Escarpment</em></h2>
+    <p>Set high on an escarpment overlooking farmland and the coastal mountains.</p>
+    <div class="sw-cr">Architect: Sitelines Architecture</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg" alt="Walk in shower and a long wood vanity below the windows, the valley showing beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1429" decoding="async"><span class="sw-fc">Afternoon raking across herringbone marble. The Valley through the window, teal panelling anchoring the frame.</span></div>
+</div>
+
+<!-- FRASER VALLEY — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg" alt="Upper hall with panelled walls and window light across the floor, the stair descending at right" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1427" decoding="async"><span class="sw-fc">Transom light painting the wainscoting. Double-height entry, marble diamond floor. Shot at noon.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df5a6618-ad13-4096-b694-2f6414af5fc9/siteline-langley-22.jpg" alt="A dark bowl sink on a white counter against deep blue green panelling between two sconces" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df5a6618-ad13-4096-b694-2f6414af5fc9/siteline-langley-22.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df5a6618-ad13-4096-b694-2f6414af5fc9/siteline-langley-22.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df5a6618-ad13-4096-b694-2f6414af5fc9/siteline-langley-22.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df5a6618-ad13-4096-b694-2f6414af5fc9/siteline-langley-22.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df5a6618-ad13-4096-b694-2f6414af5fc9/siteline-langley-22.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1875" decoding="async"><span class="sw-fc">Afternoon sun catching brass and walnut. The faceted sink throwing light back at the panelling.</span></div>
+</div>
+
+<!-- SDA HQ — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/seventh-day-adventist-bc-headquarters/">SDA BC & Yukon Headquarters — Abbotsford</a></div>
+    <h2>Institutional Timber <em>and Glass</em></h2>
+    <p>Institutional design that feels warm without sacrificing rigour.</p>
+    <div class="sw-cr">Architect: Sitelines Architecture</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg" alt="Glass entrance doors under a deep overhang, young trees and benches across the paved plaza" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Street level. Columnar maples framing the entry. Civic scale that still feels human.</span></div>
+</div>
+
+<!-- SDA HQ — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/413989e5-ce9b-4afd-bfb7-d7a1416ef8ea/sitelines-SDA-web--5.jpg" alt="Stacked overhangs with wood soffits running along the glazing, a young tree and bench on the walk" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/413989e5-ce9b-4afd-bfb7-d7a1416ef8ea/sitelines-SDA-web--5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/413989e5-ce9b-4afd-bfb7-d7a1416ef8ea/sitelines-SDA-web--5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/413989e5-ce9b-4afd-bfb7-d7a1416ef8ea/sitelines-SDA-web--5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/413989e5-ce9b-4afd-bfb7-d7a1416ef8ea/sitelines-SDA-web--5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/413989e5-ce9b-4afd-bfb7-d7a1416ef8ea/sitelines-SDA-web--5.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1125" decoding="async"><span class="sw-fc">Cloud reflections on metal cladding. Almost abstract. The building as light study.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6c3ffde5-c26e-4796-8551-cfd303e2b0d8/sitelines-SDA-web--11.jpg" alt="Corridor lined with wood slats, a figure walking past graphics etched on the stair glazing" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6c3ffde5-c26e-4796-8551-cfd303e2b0d8/sitelines-SDA-web--11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6c3ffde5-c26e-4796-8551-cfd303e2b0d8/sitelines-SDA-web--11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6c3ffde5-c26e-4796-8551-cfd303e2b0d8/sitelines-SDA-web--11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6c3ffde5-c26e-4796-8551-cfd303e2b0d8/sitelines-SDA-web--11.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6c3ffde5-c26e-4796-8551-cfd303e2b0d8/sitelines-SDA-web--11.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1875" decoding="async"><span class="sw-fc">Motion blur through the timber corridor. One figure establishing the scale of everything above.</span></div>
+</div>
+
+<!-- BROWN'S — spread -->
+<div class="sw-s sw-s-sp rv">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/browns-residence/">Brown's Residence — Sunshine Coast</a></div>
+    <h2>Open the Full Width <em>to the Water</em></h2>
+    <p>Flat coastal light, and the living room open end to end toward the shore.</p>
+    <div class="sw-cr">Builder: Summerhill Fine Homes</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg" alt="Living room with a full width slider open to the water, wood soffit beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Horizon line level with the floor plane. The Strait of Georgia as the fourth wall.</span></div>
+</div>
+
+<!-- BROWN'S — pair -->
+<div class="sw-s sw-s-pair">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f6d1495-5b03-4c34-8b78-7b3eaa479c17/browns-road-sunshine-coast-architectural-photographer-matt-anthony-10.jpg" alt="Covered walk on slim white columns under a wood soffit, planting along the concrete edge" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f6d1495-5b03-4c34-8b78-7b3eaa479c17/browns-road-sunshine-coast-architectural-photographer-matt-anthony-10.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f6d1495-5b03-4c34-8b78-7b3eaa479c17/browns-road-sunshine-coast-architectural-photographer-matt-anthony-10.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f6d1495-5b03-4c34-8b78-7b3eaa479c17/browns-road-sunshine-coast-architectural-photographer-matt-anthony-10.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f6d1495-5b03-4c34-8b78-7b3eaa479c17/browns-road-sunshine-coast-architectural-photographer-matt-anthony-10.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2f6d1495-5b03-4c34-8b78-7b3eaa479c17/browns-road-sunshine-coast-architectural-photographer-matt-anthony-10.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Thin steel columns, board-formed concrete, native plantings pushing in. Built to weather.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg" alt="Glazed corner room at dusk above the shore, a stove inside and the sea beyond" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/500155bc-8662-4c70-ab44-feae601fa91e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-16.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="2250" decoding="async"><span class="sw-fc">Dusk. Glass box glowing, steel silhouette, pink sky. Architecture and ocean on equal terms.</span></div>
+</div>
+
+<!-- GAMBIER — spread -->
+<div class="sw-s sw-s-sp">
+  <div class="sw-txt">
+    <div class="sw-lbl"><a href="/homepage-preview/gambier-island-residence/">Gambier Island Residence</a></div>
+    <h2>Accessed Only <em>by Water</em></h2>
+    <p>The structure follows the natural clearing rather than imposing one.</p>
+    <div class="sw-cr">Designer: Linwood Homes &nbsp;|&nbsp; Builder: Black Thumb Contracting</div>
+  </div>
+  <div class="sw-img"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg" alt="The wooded point from the air, the house small on the shore below a distant mountain" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1000" decoding="async"><span class="sw-fc">Aerial over Howe Sound. The house is a single line in the canopy. Everything arrived by water.</span></div>
+</div>
+
+<!-- GAMBIER — pair -->
+<div class="sw-s sw-s-pair rv">
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e13eccd9-ffa9-4d25-84ec-e6b54a06605b/linwood-gambier-web-26.jpg" alt="The house seen through tall trunks and low green understorey from the forest floor" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e13eccd9-ffa9-4d25-84ec-e6b54a06605b/linwood-gambier-web-26.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e13eccd9-ffa9-4d25-84ec-e6b54a06605b/linwood-gambier-web-26.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e13eccd9-ffa9-4d25-84ec-e6b54a06605b/linwood-gambier-web-26.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e13eccd9-ffa9-4d25-84ec-e6b54a06605b/linwood-gambier-web-26.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e13eccd9-ffa9-4d25-84ec-e6b54a06605b/linwood-gambier-web-26.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="844" decoding="async"><span class="sw-fc">The roofline appearing between old-growth trunks. You hear the ocean before you see the house.</span></div>
+  <div class="sw-pi"><img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/01893150-5d74-4b4b-8592-3d5613bb42c9/linwood-gambier-web-10.jpg" alt="Dining table set for a meal, the kitchen beyond, a person and a dog at the counter" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/01893150-5d74-4b4b-8592-3d5613bb42c9/linwood-gambier-web-10.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/01893150-5d74-4b4b-8592-3d5613bb42c9/linwood-gambier-web-10.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/01893150-5d74-4b4b-8592-3d5613bb42c9/linwood-gambier-web-10.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/01893150-5d74-4b4b-8592-3d5613bb42c9/linwood-gambier-web-10.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/01893150-5d74-4b4b-8592-3d5613bb42c9/linwood-gambier-web-10.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" width="1500" height="1875" decoding="async"><span class="sw-fc">Cedar ceiling, walnut table, forest in every window. The unposed moments tell the real story.</span></div>
+</div>
+
+<!-- GAMBIER — video -->
+<div class="sw-s sw-s-vid">
+  <video autoplay muted loop playsinline poster="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d80fa4cc-21d0-4281-900c-e6906eea5fae/linwood-gambier-web-36.jpg" data-src="https://mattanthonyphoto.github.io/matt-proposals/stark/video/linwood-gambier.mp4"><source src="https://mattanthonyphoto.github.io/matt-proposals/stark/video/linwood-gambier.mp4" type="video/mp4"></video>
+</div>
+
+<!-- CTA -->
+<div class="sw-s sw-s-cta">
+  <div class="sw-s-ch-lab">Get in Touch</div>
+  <h2>Have a Project <em>Coming Up?</em></h2>
+  <p>Based in Squamish, working across British Columbia. If you have a project worth documenting, I'd like to hear about it.</p>
+  <a href="https://www.mattanthonyphoto.com/discovery-call" class="sw-cta-btn">Book a Discovery Call</a>
+</div>
+
+<!-- FOOTER (lifted from homepage-minimal) -->
+<div class="hp-ft">
+  <div class="hp-ft-inner">
+
+    <div class="hp-ft-top">
+      <div class="hp-ft-brand">
+        <p class="hp-ft-mark">Matt Anthony Photography</p>
+        <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
+        <p class="hp-ft-areas">
+          <a href="https://www.mattanthonyphoto.com/squamish-architectural-photography">Squamish</a> &middot;
+          <a href="https://www.mattanthonyphoto.com/whistler-architectural-photography">Whistler</a> &middot;
+          <a href="https://www.mattanthonyphoto.com/pemberton-photography">Pemberton</a> &middot;
+          <a href="https://www.mattanthonyphoto.com/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
+          <a href="https://www.mattanthonyphoto.com/vancouver-architectural-photographer">Vancouver</a> &middot;
+          <a href="https://www.mattanthonyphoto.com/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
+          <a href="https://www.mattanthonyphoto.com/okanagan-architectural-photographer">Okanagan</a>
+        </p>
+      </div>
+      <nav class="hp-ft-nav" aria-label="Footer">
+        <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+        <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/bio/">About</a>
+        <a href="/homepage-preview/journal/">Journal</a>
+        <a href="/homepage-preview/faqs/">FAQs</a>
+        <a href="/homepage-preview/contact/">Contact</a>
+      </nav>
+    </div>
+
+    <div class="hp-ft-bottom">
+      <p class="hp-ft-meta">&copy; 2026 Matt Anthony Photography &middot; Squamish, BC &middot; All images &copy; Matt Anthony</p>
+      <div class="hp-ft-contact">
+        <a href="tel:6047659270">604.765.9270</a>
+        <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a>
+        <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="hp-ft-land">I acknowledge the privilege of living and working on the unceded territory of the Skwx&#775;wu&#769;7mesh (Squamish) Nation.</div>
+
+  </div>
+</div>
+
+<div class="sw-lb" id="swLb"><div class="sw-lb-close" id="swLbClose"></div><img id="swLbImg"></div>
+
+</div>
+
+<script>
+(function(){
+  var l=document.getElementById('swLoad');
+  if(l)setTimeout(function(){l.classList.add('off')},1800);
+
+  // Nav: transparent over the hero, paper once the hero has scrolled past. .sw is the
+  // scroll container, so listen there rather than on window.
+  var swEl=document.querySelector('.sw');
+  var nav=document.getElementById('hpNav');
+  var heroEl=document.querySelector('.sw-s-hero');
+  if(swEl&&nav){
+    /* The transparent treatment is applied here, not in the markup, so a failed
+       script leaves a solid readable nav rather than white text on paper. */
+    if(nav.hasAttribute('data-hp-over')&&heroEl) nav.classList.add('hp-nav-over');
+    function navCheck(){
+      var t=(heroEl?heroEl.offsetHeight:window.innerHeight)-nav.offsetHeight;
+      nav.classList.toggle('hp-scrolled',swEl.scrollTop>t);
+    }
+    // One class toggle per event is cheap enough to skip the rAF throttle; the snap
+    // container emits few scroll events, and this keeps the flip testable headless.
+    swEl.addEventListener('scroll',navCheck,{passive:true});
+    navCheck();
+  }
+
+  // Mobile — restructure DOM so every element is a direct snap child of .sw
+  if(window.innerWidth<=900){
+    var sw=document.querySelector('.sw');
+    var allSections=Array.from(sw.querySelectorAll('.sw-s'));
+    allSections.forEach(function(section){
+      // Spreads — pull out .sw-txt and .sw-img as separate slides
+      if(section.classList.contains('sw-s-sp')){
+        var txt=section.querySelector('.sw-txt');
+        var img=section.querySelector('.sw-img');
+        if(txt){
+          var titleSlide=document.createElement('div');
+          titleSlide.className='sw-s sw-mob-title';
+          titleSlide.appendChild(txt);
+          section.parentNode.insertBefore(titleSlide,section);
+        }
+        if(img){
+          var imgSlide=document.createElement('div');
+          imgSlide.className='sw-s sw-mob-img';
+          imgSlide.appendChild(img);
+          section.parentNode.insertBefore(imgSlide,section);
+        }
+        section.remove();
+      }
+      // Pairs/Trios — pull out each .sw-pi as its own slide
+      if(section.classList.contains('sw-s-pair')||section.classList.contains('sw-s-trio')){
+        var pis=Array.from(section.querySelectorAll('.sw-pi'));
+        pis.forEach(function(pi){
+          var piSlide=document.createElement('div');
+          piSlide.className='sw-s sw-mob-img';
+          piSlide.appendChild(pi);
+          section.parentNode.insertBefore(piSlide,section);
+        });
+        section.remove();
+      }
+    });
+  }
+
+
+  // Videos — play when visible
+  var vo=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      var v=en.target;
+      if(en.isIntersecting){
+        if(v.readyState===0&&v.dataset.src){v.querySelector('source').src=v.dataset.src+'?t='+Date.now();v.load()}
+        v.play().catch(function(){setTimeout(function(){v.play().catch(function(){})},500)});
+      }else{v.pause()}
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('video').forEach(function(v){vo.observe(v)});
+
+  // Cinematic entrance — fade elements in as sections appear
+  var entObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in-view')}
+      else{en.target.classList.remove('in-view')}
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.sw-s').forEach(function(s){entObs.observe(s)});
+  document.querySelectorAll('.sw-s-pair .sw-pi, .sw-s-trio .sw-pi').forEach(function(s){entObs.observe(s)});
+
+  // Lightbox
+  var lb=document.getElementById('swLb');
+  var lbImg=document.getElementById('swLbImg');
+  var lbClose=document.getElementById('swLbClose');
+
+  document.querySelectorAll('.sw-s-sp .sw-img img, .sw-s-pair .sw-pi img, .sw-s-trio .sw-pi img, .sw-s-single img, .sw-s-bleed img').forEach(function(img){
+    img.addEventListener('click',function(e){
+      e.stopPropagation();
+      lbImg.src=img.src;
+      lb.classList.add('open');
+    });
+  });
+
+  function closeLb(){lb.classList.remove('open')}
+  lb.addEventListener('click',closeLb);
+  lbClose.addEventListener('click',closeLb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+})();
+
+(function(){
+  /* About dropdown. Everything inside it is also in the footer, so if this
+     script never runs those pages stay reachable and the trigger is inert. */
+  var btn = document.getElementById('hpAboutBtn');
+  var menu = document.getElementById('hpAboutMenu');
+  if(!btn || !menu) return;
+  var group = btn.parentNode, hoverOK = false, shutTimer;
+  try { hoverOK = window.matchMedia('(hover:hover) and (pointer:fine)').matches; } catch(e){}
+
+  function open(){ clearTimeout(shutTimer); menu.hidden = false; btn.setAttribute('aria-expanded','true'); }
+  function shut(){ menu.hidden = true; btn.setAttribute('aria-expanded','false'); }
+  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
+
+  btn.addEventListener('click', function(e){ e.preventDefault(); isOpen() ? shut() : open(); });
+
+  if(hoverOK){
+    group.addEventListener('mouseenter', open);
+    group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && isOpen()){ shut(); btn.focus(); }
+  });
+  document.addEventListener('click', function(e){
+    if(isOpen() && !group.contains(e.target)) shut();
+  });
+  group.addEventListener('focusout', function(e){
+    if(isOpen() && !group.contains(e.relatedTarget)) shut();
+  });
+})();
+</script>
+
+</body>
+</html>
