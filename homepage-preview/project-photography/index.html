@@ -620,13 +620,25 @@
     return;
   }
   nav.classList.add('hp-nav-over');
+
+  /* A page may scroll its own container instead of the window: the portfolio deck is
+     a scroll-snap gallery, so window.pageYOffset stays 0 forever there and the nav
+     would sit transparent over every photograph, white text on pale sky. A page
+     declares its scroller with data-hp-scroller and the nav reads that instead.
+     Declarative on purpose: the page never patches the chrome, which _DESIGN-SYSTEM.md
+     forbids because it breaks re-rolling. */
+  var scroller = document.querySelector('[data-hp-scroller]');
+  function offset(){
+    return scroller ? scroller.scrollTop : window.pageYOffset;
+  }
   function check(){
-    nav.classList.toggle('hp-scrolled', window.pageYOffset > hero.offsetHeight - nav.offsetHeight);
+    nav.classList.toggle('hp-scrolled', offset() > hero.offsetHeight - nav.offsetHeight);
   }
   /* One class toggle per scroll event is cheap enough to skip a rAF throttle, and
      skipping it keeps the flip verifiable in a headless browser, where rAF does
      not tick and the nav would silently never flip in testing. */
   window.addEventListener('scroll', check, {passive:true});
+  if(scroller){ scroller.addEventListener('scroll', check, {passive:true}); }
   check();
 })();
 
