@@ -169,9 +169,12 @@
   .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
 }
 
-/* hero eyebrow tightens with the nav on the smallest screens */
+/* hero eyebrow tightens with the nav on the smallest screens.
+   inline-flex + tracking made this line ~450px, which held the whole
+   page open past a 390 viewport and sheared every block on the right. */
 @media (max-width:480px){
-  .hp-hero-content .hp-eyebrow{font-size:10px;letter-spacing:.14em}
+  .hp-hero-content .hp-eyebrow{font-size:10px;letter-spacing:.08em;
+    display:block!important;max-width:100%;white-space:normal}
   .hp-hero-content .hp-eyebrow::before{display:none}
 }
 
@@ -185,7 +188,7 @@
 .hp-hero-slides img:first-child{opacity:1}
 /* Order: Perch entry court / Salt Spring kitchen / Schmidt twilight / Oles Cove red door / Salt Spring
    pavilion at sunset. Matt's own banner files. Each adjacent pair contrasts, including the loop seam. */
-.hp-hero-slides img:nth-child(1){object-position:45% 50%;animation-delay:0s;animation-name:hpSlideFirst}
+.hp-hero-slides img:nth-child(1){object-position:22% 50%;animation-delay:0s;animation-name:hpSlideFirst}
 .hp-hero-slides img:nth-child(2){object-position:50% 50%;animation-delay:8s}
 .hp-hero-slides img:nth-child(3){object-position:30% 50%;animation-delay:16s}
 .hp-hero-slides img:nth-child(4){object-position:45% 100%;animation-delay:24s}
@@ -209,6 +212,9 @@
   background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
   transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
 .hp-hero-ghost:hover,.hp-hero-ghost:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
+@media (max-width:480px){
+  .hp-hero-ghost{padding:15px 22px}
+}
 
 /* ════════════ STATEMENT: the single prose moment ════════════ */
 .hp-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
@@ -227,28 +233,34 @@
   color:var(--ink)!important;margin:0}
 /* Flexbox, not grid: Squarespace's fluid-engine reset breaks grid-template-columns. */
 .hp-work-stack{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
-.hp-proj{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));min-width:280px}
+.hp-proj{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));min-width:0}
 .hp-proj-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
 .hp-proj-frame img{width:100%;height:100%;object-fit:cover}
 /* Name and place sit under the frame, always readable. No hover reveal, no zoom. */
 .hp-proj-over{display:flex!important;justify-content:space-between;align-items:baseline;
-  gap:12px 20px;flex-wrap:wrap;padding:13px 0 0}
+  gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
 .hp-proj-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:13px;line-height:1.4;color:var(--ink)!important;margin:0;
   transition:color .3s var(--ease)}
 .hp-proj:hover .hp-proj-name,.hp-proj:focus-visible .hp-proj-name{color:#816a3f!important}
 .hp-proj-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
+@media (max-width:640px){
+  .hp-proj{flex:1 1 100%}
+  .hp-proj-over{flex-direction:column;align-items:flex-start;gap:4px}
+  .hp-proj-loc{letter-spacing:.12em}
+}
 
 /* ════════════ QUIET PROOF STRIP ════════════ */
 .hp-proof{background:var(--paper)!important;padding:clamp(30px,3.2vw,44px) var(--gutter);
   border-top:1px solid var(--rule)}
 .hp-proof-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto;display:flex!important;flex-wrap:wrap;
   gap:18px 40px;justify-content:space-between}
-.hp-proof-item{flex:1 1 0;min-width:160px;display:flex!important;flex-direction:column;gap:6px;
-  color:var(--ink)!important;
-  transition:opacity .3s var(--ease)}
-a.hp-proof-item:hover strong,a.hp-proof-item:focus-visible strong{text-decoration:underline;text-underline-offset:4px}
+.hp-proof-item{flex:1 1 0;min-width:0;display:flex!important;flex-direction:column;gap:6px;
+  color:var(--ink)!important}
+@media (max-width:640px){
+  .hp-proof-inner{flex-direction:column;gap:18px}
+}
 .hp-proof-item strong{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)!important}
 .hp-proof-item span{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
@@ -370,7 +382,6 @@ a.hp-proof-item:hover strong,a.hp-proof-item:focus-visible strong{text-decoratio
       <h1 id="hp-hero-h">I photograph completed architecture.</h1>
       <div class="hp-hero-btns">
         <a class="hp-hero-ghost" href="/homepage-preview/projects-v2/">View all projects</a>
-        <a class="hp-hero-ghost" href="/homepage-preview/portfolio/">View the portfolio</a>
       </div>
     </div>
   </div>
@@ -395,18 +406,18 @@ a.hp-proof-item:hover strong,a.hp-proof-item:focus-visible strong{text-decoratio
 
     <div class="hp-work-stack">
 
-      <a class="hp-proj" href="/homepage-preview/salt-spring-island/">
+      <a class="hp-proj" href="/homepage-preview/desolation-sound/">
         <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Salt Spring Island residence, corrugated siding and red window frames" loading="lazy" decoding="async" width="1500" height="1125">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Desolation Sound residence at blue hour, the lit wing under its low roof and a rising moon" loading="lazy" decoding="async" width="1500" height="1125">
         </div>
         <div class="hp-proj-over">
-          <p class="hp-proj-name">Salt Spring Island</p>
-          <p class="hp-proj-loc">Gulf Islands</p>
+          <p class="hp-proj-name">Desolation Sound</p>
+          <p class="hp-proj-loc">Sunshine Coast</p>
         </div>
       </a>
       <a class="hp-proj" href="/homepage-preview/oles-cove/">
         <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Oles Cove, Halfmoon Bay, the house on the rock bluff at sunset" loading="lazy" decoding="async" width="1500" height="1125">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae8528ea-cd8b-4cde-8bfd-851fdcfd55dd/oles-cove-halfmoon-bay-cedar-deck-red-umbrella-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae8528ea-cd8b-4cde-8bfd-851fdcfd55dd/oles-cove-halfmoon-bay-cedar-deck-red-umbrella-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae8528ea-cd8b-4cde-8bfd-851fdcfd55dd/oles-cove-halfmoon-bay-cedar-deck-red-umbrella-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae8528ea-cd8b-4cde-8bfd-851fdcfd55dd/oles-cove-halfmoon-bay-cedar-deck-red-umbrella-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ae8528ea-cd8b-4cde-8bfd-851fdcfd55dd/oles-cove-halfmoon-bay-cedar-deck-red-umbrella-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Oles Cove, Halfmoon Bay, dark corrugated cladding and a deck with a red umbrella above the ocean" loading="lazy" decoding="async" width="1500" height="1125">
         </div>
         <div class="hp-proj-over">
           <p class="hp-proj-name">Oles Cove</p>
@@ -415,7 +426,7 @@ a.hp-proof-item:hover strong,a.hp-proof-item:focus-visible strong{text-decoratio
       </a>
       <a class="hp-proj" href="/homepage-preview/the-perch-sunshine-coast/">
         <div class="hp-proj-frame">
-          <img src="https://mattanthonyphoto.github.io/media/banners/the-perch-022-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/the-perch-022-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/the-perch-022-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/the-perch-022-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/the-perch-022-2560.webp 2560w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The Perch, Sunshine Coast, living room with suspended fireplace and glass corner to the water" loading="lazy" decoding="async" width="1500" height="938">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The Perch, Sunshine Coast, living room with a lit suspended fireplace and glass to the water" loading="lazy" decoding="async" width="1500" height="1125">
         </div>
         <div class="hp-proj-over">
           <p class="hp-proj-name">The Perch</p>
@@ -424,25 +435,25 @@ a.hp-proof-item:hover strong,a.hp-proof-item:focus-visible strong{text-decoratio
       </a>
       <a class="hp-proj" href="/homepage-preview/schmit/">
         <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Schmidt Residence, Invermere, covered upper deck with lake view" loading="lazy" decoding="async" width="1500" height="1125">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Schmidt Residence, Invermere, covered deck facing the lake and mountains" loading="lazy" decoding="async" width="1500" height="1125">
         </div>
         <div class="hp-proj-over">
           <p class="hp-proj-name">Schmidt Residence</p>
           <p class="hp-proj-loc">Invermere</p>
         </div>
       </a>
-      <a class="hp-proj" href="/homepage-preview/desolation-sound/">
+      <a class="hp-proj" href="/homepage-preview/johnstone-road/">
         <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c0fe49a8-a501-4ce2-91c1-9bdb220a834f/desolation-sound-residence-kitchen-island-under-the-vaulted-ceiling-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Desolation Sound residence, kitchen island under the vaulted fir ceiling" loading="lazy" decoding="async" width="1500" height="1125">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c06689c4-ad9c-4ef7-8c5b-1607cfdfadfd/johnstone-road-madeira-park-entry-courtyard-black-rain-chain-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c06689c4-ad9c-4ef7-8c5b-1607cfdfadfd/johnstone-road-madeira-park-entry-courtyard-black-rain-chain-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c06689c4-ad9c-4ef7-8c5b-1607cfdfadfd/johnstone-road-madeira-park-entry-courtyard-black-rain-chain-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c06689c4-ad9c-4ef7-8c5b-1607cfdfadfd/johnstone-road-madeira-park-entry-courtyard-black-rain-chain-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c06689c4-ad9c-4ef7-8c5b-1607cfdfadfd/johnstone-road-madeira-park-entry-courtyard-black-rain-chain-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Johnstone Road, Madeira Park, entry court with a rain chain under a dark metal roof" loading="lazy" decoding="async" width="1500" height="1125">
         </div>
         <div class="hp-proj-over">
-          <p class="hp-proj-name">Desolation Sound</p>
-          <p class="hp-proj-loc">Sunshine Coast</p>
+          <p class="hp-proj-name">Johnstone Road</p>
+          <p class="hp-proj-loc">Madeira Park</p>
         </div>
       </a>
       <a class="hp-proj" href="/homepage-preview/warbler-whistler/">
         <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Warbler Residence, Whistler, at dusk: the roof plane and cedar soffit over lit glazing, snow and forested mountain behind" loading="lazy" decoding="async" width="1500" height="1000">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=1500w 1500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Warbler Residence, Whistler, a long dark volume under a pale wood soffit above the snow" loading="lazy" decoding="async" width="1500" height="1000">
         </div>
         <div class="hp-proj-over">
           <p class="hp-proj-name">Warbler Residence</p>
@@ -456,11 +467,11 @@ a.hp-proof-item:hover strong,a.hp-proof-item:focus-visible strong{text-decoratio
 </section>
 
 <!-- ════════════ QUIET PROOF STRIP ════════════ -->
-<section class="hp-proof" aria-label="What I do">
+<section class="hp-proof" aria-label="Practice">
   <div class="hp-proof-inner">
-    <a class="hp-proof-item" href="/homepage-preview/award-publication-imagery/"><strong>Award and publication imagery</strong><span>Made for submission</span></a>
-    <a class="hp-proof-item" href="/homepage-preview/projects-v2/"><strong>Architecture and interiors</strong><span>Stills and film</span></a>
-    <a class="hp-proof-item" href="/homepage-preview/bio/"><strong>Advanced Drone Pilot</strong><span>Transport Canada certified</span></a>
+    <p class="hp-proof-item"><strong>26 projects</strong><span>Across British Columbia</span></p>
+    <p class="hp-proof-item"><strong>Seven regions</strong><span>Sea to Sky to the Okanagan</span></p>
+    <p class="hp-proof-item"><strong>Advanced Drone Pilot</strong><span>Transport Canada certified</span></p>
   </div>
 </section>
 
