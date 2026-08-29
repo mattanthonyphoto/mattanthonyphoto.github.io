@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>portfolio</title>
+<title>Portfolio preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -150,12 +150,27 @@ body{background:#f6f4f0!important}
   font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.18;margin:0 0 16px}
 .sw-cta-h em{font-style:italic}
 .sw-cta-p{font-size:16px;line-height:1.7;color:var(--stone);max-width:460px;margin:0 auto 34px}
-.sw-btn{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ink)!important;
-  background:var(--gold);padding:17px 46px;display:inline-block;
-  transition:background-color .35s var(--ease)}
-.sw-btn:hover,.sw-btn:focus-visible{background:var(--gold-deep)}
-.sw-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* This close slide is the one CTA on the site that sits on PAPER, not on a dark
+   photograph, so the secondary inverts: a dark outline on paper rather than a
+   paper outline on ink. Measured on #f6f4f0: border --stone #6f6b61 is 4.84:1
+   and passes, the old #8a8579 was 3.35:1 and failed; the label --ink #1a1a18 is
+   15.87:1. Padding is 34px, not the 46px this button used to carry alone: two
+   buttons at 46px could not sit in one 320px slide. */
+.sw-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
+.sw-btn-primary,.sw-btn-secondary{
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;padding:16px 34px;display:inline-block;
+  transition:background-color .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease)}
+.sw-btn-primary{background:var(--gold)!important;border:1px solid var(--gold)!important;
+  color:var(--ink)!important}
+.sw-btn-primary:hover,.sw-btn-primary:focus-visible{background:var(--gold-deep)!important;
+  border-color:var(--gold-deep)!important;color:var(--ink)!important}
+.sw-btn-secondary{background:transparent!important;border:1px solid var(--stone)!important;
+  color:var(--ink)!important}
+.sw-btn-secondary:hover,.sw-btn-secondary:focus-visible{background:rgba(26,26,24,.06)!important;
+  border-color:var(--ink)!important;color:var(--ink)!important}
+.sw-btn-primary:focus-visible,.sw-btn-secondary:focus-visible{
+  outline:2px solid var(--ink);outline-offset:3px}
 
 /* ═══ SPREAD ═══ a text column beside one composition, the whole viewport.
    Flexbox, never grid: the fluid-engine reset above sets
@@ -275,6 +290,29 @@ body{background:#f6f4f0!important}
 @media (max-width:760px){ .sw{--sw-nav:64px} }
 /* Under 520 the nav wraps its wordmark onto its own row and grows. */
 @media (max-width:520px){ .sw{--sw-nav:100px} }
+/* The close slide is a snap target with overflow:hidden, so the pair stacks into
+   one column rather than wrapping into a taller centred row. */
+@media (max-width:600px){
+  .sw-cta-links{flex-direction:column;align-items:center}
+  .sw-btn-primary,.sw-btn-secondary{width:100%;max-width:320px;
+    padding-left:16px;padding-right:16px;text-align:center}
+}
+/* 320x480 is the shortest phone this deck still has to hold, and the close slide
+   is a snap target with overflow:hidden, so it gets no scroll of its own.
+   Measured there: 351px of room between the 100px nav clearance and the 6vh
+   floor, against a 419px block, so it overflowed its own slide by 34px and the
+   eyebrow sat under the fixed nav. It already overflowed by 10px with one
+   button. With this block the close measures 292px, sitting 137px below the top
+   of the slide and 51px above the bottom, and the deck fits at every width and
+   height measured from 320x480 to 1920x1080. */
+@media (max-width:600px) and (max-height:560px){
+  .sw-s-cta{padding-bottom:3vh}
+  .sw-s-cta .sw-eyebrow{margin-bottom:12px}
+  .sw-cta-h{font-size:1.45rem;margin-bottom:10px}
+  .sw-cta-p{font-size:14px;margin-bottom:20px}
+  .sw-cta-links{gap:10px}
+  .sw-btn-primary,.sw-btn-secondary{padding-top:12px;padding-bottom:12px}
+}
 @media (max-width:480px){
   .sw-h1{font-size:2.1rem}
   .sw-cap{font-size:12px}
@@ -459,6 +497,22 @@ body{background:#f6f4f0!important}
 .hp-nav-over:not(.hp-scrolled) .hp-nav-mark:focus-visible{color:#fff!important}
 
 /* Keeps content clear of the fixed nav on pages with no hero (script-inserted). */
+/* Contact is the nav's call to action, so it is a button rather than a link. Colours
+   carry !important because Squarespace's own link styles otherwise win, and the gold
+   is stated again inside the over-hero block: .hp-nav-over sets a pale colour on
+   .hp-nav-links>a, which would otherwise bleach the button's label to near-white on
+   gold. Gold on ink measures 8.6:1, and holds in both nav states. */
+.hp-nav-cta{background:#c9a96e!important;color:#1a1a18!important;
+  padding:9px 20px;border:1px solid #c9a96e!important;line-height:1;
+  transition:background-color .35s ease,border-color .35s ease}
+.hp-nav-cta:hover,.hp-nav-cta:focus-visible{
+  background:#b8975a!important;border-color:#b8975a!important;color:#1a1a18!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a.hp-nav-cta{color:#1a1a18!important}
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a.hp-nav-cta:hover,
+.hp-nav-over:not(.hp-scrolled) .hp-nav-links>a.hp-nav-cta:focus-visible{
+  color:#1a1a18!important}
+@media (max-width:700px){ .hp-nav-cta{padding:7px 14px} }
+
 .hp-nav-spacer{width:100%}
 
 @media (max-width:820px){
@@ -544,7 +598,7 @@ body{background:#f6f4f0!important}
       </div>
     </div>
     <a href="/homepage-preview/services/">Services</a>
-    <a href="/homepage-preview/contact/">Contact</a>
+    <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
   </div>
 </div>
 
@@ -770,7 +824,7 @@ body{background:#f6f4f0!important}
 </section>
 
 <!-- CLOSE -->
-<section class="sw-s sw-s-cta"><div class="sw-container"><p class="sw-eyebrow">Contact</p><h2 class="sw-cta-h">Have a Project <em>Coming Up?</em></h2><p class="sw-cta-p">Based in Squamish, working across British Columbia. If you have a project worth documenting, I'd like to hear about it.</p><a href="https://www.mattanthonyphoto.com/discovery-call" class="sw-btn">Book a Discovery Call</a></div></section>
+<section class="sw-s sw-s-cta"><div class="sw-container"><p class="sw-eyebrow">Contact</p><h2 class="sw-cta-h">Have a Project <em>Coming Up?</em></h2><p class="sw-cta-p">Based in Squamish, working across British Columbia. If you have a project worth documenting, I'd like to hear about it.</p><div class="sw-cta-links"><a href="https://www.mattanthonyphoto.com/discovery-call" class="sw-btn-primary">Book a Discovery Call</a><a href="/homepage-preview/contact/" class="sw-btn-secondary">Send a Message</a></div></div></section>
 
 <!-- The site footer is the last snap point, inside the scroller. -->
 <div class="sw-s-ft">
@@ -798,7 +852,8 @@ body{background:#f6f4f0!important}
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/journal/">Journal</a>
         <a href="/homepage-preview/faqs/">FAQs</a>
-        <a href="/homepage-preview/contact/">Contact</a>
+        <a href="https://www.mattanthonyphoto.com/discovery-call">Discovery Call</a>
+      <a href="/homepage-preview/contact/">Contact</a>
       </nav>
     </div>
 
