@@ -180,9 +180,8 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   Projects listing: 25 cards, 7 regions, on the sitewide design system.
-   One page width and one gutter, so the nav, hero line, filter bar, grid,
-   stats strip, close and footer share one left edge at every viewport.
+   Projects listing: three up, no filter. One page width and one gutter,
+   so the nav, hero line, hang, close and footer share one left edge.
    ═══════════════════════════════════════════════════════════════════════ */
 
 .proj-wrap{
@@ -204,11 +203,8 @@
 
 .proj-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
 
-/* ── The one small-caps style: 11px / .18em / uppercase / DM Sans 400.
-      Eyebrows, the filter label and buttons, the count, card meta,
-      the stats strip and the close button. No second tracking value. ── */
-.proj-eyebrow,.proj-filter-label,.proj-filter-btn,
-.proj-card-loc,.proj-hero-ghost,
+/* ── The one small-caps style: 11px / .18em / uppercase / DM Sans 400. ── */
+.proj-eyebrow,.proj-card-loc,.proj-hero-ghost,
 .proj-cta-btn-primary,.proj-cta-btn-secondary{
   font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;line-height:1.4}
@@ -240,25 +236,20 @@
   .proj-hero-btns{flex-direction:column;align-items:flex-start}
 }
 
-/* ════════════ FILTER BAR ════════════ */
-.proj-filter{background:var(--paper)!important;border-bottom:1px solid var(--rule);
-  padding:clamp(22px,2.4vw,32px) 0}
-.proj-filter-inner{display:flex!important;align-items:center;flex-wrap:wrap;gap:10px 16px}
-.proj-filter-label{color:var(--stone)!important;margin-right:4px}
-.proj-filter-btn{color:var(--stone)!important;background:transparent!important;
-  border:1px solid var(--rule)!important;padding:10px 18px;cursor:pointer;
-  transition:color .3s var(--ease),border-color .3s var(--ease),background-color .3s var(--ease)}
-.proj-filter-btn:hover{color:var(--ink)!important;border-color:var(--stone)!important}
-.proj-filter-btn.active{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important}
-.proj-filter-btn:focus-visible{color:var(--ink)!important;outline:2px solid var(--ink);outline-offset:3px}
-.proj-filter-btn.active:focus-visible{color:var(--paper)!important}
+/* ════════════ STATEMENT ════════════ */
+.proj-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.proj-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.proj-statement .proj-eyebrow{margin-bottom:32px}
+.proj-statement p:not(.proj-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
 
 /* ════════════ GRID ════════════
-   Flexbox, not CSS grid: Squarespace's fluid-engine reset kills grid columns. */
-.proj-grid-wrap{background:var(--paper)!important;padding:clamp(40px,4.5vw,64px) 0 var(--section)}
+   Flexbox, not CSS grid: Squarespace's fluid-engine reset kills grid columns.
+   Three across. Width, not flex-grow, so a last row of one or two does not stretch. */
+.proj-grid-wrap{background:var(--paper)!important;padding:0 0 var(--section)}
 .proj-grid{display:flex!important;flex-wrap:wrap!important;gap:var(--gap)}
-.proj-card{display:block;flex:1 1 calc(50% - var(--gap));max-width:calc(50% - 10px);min-width:0}
-.proj-card:only-child{flex:1 1 100%;max-width:none}
+.proj-card{display:block;flex:0 0 auto;min-width:0;width:calc((100% - var(--gap)*2) / 3)}
 .proj-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
 .proj-card-frame img{width:100%;height:100%;object-fit:cover}
 /* Name and place sit under the frame, always readable. No hover reveal, no zoom. */
@@ -317,8 +308,11 @@
 .proj-cta-or a:focus-visible{border-color:#f6f4f0}
 
 /* ════════════ RESPONSIVE ════════════ */
+@media (max-width:1024px){
+  .proj-card{width:calc((100% - var(--gap)) / 2)}
+}
 @media (max-width:640px){
-  .proj-card{flex:1 1 100%;max-width:none}
+  .proj-card{width:100%}
   .proj-card-meta{flex-direction:column;align-items:flex-start;gap:4px}
   .proj-card-loc{letter-spacing:.12em}
 }
@@ -364,20 +358,13 @@
   </div>
 </div>
 
-<!-- ════════════ FILTER BAR ════════════ -->
-<div class="proj-filter">
-  <div class="proj-container proj-filter-inner">
-    <span class="proj-filter-label">Filter</span>
-    <button type="button" class="proj-filter-btn active" data-filter="all" aria-pressed="true">All Projects</button>
-    <button type="button" class="proj-filter-btn" data-filter="whistler" aria-pressed="false">Whistler</button>
-    <button type="button" class="proj-filter-btn" data-filter="pemberton" aria-pressed="false">Pemberton</button>
-    <button type="button" class="proj-filter-btn" data-filter="sunshine-coast" aria-pressed="false">Sunshine Coast</button>
-    <button type="button" class="proj-filter-btn" data-filter="gulf-islands" aria-pressed="false">Gulf Islands</button>
-    <button type="button" class="proj-filter-btn" data-filter="vancouver" aria-pressed="false">Vancouver &amp; Fraser Valley</button>
-    <button type="button" class="proj-filter-btn" data-filter="okanagan" aria-pressed="false">Okanagan</button>
-    <button type="button" class="proj-filter-btn" data-filter="columbia-valley" aria-pressed="false">Columbia Valley</button>
+<!-- ════════════ STATEMENT ════════════ -->
+<section class="proj-statement">
+  <div class="proj-statement-inner">
+    <p class="proj-eyebrow">Work</p>
+    <p>I photograph completed architecture across British Columbia, from the coast to the mountains.</p>
   </div>
-</div>
+</section>
 
 <!-- ════════════ PROJECT GRID ════════════ -->
 <div class="proj-grid-wrap">
@@ -549,30 +536,6 @@
   });
   group.addEventListener('focusout', function(e){
     if(isOpen() && !group.contains(e.relatedTarget)) shut();
-  });
-})();
-</script>
-
-<script>
-(function(){
-  /* Region filter. Cards, slugs and region keys are fixed in the markup. */
-  var btns = document.querySelectorAll('.proj-filter-btn');
-  var cards = document.querySelectorAll('.proj-card');
-  var countEl = document.getElementById('proj-count-num');
-  btns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      btns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed','true');
-      var f = btn.getAttribute('data-filter');
-      var shown = 0;
-      cards.forEach(function(card){
-        var on = (f === 'all' || card.getAttribute('data-region') === f);
-        card.style.display = on ? '' : 'none';
-        if(on) shown++;
-      });
-      if(countEl) countEl.textContent = shown;
-    });
   });
 })();
 </script>
