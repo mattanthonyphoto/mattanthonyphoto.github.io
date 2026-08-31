@@ -20,7 +20,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Homepage — built on the GD Nielsen minimal layout.
    Five blocks: nav, hero, statement, selected work, close.
-   One sentence of prose in the whole page. The photographs do the rest.
+   Gallery hang: one wall text, then photographs with name and place.
    ═══════════════════════════════════════════════════════════════════════ */
 
 .hp-wrap{
@@ -179,27 +179,24 @@
   .hp-hero-content .hp-eyebrow::before{display:none}
 }
 
-/* ════════════ HERO: full-bleed, five frames on a 40s cycle, one quiet line ════════════ */
+/* ════════════ HERO: full-bleed, four frames on a 32s cycle ════════════ */
 .hp-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .hp-hero-slides{position:absolute;inset:0;z-index:0}
 .hp-hero-slides img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;opacity:0;animation:hpSlideIn 40s infinite ease-in-out}
+  object-fit:cover;opacity:0;animation:hpSlideIn 32s infinite ease-in-out}
 /* Failsafe: frame one is visible in plain CSS. If animation never runs, the hero still reads. */
 .hp-hero-slides img:first-child{opacity:1}
-/* Order: Salt Spring pavilion at sunset / Perch wood store / Schmidt covered deck /
-   Oles Cove red door / Salt Spring kitchen. The rock-garden elevation is the
-   selected-work lead, not a hero slide. */
+/* Order: Salt Spring pavilion at sunset / Perch wood store / Oles Cove red door /
+   Salt Spring kitchen. Four frames, eight seconds each. */
 .hp-hero-slides img:nth-child(1){object-position:62% 55%;animation-delay:0s;animation-name:hpSlideFirst}
 .hp-hero-slides img:nth-child(2){object-position:22% 50%;animation-delay:8s}
-.hp-hero-slides img:nth-child(3){object-position:30% 50%;animation-delay:16s}
-.hp-hero-slides img:nth-child(4){object-position:45% 100%;animation-delay:24s}
-.hp-hero-slides img:nth-child(5){object-position:50% 50%;animation-delay:32s;animation-name:hpSlideLast}
+.hp-hero-slides img:nth-child(3){object-position:45% 100%;animation-delay:16s}
+.hp-hero-slides img:nth-child(4){object-position:50% 50%;animation-delay:24s;animation-name:hpSlideLast}
 /* Incoming frame fades in over the frame beneath, which holds until covered, then drops unseen. */
-@keyframes hpSlideIn{0%{opacity:0}2.4%{opacity:1}22.4%{opacity:1}22.5%{opacity:0}100%{opacity:0}}
-/* Frame 1 is on from first paint and sits under frame 5, so frame 5 fades out over it at the wrap. */
-@keyframes hpSlideFirst{0%{opacity:1}22.4%{opacity:1}22.5%{opacity:0}100%{opacity:0}}
-@keyframes hpSlideLast{0%{opacity:0}2.4%{opacity:1}20%{opacity:1}22.4%{opacity:0}100%{opacity:0}}
+@keyframes hpSlideIn{0%{opacity:0}3%{opacity:1}25%{opacity:1}25.2%{opacity:0}100%{opacity:0}}
+@keyframes hpSlideFirst{0%{opacity:1}25%{opacity:1}25.2%{opacity:0}100%{opacity:0}}
+@keyframes hpSlideLast{0%{opacity:0}3%{opacity:1}22%{opacity:1}25%{opacity:0}100%{opacity:0}}
 /* Legibility for the nav and the one line, without flattening the photograph. */
 .hp-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
@@ -207,7 +204,11 @@
 .hp-hero-content .hp-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
 .hp-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;max-width:24ch;margin:0 0 clamp(28px,3vw,40px)}
+  color:#f6f4f0!important;max-width:24ch;margin:0 0 16px}
+.hp-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:36ch;
+  margin:0 0 clamp(28px,3vw,40px)}
 .hp-hero-btns{display:flex!important;flex-wrap:wrap;gap:12px 14px}
 .hp-hero-ghost{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
@@ -216,6 +217,7 @@
 .hp-hero-ghost:hover,.hp-hero-ghost:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
 @media (max-width:480px){
   .hp-hero-ghost{padding:15px 22px}
+  .hp-hero-btns{flex-direction:column;align-items:flex-start}
 }
 
 /* ════════════ STATEMENT: the single prose moment ════════════ */
@@ -223,11 +225,10 @@
 .hp-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
 .hp-statement .hp-eyebrow{margin-bottom:32px}
 .hp-statement p:not(.hp-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
-  color:var(--ink)!important;margin:0 auto 40px;max-width:25em;text-wrap:pretty}
-
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto 40px;max-width:28em;text-wrap:pretty}
 /* ════════════ SELECTED WORK ════════════ */
-.hp-work{padding:0 0 var(--section);background:var(--paper)!important}
+.hp-work{padding:0 0 var(--section);background:var(--paper)!important;scroll-margin-top:96px}
 .hp-work-head{display:flex!important;justify-content:space-between;align-items:baseline;
   flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
 .hp-work-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -359,7 +360,6 @@
   <div class="hp-hero-slides" aria-hidden="true">
     <img src="https://mattanthonyphoto.github.io/media/banners/salt-spring-39-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/salt-spring-39-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/salt-spring-39-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/salt-spring-39-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/salt-spring-39-2560.webp 2560w" sizes="(max-aspect-ratio: 8/5) 160vh, 100vw" alt="" fetchpriority="high" decoding="async" width="1500" height="938">
     <img src="https://mattanthonyphoto.github.io/media/banners/the-perch-001-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/the-perch-001-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/the-perch-001-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/the-perch-001-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/the-perch-001-2560.webp 2560w" sizes="(max-aspect-ratio: 8/5) 160vh, 100vw" alt="" fetchpriority="low" decoding="async" width="1500" height="938">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-aspect-ratio: 8/5) 160vh, 100vw" alt="" fetchpriority="low" decoding="async" width="1500" height="1125">
     <img src="https://mattanthonyphoto.github.io/media/banners/oles-cove-3-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/oles-cove-3-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/oles-cove-3-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/oles-cove-3-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/oles-cove-3-2560.webp 2560w" sizes="(max-aspect-ratio: 8/5) 160vh, 100vw" alt="" fetchpriority="low" decoding="async" width="1500" height="938">
     <img src="https://mattanthonyphoto.github.io/media/banners/salt-spring-30-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/salt-spring-30-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/salt-spring-30-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/salt-spring-30-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/salt-spring-30-2560.webp 2560w" sizes="(max-aspect-ratio: 8/5) 160vh, 100vw" alt="" fetchpriority="low" decoding="async" width="1500" height="938">
   </div>
@@ -367,27 +367,29 @@
     <div class="hp-container">
       <p class="hp-eyebrow">Architectural Photographer &middot; Squamish BC</p>
       <h1 id="hp-hero-h">I photograph completed architecture.</h1>
+      <p class="hp-hero-sub">Architecture and interiors across British Columbia, made for the people who designed and built them.</p>
       <div class="hp-hero-btns">
-        <a class="hp-hero-ghost" href="/homepage-preview/projects-v2/">View all projects</a>
+        <a class="hp-hero-ghost" href="#selected-work">Selected work</a>
+        <a class="hp-hero-ghost" href="/homepage-preview/projects-v2/">All projects</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════ STATEMENT — the only prose on the page ════════════ -->
+<!-- ════════════ STATEMENT — wall text before the hang ════════════ -->
 <section class="hp-statement">
   <div class="hp-statement-inner">
     <p class="hp-eyebrow">Approach</p>
-    <p>I document design intent for architects, builders and interior designers, then keep the frames that explain the building.</p>
+    <p>I work with architects, builders and interior designers across British Columbia. I shoot the finished building, then keep the frames that explain it.</p>
     <a class="hp-arrow-link" href="/homepage-preview/bio/">About &rarr;</a>
   </div>
 </section>
 
 <!-- ════════════ SELECTED WORK ════════════ -->
-<section class="hp-work" aria-labelledby="hp-work-h">
+<section class="hp-work" id="selected-work" aria-labelledby="hp-work-h">
   <div class="hp-container">
     <div class="hp-work-head">
-      <h2 id="hp-work-h">Selected projects</h2>
+      <h2 id="hp-work-h">Selected work</h2>
       <div class="hp-work-foot"><a class="hp-arrow-link" href="/homepage-preview/projects-v2/">All projects &rarr;</a></div>
     </div>
 
@@ -395,7 +397,7 @@
 
       <a class="hp-proj hp-proj-lead" href="/homepage-preview/salt-spring-island/">
         <div class="hp-proj-frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ef61e47-46cd-41e8-a6ee-fc8f3332d709/salt-spring-island-residence-front-elevation-over-the-rock-garden-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ef61e47-46cd-41e8-a6ee-fc8f3332d709/salt-spring-island-residence-front-elevation-over-the-rock-garden-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ef61e47-46cd-41e8-a6ee-fc8f3332d709/salt-spring-island-residence-front-elevation-over-the-rock-garden-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ef61e47-46cd-41e8-a6ee-fc8f3332d709/salt-spring-island-residence-front-elevation-over-the-rock-garden-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ef61e47-46cd-41e8-a6ee-fc8f3332d709/salt-spring-island-residence-front-elevation-over-the-rock-garden-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 1440px, 87vw" alt="Salt Spring Island residence, shed roofs stepping down across a planted rock garden toward the water" loading="lazy" decoding="async" width="1500" height="938">
+          <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00c97528-4107-426b-8894-af5c21390732/salt-spring-island-residence-dusk-house-among-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00c97528-4107-426b-8894-af5c21390732/salt-spring-island-residence-dusk-house-among-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00c97528-4107-426b-8894-af5c21390732/salt-spring-island-residence-dusk-house-among-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00c97528-4107-426b-8894-af5c21390732/salt-spring-island-residence-dusk-house-among-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/00c97528-4107-426b-8894-af5c21390732/salt-spring-island-residence-dusk-house-among-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 644px) 90vw, (min-width: 1600px) 1440px, 87vw" alt="Salt Spring Island residence at dusk among the firs, lit rooms behind the glass" loading="lazy" decoding="async" width="1500" height="1125">
         </div>
         <div class="hp-proj-over">
           <p class="hp-proj-name">Salt Spring Island</p>
