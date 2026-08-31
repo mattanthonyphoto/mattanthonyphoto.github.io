@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Services preview</title>
+<title>Services</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -41,9 +41,10 @@
    markup to sit transparently over it; the script then removes that treatment
    once you scroll past the hero.
 
-   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
-   Everything inside the About dropdown is ALSO in the footer, so if the script
-   never runs those pages are still reachable. ── */
+   Top level: Projects, About (dropdown), Services, Contact.
+   Portfolio lives in the footer with the rest of the work links, so the header
+   has one word for the work. Everything inside the About dropdown is ALSO in
+   the footer, so if the script never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -204,14 +205,13 @@
 .sv-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
 
 /* ════════════ HERO ════════════ */
-.sv-hero{position:relative;min-height:78vh;min-height:78svh;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:flex-end;
-  padding:clamp(140px,16vw,200px) 0 clamp(56px,7vw,96px)}
+.sv-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .sv-hero-bg{position:absolute;inset:0;z-index:0}
 .sv-hero-bg img{width:100%;height:100%;object-fit:cover}
 .sv-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.78) 0%,rgba(26,26,24,.50) 16%,rgba(26,26,24,.26) 34%,rgba(26,26,24,.34) 50%,rgba(26,26,24,.72) 76%,rgba(26,26,24,.88) 100%)}
-.sv-hero-content{position:relative;z-index:2;width:100%}
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
+.sv-hero-content{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
 .sv-hero-content .sv-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
 .sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
@@ -256,16 +256,6 @@
 .sv-section p:not(.sv-eyebrow):last-child{margin-bottom:0}
 .sv-head{margin-bottom:clamp(32px,4vw,56px)}
 .sv-head h2{margin-bottom:0}
-
-/* ════════════ STATS STRIP ════════════ */
-.sv-stats{background:var(--ink)!important;padding:clamp(48px,5.5vw,72px) 0}
-.sv-stats-inner{display:flex!important;flex-wrap:wrap;gap:32px clamp(32px,5vw,80px);
-  justify-content:space-between}
-.sv-stat{flex:0 1 auto;display:flex!important;flex-direction:column;gap:10px}
-.sv-stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.9rem,3vw,2.6rem);line-height:1;letter-spacing:0;color:var(--gold)!important}
-.sv-stat-lbl{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:rgba(246,244,240,.60)!important}
 
 /* ════════════ SERVICES · flexbox, never grid ════════════
    Name, description and link sit UNDER the frame, as on the homepage. Small
@@ -344,12 +334,8 @@
 .sv-cta-c .sv-eyebrow{color:rgba(246,244,240,.82)!important}
 .sv-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.12;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 clamp(20px,2.4vw,28px)}
-/* Not gold: over this photograph gold measured 2.8:1. The italic carries it. */
-.sv-cta h2 em{font-style:italic;color:#f6f4f0!important}
-.sv-cta-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:14px;
-  line-height:1.75;color:rgba(246,244,240,.82)!important;max-width:52ch;
-  margin:0 auto clamp(28px,3vw,40px)}
+  color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
+.sv-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
 .sv-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
 .sv-cta-btn,.sv-cta-btn-secondary{display:inline-block;
   font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
@@ -368,16 +354,14 @@
 .sv-cta a.sv-cta-btn:focus-visible,.sv-cta a.sv-cta-btn-secondary:focus-visible{
   outline:2px solid #f6f4f0;outline-offset:3px}
 @media (max-width:768px){.sv-cta-links{flex-direction:column;align-items:stretch}}
-.sv-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:12px;
-  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:16px 0 0}
-.sv-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45);
-  padding-bottom:1px}
-.sv-alt-cta a:hover,.sv-alt-cta a:focus-visible{border-color:#f6f4f0}
+.sv-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.sv-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.sv-cta-or a:focus-visible{border-color:#f6f4f0}
 
 /* The focus ring flips to paper on the ink-ground sections, so it is never the
    least readable state. */
-.sv-hero a:focus-visible,.sv-stats a:focus-visible,
-.sv-manifesto a:focus-visible,.sv-cta a:focus-visible{outline-color:#f6f4f0}
+.sv-hero a:focus-visible,.sv-manifesto a:focus-visible,.sv-cta a:focus-visible{outline-color:#f6f4f0}
 
 @media (prefers-reduced-motion:reduce){
   .sv-wrap *{animation:none!important;transition:none!important}
@@ -388,7 +372,6 @@
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/portfolio/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
@@ -450,16 +433,6 @@
     </div>
   </div>
 </section>
-
-<!-- ════════════ STATS STRIP ════════════ -->
-<div class="sv-stats">
-  <div class="sv-stats-inner sv-container">
-    <div class="sv-stat"><div class="sv-stat-num">26</div><div class="sv-stat-lbl">Projects</div></div>
-    
-    <div class="sv-stat"><div class="sv-stat-num">7</div><div class="sv-stat-lbl">Service Areas</div></div>
-    <div class="sv-stat"><div class="sv-stat-num">5</div><div class="sv-stat-lbl">Case Studies</div></div>
-  </div>
-</div>
 
 <!-- ════════════ SERVICES ════════════ -->
 <section class="sv-section">
@@ -570,19 +543,20 @@
 </section>
 
 <!-- ════════════ CLOSE ════════════ -->
-<div class="sv-cta">
+<div class="sv-cta" aria-labelledby="sv-cta-h">
   <div class="sv-cta-bg">
     <img src="https://mattanthonyphoto.github.io/media/banners/salt-spring-39-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/salt-spring-39-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/salt-spring-39-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/salt-spring-39-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/salt-spring-39-2560.webp 2560w" sizes="(max-aspect-ratio: 5/4) 112vh, 100vw" alt="Salt Spring Island, the green roof pavilion above the shoreline at sunset" width="1500" height="938" loading="lazy" decoding="async">
   </div>
   <div class="sv-cta-c">
-    <p class="sv-eyebrow">Ready to Start</p>
-    <h2>Tell me about your <em>project</em></h2>
-    <p class="sv-cta-sub">Every engagement starts with a conversation. No commitment, no pressure.</p>
-    <div class="sv-cta-links">
-      <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn">Book a Discovery Call</a>
-      <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+    <p class="sv-eyebrow">Contact</p>
+    <h2 id="sv-cta-h">Tell me about your project.</h2>
+    <div class="sv-cta-row">
+      <div class="sv-cta-links">
+        <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn">Book a Discovery Call</a>
+        <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+      </div>
+      <span class="sv-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
-    <p class="sv-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
 </div>
 
@@ -610,6 +584,7 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact preview</title>
+<title>Contact</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -57,9 +57,10 @@
    markup to sit transparently over it; the script then removes that treatment
    once you scroll past the hero.
 
-   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
-   Everything inside the About dropdown is ALSO in the footer, so if the script
-   never runs those pages are still reachable. ── */
+   Top level: Projects, About (dropdown), Services, Contact.
+   Portfolio lives in the footer with the rest of the work links, so the header
+   has one word for the work. Everything inside the About dropdown is ALSO in
+   the footer, so if the script never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -228,14 +229,13 @@
 .ct-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
 
 /* ════════════ HERO ════════════ */
-.ct-hero{position:relative;overflow:hidden;background:var(--ink)!important;
-  display:flex!important;align-items:flex-end;min-height:56vh;min-height:56svh;
-  padding:clamp(150px,17vw,230px) 0 clamp(48px,6vw,88px)}
+.ct-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .ct-hero-bg{position:absolute;inset:0;z-index:0}
 .ct-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
 .ct-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.82) 0%,rgba(26,26,24,.60) 20%,rgba(26,26,24,.70) 48%,rgba(26,26,24,.90) 100%)}
-.ct-hero-content{position:relative;z-index:2;width:100%}
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
+.ct-hero-content{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
 .ct-hero-content .ct-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
 .ct-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
@@ -348,17 +348,6 @@
 .ct-success p{font-size:13px;line-height:1.8;color:var(--stone)!important;margin:0 0 22px;max-width:46ch}
 .ct-success-note{font-size:11px;line-height:1.7;color:var(--stone)!important;margin:16px 0 0}
 
-/* ════════════ QUIET FACTS STRIP ════════════ */
-.ct-stats{background:var(--paper)!important;padding:clamp(30px,3.2vw,44px) var(--gutter);
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.ct-stats-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto;
-  display:flex!important;flex-wrap:wrap;gap:24px 40px;justify-content:space-between}
-.ct-stat{flex:0 1 auto;display:flex!important;flex-direction:column;gap:8px}
-.ct-stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.8rem,3vw,2.4rem);line-height:1;letter-spacing:0;color:var(--ink)!important}
-.ct-stat-label{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important}
-
 /* ════════════ CLOSE ════════════ */
 .ct-cta{position:relative;min-height:60vh;max-height:840px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
@@ -370,10 +359,8 @@
 .ct-cta-c .ct-eyebrow{color:rgba(246,244,240,.82)!important}
 .ct-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 18px}
-.ct-cta h2 em{font-style:italic}
-.ct-cta-sub{font-size:13px;line-height:1.8;color:rgba(246,244,240,.82)!important;
-  max-width:52ch;margin:0 auto clamp(28px,3vw,40px)}
+  color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
+.ct-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
 .ct-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
 .ct-cta-btn-primary,.ct-cta-btn-secondary{
   display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
@@ -395,9 +382,10 @@
 @media (max-width:400px){
   .ct-cta-btn-primary,.ct-cta-btn-secondary{padding-left:16px;padding-right:16px}
 }
-.ct-alt-cta{font-size:11px;letter-spacing:.02em;color:rgba(246,244,240,.82)!important;margin:20px 0 0}
-.ct-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-.ct-alt-cta a:hover,.ct-alt-cta a:focus-visible{border-color:#f6f4f0}
+.ct-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.ct-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.ct-cta-or a:focus-visible{border-color:#f6f4f0}
 
 /* ════════════ RESPONSIVE ════════════ */
 @media (max-width:900px){
@@ -405,11 +393,9 @@
   .ct-info,.ct-form-panel{flex:1 1 100%;width:100%}
 }
 @media (max-width:600px){
-  .ct-hero{min-height:0;padding:clamp(132px,30vw,180px) 0 clamp(40px,9vw,56px)}
   .ct-form-row{gap:0}
   .ct-form-row .ct-form-group{flex:1 1 100%}
   .ct-submit-btn{width:100%;text-align:center}
-  .ct-stat{flex:0 1 calc(50% - 20px)}
 }
 @media (prefers-reduced-motion:reduce){
   .ct-wrap *{animation:none!important;transition:none!important}
@@ -420,7 +406,6 @@
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/portfolio/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
@@ -522,24 +507,6 @@
   </div>
 </section>
 
-<!-- ════════════ QUIET FACTS STRIP ════════════ -->
-<section class="ct-stats" aria-label="At a glance">
-  <div class="ct-stats-inner">
-    <div class="ct-stat">
-      <div class="ct-stat-num">26</div>
-      <div class="ct-stat-label">Projects Documented</div>
-    </div>
-    <div class="ct-stat">
-      <div class="ct-stat-num">7</div>
-      <div class="ct-stat-label">Regions Served</div>
-    </div>
-    <div class="ct-stat">
-      <div class="ct-stat-num">4</div>
-      <div class="ct-stat-label">Services Offered</div>
-    </div>
-  </div>
-</section>
-
 <!-- ════════════ CLOSE ════════════ -->
 <section class="ct-cta" aria-labelledby="ct-cta-h">
   <div class="ct-cta-bg">
@@ -547,13 +514,14 @@
   </div>
   <div class="ct-cta-c">
     <p class="ct-eyebrow">Contact</p>
-    <h2 id="ct-cta-h">Two ways to <em>get started</em>.</h2>
-    <p class="ct-cta-sub">A 15-minute discovery call to discuss project scope, timeline, and creative goals. No pitch decks, just a conversation.</p>
-    <div class="ct-cta-links">
-      <a href="https://www.mattanthonyphoto.com/discovery-call" class="ct-cta-btn-primary">Book a Discovery Call</a>
-      <a href="#ct-form-panel" class="ct-cta-btn-secondary">Send a Message</a>
+    <h2 id="ct-cta-h">Tell me about your project.</h2>
+    <div class="ct-cta-row">
+      <div class="ct-cta-links">
+        <a href="https://www.mattanthonyphoto.com/discovery-call" class="ct-cta-btn-primary">Book a Discovery Call</a>
+        <a href="#ct-form-panel" class="ct-cta-btn-secondary">Send a Message</a>
+      </div>
+      <span class="ct-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
-    <p class="ct-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
 </section>
 
@@ -581,6 +549,7 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>

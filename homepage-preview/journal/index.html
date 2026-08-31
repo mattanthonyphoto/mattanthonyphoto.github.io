@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Journal preview</title>
+<title>Journal</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -43,9 +43,10 @@
    markup to sit transparently over it; the script then removes that treatment
    once you scroll past the hero.
 
-   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
-   Everything inside the About dropdown is ALSO in the footer, so if the script
-   never runs those pages are still reachable. ── */
+   Top level: Projects, About (dropdown), Services, Contact.
+   Portfolio lives in the footer with the rest of the work links, so the header
+   has one word for the work. Everything inside the About dropdown is ALSO in
+   the footer, so if the script never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -216,12 +217,12 @@
 .jn-wrap a:focus-visible,.jn-wrap button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
 /* ════ HERO ════ */
-.jn-hero{position:relative;min-height:clamp(360px,52vh,560px);overflow:hidden;
+.jn-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .jn-hero-bg{position:absolute;inset:0;z-index:0}
 .jn-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 72%}
 .jn-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.40) 0%,rgba(26,26,24,.58) 26%,rgba(26,26,24,.74) 58%,rgba(26,26,24,.90) 100%)}
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
 .jn-hero-content{position:relative;z-index:2;width:100%;padding:clamp(64px,9vw,120px) 0 clamp(44px,5vw,72px)}
 .jn-hero .jn-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
 .jn-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
@@ -315,11 +316,8 @@
 .jn-cta .jn-eyebrow{color:rgba(246,244,240,.82)!important}
 .jn-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 clamp(18px,2vw,26px)}
-.jn-cta h2 em{font-style:italic}
-.jn-cta-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
-  line-height:1.85;letter-spacing:.02em;color:rgba(246,244,240,.82)!important;
-  max-width:54ch;margin:0 auto clamp(28px,3vw,40px)}
+  color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
+.jn-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
 .jn-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
 .jn-cta-btn-primary,.jn-cta-btn-secondary{
   display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
@@ -341,12 +339,10 @@
 @media (max-width:400px){
   .jn-cta-btn-primary,.jn-cta-btn-secondary{padding-left:16px;padding-right:16px}
 }
-.jn-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:11px;
-  letter-spacing:.04em;color:rgba(246,244,240,.82)!important;margin:16px 0 0}
-/* .82 not .60 here: the surface is a photograph, not solid ink. Measured 5.5:1
-   against the brightest pixel behind this line; .60 measured 3.76:1 and failed. */
-.jn-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-.jn-alt-cta a:focus-visible{border-color:#f6f4f0}
+.jn-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.jn-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.jn-cta-or a:focus-visible{border-color:#f6f4f0}
 .jn-cta a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
 .jn-hero a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
 </style>
@@ -355,7 +351,6 @@
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/portfolio/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
@@ -637,14 +632,15 @@
 <section class="jn-cta" aria-labelledby="jn-cta-h">
   <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Shingled pavilion lit from within at blue hour with the moon over the water" width="1500" height="1125" loading="lazy" decoding="async">
   <div class="jn-cta-c">
-    <p class="jn-eyebrow">Let's Talk</p>
-    <h2 id="jn-cta-h">Want to discuss <em>your project</em>?</h2>
-    <p class="jn-cta-sub">Shoot planning, award submissions, visual strategy: I'm happy to talk it through.</p>
-    <div class="jn-cta-links">
-      <a href="https://www.mattanthonyphoto.com/discovery-call" class="jn-cta-btn-primary" target="_blank" rel="noopener">Book a Discovery Call</a>
-      <a href="/homepage-preview/contact/" class="jn-cta-btn-secondary">Send a Message</a>
+    <p class="jn-eyebrow">Contact</p>
+    <h2 id="jn-cta-h">Tell me about your project.</h2>
+    <div class="jn-cta-row">
+      <div class="jn-cta-links">
+        <a href="https://www.mattanthonyphoto.com/discovery-call" class="jn-cta-btn-primary">Book a Discovery Call</a>
+        <a href="/homepage-preview/contact/" class="jn-cta-btn-secondary">Send a Message</a>
+      </div>
+      <span class="jn-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
-    <p class="jn-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
 </section>
 
@@ -670,6 +666,7 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
