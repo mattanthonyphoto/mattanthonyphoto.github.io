@@ -19,7 +19,7 @@
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
    Homepage — built on the GD Nielsen minimal layout.
-   Five blocks: nav, hero, statement, selected work, close.
+   Five blocks: nav, hero, statement, selected projects, close.
    Gallery hang: one wall text, then photographs with name and place.
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -227,7 +227,7 @@
 .hp-statement p:not(.hp-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
   color:var(--ink)!important;margin:0 auto 40px;max-width:28em;text-wrap:pretty}
-/* ════════════ SELECTED WORK ════════════ */
+/* ════════════ SELECTED PROJECTS ════════════ */
 .hp-work{padding:0 0 var(--section);background:var(--paper)!important;scroll-margin-top:96px}
 .hp-work-head{display:flex!important;justify-content:space-between;align-items:baseline;
   flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
@@ -369,7 +369,7 @@
       <h1 id="hp-hero-h">I photograph completed architecture.</h1>
       <p class="hp-hero-sub">Architecture and interiors across British Columbia, made for the people who designed and built them.</p>
       <div class="hp-hero-btns">
-        <a class="hp-hero-ghost" href="#selected-work">Selected work</a>
+        <a class="hp-hero-ghost" href="/homepage-preview/portfolio/">Portfolio</a>
         <a class="hp-hero-ghost" href="/homepage-preview/projects-v2/">All projects</a>
       </div>
     </div>
@@ -385,11 +385,11 @@
   </div>
 </section>
 
-<!-- ════════════ SELECTED WORK ════════════ -->
-<section class="hp-work" id="selected-work" aria-labelledby="hp-work-h">
+<!-- ════════════ SELECTED PROJECTS ════════════ -->
+<section class="hp-work" id="selected-projects" aria-labelledby="hp-work-h">
   <div class="hp-container">
     <div class="hp-work-head">
-      <h2 id="hp-work-h">Selected work</h2>
+      <h2 id="hp-work-h">Selected projects</h2>
       <div class="hp-work-foot"><a class="hp-arrow-link" href="/homepage-preview/projects-v2/">All projects &rarr;</a></div>
     </div>
 
@@ -604,7 +604,7 @@
     1. Nav            fixed, transparent over the hero, paper once scrolled
     2. Hero           full-bleed, five frames on a 40s CSS cycle, eyebrow + one line + two buttons
     3. Statement      the single prose moment: one sentence, one arrow link
-    4. Selected work  six projects, two up, 3:2, name and place under each frame, one arrow link out
+    4. Selected projects  six projects, two up, 3:2, name and place under each frame, one arrow link out
     5. Proof strip    four short facts, all verifiable
     6. Close          one photograph, one question, one button
     7. Footer         rebuilt: one block, no headed columns
