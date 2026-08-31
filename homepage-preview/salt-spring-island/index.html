@@ -186,7 +186,9 @@
   .hp-hero-slides img:first-child{opacity:1}
 }
 /* ── PAGE ── */
-.tp-wrap{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7;
+.tp-wrap{
+  --section:clamp(88px,9vw,150px);
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7;
   color:var(--ink);background:var(--paper)!important;-webkit-font-smoothing:antialiased}
 .tp-wrap *{box-sizing:border-box}
 .tp-wrap img{max-width:100%;display:block}
@@ -214,32 +216,44 @@
 .tp-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
 .tp-hero .tp-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
 .tp-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;letter-spacing:0;
-  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;color:#f6f4f0!important;margin:0;max-width:20ch}
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;color:#f6f4f0!important;
+  margin:0 0 clamp(28px,3vw,40px);max-width:20ch}
+.tp-hero-btns{display:flex!important;flex-wrap:wrap;gap:12px 14px}
+.tp-hero-ghost{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
+.tp-hero-ghost:hover,.tp-hero-ghost:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
 @media (max-width:480px){
   .tp-hero .tp-eyebrow{font-size:10px;letter-spacing:.08em;
     display:block!important;max-width:100%;white-space:normal}
   .tp-hero .tp-eyebrow::before{display:none}
+  .tp-hero-ghost{padding:15px 22px}
+  .tp-hero-btns{flex-direction:column;align-items:flex-start}
 }
 
-/* ── CREDITS + the only prose on the page ── */
-.tp-head{padding:clamp(56px,6vw,96px) 0 clamp(40px,4.5vw,64px)}
+/* ── STATEMENT: the lede, same wall text as the homepage ── */
+.tp-statement{padding:var(--section) 0 0;text-align:center;background:var(--paper)!important}
+.tp-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.tp-lede{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;color:var(--ink)!important;
+  margin:0 auto;max-width:28em;text-wrap:pretty}
+
+/* ── CREDITS: quiet labels under the statement ── */
 .tp-credits{display:flex!important;flex-wrap:wrap;gap:18px clamp(28px,4vw,64px);
-  margin:0 0 clamp(28px,3vw,44px);padding:0;list-style:none}
+  margin:0;padding:clamp(40px,4.5vw,64px) 0;list-style:none}
 .tp-credits div{display:flex!important;flex-direction:column;gap:5px}
 .tp-credits dt{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
 .tp-credits dd{font-size:14px;color:var(--ink)!important;margin:0}
 .tp-credits a{border-bottom:1px solid var(--rule)}
 .tp-credits a:hover,.tp-credits a:focus-visible{border-color:var(--ink)}
-.tp-lede{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
-  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;color:var(--ink)!important;
-  margin:0 0 40px;max-width:28em;text-wrap:pretty}
 
 /* ── GALLERY: photographs at true proportions, on paper ── */
 .tp-gallery{padding:0 0 clamp(56px,6vw,96px);display:flex!important;flex-direction:column;
   gap:clamp(20px,2.4vw,36px)}
 .tp-fig{margin:0;background:var(--paper)}
-.tp-zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.tp-zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer}
 .tp-zoom:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .tp-fig img{width:100%;height:auto}
 .tp-pair{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px);align-items:flex-start}
@@ -354,17 +368,23 @@
     <div class="tp-hero-c"><div class="tp-container">
       <p class="tp-eyebrow">Gulf Islands, British Columbia</p>
       <h1 id="tp-h1">Salt Spring Island</h1>
+      <div class="tp-hero-btns">
+        <a class="tp-hero-ghost" href="/homepage-preview/portfolio/">Portfolio</a>
+        <a class="tp-hero-ghost" href="/homepage-preview/projects-v2/">All projects</a>
+      </div>
     </div></div>
   </section>
 
-  <div class="tp-container">
-    <section class="tp-head">
-      <dl class="tp-credits">
-
-      </dl>
+  <section class="tp-statement">
+    <div class="tp-statement-inner">
       <p class="tp-lede">A house on a wooded point on Salt Spring Island, with a pavilion and outbuildings under planted roofs above the shore. Photographed across one full day, from morning light through twilight.</p>
-      <a class="tp-arrow-link" href="/homepage-preview/projects-v2/">All projects &rarr;</a>
-    </section>
+    </div>
+  </section>
+
+  <div class="tp-container">
+    <dl class="tp-credits">
+
+    </dl>
 
     <section class="tp-gallery" aria-label="Photographs">
       <figure class="tp-fig tp-wide"><button type="button" class="tp-zoom" aria-label="Enlarge photograph"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1440px, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="Garage wing in dark ribbed cladding above a boulder retaining wall and gravel drive" width="1500" height="1125" loading="lazy" decoding="async" data-full="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg?format=2500w"></button></figure>
