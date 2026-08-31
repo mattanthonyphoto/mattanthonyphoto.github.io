@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Creative partner preview</title>
+<title>Creative Partner</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -44,9 +44,10 @@
    markup to sit transparently over it; the script then removes that treatment
    once you scroll past the hero.
 
-   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
-   Everything inside the About dropdown is ALSO in the footer, so if the script
-   never runs those pages are still reachable. ── */
+   Top level: Projects, About (dropdown), Services, Contact.
+   Portfolio lives in the footer with the rest of the work links, so the header
+   has one word for the work. Everything inside the About dropdown is ALSO in
+   the footer, so if the script never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -234,11 +235,11 @@
 .sv-on-ink h2,.sv-on-ink h3{color:#f6f4f0!important}
 
 /* ════════════ HERO ════════════ */
-.sv-hero{position:relative;min-height:88vh;overflow:hidden;
+.sv-hero{position:relative;min-height:100vh;min-height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .sv-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .sv-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.58) 12%,rgba(26,26,24,.24) 26%,rgba(26,26,24,.30) 40%,rgba(26,26,24,.62) 62%,rgba(26,26,24,.88) 100%)}
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
 .sv-hero-content{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
 .sv-hero-content .sv-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
 .sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
@@ -344,12 +345,11 @@
   justify-content:center;text-align:center}
 .sv-cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .sv-cta::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.62) 0%,rgba(26,26,24,.84) 100%)}
+  background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
 .sv-cta-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
-.sv-cta-c .sv-eyebrow{color:rgba(246,244,240,.82)!important}
-.sv-cta h2{color:#f6f4f0!important;margin-left:auto;margin-right:auto;max-width:none}
-.sv-cta-sub{font-size:1rem;font-weight:300;line-height:1.75;max-width:52ch;
-  color:rgba(246,244,240,.82)!important;margin:0 auto clamp(32px,3.4vw,44px)}
+.sv-cta-c .sv-eyebrow{color:rgba(246,244,240,.85)!important}
+.sv-cta h2{color:#f6f4f0!important;margin:0 auto clamp(28px,3vw,40px);max-width:none}
+.sv-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
 .sv-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
 .sv-cta-btn,.sv-cta-btn-secondary{display:inline-block;
   font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
@@ -367,10 +367,10 @@
 .sv-cta a.sv-cta-btn:focus-visible,.sv-cta a.sv-cta-btn-secondary:focus-visible{
   outline:2px solid #f6f4f0;outline-offset:3px}
 @media (max-width:768px){.sv-cta-links{flex-direction:column;align-items:stretch}}
-.sv-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
-  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
-.sv-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-.sv-alt-cta a:hover,.sv-alt-cta a:focus-visible{border-color:#f6f4f0}
+.sv-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.sv-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.sv-cta-or a:focus-visible{border-color:#f6f4f0}
 
 /* ════════════ OTHER SERVICES ════════════ */
 .sv-ot{background:var(--paper)!important;padding:clamp(56px,6vw,90px) 0 var(--section);
@@ -390,7 +390,6 @@
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/portfolio/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
@@ -595,14 +594,15 @@
 <section class="sv-cta sv-on-ink" aria-labelledby="sv-cta-h">
   <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="(orientation: portrait) 117vh, 100vw" alt="Sandy Hook, Sunshine Coast, the entry court under a cedar soffit, concrete steps and planting" loading="lazy" decoding="async" width="1500" height="1000">
   <div class="sv-cta-c">
-    <p class="sv-eyebrow">Ready to Partner</p>
-    <h2 id="sv-cta-h">Your creative department. <em>One call away.</em></h2>
-    <p class="sv-cta-sub">Start with a 3-month pilot. If it works, the retainer continues. If it doesn't, the content from those three months is already delivered.</p>
-    <div class="sv-cta-links">
-      <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
-      <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+    <p class="sv-eyebrow">Contact</p>
+    <h2 id="sv-cta-h">Tell me about your project.</h2>
+    <div class="sv-cta-row">
+      <div class="sv-cta-links">
+        <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn">Book a Discovery Call</a>
+        <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+      </div>
+      <span class="sv-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
-    <p class="sv-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
 </section>
 
@@ -653,6 +653,7 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>

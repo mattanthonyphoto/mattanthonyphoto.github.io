@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project photography preview</title>
+<title>Project Photography</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -41,9 +41,10 @@
    markup to sit transparently over it; the script then removes that treatment
    once you scroll past the hero.
 
-   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
-   Everything inside the About dropdown is ALSO in the footer, so if the script
-   never runs those pages are still reachable. ── */
+   Top level: Projects, About (dropdown), Services, Contact.
+   Portfolio lives in the footer with the rest of the work links, so the header
+   has one word for the work. Everything inside the About dropdown is ALSO in
+   the footer, so if the script never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -220,13 +221,13 @@
 .sv-link:hover,.sv-link:focus-visible{border-color:var(--ink)}
 
 /* ════════════ HERO ════════════ */
-.sv-hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;
+.sv-hero{position:relative;min-height:100vh;min-height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end;
   padding:0 0 clamp(56px,7vw,96px)}
 .sv-hero-bg{position:absolute;inset:0;z-index:0}
 .sv-hero-bg img{width:100%;height:100%;object-fit:cover}
 .sv-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.78) 0%,rgba(26,26,24,.55) 12%,rgba(26,26,24,.16) 30%,rgba(26,26,24,.20) 46%,rgba(26,26,24,.62) 74%,rgba(26,26,24,.88) 100%)}
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
 .sv-hero-content{position:relative;z-index:2;width:100%;
   max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
 .sv-hero .sv-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
@@ -343,16 +344,14 @@
 .sv-cta-bg{position:absolute;inset:0;z-index:0}
 .sv-cta-bg img{width:100%;height:100%;object-fit:cover}
 .sv-cta::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to bottom,rgba(26,26,24,.52) 0%,rgba(26,26,24,.80) 100%)}
+  background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
 .sv-cta-c{position:relative;z-index:2;
   padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
-.sv-cta .sv-eyebrow{color:rgba(246,244,240,.82)!important}
+.sv-cta .sv-eyebrow{color:rgba(246,244,240,.85)!important}
 .sv-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 clamp(20px,2.4vw,28px)}
-.sv-cta h2 em{font-style:italic;color:var(--gold)!important}
-.sv-cta-sub{font-size:1rem;line-height:1.7;color:rgba(246,244,240,.82)!important;
-  max-width:52ch;margin:0 auto clamp(32px,4vw,48px)}
+  color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
+.sv-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
 .sv-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
 .sv-cta-btn,.sv-cta-btn-secondary{display:inline-block;
   font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:11px;
@@ -371,10 +370,10 @@
 .sv-cta a.sv-cta-btn:focus-visible,.sv-cta a.sv-cta-btn-secondary:focus-visible{
   outline:2px solid #f6f4f0;outline-offset:3px}
 @media (max-width:768px){.sv-cta-links{flex-direction:column;align-items:stretch}}
-.sv-alt-cta{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
-  letter-spacing:.04em;color:rgba(246,244,240,.60)!important;margin:18px 0 0}
-.sv-alt-cta a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-.sv-alt-cta a:hover,.sv-alt-cta a:focus-visible{border-color:#f6f4f0}
+.sv-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.sv-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.sv-cta-or a:focus-visible{border-color:#f6f4f0}
 
 /* ════════════ RESPONSIVE ════════════ */
 @media (max-width:1024px){
@@ -403,7 +402,6 @@
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/portfolio/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
@@ -575,13 +573,14 @@
   </div>
   <div class="sv-cta-c">
     <p class="sv-eyebrow">Contact</p>
-    <h2>Tell me about <em>your project</em></h2>
-    <p class="sv-cta-sub">A short call to talk through the build, the timing and the scope.</p>
-    <div class="sv-cta-links">
-      <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
-      <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+    <h2>Tell me about your project.</h2>
+    <div class="sv-cta-row">
+      <div class="sv-cta-links">
+        <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-cta-btn">Book a Discovery Call</a>
+        <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+      </div>
+      <span class="sv-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
-    <p class="sv-alt-cta">Not ready to talk? <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">Get Pricing</a></p>
   </div>
 </section>
 
@@ -606,6 +605,7 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
@@ -757,9 +757,8 @@
        the SEO panel. JSON-LD Service schema kept.
 
   Register pass 2026-08-27:
-    9. .sv-alt-cta was 12px. The design system allows 13px and 11px on ink only, so it is
-       now 13px, matching build-team-content.html. services.html and creative-partner.html
-       are still 12px and are not mine to change.
+    9. Close matches the homepage: Contact, "Tell me about your project.", two buttons,
+       or email. No Get Pricing, no extra sub.
    10. The Service JSON-LD description said "Complete visual documentation of finished
        builds ..." while the hero said something else. It now mirrors the hero sentence.
    11. Cut, not rewritten: the channel list closing The Story, the "details that define

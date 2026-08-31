@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Award imagery preview</title>
+<title>Award Imagery</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -44,9 +44,10 @@
    markup to sit transparently over it; the script then removes that treatment
    once you scroll past the hero.
 
-   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
-   Everything inside the About dropdown is ALSO in the footer, so if the script
-   never runs those pages are still reachable. ── */
+   Top level: Projects, About (dropdown), Services, Contact.
+   Portfolio lives in the footer with the rest of the work links, so the header
+   has one word for the work. Everything inside the About dropdown is ALSO in
+   the footer, so if the script never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -234,13 +235,13 @@
   outline:2px solid currentColor;outline-offset:4px}
 
 /* ── HERO ── */
-.sv-ap-hero{position:relative;min-height:88vh;min-height:88svh;overflow:hidden;
+.sv-ap-hero{position:relative;min-height:100vh;min-height:100svh;min-height:560px;overflow:hidden;
   display:flex!important;align-items:flex-end;background:var(--ink)!important;
   padding-top:clamp(140px,20vh,220px);padding-bottom:clamp(56px,7vw,96px)}
 .sv-ap-hero-bg{position:absolute;inset:0;z-index:0}
 .sv-ap-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .sv-ap-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.58) 12%,rgba(26,26,24,.22) 28%,rgba(26,26,24,.50) 54%,rgba(26,26,24,.88) 100%)}
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
 .sv-ap-hero-content{position:relative;z-index:2;width:100%;max-width:900px}
 .sv-ap-hero-label{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
 .sv-ap-hero h1{font-weight:300;font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;
@@ -415,11 +416,13 @@
   display:flex!important;flex-direction:column;align-items:center;
   padding-top:clamp(96px,11vw,160px);padding-bottom:clamp(96px,11vw,160px)}
 .sv-ap-cta-c{max-width:760px}
-.sv-ap-cta-eyebrow{color:rgba(246,244,240,.82)!important;margin:0 0 26px}
-.sv-ap-cta h2{color:#f6f4f0!important}
-.sv-ap-cta h2 em{color:var(--gold)}
-.sv-ap-cta-sub{font-size:1rem;line-height:1.8;max-width:46ch;
-  color:rgba(246,244,240,.82)!important;margin:0 auto clamp(32px,4vw,44px)}
+.sv-ap-cta-eyebrow{color:rgba(246,244,240,.85)!important;margin:0 0 26px}
+.sv-ap-cta h2{color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
+.sv-ap-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
+.sv-ap-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.sv-ap-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+.sv-ap-cta-or a:focus-visible{border-color:#f6f4f0}
 
 /* ── OTHER SERVICES ── */
 .sv-ap-ot{background:var(--paper)!important;border-top:1px solid var(--rule);
@@ -435,7 +438,7 @@
 
 /* ── SMALL SCREENS ── */
 @media (max-width:768px){
-  .sv-ap-hero{min-height:76vh;padding-top:clamp(120px,22vh,180px)}
+  .sv-ap-hero{padding-top:clamp(120px,22vh,180px)}
   .sv-ap-masonry{column-count:1}
   .sv-ap-meta{gap:22px 32px}
 }
@@ -455,7 +458,6 @@
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/portfolio/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
@@ -767,12 +769,14 @@
 <!-- ═══ CTA ═══ -->
 <section class="sv-ap-cta">
   <div class="sv-ap-cta-c">
-    <p class="sv-ap-cta-eyebrow">Get Started</p>
-    <h2>Your best project is <em>waiting</em></h2>
-    <p class="sv-ap-cta-sub">A short call to identify which projects to submit and map the timeline.</p>
-    <div class="sv-ap-cta-links">
-      <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-ap-cta-btn" target="_blank" rel="noopener">Book a Discovery Call</a>
-      <a href="/homepage-preview/contact/" class="sv-ap-cta-btn-secondary">Send a Message</a>
+    <p class="sv-ap-cta-eyebrow">Contact</p>
+    <h2>Tell me about your project.</h2>
+    <div class="sv-ap-cta-row">
+      <div class="sv-ap-cta-links">
+        <a href="https://www.mattanthonyphoto.com/discovery-call" class="sv-ap-cta-btn">Book a Discovery Call</a>
+        <a href="/homepage-preview/contact/" class="sv-ap-cta-btn-secondary">Send a Message</a>
+      </div>
+      <span class="sv-ap-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
   </div>
 </section>
@@ -803,6 +807,7 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>

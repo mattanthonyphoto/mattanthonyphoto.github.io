@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Portfolio preview</title>
+<title>Portfolio</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -149,7 +149,6 @@ body{background:#f6f4f0!important}
 .sw-cta-h{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
   font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.18;margin:0 0 16px}
 .sw-cta-h em{font-style:italic}
-.sw-cta-p{font-size:16px;line-height:1.7;color:var(--stone);max-width:460px;margin:0 auto 34px}
 /* This close slide is the one CTA on the site that sits on PAPER, not on a dark
    photograph, so the secondary inverts: a dark outline on paper rather than a
    paper outline on ink. Measured on #f6f4f0: border --stone #6f6b61 is 4.84:1
@@ -171,6 +170,11 @@ body{background:#f6f4f0!important}
   border-color:var(--ink)!important;color:var(--ink)!important}
 .sw-btn-primary:focus-visible,.sw-btn-secondary:focus-visible{
   outline:2px solid var(--ink);outline-offset:3px}
+/* Paper close: stone + gold underline, not the ink-panel email line. */
+.sw-cta-or{display:block;margin-top:16px;font-family:'DM Sans',-apple-system,sans-serif;
+  font-size:12px;font-weight:300;letter-spacing:.04em;color:var(--stone)!important}
+.sw-cta-or a{color:var(--ink)!important;border-bottom:1px solid var(--gold)}
+.sw-cta-or a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
 /* ═══ SPREAD ═══ a text column beside one composition, the whole viewport.
    Flexbox, never grid: the fluid-engine reset above sets
@@ -309,7 +313,6 @@ body{background:#f6f4f0!important}
   .sw-s-cta{padding-bottom:3vh}
   .sw-s-cta .sw-eyebrow{margin-bottom:12px}
   .sw-cta-h{font-size:1.45rem;margin-bottom:10px}
-  .sw-cta-p{font-size:14px;margin-bottom:20px}
   .sw-cta-links{gap:10px}
   .sw-btn-primary,.sw-btn-secondary{padding-top:12px;padding-bottom:12px}
 }
@@ -447,9 +450,10 @@ body{background:#f6f4f0!important}
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Portfolio, Projects, About (dropdown), Services, Contact.
-   Everything inside the About dropdown is ALSO in the footer, so if the script
-   never runs those pages are still reachable. ── */
+   Top level: Projects, About (dropdown), Services, Contact.
+   Portfolio lives in the footer with the rest of the work links, so the header
+   has one word for the work. Everything inside the About dropdown is ALSO in
+   the footer, so if the script never runs those pages are still reachable. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -586,7 +590,6 @@ body{background:#f6f4f0!important}
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/portfolio/">Portfolio</a>
     <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
@@ -824,7 +827,7 @@ body{background:#f6f4f0!important}
 </section>
 
 <!-- CLOSE -->
-<section class="sw-s sw-s-cta"><div class="sw-container"><p class="sw-eyebrow">Contact</p><h2 class="sw-cta-h">Have a Project <em>Coming Up?</em></h2><p class="sw-cta-p">Based in Squamish, working across British Columbia. If you have a project worth documenting, I'd like to hear about it.</p><div class="sw-cta-links"><a href="https://www.mattanthonyphoto.com/discovery-call" class="sw-btn-primary">Book a Discovery Call</a><a href="/homepage-preview/contact/" class="sw-btn-secondary">Send a Message</a></div></div></section>
+<section class="sw-s sw-s-cta"><div class="sw-container"><p class="sw-eyebrow">Contact</p><h2 class="sw-cta-h">Tell me about your project.</h2><div class="sw-cta-links"><a href="https://www.mattanthonyphoto.com/discovery-call" class="sw-btn-primary">Book a Discovery Call</a><a href="/homepage-preview/contact/" class="sw-btn-secondary">Send a Message</a></div><span class="sw-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span></div></section>
 
 <!-- The site footer is the last snap point, inside the scroller. -->
 <div class="sw-s-ft">
@@ -847,6 +850,7 @@ body{background:#f6f4f0!important}
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
