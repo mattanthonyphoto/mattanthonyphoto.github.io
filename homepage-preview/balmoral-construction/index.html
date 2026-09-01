@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Balmoral Construction preview</title>
+<title>Balmoral case study preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -239,6 +239,38 @@
 .cs-card:hover .cs-card-name,.cs-card:focus-visible .cs-card-name{color:#816a3f!important}
 .cs-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
+.cs-browser{display:block;min-width:0;overflow:hidden;background:transparent!important;margin:0 0 clamp(20px,2.4vw,36px)}
+.cs-browser:last-child{margin-bottom:0}
+.cs-browser-bar{display:flex!important;align-items:center;gap:8px;padding:11px 16px;background:#2a2a28}
+.cs-browser-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.cs-browser-dot:nth-child(1){background:#ff5f57}
+.cs-browser-dot:nth-child(2){background:#ffbd2e}
+.cs-browser-dot:nth-child(3){background:#28c840}
+.cs-browser-url{flex:1 1 auto;min-width:0;background:#1a1a18;padding:6px 12px;
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.04em;color:rgba(246,244,240,.55)!important;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-browser-vp{height:min(520px,68vh);overflow:hidden;background:#1a1a18}
+.cs-browser-vp img{width:100%;height:auto;max-width:none;display:block;
+  animation:maSiteScroll 24s cubic-bezier(.45,0,.55,1) infinite}
+.cs-browser:hover .cs-card-name,.cs-browser:focus-visible .cs-card-name{color:#816a3f!important}
+@keyframes maSiteScroll{
+  0%,14%{transform:translateY(0)}
+  46%,58%{transform:translateY(calc(-100% + min(520px,68vh)))}
+  88%,100%{transform:translateY(0)}
+}
+@keyframes maSiteScrollMobile{
+  0%,14%{transform:translateY(0)}
+  46%,58%{transform:translateY(calc(-100% + 300px))}
+  88%,100%{transform:translateY(0)}
+}
+.cs-card-film{aspect-ratio:16/9}
+.cs-card-film video{width:100%;height:100%;object-fit:cover;display:block}
+.cs-play{position:absolute;inset:0;z-index:2;display:flex!important;align-items:center;
+  justify-content:center;background:transparent!important;border:0!important;padding:0;
+  cursor:pointer;color:#f6f4f0!important}
+.cs-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
+.cs-playing .cs-play{display:none!important}
 .cs-figure{padding:0 0 var(--section);background:var(--paper)!important}
 .cs-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
 .cs-steps{padding:0 0 var(--section);background:var(--paper)!important}
@@ -282,6 +314,8 @@
   letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
 .cs-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
 @media (max-width:768px){.cs-close-btns{flex-direction:column;align-items:stretch}}
+@media (max-width:768px){.cs-browser-vp{height:300px}.cs-browser-vp img{animation-name:maSiteScrollMobile}}
+@media (prefers-reduced-motion:reduce){.cs-browser-vp img{animation:none!important}}
 @media (max-width:640px){
   .cs-card,.cs-card-full{flex:1 1 100%;max-width:none}
   .cs-card-over{flex-direction:column;align-items:flex-start;gap:4px}
@@ -352,6 +386,26 @@
         </div>
       </a>
     </div>
+  </div>
+</section>
+<section class="cs-hang" aria-labelledby="cs-hang-h">
+  <div class="cs-container">
+    <div class="cs-hang-head">
+      <h2 id="cs-hang-h">The website</h2>
+    </div>
+      <a href="https://www.balmoralconstruction.com" class="cs-browser">
+        <div class="cs-browser-bar">
+          <span class="cs-browser-dot"></span>
+          <span class="cs-browser-dot"></span>
+          <span class="cs-browser-dot"></span>
+          <span class="cs-browser-url">balmoralconstruction.com</span>
+        </div>
+        <div class="cs-browser-vp"><img src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/93aadd7d-1feb-4c75-bf1e-25a901aa197f/www.balmoralconstruction.com_+%282%29+%281%29.png?content-type=image%2Fpng" alt="The Balmoral Construction website" width="1440" height="3600" loading="lazy" decoding="async"></div>
+        <div class="cs-card-over">
+          <p class="cs-card-name">balmoralconstruction.com</p>
+          <p class="cs-card-loc">Live site</p>
+        </div>
+      </a>
   </div>
 </section>
 <section class="cs-quote" aria-label="Client comment">

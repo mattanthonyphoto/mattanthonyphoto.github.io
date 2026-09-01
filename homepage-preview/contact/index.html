@@ -259,7 +259,9 @@
 .ct-body{background:var(--paper)!important;padding:0 0 var(--section)}
 /* The close CTA's secondary button is an in-page jump to this panel, so the
    fixed nav must not sit on top of it when the jump lands. */
-.ct-form-panel{max-width:760px;min-width:0;scroll-margin-top:clamp(96px,14vw,124px)}
+.ct-body .ct-container{display:flex!important;justify-content:center}
+.ct-form-panel{max-width:760px;width:100%;min-width:0;margin:0 auto;scroll-margin-top:clamp(96px,14vw,124px)}
+.ct-form-heading,.ct-form-sub{text-align:center}
 
 .ct-info-section{margin:0 0 clamp(40px,4.5vw,64px)}
 .ct-info-section:last-child{margin-bottom:0}
@@ -304,7 +306,7 @@
   font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.1;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 12px}
 .ct-form-sub{font-size:13px;line-height:1.7;color:var(--stone)!important;
-  margin:0 0 clamp(28px,3vw,40px);max-width:48ch}
+  margin:0 auto clamp(28px,3vw,40px);max-width:48ch}
 .ct-form-sub a{color:var(--ink)!important;border-bottom:1px solid var(--stone);
   transition:border-color .3s var(--ease)}
 .ct-form-sub a:hover,.ct-form-sub a:focus-visible{border-color:var(--ink)}
@@ -332,7 +334,8 @@
 .ct-form-group textarea:focus-visible{outline:2px solid #1a1a18!important;outline-offset:1px!important}
 .ct-form-group textarea{min-height:150px;resize:vertical}
 
-.ct-form-submit{margin-top:4px}
+.ct-form-submit{margin-top:4px;text-align:center}
+.ct-form-note,.ct-form-error{text-align:center}
 .ct-submit-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
   background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
@@ -346,14 +349,14 @@
 .ct-form-error a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
 
 /* ── Success state ── */
-.ct-success{display:none;padding:clamp(24px,3vw,40px) 0 0}
+.ct-success{display:none;padding:clamp(24px,3vw,40px) 0 0;text-align:center}
 .ct-success-icon{width:44px;height:44px;border:1px solid var(--gold);border-radius:50%;
-  display:flex!important;align-items:center;justify-content:center;margin:0 0 22px}
+  display:flex!important;align-items:center;justify-content:center;margin:0 auto 22px}
 .ct-success-icon svg{width:18px;height:18px;stroke:#1a1a18;fill:none;stroke-width:2}
 .ct-success h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.15;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 12px}
-.ct-success p{font-size:13px;line-height:1.8;color:var(--stone)!important;margin:0 0 22px;max-width:46ch}
+.ct-success p{font-size:13px;line-height:1.8;color:var(--stone)!important;margin:0 auto 22px;max-width:46ch}
 .ct-success-note{font-size:11px;line-height:1.7;color:var(--stone)!important;margin:16px 0 0}
 
 /* ════════════ CLOSE ════════════ */
@@ -437,7 +440,7 @@
   <div class="ct-hero-c"><div class="ct-container">
     <p class="ct-eyebrow">Contact</p>
     <h1 id="ct-hero-h">I start with a message.</h1>
-    <p class="ct-hero-sub">A finished project, progression through the build, a website, or an ongoing agreement.</p>
+    <p class="ct-hero-sub">A finished project, film, progression through the build, a website, or an ongoing agreement.</p>
   </div></div>
 </section>
 
