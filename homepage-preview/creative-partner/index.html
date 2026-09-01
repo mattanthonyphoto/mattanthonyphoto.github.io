@@ -9,18 +9,15 @@
 </head>
 <body>
 <style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
-
-<!-- preconnects + fonts; the LCP image carries fetchpriority="high" inline -->
 <link rel="preconnect" href="https://images.squarespace-cdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
-
 <style>
-/* ═══════════════════════════════════════════════════════════════════════
-   SHARED CHROME  ·  lifted verbatim from sitewide/_chrome.html.
-   Do not restyle. Change it there and re-roll it everywhere.
-   ═══════════════════════════════════════════════════════════════════════ */
+/* Tokens. The FULL palette is on :root, not just the gutter, because a page's own
+   rules use var(--ink) / var(--paper) too and an unresolved var() invalidates the
+   whole declaration silently (a CTA banner once rendered white on white this way).
+   Repeated on the chrome itself so it still works if pasted without :root. */
 :root{
   --gutter:clamp(24px,5vw,80px); --page:1600px;
   --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
@@ -39,10 +36,11 @@
 #maHeader{display:none!important}
 
 /* ── NAV ──
-   Solid paper is the DEFAULT, so a content page is correct even if the script
-   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
-   markup to sit transparently over it; the script then removes that treatment
-   once you scroll past the hero.
+   Solid paper is the DEFAULT, so a page is correct even if the script never runs.
+   A page with a dark full-bleed hero marks its nav `data-hp-over` and its hero
+   `.hp-hero` or `data-hp-hero`; the script then adds `hp-nav-over` to sit
+   transparently over it, and `hp-scrolled` once you scroll past it. The class is
+   never in the markup, so a dead script cannot leave white text on a white page.
 
    Top level: Projects, About (dropdown), Services, Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
@@ -174,219 +172,125 @@
 .hp-ft-contact a:hover,.hp-ft-contact a:focus-visible{color:#c9a96e!important}
 @media (max-width:760px){.hp-ft-nav{flex:1 1 100%;width:100%;flex-direction:row;flex-wrap:wrap;gap:14px 22px}}
 
-/* ═══════════════════════════════════════════════════════════════════════
-   CREATIVE PARTNER  ·  Service 04.  Page-scoped rules, all `sv-`.
-   One page width and one gutter: every left edge matches the nav and footer.
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* Stock Squarespace header, same suppression the homepage ships. */
-.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
+@media (prefers-reduced-motion:reduce){
+  .hp-wrap *{animation:none!important;transition:none!important}
+  .hp-hero-slides img{opacity:0}
+  .hp-hero-slides img:first-child{opacity:1}
+}
 
 .sv-wrap{
-  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
-  --stone:#6f6b61; --rule:#d9d5cd;
   --section:clamp(88px,9vw,150px);
-  --gutter:clamp(24px,5vw,80px); --page:1600px;
-  --ease:cubic-bezier(.16,1,.3,1);
-  font-family:'DM Sans',-apple-system,sans-serif;
-  font-weight:300; line-height:1.7; color:var(--ink);
-  background:var(--paper)!important;
-  -webkit-font-smoothing:antialiased;
-}
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7;
+  color:var(--ink);background:var(--paper)!important;-webkit-font-smoothing:antialiased}
 .sv-wrap *{box-sizing:border-box}
-/* Margin reset at class specificity so every component rule below wins on order. */
-.sv-wrap *{margin:0}
 .sv-wrap img{max-width:100%;display:block}
 .sv-wrap a{color:inherit;text-decoration:none}
-.sv-wrap em{font-style:italic}
-.sv-wrap a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
-
-/* One container. One left edge. */
+.sv-wrap a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .sv-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
-.sv-narrow{max-width:760px}
-
-/* ── The one small-caps style: 11px / .18em / DM Sans 400 ── */
-.sv-eyebrow{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;line-height:1.4;
-  color:var(--stone)!important;margin:0 0 28px;
-  display:inline-flex!important;align-items:center;gap:14px;
-}
-.sv-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold);flex:0 0 24px}
-.sv-on-ink .sv-eyebrow{color:rgba(246,244,240,.82)!important}
-
-/* ── Arrow link: the only link style below the nav ── */
-.sv-arrow{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+.sv-eyebrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--ink)!important;border-bottom:1px solid var(--stone);
-  padding-bottom:5px;display:inline-block;transition:border-color .35s var(--ease);
-}
-.sv-arrow:hover,.sv-arrow:focus-visible{border-color:var(--ink)}
-
-/* ── Headlines ── */
-.sv-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 clamp(24px,2.6vw,36px);max-width:22ch;text-wrap:balance}
-.sv-wrap h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.3rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-body{font-size:1rem;line-height:1.75;color:var(--ink)!important;max-width:68ch;margin:0 0 1.4rem}
-.sv-body:last-child{margin-bottom:0}
-.sv-on-ink h2,.sv-on-ink h3{color:#f6f4f0!important}
-
-/* ════════════ HERO ════════════ */
-.sv-hero{position:relative;min-height:100vh;min-height:100svh;min-height:560px;overflow:hidden;
+  color:var(--stone)!important;margin:0 0 28px;
+  display:inline-flex!important;align-items:center;gap:14px}
+.sv-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
+.sv-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
-.sv-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sv-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .sv-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
-.sv-hero-content{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
-.sv-hero-content .sv-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
-.sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;max-width:22ch;margin:0 0 clamp(20px,2.2vw,28px)}
-.sv-hero-sub{font-size:1rem;font-weight:300;line-height:1.75;max-width:56ch;
-  color:rgba(246,244,240,.82)!important;margin:0}
+.sv-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
+.sv-hero .sv-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
+.sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;letter-spacing:0;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;color:#f6f4f0!important;
+  max-width:24ch;margin:0 0 16px}
+.sv-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
 @media (max-width:480px){
-  .sv-hero-content .sv-eyebrow::before{display:none}
+  .sv-hero .sv-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
+  .sv-hero .sv-eyebrow::before{display:none}
 }
-
-/* ════════════ META BAR ════════════ */
-.sv-meta{background:var(--paper)!important;margin:0;
-  padding:clamp(30px,3.2vw,44px) var(--gutter);border-bottom:1px solid var(--rule)}
-.sv-meta-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto;
-  display:flex!important;flex-wrap:wrap;gap:20px 40px;justify-content:space-between}
-.sv-meta-item{flex:0 1 auto;display:flex!important;flex-direction:column;gap:7px}
-.sv-meta-dt{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
-.sv-meta-dd{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.15rem;
-  line-height:1.3;letter-spacing:0;color:var(--ink)!important;margin:0}
-@media (max-width:600px){.sv-meta-item{flex:1 1 100%}}
-
-/* ════════════ SECTIONS ════════════ */
-.sv-section{padding:var(--section) 0;background:var(--paper)!important}
-.sv-section + .sv-section{padding-top:0}
-.sv-section-tight{padding:var(--section) 0 clamp(56px,6vw,90px)}
-
-/* ════════════ FULL-BLEED IMAGE BREAK ════════════ */
-.sv-img-break{position:relative;width:100%;height:clamp(340px,58vh,600px);
-  overflow:hidden;background:var(--ink)!important}
-.sv-img-break img{width:100%;height:100%;object-fit:cover}
-
-/* ════════════ WHAT'S INCLUDED ════════════ */
-.sv-inc{display:flex!important;flex-wrap:wrap;gap:clamp(32px,4vw,64px);
-  margin-top:clamp(40px,4.5vw,64px)}
-.sv-inc-col{flex:1 1 340px;min-width:0}
-.sv-inc-col-label{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;
-  margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
-.sv-inc-item{font-size:.95rem;font-weight:300;line-height:1.6;color:var(--ink)!important;
-  padding:.85rem 0;border-bottom:1px solid var(--rule)}
-.sv-inc-item a{border-bottom:1px solid var(--stone);transition:border-color .3s var(--ease)}
-.sv-inc-item a:hover,.sv-inc-item a:focus-visible{border-color:var(--ink)}
-
-/* ════════════ PROOF ════════════ */
-.sv-shot{margin:clamp(40px,4.5vw,64px) 0 0;max-width:940px}
-.sv-shot-frame{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;
-  background:var(--ink)!important;border:1px solid var(--rule)}
-.sv-shot-frame img{width:100%;height:auto}
-.sv-shot-cap{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:13px 0 0}
-.sv-stats{display:flex!important;flex-wrap:wrap;gap:clamp(24px,3vw,48px);
-  margin:clamp(40px,4.5vw,64px) 0 clamp(32px,3.4vw,44px);
-  padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--rule)}
-.sv-stat{flex:1 1 150px}
-.sv-stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(2rem,3.4vw,2.6rem);line-height:1;letter-spacing:0;
+.sv-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.sv-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.sv-statement .sv-eyebrow{margin-bottom:32px}
+.sv-statement p:not(.sv-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
+.sv-hang{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-hang-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
+.sv-hang-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0}
+.sv-arrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink)!important;border-bottom:1px solid var(--stone);
+  padding-bottom:5px;display:inline-block}
+.sv-arrow:hover,.sv-arrow:focus-visible{border-color:var(--ink)}
+.sv-stack{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
+.sv-card{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));max-width:calc(50% - clamp(10px,1.2vw,18px));min-width:0}
+.sv-card-full{flex:1 1 100%;max-width:none}
+.sv-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
+.sv-card-frame img{width:100%;height:100%;object-fit:cover}
+.sv-card-over{display:flex!important;justify-content:space-between;align-items:baseline;
+  gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
+.sv-card-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:13px;line-height:1.4;color:var(--ink)!important;margin:0;
+  transition:color .3s var(--ease)}
+.sv-card:hover .sv-card-name,.sv-card:focus-visible .sv-card-name{color:#816a3f!important}
+.sv-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
+.sv-figure{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.sv-steps{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
+.sv-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.15;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 10px}
-.sv-stat-lbl{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
-
-/* ════════════ TESTIMONIAL ════════════ */
-.sv-quote{background:var(--paper)!important;padding:var(--section) 0;
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.sv-quote blockquote{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-style:italic;font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
-  color:var(--ink)!important;max-width:25em;margin:0;text-wrap:pretty}
+.sv-step p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:66ch}
+.sv-quote{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-quote-inner{max-width:760px}
+.sv-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
 .sv-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;line-height:1.7;
-  color:var(--stone)!important;margin:clamp(24px,2.6vw,34px) 0 0}
-.sv-quote-attr a{border-bottom:1px solid var(--stone);transition:border-color .3s var(--ease)}
-.sv-quote-attr a:hover,.sv-quote-attr a:focus-visible{border-color:var(--ink)}
-
-/* ════════════ HOW IT WORKS ════════════ */
-.sv-steps{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.2vw,48px);
-  margin-top:clamp(40px,4.5vw,64px)}
-.sv-step{flex:1 1 280px;min-width:0;border-top:1px solid var(--gold);
-  padding-top:clamp(22px,2.2vw,30px)}
-.sv-step p{font-size:.95rem;font-weight:300;line-height:1.7;color:var(--stone)!important;margin:0}
-.sv-step p.sv-step-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.6rem;
-  line-height:1;letter-spacing:0;color:var(--stone)!important;margin:0 0 14px}
-
-/* ════════════ BEST FIT (on ink) ════════════ */
-.sv-fit{background:var(--ink)!important;padding:var(--section) 0}
-.sv-fit-grid{display:flex!important;flex-wrap:wrap;gap:clamp(22px,2.6vw,36px);
-  margin-top:clamp(36px,4vw,56px);max-width:920px}
-.sv-fit-item{flex:1 1 320px;min-width:0;padding-top:18px;
-  border-top:1px solid rgba(246,244,240,.16)}
-.sv-fit-item p{font-size:.95rem;font-weight:300;line-height:1.7;
-  color:rgba(246,244,240,.82)!important;margin:0}
-
-/* ════════════ MANIFESTO (on ink) ════════════ */
-.sv-manifesto{background:var(--ink)!important;padding:var(--section) 0;text-align:center;
-  border-top:1px solid rgba(246,244,240,.07)}
-.sv-manifesto p{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
-  color:rgba(246,244,240,.82)!important;max-width:25em;margin:0 auto;text-wrap:pretty}
-
-/* ════════════ CLOSE / CTA ════════════ */
-.sv-cta{position:relative;min-height:78vh;max-height:900px;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:center;
-  justify-content:center;text-align:center}
-.sv-cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.sv-cta::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
+.sv-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
+.sv-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
+.sv-close>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sv-close::before{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
-.sv-cta-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
-.sv-cta-c .sv-eyebrow{color:rgba(246,244,240,.85)!important}
-.sv-cta h2{color:#f6f4f0!important;margin:0 auto clamp(28px,3vw,40px);max-width:none}
-.sv-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
-.sv-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
-.sv-cta-btn,.sv-cta-btn-secondary{display:inline-block;
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+.sv-close-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
+.sv-close .sv-eyebrow{color:rgba(246,244,240,.85)!important;justify-content:center}
+.sv-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;color:#f6f4f0!important;
+  margin:0 0 clamp(28px,3vw,40px)}
+.sv-close-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
+.sv-close-btns{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
+.sv-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.sv-btn:hover,.sv-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.sv-btn-2{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
   transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
-.sv-cta-btn{background:var(--gold)!important;border:1px solid var(--gold)!important;
-  color:#1a1a18!important}
-.sv-cta-btn:hover,.sv-cta-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
-.sv-cta-btn-secondary{background:transparent!important;
-  border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important}
-.sv-cta-btn-secondary:hover,.sv-cta-btn-secondary:focus-visible{
-  background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
-/* Specific enough (0,3,1) to beat the page's own `.sv-wrap a:focus-visible`,
-   which is (0,2,1) and otherwise decides the ring colour on this dark panel. */
-.sv-cta a.sv-cta-btn:focus-visible,.sv-cta a.sv-cta-btn-secondary:focus-visible{
-  outline:2px solid #f6f4f0;outline-offset:3px}
-@media (max-width:768px){.sv-cta-links{flex-direction:column;align-items:stretch}}
-.sv-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+.sv-btn-2:hover,.sv-btn-2:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
+.sv-close a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+.sv-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
   letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
-.sv-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-.sv-cta-or a:focus-visible{border-color:#f6f4f0}
-
-/* ════════════ OTHER SERVICES ════════════ */
-.sv-ot{background:var(--paper)!important;padding:clamp(56px,6vw,90px) 0 var(--section);
-  border-top:1px solid var(--rule)}
-.sv-ot-l{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0 0 32px}
-.sv-ot-g{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.2vw,48px)}
-.sv-ot-c{flex:1 1 280px;min-width:0}
-.sv-ot-c p{font-size:.95rem;font-weight:300;line-height:1.7;color:var(--stone)!important;margin:0 0 18px}
-
-@media (prefers-reduced-motion:reduce){
-  .sv-wrap *{animation:none!important;transition:none!important}
+.sv-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+@media (max-width:768px){.sv-close-btns{flex-direction:column;align-items:stretch}}
+@media (max-width:640px){
+  .sv-card,.sv-card-full{flex:1 1 100%;max-width:none}
+  .sv-card-over{flex-direction:column;align-items:flex-start;gap:4px}
+  .sv-card-loc{letter-spacing:.12em}
+  .sv-figure img{width:100%}
 }
+@media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
 </style>
 
-<!-- ═══ NAV: first element in the block, outside the page wrapper. ═══ -->
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
@@ -406,232 +310,74 @@
 </div>
 
 <div class="sv-wrap">
-
-<!-- ════════════ HERO ════════════ -->
-<section class="sv-hero sv-on-ink" data-hp-hero aria-labelledby="sv-hero-h">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=2500w 2500w" sizes="(max-aspect-ratio: 4/3) 132vh, 100vw" alt="Warbler Residence, Whistler, dark cladding and a cedar soffit above a snow-covered deck, forested mountain behind" fetchpriority="high" decoding="async" width="1500" height="1000">
-  <div class="sv-hero-content">
-    <div class="sv-container">
-      <p class="sv-eyebrow">Creative Partner</p>
-      <h1 id="sv-hero-h">I stay on with the firm.</h1>
-      <p class="sv-hero-sub">Photography, film, progression, website and social, under one monthly conversation.</p>
-    </div>
+<section class="sv-hero" data-hp-hero aria-labelledby="sv-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae19d22-4885-4cad-949b-f62959632dd1/schmidt-residence-invermere-entry-courtyard-timber-rafters-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae19d22-4885-4cad-949b-f62959632dd1/schmidt-residence-invermere-entry-courtyard-timber-rafters-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae19d22-4885-4cad-949b-f62959632dd1/schmidt-residence-invermere-entry-courtyard-timber-rafters-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae19d22-4885-4cad-949b-f62959632dd1/schmidt-residence-invermere-entry-courtyard-timber-rafters-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ae19d22-4885-4cad-949b-f62959632dd1/schmidt-residence-invermere-entry-courtyard-timber-rafters-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Angled roof of exposed rafters above a stone entry, red chairs on the courtyard paving" width="1500" height="1000" fetchpriority="high" decoding="async">
+  <div class="sv-hero-c"><div class="sv-container">
+    <p class="sv-eyebrow">Creative Partner</p>
+    <h1 id="sv-h">I stay on with the firm.</h1>
+    <p class="sv-hero-sub">Photography, film, progression, website and social, under one monthly conversation.</p>
+  </div></div>
+</section>
+<section class="sv-statement">
+  <div class="sv-statement-inner">
+    <p class="sv-eyebrow">Approach</p>
+    <p>Stop re-briefing a new person on every project. One agreement. The work keeps moving.</p>
   </div>
 </section>
-
-<!-- ════════════ META BAR ════════════ -->
-<dl class="sv-meta">
-  <div class="sv-meta-inner">
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Model</dt>
-      <dd class="sv-meta-dd">Monthly Retainer</dd>
-    </div>
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Scope</dt>
-      <dd class="sv-meta-dd">Photo, film, web, social</dd>
-    </div>
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Commitment</dt>
-      <dd class="sv-meta-dd">3-Month Pilot</dd>
-    </div>
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Proof</dt>
-      <dd class="sv-meta-dd">Balmoral Construction</dd>
-    </div>
-  </div>
-</dl>
-
-<!-- ════════════ THE PROBLEM ════════════ -->
-<section class="sv-section" aria-labelledby="sv-problem-h">
+<section class="sv-hang" aria-labelledby="sv-hang-h">
   <div class="sv-container">
-    <div class="sv-narrow">
-      <p class="sv-eyebrow">The Problem</p>
-      <h2 id="sv-problem-h">Stop re-briefing a new person on every project.</h2>
-      <p class="sv-body">Every project starts the same way: a new photographer, another round of reference images, another brief, another set of schedules. Two months later it begins again with someone else. Meanwhile the website sits stale, social goes quiet between projects, and the proposal deck still runs on images from three years ago.</p>
-      <p class="sv-body">The real cost is not the invoices. It is the hours spent re-briefing people who will never know a firm's work the way someone who stays on would.</p>
+    <div class="sv-hang-head">
+      <h2 id="sv-hang-h">What stays in the conversation</h2>
+    </div>
+    <div class="sv-stack">
+      <a href="/homepage-preview/project-photography/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Two grey gabled volumes joined by a glazed link, set on a concrete base above the shore" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Photography and film</p>
+          <p class="sv-card-loc">The finished building</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/build-team-content/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Construction tools on a sawhorse, ocean and mountains through full height glass beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Progression</p>
+          <p class="sv-card-loc">Visits while it is going up</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/website-seo/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Living room corner with a lit suspended fireplace, glazing onto the water and rocky shore" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Website and social</p>
+          <p class="sv-card-loc">The place the photographs live</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
-
-<!-- ════════════ FULL-BLEED IMAGE BREAK ════════════ -->
-<div class="sv-img-break">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=2500w 2500w" sizes="(max-aspect-ratio: 7/8) 87vh, 100vw" alt="Fitzsimmons Residence, Whistler, dark metal cladding and a cedar entry in snow, mountain behind" loading="lazy" decoding="async" width="1500" height="1000">
-</div>
-
-<!-- ════════════ WHAT'S INCLUDED ════════════ -->
-<section class="sv-section" aria-labelledby="sv-inc-h">
-  <div class="sv-container">
-    <div class="sv-narrow">
-      <p class="sv-eyebrow">What's Included</p>
-      <h2 id="sv-inc-h">Photography, film, the site, and the posts. <em>One conversation.</em></h2>
-      <p class="sv-body">This is not a photography package with extras bolted on. It is the work I already do, held together for one firm at a time.</p>
-    </div>
-    <div class="sv-inc">
-      <div class="sv-inc-col">
-        <p class="sv-inc-col-label">On site</p>
-        <div class="sv-inc-item">Project photography (architecture, interiors, aerial, twilight)</div>
-        <div class="sv-inc-item">Film from the same visit</div>
-        <div class="sv-inc-item">Drone and aerial coverage</div>
-        <div class="sv-inc-item"><a href="/homepage-preview/build-team-content/">Progression visits across the build</a></div>
-        <div class="sv-inc-item">The crew at work</div>
-      </div>
-      <div class="sv-inc-col">
-        <p class="sv-inc-col-label">Around it</p>
-        <div class="sv-inc-item">Custom website design, build, and management</div>
-        <div class="sv-inc-item">Social content and scheduling</div>
-        <div class="sv-inc-item">Project pages as the work lands</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ THE PROOF ════════════ -->
-<section class="sv-section sv-section-tight" aria-labelledby="sv-proof-h">
-  <div class="sv-container">
-    <div class="sv-narrow">
-      <p class="sv-eyebrow">The Proof</p>
-      <h2 id="sv-proof-h">The proof is in the <em>partnership</em></h2>
-      <p class="sv-body">Balmoral Construction started as a photography inquiry. Four homes across Whistler and Pemberton needed documenting. After the first project the scope grew: a 42-page custom website, built from the ground up, and the photographs that fill it. One person. The photographs and the site.</p>
-    </div>
-
-    <div class="sv-shot">
-      <div class="sv-shot-frame">
-        <img src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/93aadd7d-1feb-4c75-bf1e-25a901aa197f/www.balmoralconstruction.com_+%282%29+%281%29.png?content-type=image%2Fpng&amp;format=1000w" srcset="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/93aadd7d-1feb-4c75-bf1e-25a901aa197f/www.balmoralconstruction.com_+%282%29+%281%29.png?content-type=image%2Fpng&amp;format=500w 500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/93aadd7d-1feb-4c75-bf1e-25a901aa197f/www.balmoralconstruction.com_+%282%29+%281%29.png?content-type=image%2Fpng&amp;format=750w 750w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/93aadd7d-1feb-4c75-bf1e-25a901aa197f/www.balmoralconstruction.com_+%282%29+%281%29.png?content-type=image%2Fpng&amp;format=1000w 1000w" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 1044px) 90vw, 940px" alt="The Balmoral Construction home page" loading="lazy" decoding="async" width="1000" height="6068">
-      </div>
-      <p class="sv-shot-cap">balmoralconstruction.com</p>
-    </div>
-
-    <div class="sv-stats">
-      <div class="sv-stat">
-        <p class="sv-stat-num">42</p>
-        <p class="sv-stat-lbl">Pages Built</p>
-      </div>
-      <div class="sv-stat">
-        <p class="sv-stat-num">4</p>
-        <p class="sv-stat-lbl">Projects</p>
-      </div>
-      <div class="sv-stat">
-        <p class="sv-stat-num">6</p>
-        <p class="sv-stat-lbl">Geo-Targeted Pages</p>
-      </div>
-    </div>
-
-    <a class="sv-arrow" href="https://www.mattanthonyphoto.com/balmoral-construction">Read the Full Case Study &rarr;</a>
-  </div>
-</section>
-
-<!-- ════════════ TESTIMONIAL ════════════ -->
 <section class="sv-quote" aria-label="Client comment">
   <div class="sv-container">
-    <!-- The class is what puts this quote under tools/check_quotes.py: the checker
-         only reads elements whose class names them as a quote, so an unclassed
-         <blockquote> was shipping a named client's words with nothing verifying
-         them against testimonials.json. No rule styles .sv-quote-text here. -->
-    <blockquote class="sv-quote-text">Working with Matt was an absolute pleasure from start to finish. &hellip; The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</blockquote>
-    <p class="sv-quote-attr">Marc Harvey, Balmoral Construction &middot; <a href="https://www.balmoralconstruction.com/" target="_blank" rel="noopener">balmoralconstruction.com</a></p>
-  </div>
-</section>
-
-<!-- ════════════ HOW IT WORKS ════════════ -->
-<section class="sv-section" aria-labelledby="sv-how-h">
-  <div class="sv-container">
-    <div class="sv-narrow">
-      <p class="sv-eyebrow">How It Works</p>
-      <h2 id="sv-how-h">Three steps to staying <em>on with the firm</em></h2>
-    </div>
-    <div class="sv-steps">
-      <div class="sv-step">
-        <p class="sv-step-num">01</p>
-        <h3>Discovery Call</h3>
-        <p>I review the brand, the upcoming projects and the goals, and I learn the design language and where the gaps are. No pitch decks. Just a conversation.</p>
-      </div>
-      <div class="sv-step">
-        <p class="sv-step-num">02</p>
-        <h3>3-Month Pilot</h3>
-        <p>Photography, film, website and social. I prove the model with real work: project shoots, site updates, posts. The work arrives before any long-term commitment.</p>
-      </div>
-      <div class="sv-step">
-        <p class="sv-step-num">03</p>
-        <h3>Ongoing Partnership</h3>
-        <p>Monthly retainer. I show up, create, and deliver. No re-briefing and no ramp-up between projects.</p>
-      </div>
+    <div class="sv-quote-inner">
+      <p class="sv-quote-text">Working with Matt was an absolute pleasure from start to finish.</p>
+      <p class="sv-quote-attr">Marc Harvey &middot; <a href="https://www.mattanthonyphoto.com/balmoral-construction">Balmoral Construction</a></p>
     </div>
   </div>
 </section>
-
-<!-- ════════════ BEST FIT ════════════ -->
-<section class="sv-fit sv-on-ink" aria-labelledby="sv-fit-h">
-  <div class="sv-container">
-    <p class="sv-eyebrow">Best Fit</p>
-    <h2 id="sv-fit-h">Who this is <em>built for</em></h2>
-    <div class="sv-fit-grid">
-      <div class="sv-fit-item">
-        <p>Builders with several projects a year who need the photographs to keep up</p>
-      </div>
-      <div class="sv-fit-item">
-        <p>Architecture firms that want photography, the site, and social to come from the same person</p>
-      </div>
-      <div class="sv-fit-item">
-        <p>Firms ready for an ongoing agreement instead of a new vendor on every project</p>
-      </div>
-      <div class="sv-fit-item">
-        <p>Firms tired of re-briefing a new photographer and a new web person on every project</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ MANIFESTO ════════════ -->
-<section class="sv-manifesto sv-on-ink" aria-label="Statement">
-  <div class="sv-container">
-    <p>The firms that keep their photographs current do not hire a photographer when they need one. They have someone who stays on. Every project documented. The site current. The posts moving. That is the difference.</p>
-  </div>
-</section>
-
-<!-- ════════════ CLOSE ════════════ -->
-<section class="sv-cta sv-on-ink" aria-labelledby="sv-cta-h">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="(orientation: portrait) 117vh, 100vw" alt="Sandy Hook, Sunshine Coast, the entry court under a cedar soffit, concrete steps and planting" loading="lazy" decoding="async" width="1500" height="1000">
-  <div class="sv-cta-c">
+<section class="sv-close" aria-labelledby="sv-close-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house at dusk above the shore, the entry lit and the moon over the water" width="1500" height="1125" loading="lazy" decoding="async">
+  <div class="sv-close-c">
     <p class="sv-eyebrow">Contact</p>
-    <h2 id="sv-cta-h">Tell me about your project.</h2>
-    <div class="sv-cta-row">
-      <div class="sv-cta-links">
-        <a href="/homepage-preview/discovery-call/" class="sv-cta-btn">Book a Discovery Call</a>
-        <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+    <h2 id="sv-close-h">Tell me about your project.</h2>
+    <div class="sv-close-row">
+      <div class="sv-close-btns">
+        <a class="sv-btn" href="/homepage-preview/discovery-call/">Book a Discovery Call</a>
+        <a class="sv-btn-2" href="/homepage-preview/contact/">Send a Message</a>
       </div>
-      <span class="sv-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
+      <span class="sv-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
   </div>
 </section>
-
-<!-- ════════════ OTHER SERVICES ════════════ -->
-<section class="sv-ot" aria-labelledby="sv-ot-h">
-  <div class="sv-container">
-    <p class="sv-ot-l" id="sv-ot-h">Other Services</p>
-    <div class="sv-ot-g">
-      <div class="sv-ot-c">
-        <h3>Project Photography</h3>
-        <p>Stills and film of a finished build.</p>
-        <a class="sv-arrow" href="/homepage-preview/project-photography/">Learn More &rarr;</a>
-      </div>
-      <div class="sv-ot-c">
-        <h3>Progression</h3>
-        <p>Multi-stage visits across a build.</p>
-        <a class="sv-arrow" href="/homepage-preview/build-team-content/">Learn More &rarr;</a>
-      </div>
-      <div class="sv-ot-c">
-        <h3>Marketing</h3>
-        <p>Websites and the content that fills them.</p>
-        <a class="sv-arrow" href="/homepage-preview/website-seo/">Learn More &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 </div><!-- /.sv-wrap -->
 
-<!-- ═══ FOOTER: last element in the block, outside the page wrapper.
-     Deliberately a div: Squarespace hides real footer elements. ═══ -->
 <div class="hp-ft">
   <div class="hp-ft-inner">
 
@@ -751,68 +497,6 @@
   });
 })();
 </script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Creative Partner",
-  "description": "An ongoing agreement for architects and builders. Photography, film, progression, website and social, under one monthly conversation.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Matt Anthony Photography",
-    "url": "https://www.mattanthonyphoto.com",
-    "telephone": "+16047659270",
-    "email": "info@mattanthonyphoto.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Squamish",
-      "addressRegion": "BC",
-      "addressCountry": "CA"
-    },
-    "areaServed": [
-      { "@type": "Place", "name": "Squamish, BC" },
-      { "@type": "Place", "name": "Whistler, BC" },
-      { "@type": "Place", "name": "Pemberton, BC" },
-      { "@type": "Place", "name": "Vancouver, BC" },
-      { "@type": "Place", "name": "Sunshine Coast, BC" },
-      { "@type": "Place", "name": "Fraser Valley, BC" },
-      { "@type": "Place", "name": "Okanagan, BC" }
-    ]
-  },
-  "serviceType": "Creative Partner Retainer",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Creative Partner Services",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architectural Photography" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Film" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Progression Visits" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Design, Build and Management" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Content and Scheduling" } }
-    ]
-  }
-}
-</script>
-
-<!--
-  Creative Partner  ·  Service 04 code block
-  mattanthonyphoto.com/creative-partner
-
-  Last updated: 2026-08-27
-  On the sitewide design system (sitewide/_DESIGN-SYSTEM.md):
-    - shared chrome from sitewide/_chrome.html lifted verbatim: nav first, footer last,
-      both outside .sv-wrap; chrome script once at the end
-    - one width and one gutter (--page / --gutter): nav, every section and the footer
-      share one left edge at every viewport
-    - Cormorant headlines at letter-spacing 0, weight 300 at hero size and 400 below;
-      DM Sans body; one small-caps style at 11px / .18em
-    - contrast: --stone #6f6b61 replaces the failing light stone; on ink only .82 and .60
-    - flexbox only, no CSS grid; no footer element
-    - removed: loader, section-nav dots, custom cursor, scroll progress bar, particle
-      canvas, parallax, Ken Burns, magnetic button, stat counters, word-by-word reveals
-      (those defaulted to 15% alpha and shipped invisible text without JS)
--->
 
 </body>
 </html>

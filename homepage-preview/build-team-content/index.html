@@ -9,18 +9,15 @@
 </head>
 <body>
 <style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
-
-<!-- preconnects + fonts; the LCP image carries fetchpriority="high" inline -->
 <link rel="preconnect" href="https://images.squarespace-cdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
-
 <style>
-/* ═══════════════════════════════════════════════════════════════════════
-   SHARED CHROME — lifted verbatim from sitewide/_chrome.html. Do not
-   restyle here; change it there and re-roll it everywhere.
-   ═══════════════════════════════════════════════════════════════════════ */
+/* Tokens. The FULL palette is on :root, not just the gutter, because a page's own
+   rules use var(--ink) / var(--paper) too and an unresolved var() invalidates the
+   whole declaration silently (a CTA banner once rendered white on white this way).
+   Repeated on the chrome itself so it still works if pasted without :root. */
 :root{
   --gutter:clamp(24px,5vw,80px); --page:1600px;
   --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
@@ -39,10 +36,11 @@
 #maHeader{display:none!important}
 
 /* ── NAV ──
-   Solid paper is the DEFAULT, so a content page is correct even if the script
-   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
-   markup to sit transparently over it; the script then removes that treatment
-   once you scroll past the hero.
+   Solid paper is the DEFAULT, so a page is correct even if the script never runs.
+   A page with a dark full-bleed hero marks its nav `data-hp-over` and its hero
+   `.hp-hero` or `data-hp-hero`; the script then adds `hp-nav-over` to sit
+   transparently over it, and `hp-scrolled` once you scroll past it. The class is
+   never in the markup, so a dead script cannot leave white text on a white page.
 
    Top level: Projects, About (dropdown), Services, Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
@@ -180,220 +178,120 @@
   .hp-hero-slides img:first-child{opacity:1}
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   BUILD & TEAM CONTENT — Service 03.
-   One page width, one gutter: hero, meta strip, every section head, every
-   card row and the footer all sit on the same left edge at every viewport.
-   ═══════════════════════════════════════════════════════════════════════ */
 .sv-wrap{
-  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
-  --stone:#6f6b61; --rule:#d9d5cd;
   --section:clamp(88px,9vw,150px);
-  --gutter:clamp(24px,5vw,80px); --page:1600px;
-  --ease:cubic-bezier(.16,1,.3,1);
-  font-family:'DM Sans',-apple-system,sans-serif;
-  font-weight:300; line-height:1.7; color:var(--ink);
-  background:var(--paper)!important;
-  -webkit-font-smoothing:antialiased;
-}
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7;
+  color:var(--ink);background:var(--paper)!important;-webkit-font-smoothing:antialiased}
 .sv-wrap *{box-sizing:border-box}
 .sv-wrap img{max-width:100%;display:block}
 .sv-wrap a{color:inherit;text-decoration:none}
-.sv-wrap :where(h1,h2,h3,p,dl,dd){margin:0}
-.sv-wrap a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
-
-/* The single container. Nothing on this page uses a second width. */
+.sv-wrap a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .sv-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
-
-/* ── Eyebrow: 24px gold rule, then the tracked caps. Used in every block. ── */
-.sv-eyebrow{
-  font-family:'Josefin Sans',sans-serif;font-weight:700;
+.sv-eyebrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--stone)!important;margin:0 0 28px;
-  display:inline-flex!important;align-items:center;gap:14px;
-}
+  display:inline-flex!important;align-items:center;gap:14px}
 .sv-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
-
-/* ── Arrow link: the only link style below the nav ── */
-.sv-arrow-link{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--ink)!important;border-bottom:1px solid var(--stone);
-  padding-bottom:5px;display:inline-block;transition:border-color .35s var(--ease);
-}
-.sv-arrow-link:hover,.sv-arrow-link:focus-visible{border-color:var(--ink)}
-
-/* ── Shared heading scale. Cormorant 400, letter-spacing 0, below hero size. ── */
-.sv-h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 clamp(24px,2.6vw,36px)}
-.sv-h2 em{font-style:italic}
-
-/* Dark blocks: paper at .82 primary, .60 secondary, and nothing fainter. */
-.sv-dark{background:var(--ink)!important}
-.sv-dark .sv-eyebrow{color:rgba(246,244,240,.82)!important}
-.sv-dark .sv-h2{color:#f6f4f0!important}
-.sv-dark .sv-h2 em{color:var(--gold)!important}
-.sv-dark a:focus-visible{outline-color:var(--paper)}
-
-/* ════════════ HERO ════════════ */
 .sv-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:flex-end;
-  padding:0 0 clamp(56px,7vw,96px)}
-.sv-hero-bg{position:absolute;inset:0;z-index:0}
-.sv-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+  background:var(--ink)!important;display:flex!important;align-items:flex-end}
+.sv-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .sv-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
-.sv-hero-content{position:relative;z-index:2;width:100%}
-.sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;max-width:22ch;margin:0 0 clamp(20px,2.2vw,28px)}
-.sv-hero h1 em{font-style:italic;color:var(--gold)!important}
+.sv-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
+.sv-hero .sv-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
+.sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;letter-spacing:0;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;color:#f6f4f0!important;
+  max-width:24ch;margin:0 0 16px}
 .sv-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
-  font-size:13px;line-height:1.85;letter-spacing:.02em;max-width:62ch;
-  color:rgba(246,244,240,.82)!important}
-
-/* ════════════ META STRIP ════════════ */
-.sv-meta{background:var(--paper)!important;padding:clamp(30px,3.2vw,44px) var(--gutter);
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.sv-meta-inner{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto;
-  display:flex!important;flex-wrap:wrap;gap:20px 44px;justify-content:space-between}
-.sv-meta-item{flex:0 1 auto;min-width:0}
-.sv-meta-dt{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0 0 7px}
-.sv-meta-dd{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.15rem;line-height:1.35;letter-spacing:0;color:var(--ink)!important;
-  font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
-
-/* ════════════ TEXT SECTIONS ════════════ */
-.sv-section{padding:var(--section) 0;background:var(--paper)!important}
-.sv-narrow{max-width:720px}
-.sv-section p:not(.sv-eyebrow){font-size:1rem;line-height:1.8;color:var(--ink)!important;margin:0 0 1.5rem}
-.sv-section p:last-child{margin-bottom:0}
-/* Emphasis without colour: gold on paper measures 2.51:1 and cannot carry text. */
-.sv-gold{color:var(--ink);font-weight:400}
-
-/* ════════════ IMAGE BREAK ════════════ */
-.sv-img-break{width:100%;height:clamp(360px,62vh,720px);overflow:hidden;background:var(--ink)!important}
-.sv-img-break img{width:100%;height:100%;object-fit:cover}
-
-/* ════════════ WHAT ONE SHOOT DAY PRODUCES ════════════ */
-.sv-stats{padding:var(--section) 0}
-.sv-stats-grid{--gap:clamp(24px,3vw,44px);display:flex!important;flex-wrap:wrap;gap:var(--gap);
-  margin-top:clamp(28px,3vw,44px)}
-.sv-stat-card{flex:1 1 calc(20% - var(--gap));min-width:150px}
-.sv-stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(2rem,3.2vw,2.6rem);line-height:1;letter-spacing:0;
-  color:var(--gold)!important;margin:0 0 10px;
-  /* Cormorant defaults to oldstyle figures: 12 reads as I2. Force lining. */
-  font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
-.sv-stat-lbl{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;line-height:1.5;
-  color:rgba(246,244,240,.82)!important}
-.sv-stat-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
-  line-height:1.5;color:rgba(246,244,240,.60)!important;margin:7px 0 0}
-
-/* ════════════ WHAT IS INCLUDED ════════════ */
-.sv-deliverables{--gap:clamp(28px,3vw,48px);display:flex!important;flex-wrap:wrap;gap:var(--gap);
-  margin-top:clamp(28px,3vw,44px)}
-.sv-del-card{flex:1 1 calc(33.333% - var(--gap));min-width:240px;
-  padding:26px 0 0;border-top:1px solid var(--rule)}
-.sv-del-card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.3rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-del-card p{font-size:.9rem;line-height:1.7;color:var(--stone)!important;margin:0}
-
-/* ════════════ GALLERY ════════════ */
-.sv-gallery{padding:var(--section) 0}
-.sv-gallery-grid{column-count:3;column-gap:12px;margin-top:clamp(28px,3vw,44px)}
-.sv-gallery-item{break-inside:avoid;margin:0 0 12px;overflow:hidden;background:#111110}
-.sv-gallery-item img{width:100%;height:auto}
-
-/* ════════════ IDEAL FOR ════════════ */
-.sv-ideal{padding:var(--section) 0;background:var(--paper)!important}
-.sv-ideal-grid{--gap:clamp(24px,3vw,40px);display:flex!important;flex-wrap:wrap;gap:var(--gap);
-  margin-top:clamp(28px,3vw,44px)}
-.sv-ideal-card{flex:1 1 calc(25% - var(--gap));min-width:220px;
-  padding:26px 0 0;border-top:1px solid var(--rule)}
-.sv-ideal-card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.2rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-ideal-card p{font-size:.9rem;line-height:1.7;color:var(--stone)!important;margin:0}
-
-/* ════════════ MANIFESTO ════════════ */
-.sv-manifesto{padding:var(--section) 0;text-align:center}
-.sv-manifesto-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
-.sv-manifesto-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
-  color:rgba(246,244,240,.82)!important;max-width:25em;margin:0 auto;text-wrap:pretty}
-
-/* ════════════ CLOSE ════════════ */
-.sv-cta{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:center;
-  justify-content:center;text-align:center}
-.sv-cta-bg{position:absolute;inset:0;z-index:0}
-.sv-cta-bg img{width:100%;height:100%;object-fit:cover}
-.sv-cta::before{content:"";position:absolute;inset:0;z-index:1;
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
+@media (max-width:480px){
+  .sv-hero .sv-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
+  .sv-hero .sv-eyebrow::before{display:none}
+}
+.sv-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.sv-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.sv-statement .sv-eyebrow{margin-bottom:32px}
+.sv-statement p:not(.sv-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
+.sv-hang{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-hang-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
+.sv-hang-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0}
+.sv-arrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink)!important;border-bottom:1px solid var(--stone);
+  padding-bottom:5px;display:inline-block}
+.sv-arrow:hover,.sv-arrow:focus-visible{border-color:var(--ink)}
+.sv-stack{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
+.sv-card{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));max-width:calc(50% - clamp(10px,1.2vw,18px));min-width:0}
+.sv-card-full{flex:1 1 100%;max-width:none}
+.sv-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
+.sv-card-frame img{width:100%;height:100%;object-fit:cover}
+.sv-card-over{display:flex!important;justify-content:space-between;align-items:baseline;
+  gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
+.sv-card-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:13px;line-height:1.4;color:var(--ink)!important;margin:0;
+  transition:color .3s var(--ease)}
+.sv-card:hover .sv-card-name,.sv-card:focus-visible .sv-card-name{color:#816a3f!important}
+.sv-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
+.sv-figure{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.sv-steps{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
+.sv-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.15;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.sv-step p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:66ch}
+.sv-quote{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-quote-inner{max-width:760px}
+.sv-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
+.sv-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
+.sv-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
+.sv-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
+.sv-close>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sv-close::before{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
-.sv-cta-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
-.sv-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
-.sv-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
-.sv-cta-btn,.sv-cta-btn-secondary{display:inline-block;
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+.sv-close-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
+.sv-close .sv-eyebrow{color:rgba(246,244,240,.85)!important;justify-content:center}
+.sv-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;color:#f6f4f0!important;
+  margin:0 0 clamp(28px,3vw,40px)}
+.sv-close-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
+.sv-close-btns{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
+.sv-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.sv-btn:hover,.sv-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.sv-btn-2{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
   transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
-.sv-cta-btn{background:var(--gold)!important;border:1px solid var(--gold)!important;
-  color:#1a1a18!important}
-.sv-cta-btn:hover,.sv-cta-btn:focus-visible{background:var(--gold-deep)!important;
-  border-color:var(--gold-deep)!important;color:#1a1a18!important}
-.sv-cta-btn-secondary{background:transparent!important;
-  border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important}
-.sv-cta-btn-secondary:hover,.sv-cta-btn-secondary:focus-visible{
-  background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
-/* Specific enough (0,3,1) to beat the page's own `.sv-wrap a:focus-visible`,
-   which is (0,2,1) and otherwise decides the ring colour on this dark panel. */
-.sv-cta a.sv-cta-btn:focus-visible,.sv-cta a.sv-cta-btn-secondary:focus-visible{
-  outline:2px solid #f6f4f0;outline-offset:3px}
-@media (max-width:768px){.sv-cta-links{flex-direction:column;align-items:stretch}}
-.sv-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+.sv-btn-2:hover,.sv-btn-2:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
+.sv-close a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+.sv-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
   letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
-.sv-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-.sv-cta-or a:focus-visible{border-color:#f6f4f0}
-
-/* ════════════ OTHER SERVICES ════════════ */
-.sv-ot{padding:var(--section) 0;background:var(--paper)!important}
-.sv-ot-g{--gap:clamp(28px,3vw,48px);display:flex!important;flex-wrap:wrap;gap:var(--gap);
-  margin-top:clamp(24px,2.6vw,36px)}
-.sv-ot-c{flex:1 1 calc(33.333% - var(--gap));min-width:240px;
-  padding:26px 0 0;border-top:1px solid var(--rule)}
-.sv-ot-c h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.2rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-ot-c p{font-size:.9rem;line-height:1.7;color:var(--stone)!important;margin:0 0 18px}
-
-/* ════════════ RESPONSIVE ════════════ */
-@media (max-width:1100px){
-  .sv-del-card,.sv-ot-c{flex-basis:calc(50% - var(--gap))}
-  .sv-ideal-card{flex-basis:calc(50% - var(--gap))}
+.sv-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+@media (max-width:768px){.sv-close-btns{flex-direction:column;align-items:stretch}}
+@media (max-width:640px){
+  .sv-card,.sv-card-full{flex:1 1 100%;max-width:none}
+  .sv-card-over{flex-direction:column;align-items:flex-start;gap:4px}
+  .sv-card-loc{letter-spacing:.12em}
+  .sv-figure img{width:100%}
 }
-@media (max-width:768px){
-  .sv-gallery-grid{column-count:2}
-  .sv-stat-card{flex-basis:calc(33.333% - var(--gap))}
-}
-@media (max-width:700px){
-  .sv-del-card,.sv-ot-c,.sv-ideal-card{flex-basis:100%;min-width:0}
-  .sv-hero h1{max-width:none}
-}
-@media (max-width:520px){
-  .sv-gallery-grid{column-count:1}
-  .sv-stat-card{flex-basis:calc(50% - var(--gap));min-width:0}
-}
-@media (prefers-reduced-motion:reduce){
-  .sv-wrap *{animation:none!important;transition:none!important}
-}
+@media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
 </style>
 
-<!-- ═══ NAV: first element in the block. No `hp-nav-over`: this hero opens on a
-     bright overcast sky, so the transparent treatment would put paper-coloured
-     type on white. Default solid nav; the script inserts the spacer. ═══ -->
-<div class="hp-nav" id="hpNav" role="navigation" aria-label="Main">
+<div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
     <a href="/homepage-preview/projects-v2/">Projects</a>
@@ -412,192 +310,73 @@
 </div>
 
 <div class="sv-wrap">
-
-<!-- ════════════ HERO ════════════ -->
-<section class="sv-hero sv-dark" aria-labelledby="sv-hero-h">
-  <div class="sv-hero-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=2500w 2500w" sizes="100vw" alt="Workers on mass timber beam structure with CLT panel suspended by crane, construction lifestyle photography by Matt Anthony" width="2500" height="1667" fetchpriority="high" decoding="async">
-  </div>
-  <div class="sv-hero-content">
-    <div class="sv-container">
-      <p class="sv-eyebrow">Progression</p>
-      <h1 id="sv-hero-h">I photograph the build as it happens.</h1>
-      <p class="sv-hero-sub">Multi-stage visits. Progress photographs, the crew, and a record of how the project went up.</p>
-    </div>
+<section class="sv-hero" data-hp-hero aria-labelledby="sv-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d88d0860-1975-4b2f-8443-ade1c0bb286a/steel-wood-structures-2500px-10.jpg?format=2500w 2500w" sizes="100vw" alt="Workers on a mass timber beam structure with a CLT panel suspended by crane" width="1500" height="1000" fetchpriority="high" decoding="async">
+  <div class="sv-hero-c"><div class="sv-container">
+    <p class="sv-eyebrow">Progression</p>
+    <h1 id="sv-h">I photograph the build as it happens.</h1>
+    <p class="sv-hero-sub">Multi-stage visits. Progress photographs, the crew, and a record of how the project went up.</p>
+  </div></div>
+</section>
+<section class="sv-statement">
+  <div class="sv-statement-inner">
+    <p class="sv-eyebrow">The record</p>
+    <p>A finished building is one story. The visits before that are another.</p>
   </div>
 </section>
-
-<!-- ════════════ META STRIP ════════════ -->
-<dl class="sv-meta">
-  <div class="sv-meta-inner">
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Format</dt>
-      <dd class="sv-meta-dd">Multi-stage visits</dd>
-    </div>
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Output</dt>
-      <dd class="sv-meta-dd">Progress, crew, site record</dd>
-    </div>
-    <div class="sv-meta-item">
-      <dt class="sv-meta-dt">Content</dt>
-      <dd class="sv-meta-dd">Photo and aerial</dd>
-    </div>
-  </div>
-</dl>
-
-<!-- ════════════ THE ROI ════════════ -->
-<section class="sv-section" aria-labelledby="sv-roi-h">
+<section class="sv-hang" aria-labelledby="sv-hang-h">
   <div class="sv-container">
-    <div class="sv-narrow">
-      <p class="sv-eyebrow">The record</p>
-      <h2 class="sv-h2" id="sv-roi-h">The record of how it went up.</h2>
-      <p>A finished building is one story. The visits before that are another. I come back across the build: framing, envelope, the crew at work, the site as it changes.</p>
-      <p>Those photographs keep the client in the picture while the project is still going up. They also become the library the firm draws from before the final shoot.</p>
+    <div class="sv-hang-head">
+      <h2 id="sv-hang-h">What the visits cover</h2>
     </div>
-  </div>
-</section>
-
-<!-- ════════════ IMAGE BREAK ════════════ -->
-<div class="sv-img-break">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=2500w 2500w" sizes="100vw" alt="Construction tools on sawhorse with ocean and mountain view through floor-to-ceiling glass by Matt Anthony" width="2500" height="1667" loading="lazy" decoding="async">
-</div>
-
-<!-- ════════════ WHAT IS INCLUDED ════════════ -->
-<section class="sv-section" aria-labelledby="sv-incl-h">
-  <div class="sv-container">
-    <div class="sv-narrow">
-      <p class="sv-eyebrow">What's Included</p>
-      <h2 class="sv-h2" id="sv-incl-h">What the visits cover</h2>
-    </div>
-    <div class="sv-deliverables">
-      <div class="sv-del-card">
-        <h3>Construction Progression</h3>
-        <p>Framing, formwork, mechanical, envelope. The milestones that show the scale and complexity of your builds, documented at every critical stage.</p>
+    <div class="sv-stack">
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Construction tools on a sawhorse, ocean and mountains through full height glass beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The site</p>
+          <p class="sv-card-loc">How the project is going up</p>
+        </div>
       </div>
-      <div class="sv-del-card">
-        <h3>The crew at work</h3>
-        <p>The people on site. The crane lift. The huddle. A record of who built it, not only what was built.</p>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Crane lifting a CLT panel with mountain and fog behind" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The work</p>
+          <p class="sv-card-loc">Cranes, timber, the days that change the skyline</p>
+        </div>
       </div>
-      <div class="sv-del-card">
-        <h3>Portraits on site</h3>
-        <p>Environmental portraits of the crew, shot in context. For the site, proposals, and the posts that follow.</p>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Builder in overalls with a tool belt, ocean behind" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The crew</p>
+          <p class="sv-card-loc">The people who built it</p>
+        </div>
       </div>
-      <div class="sv-del-card">
-        <h3>Film when it is useful</h3>
-        <p>Short sequences from the visit when motion helps the record. Not a separate video production.</p>
-      </div>
-      <div class="sv-del-card">
-        <h3>Drone &amp; Aerial Documentation</h3>
-        <p>Transport Canada certified aerial photography and video. Site overviews, progress documentation and angles a ground-level camera cannot reach.</p>
-      </div>
-      <div class="sv-del-card">
-        <h3>A library the firm can use</h3>
-        <p>Photographs from each visit, ready for the client update, the site, and the posts that keep the build in view.</p>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Concrete stairs being formed on a rock outcrop, steel and timber framing" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The stages</p>
+          <p class="sv-card-loc">Framing, envelope, the ground as it changes</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ════════════ GALLERY ════════════ -->
-<section class="sv-gallery sv-dark" aria-labelledby="sv-gal-h">
-  <div class="sv-container">
-    <p class="sv-eyebrow">Recent Work</p>
-    <h2 class="sv-h2" id="sv-gal-h">The build as it <em>happens</em></h2>
-    <div class="sv-gallery-grid">
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Builder in Carhartt overalls with tool belt, ocean behind, golden light" width="2500" height="3750" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c19496e4-9295-4d7c-8b69-13bb310c51ec/steel-wood-structures-2500px-16.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c19496e4-9295-4d7c-8b69-13bb310c51ec/steel-wood-structures-2500px-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c19496e4-9295-4d7c-8b69-13bb310c51ec/steel-wood-structures-2500px-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c19496e4-9295-4d7c-8b69-13bb310c51ec/steel-wood-structures-2500px-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c19496e4-9295-4d7c-8b69-13bb310c51ec/steel-wood-structures-2500px-16.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Worker cutting mass timber with saw, sawdust flying, intense focus" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dfb6f32a-65a3-47bf-b569-5e144f4d9b22/_DSC7123.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dfb6f32a-65a3-47bf-b569-5e144f4d9b22/_DSC7123.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dfb6f32a-65a3-47bf-b569-5e144f4d9b22/_DSC7123.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dfb6f32a-65a3-47bf-b569-5e144f4d9b22/_DSC7123.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/dfb6f32a-65a3-47bf-b569-5e144f4d9b22/_DSC7123.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Two workers collaborating on construction site, one on ladder measuring" width="2500" height="3750" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Crane lifting massive CLT panel with mountain and fog behind" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9f7abd2c-528e-4173-ba4c-bbcc8415e99a/team-headshots-11.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9f7abd2c-528e-4173-ba4c-bbcc8415e99a/team-headshots-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9f7abd2c-528e-4173-ba4c-bbcc8415e99a/team-headshots-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9f7abd2c-528e-4173-ba4c-bbcc8415e99a/team-headshots-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9f7abd2c-528e-4173-ba4c-bbcc8415e99a/team-headshots-11.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Construction team member laughing on site, authentic crew culture portrait" width="1667" height="2500" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414b9bc3-769e-4fed-8dca-65604b0a4292/_DSC7224.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414b9bc3-769e-4fed-8dca-65604b0a4292/_DSC7224.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414b9bc3-769e-4fed-8dca-65604b0a4292/_DSC7224.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414b9bc3-769e-4fed-8dca-65604b0a4292/_DSC7224.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414b9bc3-769e-4fed-8dca-65604b0a4292/_DSC7224.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Builder using surveyor transit with ocean bokeh behind" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/07f40e6c-d95a-461e-862a-185750f0e22b/steel-wood-structures-2500px-14.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/07f40e6c-d95a-461e-862a-185750f0e22b/steel-wood-structures-2500px-14.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/07f40e6c-d95a-461e-862a-185750f0e22b/steel-wood-structures-2500px-14.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/07f40e6c-d95a-461e-862a-185750f0e22b/steel-wood-structures-2500px-14.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/07f40e6c-d95a-461e-862a-185750f0e22b/steel-wood-structures-2500px-14.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Young worker portrait on site, hard hat and hi-vis vest, direct gaze" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0130a768-83da-4fc8-bfa6-dffd3630b1e2/steel-wood-structures-2500px-3.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0130a768-83da-4fc8-bfa6-dffd3630b1e2/steel-wood-structures-2500px-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0130a768-83da-4fc8-bfa6-dffd3630b1e2/steel-wood-structures-2500px-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0130a768-83da-4fc8-bfa6-dffd3630b1e2/steel-wood-structures-2500px-3.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0130a768-83da-4fc8-bfa6-dffd3630b1e2/steel-wood-structures-2500px-3.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Two workers on mass timber with misty mountains behind" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Concrete stairs being formed on rock outcrop, steel and timber framing" width="1667" height="2500" loading="lazy" decoding="async"></div>
-      <div class="sv-gallery-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7315cd68-7d05-4dff-a04b-e63d9c39945c/team-headshots-20.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7315cd68-7d05-4dff-a04b-e63d9c39945c/team-headshots-20.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7315cd68-7d05-4dff-a04b-e63d9c39945c/team-headshots-20.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7315cd68-7d05-4dff-a04b-e63d9c39945c/team-headshots-20.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7315cd68-7d05-4dff-a04b-e63d9c39945c/team-headshots-20.jpg?format=1500w 1500w" sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (min-width: 1600px) 472px, 30vw" alt="Construction worker on-site headshot with SIGA wrap and battens behind" width="1667" height="2500" loading="lazy" decoding="async"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ IDEAL FOR ════════════ -->
-<section class="sv-ideal" aria-labelledby="sv-ideal-h">
-  <div class="sv-container">
-    <p class="sv-eyebrow">Ideal For</p>
-    <h2 class="sv-h2" id="sv-ideal-h">Who this service is <em>built for</em></h2>
-    <div class="sv-ideal-grid">
-      <div class="sv-ideal-card">
-        <h3>Builders with Active Sites</h3>
-        <p>You have projects in progress and need content that shows the quality of your work before the drywall goes up.</p>
-      </div>
-      <div class="sv-ideal-card">
-        <h3>Firms that want the crew in the record</h3>
-        <p>The people on site are part of how the project went up. Those photographs belong in the library too.</p>
-      </div>
-      <div class="sv-ideal-card">
-        <h3>Milestone Documentation</h3>
-        <p>Major pours, beam sets, topping out. The moments that deserve more than a phone photo for your project records and client updates.</p>
-      </div>
-      <div class="sv-ideal-card">
-        <h3>Trades and Fabricators</h3>
-        <p>Millwork, glazing, structural steel, concrete. Your craft deserves to be seen in context, not isolated on a white background.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ MANIFESTO ════════════ -->
-<section class="sv-manifesto sv-dark">
-  <div class="sv-manifesto-inner">
-    <p class="sv-manifesto-text">Every day on your job site is content. The crane lift at sunrise. The crew in the rain. The framing against the mountain. Almost none of it gets photographed.</p>
-  </div>
-</section>
-
-<!-- ════════════ CLOSE ════════════ -->
-<section class="sv-cta sv-dark" aria-labelledby="sv-cta-h">
-  <div class="sv-cta-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=2500w 1667w" sizes="100vw" alt="Dark stained wood siding with tree shadow, construction material detail" width="1667" height="2500" loading="lazy" decoding="async">
-  </div>
-  <div class="sv-cta-c">
+<section class="sv-close" aria-labelledby="sv-close-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=2500w 2500w" sizes="100vw" alt="Dark stained wood siding with a tree shadow" width="1500" height="2250" loading="lazy" decoding="async">
+  <div class="sv-close-c">
     <p class="sv-eyebrow">Contact</p>
-    <h2 class="sv-h2" id="sv-cta-h">Tell me about your project.</h2>
-    <div class="sv-cta-row">
-      <div class="sv-cta-links">
-        <a href="/homepage-preview/discovery-call/" class="sv-cta-btn">Book a Discovery Call</a>
-        <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+    <h2 id="sv-close-h">Tell me about your project.</h2>
+    <div class="sv-close-row">
+      <div class="sv-close-btns">
+        <a class="sv-btn" href="/homepage-preview/discovery-call/">Book a Discovery Call</a>
+        <a class="sv-btn-2" href="/homepage-preview/contact/">Send a Message</a>
       </div>
-      <span class="sv-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
+      <span class="sv-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
   </div>
 </section>
-
-<!-- ════════════ OTHER SERVICES ════════════ -->
-<section class="sv-ot" aria-labelledby="sv-ot-h">
-  <div class="sv-container">
-    <p class="sv-eyebrow" id="sv-ot-h">Other Services</p>
-    <div class="sv-ot-g">
-      <div class="sv-ot-c">
-        <h3>Project Photography</h3>
-        <p>Stills and film of a finished build.</p>
-        <a class="sv-arrow-link" href="/homepage-preview/project-photography/">Learn More</a>
-      </div>
-      <div class="sv-ot-c">
-        <h3>Marketing</h3>
-        <p>Websites and the content that fills them.</p>
-        <a class="sv-arrow-link" href="/homepage-preview/website-seo/">Learn More</a>
-      </div>
-      <div class="sv-ot-c">
-        <h3>Creative Partner</h3>
-        <p>An ongoing agreement. Photography, film, progression, website and social.</p>
-        <a class="sv-arrow-link" href="/homepage-preview/creative-partner/">Learn More</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 </div><!-- /.sv-wrap -->
 
-<!-- ═══ FOOTER: last element in the block. Deliberately a div: Squarespace hides
-     real footer elements, and a second contentinfo landmark would sit
-     alongside the host page's own. ═══ -->
 <div class="hp-ft">
   <div class="hp-ft-inner">
 
@@ -641,7 +420,6 @@
 
   </div>
 </div>
-
 
 <script>
 (function(){
@@ -718,100 +496,6 @@
   });
 })();
 </script>
-
-<!-- JSON-LD Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Progression Photography",
-  "description": "Multi-stage visits across a build. Progress photographs, the crew, and a record of how the project went up.",
-  "url": "https://www.mattanthonyphoto.com/construction-team-content",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Matt Anthony Photography",
-    "url": "https://www.mattanthonyphoto.com",
-    "telephone": "+16047659270",
-    "email": "info@mattanthonyphoto.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Squamish",
-      "addressRegion": "BC",
-      "addressCountry": "CA"
-    },
-    "areaServed": [
-      { "@type": "Place", "name": "Squamish, BC" },
-      { "@type": "Place", "name": "Whistler, BC" },
-      { "@type": "Place", "name": "Pemberton, BC" },
-      { "@type": "Place", "name": "Vancouver, BC" },
-      { "@type": "Place", "name": "Sunshine Coast, BC" },
-      { "@type": "Place", "name": "Fraser Valley, BC" },
-      { "@type": "Place", "name": "Okanagan, BC" }
-    ]
-  },
-  "serviceType": "Progression Photography",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Progression Photography",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Construction Progression Photography" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Crew Culture & Lifestyle Photography" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Team Portraits & Headshots" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Film when it is useful" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drone & Aerial Site Documentation" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social-Ready Deliverables" } }
-    ]
-  }
-}
-</script>
-
-<!--
-  Build & Team Content · Service 03 code block
-  mattanthonyphoto.com/construction-team-content
-
-  Brought onto sitewide/_DESIGN-SYSTEM.md · 2026-08-27
-
-  Chrome: nav is the first element, footer the last, both outside .sv-wrap;
-  chrome CSS pasted at the top of the page style; chrome script once at the end.
-  Solid nav (no hp-nav-over): this hero opens on a bright overcast sky.
-
-  Layout: one width and one gutter. Hero copy, meta strip, every section head,
-  every card row, the gallery and the footer share one left edge at every width.
-
-  Type: Cormorant 300 at hero size and 400 everywhere below it, letter-spacing 0
-  throughout. DM Sans 300 body. One small-caps style, 11px / .18em.
-
-  Contrast: #8a8579 (3.35:1) is gone; muted text is --stone #6f6b61 (4.84:1).
-  Gold no longer carries text on paper. On ink only .82 and .60.
-
-  Removed: the loader, section-dot nav, scroll-progress bar, custom cursor,
-  particle canvas, magnetic button, parallax, Ken Burns, film grain, stat
-  counters, clip-path wipes and the per-word manifesto reveal. All of it was
-  opacity:0 or transform state driven by IntersectionObserver, which the design
-  system forbids, and none of it was content. Copy and images are unchanged.
-
-  Page-level meta (description, canonical, og:) removed per the design system:
-  Squarespace emits those from the SEO panel. JSON-LD kept.
-
-  Register pass 2026-08-27 (this one DID change copy, unlike the pass above):
-    Banned words out: "captured" in the hero sub, "capture" on the drone card,
-    "capturing" in the manifesto, "Start Capturing" as the CTA eyebrow,
-    "Showcasing" in an Ideal For heading, "storytelling" in the hero sub.
-    Dashes out: the em dash in the hero sub, the en dash in the meta strip.
-    Plural "we" out: "We show up on an active job site" is now "I spend a day".
-    Cut for being untraceable, not softened: "While your competitors post phone
-    photos and stock images ..." (a claim about the reader's competitors) and
-    "the most efficient content investment a builder can make".
-    The five What One Shoot Day Produces cards led with the TOP of each range
-    (12 / 5 / 6) and repeated the range underneath. They now lead with the range
-    itself (8-12 / 3-5 / 4-6). Those ranges are the offer as written on this page;
-    I could not find them in pricing.md or any other doc, so they still need
-    Matt's confirmation.
-    Other Services: the Project Photography blurb is now the agreed string,
-    "Complete documentation of a finished build.", and the Creative Partner blurb
-    is "An embedded creative department under one retainer." (it read
-    "Your embedded creative department, handled." only here).
--->
 
 </body>
 </html>

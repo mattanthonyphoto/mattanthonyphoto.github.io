@@ -221,7 +221,7 @@
 
 /* ── Eyebrow: gold rule, then wide-tracked caps. Used in every block. ── */
 .ct-eyebrow{
-  font-family:'Josefin Sans',sans-serif;font-weight:700;
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--stone)!important;margin:0 0 28px;
   display:inline-flex!important;align-items:center;gap:14px;
@@ -231,27 +231,35 @@
 /* ════════════ HERO ════════════ */
 .ct-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
-.ct-hero-bg{position:absolute;inset:0;z-index:0}
-.ct-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.ct-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .ct-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
-.ct-hero-content{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
-.ct-hero-content .ct-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
+.ct-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
+.ct-hero .ct-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
 .ct-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;max-width:24ch;margin:0 0 clamp(20px,2.4vw,28px)}
-.ct-hero h1 em{font-style:italic}
-.ct-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
-  line-height:1.85;letter-spacing:.02em;color:rgba(246,244,240,.82)!important;
-  max-width:56ch;margin:0}
+  color:#f6f4f0!important;max-width:24ch;margin:0 0 16px}
+.ct-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
+@media (max-width:480px){
+  .ct-hero .ct-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
+  .ct-hero .ct-eyebrow::before{display:none}
+}
 
-/* ════════════ CONTACT + FORM ════════════ */
-.ct-body{background:var(--paper)!important;padding:var(--section) 0}
-.ct-body-inner{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:clamp(40px,5vw,90px)}
-.ct-info{flex:1 1 380px;min-width:min(280px,100%)}
+/* ════════════ STATEMENT ════════════ */
+.ct-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.ct-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.ct-statement .ct-eyebrow{margin-bottom:32px}
+.ct-statement p:not(.ct-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
+
+/* ════════════ FORM ════════════ */
+.ct-body{background:var(--paper)!important;padding:0 0 var(--section)}
 /* The close CTA's secondary button is an in-page jump to this panel, so the
    fixed nav must not sit on top of it when the jump lands. */
-.ct-form-panel{flex:1 1 420px;min-width:280px;scroll-margin-top:clamp(96px,14vw,124px)}
+.ct-form-panel{max-width:760px;min-width:0;scroll-margin-top:clamp(96px,14vw,124px)}
 
 .ct-info-section{margin:0 0 clamp(40px,4.5vw,64px)}
 .ct-info-section:last-child{margin-bottom:0}
@@ -425,63 +433,28 @@
 
 <!-- ════════════ HERO ════════════ -->
 <section class="ct-hero" data-hp-hero aria-labelledby="ct-hero-h">
-  <div class="ct-hero-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg?format=2500w 2500w" sizes="100vw" alt="Open glass wall in a shingled facade, looking into a living room with a kitchen, a fireplace and a vaulted timber ceiling" width="2500" height="1666" fetchpriority="high" decoding="async">
-  </div>
-  <div class="ct-hero-content">
-    <div class="ct-container">
-      <p class="ct-eyebrow">Get in Touch</p>
-      <h1 id="ct-hero-h">Let's start a <em>conversation</em></h1>
-      <p class="ct-hero-sub">A finished project, progression through the build, a website, or an ongoing agreement. Tell me about the work.</p>
-    </div>
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="From the air, the house among trees above a wide beach at low tide" width="1500" height="1000" fetchpriority="high" decoding="async">
+  <div class="ct-hero-c"><div class="ct-container">
+    <p class="ct-eyebrow">Contact</p>
+    <h1 id="ct-hero-h">I start with a message.</h1>
+    <p class="ct-hero-sub">A finished project, progression through the build, a website, or an ongoing agreement.</p>
+  </div></div>
+</section>
+
+<!-- ════════════ STATEMENT ════════════ -->
+<section class="ct-statement">
+  <div class="ct-statement-inner">
+    <p class="ct-eyebrow">Approach</p>
+    <p>I read every inquiry. If it is a fit, a proposal follows.</p>
   </div>
 </section>
 
-<!-- ════════════ CONTACT + FORM ════════════ -->
+<!-- ════════════ FORM ════════════ -->
 <section class="ct-body">
   <div class="ct-container">
-    <div class="ct-body-inner">
-
-      <!-- ── Info ── -->
-      <div class="ct-info">
-
-        <div class="ct-info-section">
-          <p class="ct-eyebrow">Contact</p>
-          <div class="ct-contact-main">
-            <a class="ct-email-link" href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a>
-            <a href="tel:6047659270" class="ct-phone">604.765.9270</a>
-            <p class="ct-location">Squamish, British Columbia</p>
-          </div>
-          <div class="ct-social-links">
-            <a href="https://www.instagram.com/mattanthonyphoto/" target="_blank" rel="noopener" class="ct-social-link">Instagram</a>
-            <a href="https://www.linkedin.com/in/mattanthonyphoto/" target="_blank" rel="noopener" class="ct-social-link">LinkedIn</a>
-          </div>
-        </div>
-
-        <div class="ct-info-section">
-          <p class="ct-eyebrow">Service Areas</p>
-          <p>Serving architects, builders, and designers across British Columbia.</p>
-          <p><a href="https://www.mattanthonyphoto.com/squamish-architectural-photography">Squamish</a> &middot; <a href="https://www.mattanthonyphoto.com/whistler-architectural-photography">Whistler</a> &middot; <a href="https://www.mattanthonyphoto.com/pemberton-photography">Pemberton</a> &middot; <a href="https://www.mattanthonyphoto.com/sunshine-coast-photography">Sunshine Coast</a> &middot; <a href="https://www.mattanthonyphoto.com/vancouver-architectural-photographer">Vancouver</a> &middot; <a href="https://www.mattanthonyphoto.com/fraser-valley-photography">Fraser Valley</a> &middot; <a href="https://www.mattanthonyphoto.com/okanagan-architectural-photographer">Okanagan</a></p>
-        </div>
-
-        <div class="ct-info-section">
-          <p class="ct-eyebrow">Availability</p>
-          <p class="ct-hours">Monday through Friday, 9am to 5pm PST. Shoots are scheduled on evenings and weekends as needed for optimal light.</p>
-        </div>
-
-        <div class="ct-info-section">
-          <div class="ct-testimonial">
-            <p class="ct-testimonial-text">Working with Matt was an absolute pleasure from start to finish. &hellip; The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</p>
-            <p class="ct-testimonial-attr">Marc Harvey, Balmoral Construction &middot; <a href="https://www.balmoralconstruction.com/" target="_blank" rel="noopener">balmoralconstruction.com</a></p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ── Form ── -->
       <div class="ct-form-panel" id="ct-form-panel" tabindex="-1">
         <h2 class="ct-form-heading">Send an inquiry</h2>
-        <p class="ct-form-sub">Tell me about your project and I'll get back to you with next steps. Prefer to talk? <a href="/homepage-preview/discovery-call/">Book a Discovery Call</a> instead.</p>
+        <p class="ct-form-sub">The project, the date it finishes, and what the photographs are for. A <a href="/homepage-preview/discovery-call/">Discovery Call</a> is the other path.</p>
         <form class="ct-form" id="ctForm">
           <div class="ct-form-row">
             <div class="ct-form-group"><label for="ct-fname">Name</label><input type="text" id="ct-fname" name="firstName" placeholder="Your name" autocomplete="name" required></div>
@@ -502,15 +475,13 @@
           <p class="ct-success-note">I'll also reply to your inquiry within 24 hours.</p>
         </div>
       </div>
-
-    </div>
   </div>
 </section>
 
 <!-- ════════════ CLOSE ════════════ -->
 <section class="ct-cta" aria-labelledby="ct-cta-h">
   <div class="ct-cta-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Entry to a single storey house with dark vertical siding, a wood soffit over the door and concrete steps rising through planted rock terraces" width="2500" height="1667" loading="lazy" decoding="async">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-6.jpg?format=2500w 2500w" sizes="100vw" alt="Covered entry walk on slim steel columns under a pale wood soffit, glazed entry beyond" width="1500" height="1000" loading="lazy" decoding="async">
   </div>
   <div class="ct-cta-c">
     <p class="ct-eyebrow">Contact</p>
@@ -670,7 +641,7 @@
       "addressCountry": "CA"
     },
     "url": "https://www.mattanthonyphoto.com",
-    "image": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/450a7fc3-25a9-4668-8662-90111e476240/architectural-interiors-photographer-morden-project-sunshine-coast--6.jpg",
+    "image": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg",
     "priceRange": "$$",
     "openingHours": "Mo-Fr 09:00-17:00"
   }

@@ -216,22 +216,32 @@
 /* ════════════ HERO ════════════ */
 .faq-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
-.faq-hero-bg{position:absolute;inset:0;z-index:0}
-.faq-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.62}
+.faq-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .faq-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
-.faq-hero-content{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
-.faq-hero-content .faq-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
+.faq-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
+.faq-hero .faq-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
 .faq-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;max-width:22ch;margin:0 0 clamp(20px,2.4vw,28px)}
-.faq-hero h1 em{font-style:italic;color:inherit}
+  color:#f6f4f0!important;max-width:24ch;margin:0 0 16px}
 .faq-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
-  font-size:13px;line-height:1.85;
-  color:rgba(246,244,240,.82)!important;max-width:58ch;margin:0}
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
+@media (max-width:480px){
+  .faq-hero .faq-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
+  .faq-hero .faq-eyebrow::before{display:none}
+}
+
+/* ════════════ STATEMENT ════════════ */
+.faq-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.faq-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.faq-statement .faq-eyebrow{margin-bottom:32px}
+.faq-statement p:not(.faq-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
 
 /* ════════════ FAQ BODY ════════════ */
-.faq-body{background:var(--paper)!important;padding:var(--section) 0}
+.faq-body{background:var(--paper)!important;padding:0 0 var(--section)}
 /* Reading measure, left aligned: the left edge stays on the gutter. */
 .faq-list{max-width:860px}
 .faq-category{margin:0 0 clamp(56px,6vw,88px)}
@@ -340,15 +350,19 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="faq-hero" data-hp-hero aria-labelledby="faq-hero-h">
-  <div class="faq-hero-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=2500w 2500w" sizes="100vw" alt="Interior looking out through open sliding glass walls to a paved terrace, a glass guardrail and open water" width="1500" height="1000" fetchpriority="high" decoding="async">
-  </div>
-  <div class="faq-hero-content">
-    <div class="faq-container">
-      <p class="faq-eyebrow">Frequently Asked Questions</p>
-      <h1 id="faq-hero-h">Everything you need to know <em>before a shoot</em></h1>
-      <p class="faq-hero-sub">Answers on booking, stills and film, progression, websites, and how a project runs.</p>
-    </div>
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/8bc39f53-5f97-4fb1-9cf0-85690c43e68e/browns-road-sunshine-coast-architectural-photographer-matt-anthony-6.jpg?format=2500w 2500w" sizes="100vw" alt="Interior looking out through open sliding glass walls to a paved terrace, a glass guardrail and open water" width="1500" height="1000" fetchpriority="high" decoding="async">
+  <div class="faq-hero-c"><div class="faq-container">
+    <p class="faq-eyebrow">FAQs</p>
+    <h1 id="faq-hero-h">Questions before a shoot.</h1>
+    <p class="faq-hero-sub">Booking, stills and film, progression, websites, and how a project runs.</p>
+  </div></div>
+</section>
+
+<!-- ═══ STATEMENT ═══ -->
+<section class="faq-statement">
+  <div class="faq-statement-inner">
+    <p class="faq-eyebrow">Approach</p>
+    <p>The same answers I give on a call, written down.</p>
   </div>
 </section>
 
@@ -545,7 +559,7 @@
 <!-- ═══ CLOSE ═══ -->
 <section class="faq-cta" aria-labelledby="faq-cta-h">
   <div class="faq-cta-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Entry court with dark ribbed siding, a wood soffit and concrete steps up to a glass front door" width="1500" height="1000" loading="lazy" decoding="async">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d38e1c80-be31-43d9-9b04-bd4749235a7b/salt-spring-island-residence-stacked-shed-roofs-and-flagstone-steps-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d38e1c80-be31-43d9-9b04-bd4749235a7b/salt-spring-island-residence-stacked-shed-roofs-and-flagstone-steps-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d38e1c80-be31-43d9-9b04-bd4749235a7b/salt-spring-island-residence-stacked-shed-roofs-and-flagstone-steps-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d38e1c80-be31-43d9-9b04-bd4749235a7b/salt-spring-island-residence-stacked-shed-roofs-and-flagstone-steps-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d38e1c80-be31-43d9-9b04-bd4749235a7b/salt-spring-island-residence-stacked-shed-roofs-and-flagstone-steps-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Stacked shed roofs over ribbed cladding, stone steps climbing between boulders" width="1500" height="1125" loading="lazy" decoding="async">
   </div>
   <div class="faq-cta-c">
     <p class="faq-eyebrow">Contact</p>

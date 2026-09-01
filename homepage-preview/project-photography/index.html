@@ -9,15 +9,15 @@
 </head>
 <body>
 <style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
-
 <link rel="preconnect" href="https://images.squarespace-cdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
-
 <style>
-/* Tokens the chrome expects. On the chrome itself so no page wrapper is needed,
-   and on :root so a page's own rules can use --gutter / --page too. */
+/* Tokens. The FULL palette is on :root, not just the gutter, because a page's own
+   rules use var(--ink) / var(--paper) too and an unresolved var() invalidates the
+   whole declaration silently (a CTA banner once rendered white on white this way).
+   Repeated on the chrome itself so it still works if pasted without :root. */
 :root{
   --gutter:clamp(24px,5vw,80px); --page:1600px;
   --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
@@ -36,10 +36,11 @@
 #maHeader{display:none!important}
 
 /* ── NAV ──
-   Solid paper is the DEFAULT, so a content page is correct even if the script
-   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
-   markup to sit transparently over it; the script then removes that treatment
-   once you scroll past the hero.
+   Solid paper is the DEFAULT, so a page is correct even if the script never runs.
+   A page with a dark full-bleed hero marks its nav `data-hp-over` and its hero
+   `.hp-hero` or `data-hp-hero`; the script then adds `hp-nav-over` to sit
+   transparently over it, and `hp-scrolled` once you scroll past it. The class is
+   never in the markup, so a dead script cannot leave white text on a white page.
 
    Top level: Projects, About (dropdown), Services, Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
@@ -177,226 +178,117 @@
   .hp-hero-slides img:first-child{opacity:1}
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   Project Photography, Service 01.
-   On the shared design system: one page width, one gutter, one small-caps
-   style, Cormorant headlines at letter-spacing 0.
-   ═══════════════════════════════════════════════════════════════════════ */
-
 .sv-wrap{
-  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
-  --stone:#6f6b61; --rule:#d9d5cd;
   --section:clamp(88px,9vw,150px);
-  --gutter:clamp(24px,5vw,80px); --page:1600px;
-  --ease:cubic-bezier(.16,1,.3,1);
-  font-family:'DM Sans',-apple-system,sans-serif;
-  font-weight:300; line-height:1.7; color:var(--ink);
-  background:var(--paper)!important;
-  -webkit-font-smoothing:antialiased;
-}
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7;
+  color:var(--ink);background:var(--paper)!important;-webkit-font-smoothing:antialiased}
 .sv-wrap *{box-sizing:border-box}
 .sv-wrap img{max-width:100%;display:block}
 .sv-wrap a{color:inherit;text-decoration:none}
-.sv-wrap a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
-
-/* One page width, one gutter. Every left edge below lines up with the nav. */
-.sv-in{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
-
-/* ── The one small-caps style: 11px / .18em / DM Sans 400, with a gold rule ── */
-.sv-eyebrow{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+.sv-wrap a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.sv-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
+.sv-eyebrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--stone)!important;margin:0 0 28px;
-  display:inline-flex!important;align-items:center;gap:14px;
-}
+  display:inline-flex!important;align-items:center;gap:14px}
 .sv-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
-
-/* ── The one link style below the nav ── */
-.sv-link{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--ink)!important;border-bottom:1px solid var(--stone);
-  padding-bottom:5px;display:inline-block;transition:border-color .35s var(--ease);
-}
-.sv-link:hover,.sv-link:focus-visible{border-color:var(--ink)}
-
-/* ════════════ HERO ════════════ */
-.sv-hero{position:relative;min-height:100vh;min-height:100svh;min-height:560px;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:flex-end;
-  padding:0 0 clamp(56px,7vw,96px)}
-.sv-hero-bg{position:absolute;inset:0;z-index:0}
-.sv-hero-bg img{width:100%;height:100%;object-fit:cover}
+.sv-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:flex-end}
+.sv-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .sv-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
-.sv-hero-content{position:relative;z-index:2;width:100%;
-  max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
-.sv-hero .sv-eyebrow{color:rgba(246,244,240,.82)!important;margin-bottom:22px}
-.sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;max-width:22ch;margin:0 0 clamp(20px,2.4vw,28px)}
-.sv-hero h1 em{font-style:italic;color:var(--gold)!important}
+.sv-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
+.sv-hero .sv-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
+.sv-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;letter-spacing:0;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;color:#f6f4f0!important;
+  max-width:24ch;margin:0 0 16px}
 .sv-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
-  font-size:1rem;line-height:1.7;color:rgba(246,244,240,.82)!important;
-  max-width:56ch;margin:0}
-
-/* ════════════ META BAR ════════════ */
-.sv-meta{max-width:var(--page);margin:0 auto;padding:0 var(--gutter);
-  display:flex!important;flex-wrap:wrap;
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.sv-meta-item{flex:1 1 200px;padding:26px clamp(16px,2vw,32px);
-  border-right:1px solid var(--rule);margin:0}
-.sv-meta-item:first-child{padding-left:0}
-.sv-meta-item:last-child{padding-right:0;border-right:none}
-.sv-meta-dt{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--stone)!important;margin:0 0 8px}
-.sv-meta-dd{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.15rem;line-height:1.3;letter-spacing:0;color:var(--ink)!important;margin:0}
-
-/* ════════════ LIGHT SECTIONS ════════════ */
-.sv-section{max-width:var(--page);margin:0 auto;padding:var(--section) var(--gutter)}
-.sv-narrow{max-width:720px}
-.sv-section h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 clamp(24px,2.6vw,36px)}
-.sv-section h2 em{font-style:italic}
-.sv-section p{font-size:1rem;line-height:1.7;color:var(--ink)!important;margin:0 0 1.4rem}
-.sv-section p:last-child{margin-bottom:0}
-
-/* ════════════ IMAGE BREAK ════════════ */
-.sv-img-break{width:100%;height:70vh;min-height:420px;max-height:820px;
-  overflow:hidden;background:var(--ink)!important}
-.sv-img-break img{width:100%;height:100%;object-fit:cover}
-
-/* ════════════ WHAT IS INCLUDED ════════════ */
-.sv-del-grid{display:flex!important;flex-wrap:wrap;gap:clamp(24px,2.6vw,40px);
-  margin-top:clamp(28px,3vw,44px)}
-.sv-del-card{flex:1 1 calc(33.333% - 27px);min-width:250px;
-  padding:26px 0 0;border-top:1px solid var(--rule)}
-.sv-del-num{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;color:var(--stone)!important;margin:0 0 14px}
-.sv-del-card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.3rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-del-card p{font-size:.95rem;line-height:1.7;color:var(--stone)!important;margin:0}
-
-/* ════════════ GALLERY (dark, full bleed) ════════════ */
-.sv-gallery{background:var(--ink)!important;padding:var(--section) var(--gutter)}
-.sv-gallery .sv-eyebrow{color:rgba(246,244,240,.82)!important}
-.sv-gallery h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 18px}
-.sv-gallery h2 em{font-style:italic;color:var(--gold)!important}
-.sv-gallery-intro{font-size:1rem;line-height:1.7;color:rgba(246,244,240,.82)!important;
-  max-width:56ch;margin:0 0 clamp(32px,4vw,56px)}
-.sv-masonry{column-count:2;column-gap:clamp(16px,1.6vw,24px)}
-.sv-masonry-item{break-inside:avoid;margin:0 0 clamp(16px,1.6vw,24px);
-  overflow:hidden;background:#111}
-.sv-masonry-item img{width:100%;height:auto}
-
-/* ════════════ IDEAL FOR ════════════ */
-.sv-ideal{max-width:var(--page);margin:0 auto;padding:var(--section) var(--gutter)}
-.sv-ideal h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 clamp(24px,2.6vw,36px)}
-.sv-ideal h2 em{font-style:italic}
-.sv-ideal-grid{display:flex!important;flex-wrap:wrap;gap:clamp(24px,2.6vw,40px);
-  margin-top:clamp(28px,3vw,44px)}
-.sv-ideal-card{flex:1 1 calc(25% - 30px);min-width:220px;
-  padding:24px 0 0;border-top:1px solid var(--rule)}
-.sv-ideal-card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.25rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-ideal-card p{font-size:.95rem;line-height:1.7;color:var(--stone)!important;margin:0}
-
-/* ════════════ QUOTE ════════════ */
-.sv-quote{max-width:var(--page);margin:0 auto;
-  padding:var(--section) var(--gutter);text-align:center;border-top:1px solid var(--rule)}
-.sv-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
-  color:var(--ink)!important;max-width:25em;margin:0 auto 24px;text-wrap:pretty}
-.sv-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--stone)!important;margin:0}
-.sv-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
-.sv-quote-attr a:hover,.sv-quote-attr a:focus-visible{border-color:var(--ink)}
-
-/* ════════════ OTHER SERVICES ════════════ */
-.sv-ot{max-width:var(--page);margin:0 auto;
-  padding:var(--section) var(--gutter);border-top:1px solid var(--rule)}
-.sv-ot-g{display:flex!important;flex-wrap:wrap;gap:clamp(24px,2.6vw,40px)}
-.sv-ot-c{flex:1 1 calc(33.333% - 27px);min-width:240px;
-  padding:26px 0 0;border-top:1px solid var(--rule)}
-.sv-ot-c h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.3rem;line-height:1.25;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-ot-c p{font-size:.95rem;line-height:1.7;color:var(--stone)!important;margin:0 0 18px}
-
-/* ════════════ MANIFESTO (dark, full bleed) ════════════ */
-.sv-manifesto{background:var(--ink)!important;
-  padding:var(--section) var(--gutter);text-align:center}
-.sv-manifesto-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.45;letter-spacing:0;
-  color:rgba(246,244,240,.82)!important;max-width:25em;margin:0 auto;text-wrap:pretty}
-.sv-manifesto-text .sv-gold-word{color:var(--gold)!important}
-
-/* ════════════ CLOSE ════════════ */
-.sv-cta{position:relative;min-height:72vh;max-height:900px;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:center;
-  justify-content:center;text-align:center}
-.sv-cta-bg{position:absolute;inset:0;z-index:0}
-.sv-cta-bg img{width:100%;height:100%;object-fit:cover}
-.sv-cta::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
-.sv-cta-c{position:relative;z-index:2;
-  padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
-.sv-cta .sv-eyebrow{color:rgba(246,244,240,.85)!important}
-.sv-cta h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 clamp(28px,3vw,40px)}
-.sv-cta-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
-.sv-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
-.sv-cta-btn,.sv-cta-btn-secondary{display:inline-block;
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
-  transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
-.sv-cta-btn{background:var(--gold)!important;border:1px solid var(--gold)!important;
-  color:#1a1a18!important}
-.sv-cta-btn:hover,.sv-cta-btn:focus-visible{background:var(--gold-deep)!important;
-  border-color:var(--gold-deep)!important;color:#1a1a18!important}
-.sv-cta-btn-secondary{background:transparent!important;
-  border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important}
-.sv-cta-btn-secondary:hover,.sv-cta-btn-secondary:focus-visible{
-  background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
-/* Specific enough (0,3,1) to beat the page's own `.sv-wrap a:focus-visible`,
-   which is (0,2,1) and otherwise decides the ring colour on this dark panel. */
-.sv-cta a.sv-cta-btn:focus-visible,.sv-cta a.sv-cta-btn-secondary:focus-visible{
-  outline:2px solid #f6f4f0;outline-offset:3px}
-@media (max-width:768px){.sv-cta-links{flex-direction:column;align-items:stretch}}
-.sv-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
-  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
-.sv-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-.sv-cta-or a:focus-visible{border-color:#f6f4f0}
-
-/* ════════════ RESPONSIVE ════════════ */
-@media (max-width:1024px){
-  .sv-del-card{flex:1 1 calc(50% - 20px)}
-  .sv-ideal-card{flex:1 1 calc(50% - 20px)}
-  .sv-ot-c{flex:1 1 calc(50% - 20px)}
-}
-@media (max-width:768px){
-  .sv-meta-item{flex:1 1 100%;padding-left:0;padding-right:0;
-    border-right:none;border-bottom:1px solid var(--rule)}
-  .sv-meta-item:last-child{border-bottom:none}
-  .sv-del-card{flex:1 1 100%}
-  .sv-ot-c{flex:1 1 100%}
-  .sv-masonry{column-count:1}
-  .sv-img-break{height:50vh;min-height:320px}
-}
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
 @media (max-width:480px){
-  .sv-ideal-card{flex:1 1 100%}
+  .sv-hero .sv-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
   .sv-hero .sv-eyebrow::before{display:none}
 }
-@media (prefers-reduced-motion:reduce){
-  .sv-wrap *{animation:none!important;transition:none!important}
+.sv-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.sv-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.sv-statement .sv-eyebrow{margin-bottom:32px}
+.sv-statement p:not(.sv-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
+.sv-hang{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-hang-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
+.sv-hang-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0}
+.sv-arrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink)!important;border-bottom:1px solid var(--stone);
+  padding-bottom:5px;display:inline-block}
+.sv-arrow:hover,.sv-arrow:focus-visible{border-color:var(--ink)}
+.sv-stack{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
+.sv-card{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));max-width:calc(50% - clamp(10px,1.2vw,18px));min-width:0}
+.sv-card-full{flex:1 1 100%;max-width:none}
+.sv-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
+.sv-card-frame img{width:100%;height:100%;object-fit:cover}
+.sv-card-over{display:flex!important;justify-content:space-between;align-items:baseline;
+  gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
+.sv-card-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:13px;line-height:1.4;color:var(--ink)!important;margin:0;
+  transition:color .3s var(--ease)}
+.sv-card:hover .sv-card-name,.sv-card:focus-visible .sv-card-name{color:#816a3f!important}
+.sv-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
+.sv-figure{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.sv-steps{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
+.sv-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.15;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.sv-step p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:66ch}
+.sv-quote{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-quote-inner{max-width:760px}
+.sv-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
+.sv-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
+.sv-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
+.sv-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
+.sv-close>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sv-close::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
+.sv-close-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
+.sv-close .sv-eyebrow{color:rgba(246,244,240,.85)!important;justify-content:center}
+.sv-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;color:#f6f4f0!important;
+  margin:0 0 clamp(28px,3vw,40px)}
+.sv-close-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
+.sv-close-btns{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
+.sv-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.sv-btn:hover,.sv-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.sv-btn-2{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
+.sv-btn-2:hover,.sv-btn-2:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
+.sv-close a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+.sv-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.sv-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+@media (max-width:768px){.sv-close-btns{flex-direction:column;align-items:stretch}}
+@media (max-width:640px){
+  .sv-card,.sv-card-full{flex:1 1 100%;max-width:none}
+  .sv-card-over{flex-direction:column;align-items:flex-start;gap:4px}
+  .sv-card-loc{letter-spacing:.12em}
+  .sv-figure img{width:100%}
 }
+@media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
@@ -418,172 +310,79 @@
 </div>
 
 <div class="sv-wrap">
-
-<!-- ═══ HERO ═══ -->
-<div class="sv-hero" data-hp-hero>
-  <div class="sv-hero-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=2500w 2500w" sizes="100vw" alt="Warbler Residence Whistler exterior architectural photography by Matt Anthony" width="2500" height="1667" fetchpriority="high" decoding="async">
-  </div>
-  <div class="sv-hero-content">
+<section class="sv-hero" data-hp-hero aria-labelledby="sv-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Two grey gabled volumes joined by a glazed link, set on a concrete base above the shore" width="1500" height="1000" fetchpriority="high" decoding="async">
+  <div class="sv-hero-c"><div class="sv-container">
     <p class="sv-eyebrow">Project Photography</p>
-    <h1>Project Photography: Documenting <em>design intent</em></h1>
-    <p class="sv-hero-sub">Stills and film of a finished build, from one shoot. Exteriors, interiors, aerial, twilight.</p>
-  </div>
-</div>
-
-<!-- ═══ META BAR ═══ -->
-<dl class="sv-meta">
-  <div class="sv-meta-item">
-    <dt class="sv-meta-dt">Coverage</dt>
-    <dd class="sv-meta-dd">Full Scope</dd>
-  </div>
-  <div class="sv-meta-item">
-    <dt class="sv-meta-dt">Includes</dt>
-    <dd class="sv-meta-dd">Photo, Film, Aerial</dd>
-  </div>
-  <div class="sv-meta-item">
-    <dt class="sv-meta-dt">Turnaround</dt>
-    <dd class="sv-meta-dd">10 to 15 Business Days</dd>
-  </div>
-  <div class="sv-meta-item">
-    <dt class="sv-meta-dt">Areas</dt>
-    <dd class="sv-meta-dd">BC Wide</dd>
-  </div>
-</dl>
-
-<!-- ═══ THE STORY ═══ -->
-<section class="sv-section">
-  <div class="sv-narrow">
-  <p class="sv-eyebrow">The Story</p>
-  <h2>Imagery as considered as <em>the design itself</em></h2>
-  <p>A build takes months, sometimes years. The material choices, the way light enters a room, the relationship between the structure and its site. I read the plans, walk the site and talk through design intent before composing a frame.</p>
-  <p>I document decisions, not just rooms. How a material palette resolves against natural light. How a structure sits in its landscape. The proportions a casual observer misses and a prospective client reads immediately.</p>
+    <h1 id="sv-h">Stills and film of a finished build.</h1>
+    <p class="sv-hero-sub">Exteriors, interiors, aerial, twilight. From one visit.</p>
+  </div></div>
+</section>
+<section class="sv-statement">
+  <div class="sv-statement-inner">
+    <p class="sv-eyebrow">Approach</p>
+    <p>I read the plans, walk the site, and photograph the decisions behind the building.</p>
   </div>
 </section>
-
-<!-- ═══ FULL-WIDTH IMAGE BREAK ═══ -->
-<div class="sv-img-break">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=2500w 2500w" sizes="100vw" alt="Fitzsimmons Residence snow exterior Whistler" width="2500" height="1667" loading="lazy" decoding="async">
-</div>
-
-<!-- ═══ WHAT'S INCLUDED ═══ -->
-<section class="sv-section">
-  <div class="sv-narrow">
-    <p class="sv-eyebrow">What's Included</p>
-    <h2>Six disciplines. One <em>cohesive shoot</em>.</h2>
-  </div>
-  <div class="sv-del-grid">
-    <div class="sv-del-card">
-      <div class="sv-del-num">01</div>
-      <h3>Exterior Architecture</h3>
-      <p>Elevation views, context shots, and streetscape compositions that establish the project within its site and landscape.</p>
+<section class="sv-hang" aria-labelledby="sv-hang-h">
+  <div class="sv-container">
+    <div class="sv-hang-head">
+      <h2 id="sv-hang-h">What a visit covers</h2>
     </div>
-    <div class="sv-del-card">
-      <div class="sv-del-num">02</div>
-      <h3>Interior Spatial Flow</h3>
-      <p>Wide angles and composed vignettes show the spatial logic, sightlines and proportional relationships of each room.</p>
-    </div>
-    <div class="sv-del-card">
-      <div class="sv-del-num">03</div>
-      <h3>Material Details &amp; Vignettes</h3>
-      <p>Close-up studies of material intersections, hardware selections and joinery.</p>
-    </div>
-    <div class="sv-del-card">
-      <div class="sv-del-num">04</div>
-      <h3>Aerial &amp; Drone (Certified)</h3>
-      <p>Transport Canada certified Advanced Pilot. Overhead compositions, elevation context, and neighbourhood scale from above.</p>
-    </div>
-    <div class="sv-del-card">
-      <div class="sv-del-num">05</div>
-      <h3>Twilight &amp; Dusk</h3>
-      <p>Golden hour and blue hour exterior coverage shows the warmth and atmosphere of a house after dark.</p>
-    </div>
-    <div class="sv-del-card">
-      <div class="sv-del-num">06</div>
-      <h3>Short Form Project Film</h3>
-      <p>A 60 to 90 second cinematic walkthrough for social media and client presentations.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ GALLERY ═══ -->
-<section class="sv-gallery">
-  <div class="sv-in">
-    <p class="sv-eyebrow">Portfolio</p>
-    <h2>Across every <em>discipline</em></h2>
-    <p class="sv-gallery-intro">Exteriors, interiors, aerials, details, and twilight coverage drawn from projects across British Columbia.</p>
-    <div class="sv-masonry">
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Warbler Residence exterior Whistler" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Warbler Residence, Whistler: interior corner glazing with mountain view and glass railing" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6652472b-6da7-4090-b0e2-454aba87827f/warbler-whistler-architectural-photography-matt-anthony-.jpg-25.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6652472b-6da7-4090-b0e2-454aba87827f/warbler-whistler-architectural-photography-matt-anthony-.jpg-25.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6652472b-6da7-4090-b0e2-454aba87827f/warbler-whistler-architectural-photography-matt-anthony-.jpg-25.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6652472b-6da7-4090-b0e2-454aba87827f/warbler-whistler-architectural-photography-matt-anthony-.jpg-25.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6652472b-6da7-4090-b0e2-454aba87827f/warbler-whistler-architectural-photography-matt-anthony-.jpg-25.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/6652472b-6da7-4090-b0e2-454aba87827f/warbler-whistler-architectural-photography-matt-anthony-.jpg-25.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Warbler Residence, Whistler: upper landing with glass railing above the stair, mountains through the glazing" width="2500" height="2000" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="The Perch, Sunshine Coast: dark clad exterior among tall firs, gravel drive and stacked firewood under the overhang" width="2500" height="1875" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62f2712d-a413-46af-bcd8-d0f17957f8ab/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-4.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62f2712d-a413-46af-bcd8-d0f17957f8ab/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-4.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62f2712d-a413-46af-bcd8-d0f17957f8ab/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-4.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62f2712d-a413-46af-bcd8-d0f17957f8ab/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-4.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62f2712d-a413-46af-bcd8-d0f17957f8ab/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-4.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/62f2712d-a413-46af-bcd8-d0f17957f8ab/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-4.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Tranquil Retreat, Sunshine Coast: kitchen with walnut cabinetry, black island and wood ceiling" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Tranquil Retreat, Sunshine Coast: covered entry with dark ribbed siding, wood soffit and glazed door" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df676ea0-2bb8-4e89-91a1-55d3ce883c14/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-19.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df676ea0-2bb8-4e89-91a1-55d3ce883c14/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-19.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df676ea0-2bb8-4e89-91a1-55d3ce883c14/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-19.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df676ea0-2bb8-4e89-91a1-55d3ce883c14/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-19.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df676ea0-2bb8-4e89-91a1-55d3ce883c14/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-19.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/df676ea0-2bb8-4e89-91a1-55d3ce883c14/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-19.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Sugarloaf Residence exterior Pemberton" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ef4086f4-81fa-468f-99bf-966ce7d83d89/warbler-whistler-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Warbler Residence, Whistler: dark veined stone counter edge, window and trees beyond" width="1667" height="2500" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Tranquil Retreat, Sunshine Coast: glazed side elevation with a planted courtyard against a concrete wall" width="2500" height="1667" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7feb0024-6829-459f-96e1-4eff91fb7894/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-9.jpg?format=1500w 1500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="Sugarloaf Residence interior Pemberton" width="1667" height="2500" loading="lazy" decoding="async"></div>
-      <div class="sv-masonry-item"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edfcc332-dd10-4900-8bfc-c65e80731f97/5322-backhouse-web-23.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edfcc332-dd10-4900-8bfc-c65e80731f97/5322-backhouse-web-23.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edfcc332-dd10-4900-8bfc-c65e80731f97/5322-backhouse-web-23.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edfcc332-dd10-4900-8bfc-c65e80731f97/5322-backhouse-web-23.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edfcc332-dd10-4900-8bfc-c65e80731f97/5322-backhouse-web-23.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/edfcc332-dd10-4900-8bfc-c65e80731f97/5322-backhouse-web-23.jpg?format=2500w 2500w" sizes="(max-width: 768px) 90vw, (min-width: 1600px) 708px, 45vw" alt="The Perch, Sunshine Coast: gravel drive and carport under tall firs, the inlet and mountains beyond" width="2500" height="1875" loading="lazy" decoding="async"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ IDEAL FOR ═══ -->
-<section class="sv-ideal">
-  <p class="sv-eyebrow">Ideal For</p>
-  <h2>Built for the teams behind <em>considered work</em></h2>
-  <div class="sv-ideal-grid">
-    <div class="sv-ideal-card">
-      <h3>Architects</h3>
-      <p>Completed work documented for portfolio, awards and publications.</p>
-    </div>
-    <div class="sv-ideal-card">
-      <h3>Custom Builders</h3>
-      <p>Craftsmanship shown to prospective clients at the standard it was built.</p>
-    </div>
-    <div class="sv-ideal-card">
-      <h3>Interior Designers</h3>
-      <p>Material palettes and spatial design recorded as intended.</p>
-    </div>
-    <div class="sv-ideal-card">
-      <h3>Trades &amp; Suppliers</h3>
-      <p>Products photographed installed in context. Glazing, millwork, stone and metalwork as built.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TESTIMONIAL ═══ -->
-<section class="sv-quote">
-  <p class="sv-quote-text">His creative eye brought out the best in the design, and he easily adapted to changing conditions.</p>
-  <p class="sv-quote-attr"><a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Kyle Paisley</a> &middot; Summerhill Fine Homes</p>
-</section>
-
-<!-- ═══ OTHER SERVICES ═══ -->
-<div class="sv-ot"><p class="sv-eyebrow">Other Services</p><div class="sv-ot-g"><div class="sv-ot-c"><h3>Progression</h3><p>Multi-stage visits across a build.</p><a class="sv-link" href="/homepage-preview/build-team-content/">Learn More</a></div><div class="sv-ot-c"><h3>Marketing</h3><p>Websites and the content that fills them.</p><a class="sv-link" href="/homepage-preview/website-seo/">Learn More</a></div><div class="sv-ot-c"><h3>Creative Partner</h3><p>An ongoing agreement. Photography, film, progression, website and social.</p><a class="sv-link" href="/homepage-preview/creative-partner/">Learn More</a></div></div></div>
-
-<!-- ═══ MANIFESTO ═══ -->
-<section class="sv-manifesto">
-  <p class="sv-manifesto-text">The best <span class="sv-gold-word">project photography</span> does not just show what was built. It shows why it was built that way. That distinction separates <span class="sv-gold-word">documentation</span> from <span class="sv-gold-word">design communication.</span></p>
-</section>
-
-<!-- ═══ CTA ═══ -->
-<section class="sv-cta">
-  <div class="sv-cta-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Sunshine Coast architectural photography by Matt Anthony" width="2500" height="1667" loading="lazy" decoding="async">
-  </div>
-  <div class="sv-cta-c">
-    <p class="sv-eyebrow">Contact</p>
-    <h2>Tell me about your project.</h2>
-    <div class="sv-cta-row">
-      <div class="sv-cta-links">
-        <a href="/homepage-preview/discovery-call/" class="sv-cta-btn">Book a Discovery Call</a>
-        <a href="/homepage-preview/contact/" class="sv-cta-btn-secondary">Send a Message</a>
+    <div class="sv-stack">
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Twin gabled volumes in weathered wood above a lawn, seen from the dock across the shoreline" width="1500" height="1200" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Exterior</p>
+          <p class="sv-card-loc">The building in its site</p>
+        </div>
       </div>
-      <span class="sv-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Dining table and chairs under a branching pendant, full height glazing to the mountains" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Interior</p>
+          <p class="sv-card-loc">Rooms, materials, light</p>
+        </div>
+      </div>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Houses and boathouses along a forested shoreline in low golden light, still water below" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Aerial</p>
+          <p class="sv-card-loc">How it sits in the landscape</p>
+        </div>
+      </div>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house along a rock outcrop above the snow, a long dark volume under a pale wood soffit" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Twilight and film</p>
+          <p class="sv-card-loc">The building after dark, and in motion</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-
+<section class="sv-quote" aria-label="Client comment">
+  <div class="sv-container">
+    <div class="sv-quote-inner">
+      <p class="sv-quote-text">His creative eye brought out the best in the design.</p>
+      <p class="sv-quote-attr">Kyle Paisley &middot; <a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Summerhill Fine Homes</a></p>
+    </div>
+  </div>
+</section>
+<section class="sv-close" aria-labelledby="sv-close-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b0cf6125-f64d-497b-ac8a-723984b16e1d/schmidt-residence-invermere-lakeside-elevation-daytime-moon-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b0cf6125-f64d-497b-ac8a-723984b16e1d/schmidt-residence-invermere-lakeside-elevation-daytime-moon-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b0cf6125-f64d-497b-ac8a-723984b16e1d/schmidt-residence-invermere-lakeside-elevation-daytime-moon-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b0cf6125-f64d-497b-ac8a-723984b16e1d/schmidt-residence-invermere-lakeside-elevation-daytime-moon-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b0cf6125-f64d-497b-ac8a-723984b16e1d/schmidt-residence-invermere-lakeside-elevation-daytime-moon-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b0cf6125-f64d-497b-ac8a-723984b16e1d/schmidt-residence-invermere-lakeside-elevation-daytime-moon-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Glazed two storey elevation above a lawn, covered decks on timber posts, lake and mountains beyond" width="1500" height="1125" loading="lazy" decoding="async">
+  <div class="sv-close-c">
+    <p class="sv-eyebrow">Contact</p>
+    <h2 id="sv-close-h">Tell me about your project.</h2>
+    <div class="sv-close-row">
+      <div class="sv-close-btns">
+        <a class="sv-btn" href="/homepage-preview/discovery-call/">Book a Discovery Call</a>
+        <a class="sv-btn-2" href="/homepage-preview/contact/">Send a Message</a>
+      </div>
+      <span class="sv-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
+    </div>
+  </div>
+</section>
 </div><!-- /.sv-wrap -->
 
 <div class="hp-ft">
@@ -705,69 +504,6 @@
   });
 })();
 </script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Architectural Project Photography",
-  "description": "Stills and film of a finished build, from one shoot. Exteriors, interiors, aerial, twilight.",
-  "provider": {
-    "@id": "https://www.mattanthonyphoto.com/#business"
-  },
-  "url": "https://www.mattanthonyphoto.com/project-photography",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "British Columbia"
-  },
-  "serviceType": "Architectural Photography",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Project Photography Deliverables",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Exterior Architecture Photography"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Interior Spatial Photography"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aerial Drone Photography"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Twilight & Dusk Photography"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Short Form Project Film"}}
-    ]
-  }
-}
-</script>
-
-<!--
-  Project Photography, Service 01 code block
-  mattanthonyphoto.com/project-photography
-
-  Last updated: 2026-08-27
-  On the shared design system (sitewide/_DESIGN-SYSTEM.md):
-    1. Shared chrome lifted verbatim from sitewide/_chrome.html: nav first, footer last,
-       both outside .sv-wrap, script once at the end. The page's own footer element is gone.
-    2. One page width and one gutter (--page / --gutter). Hero line, meta bar, story,
-       deliverables, gallery, ideal-for, quote, other services and footer share one left edge.
-    3. Cormorant headlines at letter-spacing 0, weight 400 below hero size. One small-caps
-       style: 11px / .18em / DM Sans 400.
-    4. Contrast: the failing 3.35:1 stone and the 2.51:1 deep gold no longer carry text;
-       muted text is --stone #6f6b61 on paper and rgba(246,244,240,.82) / .60 on ink.
-    5. Flexbox throughout: no CSS grid columns (Squarespace fluid-engine reset kills them).
-    6. The interactive layer is gone (loader, cursor, particles, parallax, Ken Burns,
-       counters, staggers, word reveal). Nothing on the page starts invisible.
-    7. srcset + sizes + real width/height on every image; the gallery duplicate is removed.
-    8. Page-level meta (description, canonical, og:) removed: Squarespace emits those from
-       the SEO panel. JSON-LD Service schema kept.
-
-  Register pass 2026-08-27:
-    9. Close matches the homepage: Contact, "Tell me about your project.", two buttons,
-       or email. No Get Pricing, no extra sub.
-   10. The Service JSON-LD description said "Complete visual documentation of finished
-       builds ..." while the hero said something else. It now mirrors the hero sentence.
-   11. Cut, not rewritten: the channel list closing The Story, the "details that define
-       craftsmanship" tail, "brings the spatial experience to life", and the padded
-       "with the ..." clause on three of the four Ideal For cards.
-   12. Other Services blurbs on this page were already the agreed wording, so they are
-       untouched. The agreed Project Photography blurb is
-       "Complete documentation of a finished build."
--->
 
 </body>
 </html>

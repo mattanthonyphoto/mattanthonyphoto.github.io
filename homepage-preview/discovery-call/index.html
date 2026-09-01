@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Discovery call preview</title>
+<title>Discovery Call preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -225,7 +225,7 @@
   display:inline-flex!important;align-items:center;gap:14px;
 }
 .dc-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
-.dc-hero .dc-eyebrow,.dc-cta .dc-eyebrow{color:rgba(246,244,240,.82)!important}
+.dc-hero .dc-eyebrow,.dc-cta .dc-eyebrow{color:rgba(246,244,240,.85)!important}
 
 /* ── Type scale: Cormorant at letter-spacing 0, weight 400 below hero size ── */
 .dc-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -235,18 +235,34 @@
   font-size:1.25rem;line-height:1.3;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 10px}
 
-/* ════════════ HERO (no photograph: the calendar is the point of this page) ════════════ */
-.dc-hero{background:var(--ink)!important;padding:clamp(52px,6vw,90px) 0 clamp(56px,6vw,100px)}
-.dc-hero-inner{max-width:760px}
+/* ════════════ HERO ════════════ */
+.dc-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:flex-end}
+.dc-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.dc-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
+.dc-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
 .dc-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 clamp(20px,2.4vw,28px)}
-.dc-hero-intro{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
-  font-size:13px;line-height:1.85;color:rgba(246,244,240,.82)!important;
-  max-width:56ch;margin:0}
+  color:#f6f4f0!important;max-width:24ch;margin:0 0 16px}
+.dc-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
+@media (max-width:480px){
+  .dc-hero .dc-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
+  .dc-hero .dc-eyebrow::before{display:none}
+}
+
+/* ════════════ STATEMENT ════════════ */
+.dc-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.dc-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.dc-statement .dc-eyebrow{margin-bottom:32px}
+.dc-statement p:not(.dc-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
 
 /* ════════════ BOOKING ════════════ */
-.dc-booking{background:var(--paper)!important;padding:clamp(56px,6vw,96px) 0 var(--section)}
+.dc-booking{background:var(--paper)!important;padding:0 0 var(--section)}
 .dc-booking-inner{max-width:760px;margin:0 auto;text-align:center}
 .dc-booking h2{margin-left:auto;margin-right:auto}
 /* The GoHighLevel widget. Fixed height on purpose: it is cross-origin, so nothing
@@ -325,10 +341,8 @@
 }
 </style>
 
-<!-- ═══ NAV · shared chrome, first element in the block. No `data-hp-over`:
-     this page opens on a solid ink band, not a full-bleed photograph, so the
-     nav stays solid and readable from the first pixel. ═══ -->
-<div class="hp-nav" id="hpNav" role="navigation" aria-label="Main">
+<!-- ═══ NAV · shared chrome, first element in the block, over the dark photograph. ═══ -->
+<div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
     <a href="/homepage-preview/projects-v2/">Projects</a>
@@ -349,13 +363,20 @@
 <div class="dc-wrap">
 
 <!-- ════════════ HERO ════════════ -->
-<section class="dc-hero" aria-labelledby="dc-hero-h">
-  <div class="dc-container">
-    <div class="dc-hero-inner">
-      <p class="dc-eyebrow">Discovery Call</p>
-      <h1 id="dc-hero-h">Book a discovery call</h1>
-      <p class="dc-hero-intro">Twenty minutes on what is being built, when it finishes, and how the photographs and film will be used. If it is a fit, a proposal follows the same day.</p>
-    </div>
+<section class="dc-hero" data-hp-hero aria-labelledby="dc-hero-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="The long elevation lit gold at the end of the day, deck rail above the rock" width="1500" height="1125" fetchpriority="high" decoding="async">
+  <div class="dc-hero-c"><div class="dc-container">
+    <p class="dc-eyebrow">Discovery Call</p>
+    <h1 id="dc-hero-h">Book a discovery call</h1>
+    <p class="dc-hero-sub">Twenty minutes. If it is a fit, a proposal follows the same day.</p>
+  </div></div>
+</section>
+
+<!-- ════════════ STATEMENT ════════════ -->
+<section class="dc-statement">
+  <div class="dc-statement-inner">
+    <p class="dc-eyebrow">Approach</p>
+    <p>What is being built, when it finishes, and how the photographs and film will be used.</p>
   </div>
 </section>
 
@@ -371,48 +392,14 @@
   </div>
 </section>
 
-<!-- ════════════ WHAT HAPPENS ════════════ -->
-<section class="dc-steps-sec" aria-labelledby="dc-steps-h">
-  <div class="dc-container">
-    <p class="dc-eyebrow">What happens</p>
-    <h2 id="dc-steps-h">A short call, then a written proposal.</h2>
-    <div class="dc-steps">
-      <div class="dc-step">
-        <p class="dc-step-num">01 &middot; The call</p>
-        <h3>Twenty minutes</h3>
-        <p class="dc-step-body">Which projects are coming up, and which other parties want the images. Cost sharing between the architect, the designer and the trades comes up here.</p>
-      </div>
-      <div class="dc-step">
-        <p class="dc-step-num">02 &middot; The proposal</p>
-        <h3>Same day</h3>
-        <p class="dc-step-body">If it is a fit, a written scope and price the same day. If it is not, I say so on the call.</p>
-      </div>
-      <div class="dc-step">
-        <p class="dc-step-num">03 &middot; The shoot</p>
-        <h3>A date and a brief</h3>
-        <p class="dc-step-body">A date goes in the calendar. A short intake form covers the brief before I arrive.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ QUOTE · canonical text in business/website/testimonials.json ════════════ -->
-<section class="dc-quote">
-  <div class="dc-quote-inner">
-    <p class="dc-quote-text">Working with Matt was an absolute pleasure from start to finish. &hellip; The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</p>
-    <p class="dc-quote-attr">Marc Harvey, Balmoral Construction &middot; <a href="https://www.mattanthonyphoto.com/balmoral-construction">Read the case study</a></p>
-  </div>
-</section>
-
 <!-- ════════════ CLOSE · the alternative to booking, not a second book button ════════════ -->
 <section class="dc-cta" aria-labelledby="dc-cta-h">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Entry of a house on the Sunshine Coast: dark vertical metal cladding, a wood soffit over the door and broad concrete steps between planting" width="1500" height="1000" loading="lazy" decoding="async">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Entry court walled in concrete, a dark rain chain hanging from a pale wood soffit" width="1500" height="1125" loading="lazy" decoding="async">
   <div class="dc-cta-c">
     <p class="dc-eyebrow">Contact</p>
-    <h2 id="dc-cta-h">Not ready to book?</h2>
-    <p class="dc-cta-sub">Send the project and your rough dates. I will reply with what I need in order to quote it.</p>
+    <h2 id="dc-cta-h">Tell me about your project.</h2>
     <a href="/homepage-preview/contact/" class="dc-cta-btn">Send a Message</a>
-    <p class="dc-alt-cta">Or start with the <a href="https://www.mattanthonyphoto.com/pricing-guide-landing">pricing guide</a></p>
+    <p class="dc-alt-cta">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></p>
   </div>
 </section>
 

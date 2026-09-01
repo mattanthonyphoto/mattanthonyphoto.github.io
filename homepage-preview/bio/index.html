@@ -9,23 +9,15 @@
 </head>
 <body>
 <style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
-
-<!-- preconnects + fonts; the hero portrait carries fetchpriority="high" inline -->
 <link rel="preconnect" href="https://images.squarespace-cdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
-
 <style>
-/* ═══════════════════════════════════════════════════════════════════════
-   About / bio  ·  on the sitewide design system (_DESIGN-SYSTEM.md).
-   Shared chrome (nav + footer) lifted verbatim from sitewide/_chrome.html.
-   One page width, one gutter, one small-caps style. No reveal animation.
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* ─────────── SHARED CHROME · lifted verbatim from _chrome.html ─────────── */
-/* Tokens the chrome expects. On the chrome itself so no page wrapper is needed,
-   and on :root so a page's own rules can use --gutter / --page too. */
+/* Tokens. The FULL palette is on :root, not just the gutter, because a page's own
+   rules use var(--ink) / var(--paper) too and an unresolved var() invalidates the
+   whole declaration silently (a CTA banner once rendered white on white this way).
+   Repeated on the chrome itself so it still works if pasted without :root. */
 :root{
   --gutter:clamp(24px,5vw,80px); --page:1600px;
   --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
@@ -44,10 +36,11 @@
 #maHeader{display:none!important}
 
 /* ── NAV ──
-   Solid paper is the DEFAULT, so a content page is correct even if the script
-   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
-   markup to sit transparently over it; the script then removes that treatment
-   once you scroll past the hero.
+   Solid paper is the DEFAULT, so a page is correct even if the script never runs.
+   A page with a dark full-bleed hero marks its nav `data-hp-over` and its hero
+   `.hp-hero` or `data-hp-hero`; the script then adds `hp-nav-over` to sit
+   transparently over it, and `hp-scrolled` once you scroll past it. The class is
+   never in the markup, so a dead script cannot leave white text on a white page.
 
    Top level: Projects, About (dropdown), Services, Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
@@ -184,198 +177,121 @@
   .hp-hero-slides img{opacity:0}
   .hp-hero-slides img:first-child{opacity:1}
 }
-/* ─────────── end shared chrome ─────────── */
 
-/* ── Squarespace host resets ── */
-body{background:#f6f4f0!important}
-#page{background:transparent!important}
-#sections{background:transparent!important}
-.page-section{background:transparent!important;min-height:0!important}
-.content-wrapper{background:transparent!important}
-.fluid-engine{background:transparent!important}
-#footer{display:none!important}
-.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
-
-/* ════════════ PAGE ════════════ */
 .bio-wrap{
-  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
-  --stone:#6f6b61; --rule:#d9d5cd;
   --section:clamp(88px,9vw,150px);
-  --gutter:clamp(24px,5vw,80px); --page:1600px;
-  --ease:cubic-bezier(.16,1,.3,1);
-  font-family:'DM Sans',-apple-system,sans-serif;
-  font-weight:300; line-height:1.7; color:var(--ink);
-  background:var(--paper)!important;
-  -webkit-font-smoothing:antialiased;
-}
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7;
+  color:var(--ink);background:var(--paper)!important;-webkit-font-smoothing:antialiased}
 .bio-wrap *{box-sizing:border-box}
 .bio-wrap img{max-width:100%;display:block}
 .bio-wrap a{color:inherit;text-decoration:none}
-.bio-wrap a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
-
-/* One page width and one gutter. Every container sits on this. */
+.bio-wrap a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .bio-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
-.bio-measure{max-width:720px}
-.bio-strip{max-width:calc(var(--page) - var(--gutter)*2);margin:0 auto}
-
-/* ── Eyebrow: 24px gold rule, then the one small-caps style. ── */
-.bio-eyebrow{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+.bio-eyebrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--stone)!important;margin:0 0 26px;
-  display:inline-flex!important;align-items:center;gap:14px;
-}
+  color:var(--stone)!important;margin:0 0 28px;
+  display:inline-flex!important;align-items:center;gap:14px}
 .bio-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
-.bio-hero .bio-eyebrow,.bio-values .bio-eyebrow,.bio-cta .bio-eyebrow{color:rgba(246,244,240,.82)!important}
-
-/* ── Arrow link: the only link style below the nav ── */
-.bio-arrow-link{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+.bio-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:flex-end}
+.bio-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.bio-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
+.bio-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
+.bio-hero .bio-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
+.bio-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;letter-spacing:0;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;color:#f6f4f0!important;
+  max-width:24ch;margin:0 0 16px}
+.bio-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
+@media (max-width:480px){
+  .bio-hero .bio-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
+  .bio-hero .bio-eyebrow::before{display:none}
+}
+.bio-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.bio-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.bio-statement .bio-eyebrow{margin-bottom:32px}
+.bio-statement p:not(.bio-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
+.bio-hang{padding:0 0 var(--section);background:var(--paper)!important}
+.bio-hang-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
+.bio-hang-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0}
+.bio-arrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--ink)!important;border-bottom:1px solid var(--stone);
-  padding-bottom:5px;display:inline-block;transition:border-color .35s var(--ease);
-}
-.bio-arrow-link:hover,.bio-arrow-link:focus-visible{border-color:var(--ink)}
-
-/* ── Type scale: Cormorant at letter-spacing 0, weight 400 below hero size ── */
-.bio-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 clamp(20px,2.4vw,30px);max-width:22ch}
-.bio-wrap h2 em{font-style:italic}
-.bio-wrap h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:1.25rem;line-height:1.3;letter-spacing:0;
+  padding-bottom:5px;display:inline-block}
+.bio-arrow:hover,.bio-arrow:focus-visible{border-color:var(--ink)}
+.bio-stack{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
+.bio-card{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));max-width:calc(50% - clamp(10px,1.2vw,18px));min-width:0}
+.bio-card-full{flex:1 1 100%;max-width:none}
+.bio-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
+.bio-card-frame img{width:100%;height:100%;object-fit:cover}
+.bio-card-over{display:flex!important;justify-content:space-between;align-items:baseline;
+  gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
+.bio-card-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:13px;line-height:1.4;color:var(--ink)!important;margin:0;
+  transition:color .3s var(--ease)}
+.bio-card:hover .bio-card-name,.bio-card:focus-visible .bio-card-name{color:#816a3f!important}
+.bio-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
+.bio-figure{padding:0 0 var(--section);background:var(--paper)!important}
+.bio-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.bio-steps{padding:0 0 var(--section);background:var(--paper)!important}
+.bio-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
+.bio-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.15;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 10px}
-
-/* ════════════ HERO ════════════ */
-.bio-hero{background:var(--ink)!important;padding:clamp(56px,6vw,96px) 0 clamp(64px,7vw,110px)}
-.bio-hero-row{display:flex!important;flex-wrap:wrap;align-items:center;gap:clamp(32px,5vw,72px)}
-.bio-hero-figure{flex:0 1 460px;min-width:min(100%,240px);position:relative;
-  aspect-ratio:2/3;overflow:hidden;background:#111}
-.bio-hero-figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.bio-hero-content{flex:1 1 420px;min-width:0}
-.bio-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 0 10px}
-.bio-hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.1rem,1.9vw,1.45rem);line-height:1.4;letter-spacing:0;
-  color:rgba(246,244,240,.82)!important;margin:0 0 clamp(24px,2.6vw,34px)}
-.bio-hero-intro{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
-  font-size:13px;line-height:1.85;color:rgba(246,244,240,.82)!important;
-  max-width:56ch;margin:0}
-.bio-hero-intro strong{font-weight:500;color:#f6f4f0!important}
-
-/* ════════════ META BAR ════════════ */
-.bio-meta{background:var(--paper)!important;padding:clamp(30px,3.2vw,44px) var(--gutter);
-  border-bottom:1px solid var(--rule)}
-.bio-meta-row{display:flex!important;flex-wrap:wrap;gap:22px 40px;justify-content:space-between}
-.bio-meta-item{flex:0 1 auto;display:flex!important;flex-direction:column;gap:6px;margin:0}
-.bio-meta-dt{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
-.bio-meta-dd{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.15rem;
-  line-height:1.3;letter-spacing:0;color:var(--ink)!important;margin:0}
-
-/* ════════════ SECTIONS ON PAPER ════════════ */
-.bio-section{padding:var(--section) 0;background:var(--paper)!important}
-.bio-section p{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
-  font-size:1rem;line-height:1.8;color:var(--ink)!important;margin:0 0 1.4em}
-.bio-section p:last-child{margin-bottom:0}
-.bio-inline-link{color:var(--ink)!important;font-weight:400;
-  border-bottom:1px solid var(--stone);transition:border-color .35s var(--ease)}
-.bio-inline-link:hover,.bio-inline-link:focus-visible{border-color:var(--ink)}
-
-/* ── Card row: one card style, used by Approach, Values and Services ── */
-.bio-cards{display:flex!important;flex-wrap:wrap;gap:clamp(26px,3vw,44px);
-  margin-top:clamp(34px,4vw,56px)}
-.bio-cards-3 > *{flex:1 1 calc(33.333% - clamp(26px,3vw,44px));min-width:min(100%,250px)}
-.bio-cards-4 > *{flex:1 1 calc(25% - clamp(26px,3vw,44px));min-width:min(100%,215px)}
-.bio-card{padding-top:22px;border-top:1px solid var(--rule)}
-.bio-card p{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;font-size:13px;
-  line-height:1.75;color:var(--stone)!important;margin:0}
-.bio-card p + a{margin-top:16px}
-
-/* ════════════ FULL-BLEED PHOTOGRAPH ════════════ */
-.bio-break{position:relative;width:100%;aspect-ratio:3/2;max-height:76vh;
-  overflow:hidden;background:var(--ink)!important}
-.bio-break img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-
-/* ════════════ VALUES (ink) ════════════ */
-.bio-values{background:var(--ink)!important;padding:var(--section) 0}
-.bio-values h2{color:#f6f4f0!important}
-.bio-values .bio-card{border-top-color:rgba(246,244,240,.16)}
-.bio-values h3{color:#f6f4f0!important}
-.bio-values .bio-card p{color:rgba(246,244,240,.82)!important}
-.bio-values a{color:#f6f4f0!important;border-bottom:1px solid rgba(201,169,110,.6);
-  transition:color .3s var(--ease),border-color .3s var(--ease)}
-.bio-values a:hover,.bio-values a:focus-visible{color:#c9a96e!important;border-color:#c9a96e}
-
-/* ════════════ QUOTE ════════════ */
-.bio-quote{background:var(--paper)!important;padding:var(--section) 0;text-align:center}
-.bio-quote-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
-.bio-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
-  color:var(--ink)!important;margin:0 auto 30px;max-width:25em;text-wrap:pretty}
-.bio-quote-text::before{content:"\201C"}
-.bio-quote-text::after{content:"\201D"}
+.bio-step p:not(.bio-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:66ch}
+.bio-quote{padding:0 0 var(--section);background:var(--paper)!important}
+.bio-quote-inner{max-width:760px}
+.bio-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
 .bio-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
-.bio-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone);
-  transition:border-color .35s var(--ease)}
-.bio-quote-attr a:hover,.bio-quote-attr a:focus-visible{border-color:var(--ink)}
-
-/* ════════════ MANIFESTO (ink) ════════════ */
-.bio-manifesto{background:var(--ink)!important;padding:var(--section) 0;text-align:center}
-.bio-manifesto-inner{max-width:900px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
-.bio-manifesto-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.45rem,2.8vw,2.25rem);line-height:1.4;letter-spacing:0;
-  color:#f6f4f0!important;margin:0;text-wrap:pretty}
-
-/* ════════════ CLOSE ════════════ */
-.bio-cta{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:center;
-  justify-content:center;text-align:center}
-.bio-cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.bio-cta::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to bottom,rgba(26,26,24,.52) 0%,rgba(26,26,24,.78) 100%)}
-.bio-cta-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
-.bio-cta h2{color:#f6f4f0!important;margin:0 auto clamp(28px,3vw,40px);max-width:26ch}
-.bio-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
-.bio-cta-btn-primary,.bio-cta-btn-secondary{
-  display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+.bio-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
+.bio-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
+.bio-close>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.bio-close::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
+.bio-close-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
+.bio-close .bio-eyebrow{color:rgba(246,244,240,.85)!important;justify-content:center}
+.bio-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;color:#f6f4f0!important;
+  margin:0 0 clamp(28px,3vw,40px)}
+.bio-close-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
+.bio-close-btns{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
+.bio-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.bio-btn:hover,.bio-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.bio-btn-2{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
   transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
-.bio-cta-btn-primary{background:var(--gold)!important;border:1px solid var(--gold)!important;
-  color:#1a1a18!important}
-.bio-cta-btn-primary:hover,.bio-cta-btn-primary:focus-visible{
-  background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
-.bio-cta-btn-secondary{background:transparent!important;
-  border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important}
-.bio-cta-btn-secondary:hover,.bio-cta-btn-secondary:focus-visible{
-  background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
-.bio-cta-btn-primary:focus-visible,.bio-cta-btn-secondary:focus-visible{
-  outline:2px solid #f6f4f0;outline-offset:3px}
-/* The row WRAPS, it never shrinks. Below 768 it becomes one full-width column so
-   neither label can drop a word or clip at 320. */
-@media (max-width:768px){
-  .bio-cta-links{flex-direction:column;align-items:stretch}
-}
-@media (max-width:400px){
-  .bio-cta-btn-primary,.bio-cta-btn-secondary{padding-left:16px;padding-right:16px}
-}
-.bio-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
-  letter-spacing:.04em;color:rgba(246,244,240,.6)!important;margin:16px 0 0}
-.bio-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-
+.bio-btn-2:hover,.bio-btn-2:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
+.bio-close a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+.bio-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.bio-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+@media (max-width:768px){.bio-close-btns{flex-direction:column;align-items:stretch}}
 @media (max-width:640px){
-  .bio-wrap h2{max-width:none}
-  .bio-cards{gap:26px}
+  .bio-card,.bio-card-full{flex:1 1 100%;max-width:none}
+  .bio-card-over{flex-direction:column;align-items:flex-start;gap:4px}
+  .bio-card-loc{letter-spacing:.12em}
+  .bio-figure img{width:100%}
 }
-@media (prefers-reduced-motion:reduce){
-  .bio-wrap *{animation:none!important;transition:none!important}
-}
+@media (prefers-reduced-motion:reduce){.bio-wrap *{animation:none!important;transition:none!important}}
 </style>
 
-<!-- ═══ NAV · shared chrome, first element in the block ═══ -->
-<div class="hp-nav" id="hpNav" role="navigation" aria-label="Main">
+<div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
     <a href="/homepage-preview/projects-v2/">Projects</a>
@@ -394,190 +310,84 @@ body{background:#f6f4f0!important}
 </div>
 
 <div class="bio-wrap">
-
-<!-- ════════════ HERO ════════════ -->
-<section class="bio-hero" aria-labelledby="bio-hero-h">
+<section class="bio-hero" data-hp-hero aria-labelledby="bio-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/45c04a8f-e9d7-435f-8dac-6cc98f3acebc/5322-backhouse-web-3.1.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/45c04a8f-e9d7-435f-8dac-6cc98f3acebc/5322-backhouse-web-3.1.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/45c04a8f-e9d7-435f-8dac-6cc98f3acebc/5322-backhouse-web-3.1.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/45c04a8f-e9d7-435f-8dac-6cc98f3acebc/5322-backhouse-web-3.1.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/45c04a8f-e9d7-435f-8dac-6cc98f3acebc/5322-backhouse-web-3.1.jpg?format=2500w 2500w" sizes="100vw" alt="The house low on a forested rocky point, terraces stepping down toward the shore" width="1500" height="1000" fetchpriority="high" decoding="async">
+  <div class="bio-hero-c"><div class="bio-container">
+    <p class="bio-eyebrow">About</p>
+    <h1 id="bio-h">Matt Anthony</h1>
+    <p class="bio-hero-sub">Architectural photographer, Squamish, BC. I photograph and film completed architecture.</p>
+  </div></div>
+</section>
+<section class="bio-statement">
+  <div class="bio-statement-inner">
+    <p class="bio-eyebrow">Approach</p>
+    <p>I photograph architecture with the same care that goes into designing and building it. The finished building is the door. I stay for the rest of it when that is useful.</p>
+  </div>
+</section>
+<section class="bio-figure">
+  <div class="bio-container"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=2500w 2500w" sizes="(min-width: 512px) 620px, 90vw" alt="Matt Anthony standing on a gravel clearing holding a camera, conifers behind him" width="1366" height="2048" loading="lazy" decoding="async"></div>
+</section>
+<section class="bio-hang" aria-labelledby="bio-hang-h">
   <div class="bio-container">
-    <div class="bio-hero-row">
-      <div class="bio-hero-figure">
-        <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1500w 1366w" sizes="(min-width: 512px) 460px, 90vw" alt="Matt Anthony standing on a gravel clearing holding a camera, conifers behind him" width="1366" height="2048" fetchpriority="high" decoding="async">
-      </div>
-      <div class="bio-hero-content">
-        <p class="bio-eyebrow">About</p>
-        <h1 id="bio-hero-h">Matt Anthony</h1>
-        <p class="bio-hero-title">Architectural Photographer &middot; Squamish, BC</p>
-        <p class="bio-hero-intro">I photograph and film architecture with the same care that goes into designing and building it. The work is about documenting design intent: not just how a space looks, but how it sits in the landscape, and why it matters.</p>
-      </div>
+    <div class="bio-hang-head">
+      <h2 id="bio-hang-h">Four ways in.</h2><a class="bio-arrow" href="/homepage-preview/services/">Services &rarr;</a>
+    </div>
+    <div class="bio-stack">
+      <a href="/homepage-preview/project-photography/" class="bio-card">
+        <div class="bio-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Two grey gabled volumes joined by a glazed link, set on a concrete base above the shore" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="bio-card-over">
+          <p class="bio-card-name">Project Photography</p>
+          <p class="bio-card-loc">Stills and film</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/build-team-content/" class="bio-card">
+        <div class="bio-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Construction tools on a sawhorse, ocean and mountains through full height glass beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="bio-card-over">
+          <p class="bio-card-name">Progression</p>
+          <p class="bio-card-loc">Multi-stage visits</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/website-seo/" class="bio-card">
+        <div class="bio-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Living room corner with a lit suspended fireplace, glazing onto the water and rocky shore" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <div class="bio-card-over">
+          <p class="bio-card-name">Marketing</p>
+          <p class="bio-card-loc">Websites and content</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/creative-partner/" class="bio-card">
+        <div class="bio-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house at dusk above the shore, the entry lit and the moon over the water" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <div class="bio-card-over">
+          <p class="bio-card-name">Creative Partner</p>
+          <p class="bio-card-loc">An ongoing agreement</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
-
-<!-- ════════════ META BAR ════════════ -->
-<section class="bio-meta" aria-label="Practice at a glance">
-  <dl class="bio-meta-row bio-strip">
-    <div class="bio-meta-item">
-      <dt class="bio-meta-dt">Based In</dt>
-      <dd class="bio-meta-dd">Squamish, BC</dd>
-    </div>
-    <div class="bio-meta-item">
-      <dt class="bio-meta-dt">Serving</dt>
-      <dd class="bio-meta-dd">British Columbia</dd>
-    </div>
-    <div class="bio-meta-item">
-      <dt class="bio-meta-dt">Certified</dt>
-      <dd class="bio-meta-dd">Transport Canada Advanced Drone Pilot</dd>
-    </div>
-    
-  </dl>
-</section>
-
-<!-- ════════════ STORY ════════════ -->
-<section class="bio-section" aria-labelledby="bio-story-h">
+<section class="bio-quote" aria-label="Client comment">
   <div class="bio-container">
-    <div class="bio-measure">
-      <p class="bio-eyebrow">The Story</p>
-      <h2 id="bio-story-h">I got into this work because I believe <em>great design deserves to be seen</em></h2>
-      <p>I'm based in Squamish, British Columbia, right in the heart of the Sea to Sky Corridor. It's a place where the built environment meets some of the most dramatic natural landscapes in the country, and that tension between architecture and nature is something I think about constantly in my work.</p>
-      <p>I started Matt Anthony Photography with a straightforward belief: the people who design and build remarkable spaces deserve imagery that does that work justice. Not overly stylized, not artificially staged. Just honest photography that shows the real character of a project and the intent behind it.</p>
-      <p>Most of my clients are architects, custom home builders, and interior designers across the <a href="/homepage-preview/projects-v2/" class="bio-inline-link">Sea to Sky</a> and <a href="/homepage-preview/projects-v2/" class="bio-inline-link">Sunshine Coast</a>, and further across British Columbia. I take the time to understand the design language before I pick up a camera.</p>
-      <p>The finished building is the door. From there I stay for the rest of it when that is useful: <a href="/homepage-preview/build-team-content/" class="bio-inline-link">progression through the build</a>, <a href="/homepage-preview/website-seo/" class="bio-inline-link">websites and social</a>, or an <a href="/homepage-preview/creative-partner/" class="bio-inline-link">ongoing agreement</a>.</p>
-      <p>I'm also a certified Advanced Drone Pilot. Aerial perspectives are part of how I work. They add context and show a project's relationship to its surroundings.</p>
+    <div class="bio-quote-inner">
+      <p class="bio-quote-text">Working with Matt was an absolute pleasure from start to finish.</p>
+      <p class="bio-quote-attr">Marc Harvey &middot; <a href="https://www.mattanthonyphoto.com/balmoral-construction">Balmoral Construction</a></p>
     </div>
   </div>
 </section>
-
-<!-- ════════════ FULL-BLEED PHOTOGRAPH ════════════ -->
-<div class="bio-break">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=2500w 2500w" sizes="100vw" alt="Courtyard beside a house on the Sunshine Coast: glazing and a wood soffit at left, a concrete retaining wall, a Japanese maple and a rock outcrop" width="1500" height="1000" loading="lazy" decoding="async">
-</div>
-
-<!-- ════════════ APPROACH ════════════ -->
-<section class="bio-section" aria-labelledby="bio-approach-h">
-  <div class="bio-container">
-    <div class="bio-measure">
-      <p class="bio-eyebrow">The Approach</p>
-      <h2 id="bio-approach-h">How I work with <em>architects and builders</em></h2>
-      <p>Every shoot starts long before I arrive on site. I review drawings, study material palettes, and understand the design intent behind every decision. The work is translating the architect's or builder's vision into imagery that communicates the same care and intelligence that went into the build itself.</p>
-    </div>
-    <div class="bio-cards bio-cards-3">
-      <div class="bio-card">
-        <h3>Pre-shoot Research</h3>
-        <p>I study the project before arrival. Floor plans, material specs, orientation, and the design narrative. When I walk onto a site, I already know what matters and where to find it.</p>
-      </div>
-      <div class="bio-card">
-        <h3>Light-Led Timing</h3>
-        <p>I schedule around the best natural light for each space. Morning east-facing rooms, afternoon west-facing living areas, twilight for exterior presence. No shortcuts, no composites.</p>
-      </div>
-      <div class="bio-card">
-        <h3>Design Intent Framing</h3>
-        <p>Every composition is built around the decisions behind the build: the cantilever, the material transition, the way a hallway frames a view. I photograph the intelligence of the design, not just the surfaces.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ VALUES ════════════ -->
-<section class="bio-values" aria-labelledby="bio-values-h">
-  <div class="bio-container">
-    <div class="bio-measure">
-      <p class="bio-eyebrow">What Sets My Work Apart</p>
-      <h2 id="bio-values-h">Every frame is built on the same <em>principles</em></h2>
-    </div>
-    <div class="bio-cards bio-cards-3">
-      <div class="bio-card">
-        <h3>Design Intent First</h3>
-        <p>I start every project by understanding the architect's or builder's vision. The material choices, the spatial flow, the relationship to site. The photography follows from that understanding, not the other way around.</p>
-      </div>
-      <div class="bio-card">
-        <h3>Natural Light, Real Spaces</h3>
-        <p>I time every shoot around the best available light. No heavy handed HDR, no artificial composites. The goal is imagery that feels true to the experience of being in the space. Honest, warm, and considered.</p>
-      </div>
-      <div class="bio-card">
-        <h3>Calm, Professional Presence</h3>
-        <p>I work quietly, independently, and with respect for the site. Whether I'm shooting alongside a construction crew or in a staged home, I adapt to the rhythm of the site.</p>
-      </div>
-      <div class="bio-card">
-        <h3>The Work Around It</h3>
-        <p>Photographs earn their keep on the site, in the deck, and in the posts that follow. I stay for that work when a firm wants it.</p>
-      </div>
-      <div class="bio-card">
-        <h3>Partnership, Not Transactions</h3>
-        <p>My best client relationships are ongoing. I work with builders and architects across multiple projects over time, developing a visual language that becomes part of their brand identity.</p>
-      </div>
-      <div class="bio-card">
-        <h3>Stills and Film</h3>
-        <p>A finished project is photographed and filmed on the same visit. Aerial is part of that coverage. Progression visits record the build before it is done.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ SERVICES ════════════ -->
-<section class="bio-section" aria-labelledby="bio-services-h">
-  <div class="bio-container">
-    <div class="bio-measure">
-      <p class="bio-eyebrow">What I Do</p>
-      <h2 id="bio-services-h">Four ways in.</h2>
-    </div>
-    <div class="bio-cards bio-cards-4">
-      <div class="bio-card">
-        <h3>Project Photography</h3>
-        <p>Stills and film of a finished build. Exteriors, interiors, aerial, twilight.</p>
-        <a class="bio-arrow-link" href="/homepage-preview/project-photography/">Learn More &rarr;</a>
-      </div>
-      <div class="bio-card">
-        <h3>Progression</h3>
-        <p>Multi-stage visits across a build. Progress photographs, the crew, and a record of how the project went up.</p>
-        <a class="bio-arrow-link" href="/homepage-preview/build-team-content/">Learn More &rarr;</a>
-      </div>
-      <div class="bio-card">
-        <h3>Marketing</h3>
-        <p>Websites and the content that fills them. Built for the firms I already photograph.</p>
-        <a class="bio-arrow-link" href="/homepage-preview/website-seo/">Learn More &rarr;</a>
-      </div>
-      <div class="bio-card">
-        <h3>Creative Partner</h3>
-        <p>An ongoing agreement. Photography, film, progression, website and social, under one monthly conversation.</p>
-        <a class="bio-arrow-link" href="/homepage-preview/creative-partner/">Learn More &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ QUOTE ════════════ -->
-<section class="bio-quote">
-  <div class="bio-quote-inner">
-    <p class="bio-quote-text">Working with Matt was an absolute pleasure from start to finish. &hellip; The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</p>
-    <p class="bio-quote-attr">Marc Harvey, Balmoral Construction &middot; <a href="https://www.balmoralconstruction.com/" target="_blank" rel="noopener">balmoralconstruction.com</a></p>
-  </div>
-</section>
-
-<!-- ════════════ MANIFESTO ════════════ -->
-<section class="bio-manifesto">
-  <div class="bio-manifesto-inner">
-    <p class="bio-manifesto-text">I photograph and film the finished building. I stay for the rest of it when that is useful.</p>
-  </div>
-</section>
-
-<!-- ════════════ CLOSE ════════════ -->
-<section class="bio-cta" aria-labelledby="bio-cta-h">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Entry of a house on the Sunshine Coast: dark vertical metal cladding, a wood soffit over the door and broad concrete steps between planting" width="1500" height="1000" loading="lazy" decoding="async">
-  <div class="bio-cta-c">
+<section class="bio-close" aria-labelledby="bio-close-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/120e81ae-5036-4502-b94e-7dc3bc09e95a/sitelines-lund-web-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/120e81ae-5036-4502-b94e-7dc3bc09e95a/sitelines-lund-web-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/120e81ae-5036-4502-b94e-7dc3bc09e95a/sitelines-lund-web-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/120e81ae-5036-4502-b94e-7dc3bc09e95a/sitelines-lund-web-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/120e81ae-5036-4502-b94e-7dc3bc09e95a/sitelines-lund-web-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/120e81ae-5036-4502-b94e-7dc3bc09e95a/sitelines-lund-web-35.jpg?format=2500w 2500w" sizes="100vw" alt="The centre from the entrance court, a low wing under a folded roof" width="1500" height="938" loading="lazy" decoding="async">
+  <div class="bio-close-c">
     <p class="bio-eyebrow">Contact</p>
-    <h2 id="bio-cta-h">Tell me about your project.</h2>
-    <div class="bio-cta-links">
-      <a href="/homepage-preview/discovery-call/" class="bio-cta-btn-primary">Book a Discovery Call</a>
-      <a href="/homepage-preview/contact/" class="bio-cta-btn-secondary">Send a Message</a>
+    <h2 id="bio-close-h">Tell me about your project.</h2>
+    <div class="bio-close-row">
+      <div class="bio-close-btns">
+        <a class="bio-btn" href="/homepage-preview/discovery-call/">Book a Discovery Call</a>
+        <a class="bio-btn-2" href="/homepage-preview/contact/">Send a Message</a>
+      </div>
+      <span class="bio-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
     </div>
-    <p class="bio-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></p>
   </div>
 </section>
-
 </div><!-- /.bio-wrap -->
 
-<!-- ═══ FOOTER · shared chrome, last element in the block. Deliberately a div:
-     Squarespace hides real <footer> elements, and a second contentinfo landmark
-     would sit alongside the host page's own. ═══ -->
 <div class="hp-ft">
   <div class="hp-ft-inner">
 
@@ -697,63 +507,6 @@ body{background:#f6f4f0!important}
   });
 })();
 </script>
-
-<!--
-  Bio / About page  ·  Squarespace code block
-  mattanthonyphoto.com/bio
-
-  Brought onto sitewide/_DESIGN-SYSTEM.md on 2026-08-27.
-    1. Shared chrome (nav + footer) lifted verbatim from sitewide/_chrome.html.
-       The page's own nav-less header, dot nav and hand-rolled footer are gone.
-    2. Every container is max-width:var(--page) + padding:0 var(--gutter), so the
-       hero, meta bar, prose, cards, strips and footer share one left edge.
-    3. Type on the scale: Cormorant Garamond at letter-spacing 0, weight 300 only
-       at hero size and 400 everywhere below; DM Sans 300 body; ONE small-caps
-       style at 11px / .18em for eyebrows, labels, buttons and arrow links.
-    4. Contrast to the measured values: #8a8579 and #b8975a no longer carry text
-       (both fail on paper), gold headline accents are now italic ink, and text
-       on ink uses only .82 and .60 alpha.
-    5. The whole interactive layer is gone: loader, section dots, progress bar,
-       custom cursor, particles, parallax, Ken Burns, magnetic button, stat
-       counters and the two word-by-word reveals. Several of them shipped text
-       at opacity 0 or 15% alpha until an observer fired.
-    6. Images: srcset + sizes that match the rendered width, real width/height
-       (hero 1366x2048, photographs 1500x1000), lazy only below the fold.
-    7. Flexbox throughout, with no CSS grid for the fluid engine reset to eat.
-
-  Register pass 2026-08-27 (copy only, no CSS or structure touched):
-    a. The Award & Publication Imagery card lost its trailing "Georgie Awards,
-       Western Living, and beyond". As a bare list after the sentence it read as
-       a claim to have been published there. Being published in Western Living
-       is a 2027 goal in business/CLAUDE.md, not something that has happened.
-    b. "Your embedded creative department" is now "An embedded creative
-       department": second person belongs only in the closing CTA.
-    c. Cut "This is not about showing up and taking photos." from Approach. The
-       sentence after it opened "It is about", which had nothing left to refer
-       back to, so it now opens "The work is".
-    d. Built for Recognition dropped "on refreshed websites" and "and in
-       editorial features" (the latter repeats "publications").
-    NOT changed: the Marc Harvey quote, and the 26 / 7 / 5 count strip. 26 and 5
-    trace to 26 files in code-blocks/project-pages and 5 in case-studies, but the
-    LIVE /projects still lists 19 because projects-v2 is undeployed, so a reader
-    cannot count to 26 today. Flagged, not silently softened.
-
--->
-
-<!-- ProfilePage Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "mainEntity": {
-    "@id": "https://www.mattanthonyphoto.com/#person"
-  },
-  "url": "https://www.mattanthonyphoto.com/bio"
-}
-</script>
-
-<!-- Sitewide @graph (LocalBusiness + Person + WebSite) is injected via sitewide-header.html -->
-<!-- Page meta (description, canonical, og:) is emitted by the Squarespace SEO panel, not from this block. -->
 
 </body>
 </html>

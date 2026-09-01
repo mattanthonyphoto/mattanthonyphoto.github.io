@@ -9,19 +9,15 @@
 </head>
 <body>
 <style>.item-pagination{display:none!important}.page-title-wrapper,.page-description-wrapper,.collection-item-title{display:none!important}.sqs-announcement-bar-dropzone{display:none!important}</style>
-
-<!-- preconnects + fonts; the LCP image carries fetchpriority="high" inline -->
 <link rel="preconnect" href="https://images.squarespace-cdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════════════════════
-   SHARED CHROME — lifted verbatim from sitewide/_chrome.html. Do not
-   restyle any hp-nav* / hp-ft* rule here; change it in _chrome.html and
-   re-roll it everywhere.
-   ═══════════════════════════════════════════════════════════════════════ */
+/* Tokens. The FULL palette is on :root, not just the gutter, because a page's own
+   rules use var(--ink) / var(--paper) too and an unresolved var() invalidates the
+   whole declaration silently (a CTA banner once rendered white on white this way).
+   Repeated on the chrome itself so it still works if pasted without :root. */
 :root{
   --gutter:clamp(24px,5vw,80px); --page:1600px;
   --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
@@ -40,10 +36,11 @@
 #maHeader{display:none!important}
 
 /* ── NAV ──
-   Solid paper is the DEFAULT, so a content page is correct even if the script
-   never runs. A page with a dark full-bleed hero adds `hp-nav-over` in the
-   markup to sit transparently over it; the script then removes that treatment
-   once you scroll past the hero.
+   Solid paper is the DEFAULT, so a page is correct even if the script never runs.
+   A page with a dark full-bleed hero marks its nav `data-hp-over` and its hero
+   `.hp-hero` or `data-hp-hero`; the script then adds `hp-nav-over` to sit
+   transparently over it, and `hp-scrolled` once you scroll past it. The class is
+   never in the markup, so a dead script cannot leave white text on a white page.
 
    Top level: Projects, About (dropdown), Services, Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
@@ -181,198 +178,119 @@
   .hp-hero-slides img:first-child{opacity:1}
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   PROCESS PAGE — on the sitewide system.
-   One page width, one gutter, one small-caps style, no reveal animation.
-   ═══════════════════════════════════════════════════════════════════════ */
 .pr-wrap{
-  --ink:#1a1a18; --paper:#f6f4f0; --gold:#c9a96e; --gold-deep:#b8975a;
-  --stone:#6f6b61; --rule:#d9d5cd;
   --section:clamp(88px,9vw,150px);
-  --gutter:clamp(24px,5vw,80px); --page:1600px;
-  /* Matches the nav's left edge on a full-bleed half column. Percentage
-     padding on a flex item resolves against the flex container, so 100% here
-     is the section width, exactly as it is in the nav. */
-  --edge:max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
-  --ease:cubic-bezier(.16,1,.3,1);
-  font-family:'DM Sans',-apple-system,sans-serif;
-  font-weight:300; line-height:1.7; color:var(--ink);
-  background:var(--paper)!important;
-  -webkit-font-smoothing:antialiased;
-}
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;line-height:1.7;
+  color:var(--ink);background:var(--paper)!important;-webkit-font-smoothing:antialiased}
 .pr-wrap *{box-sizing:border-box}
 .pr-wrap img{max-width:100%;display:block}
 .pr-wrap a{color:inherit;text-decoration:none}
-.header{display:none!important;height:0!important;visibility:hidden!important;overflow:hidden!important;padding:0!important;margin:0!important;position:absolute!important;top:-9999px!important}
-
-.pr-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
-
-/* ── The one small-caps style: 11px / .18em / uppercase / DM Sans 400 ── */
-.pr-eyebrow{
-  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;line-height:1.4;
-  color:var(--stone)!important;margin:0 0 24px;
-  display:inline-flex!important;align-items:center;gap:14px;
-}
-.pr-eyebrow::before{content:"";display:inline-block;flex:0 0 24px;width:24px;height:1px;background:var(--gold)}
-.pr-eyebrow-dark{color:rgba(246,244,240,.82)!important}
-
-/* ── Headlines: Cormorant, letter-spacing 0, 300 at hero size only ── */
-.pr-wrap h1,.pr-wrap h2,.pr-wrap h3{font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:0;margin:0}
-.pr-wrap h2,.pr-wrap h3{font-weight:400}
-.pr-wrap em{font-style:italic}
-
-/* ── Focus: never the least readable state ── */
 .pr-wrap a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.pr-hero a:focus-visible,.pr-break a:focus-visible,.pr-cta a:focus-visible{outline-color:#f6f4f0}
-
-/* ════════════ HERO ════════════ */
+.pr-container{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
+.pr-eyebrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--stone)!important;margin:0 0 28px;
+  display:inline-flex!important;align-items:center;gap:14px}
+.pr-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
 .pr-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
-.pr-hero-bg{position:absolute;inset:0;z-index:0}
-.pr-hero-bg img{width:100%;height:100%;object-fit:cover}
+.pr-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .pr-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,.80) 0%,rgba(26,26,24,.60) 10%,rgba(26,26,24,.18) 22%,rgba(26,26,24,0) 36%,rgba(26,26,24,.48) 48%,rgba(26,26,24,.76) 70%,rgba(26,26,24,.86) 100%)}
-.pr-hero-content{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
-.pr-hero h1{font-weight:300;font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;
-  color:#f6f4f0!important;max-width:20ch;margin:0 0 clamp(20px,2.4vw,28px)}
-.pr-hero h1 em{color:var(--gold)!important}
-.pr-hero-sub{font-size:15px;font-weight:300;line-height:1.8;max-width:56ch;
-  color:rgba(246,244,240,.82)!important;margin:0}
-
-/* ════════════ PHILOSOPHY ════════════ */
-.pr-phil{display:flex!important;align-items:stretch;background:var(--paper)!important}
-.pr-phil-text{flex:1 1 50%;min-width:0;display:flex!important;flex-direction:column;justify-content:center;
-  padding:var(--section) var(--gutter) var(--section) var(--edge)}
-.pr-phil-inner{max-width:52ch}
-.pr-phil h2{font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.2;color:var(--ink)!important;margin:0 0 clamp(20px,2.4vw,28px)}
-.pr-phil p:not(.pr-eyebrow){font-size:15px;font-weight:300;line-height:1.85;color:var(--ink)!important;margin:0 0 18px}
-.pr-phil p:last-child{margin-bottom:0}
-.pr-phil-img{flex:1 1 50%;min-width:0;position:relative;overflow:hidden;min-height:56vh}
-.pr-phil-img img{width:100%;height:100%;object-fit:cover}
-
-/* ════════════ FULL-BLEED STEP (01, 03, 05) ════════════ */
-.pr-break{position:relative;display:flex!important;align-items:center;
-  min-height:64vh;overflow:hidden;background:var(--ink)!important}
-.pr-break-bg{position:absolute;inset:0;z-index:0}
-.pr-break-bg img{width:100%;height:100%;object-fit:cover}
-.pr-break::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to right,rgba(26,26,24,.92) 0%,rgba(26,26,24,.84) 42%,rgba(26,26,24,.62) 100%)}
-.pr-break-content{position:relative;z-index:2;width:100%;padding:var(--section) 0}
-.pr-break h3{font-size:clamp(1.6rem,3.2vw,2.6rem);line-height:1.15;color:#f6f4f0!important;margin:0 0 8px}
-.pr-break-sub{font-size:13px;font-weight:300;line-height:1.6;color:rgba(246,244,240,.60)!important;margin:0 0 20px}
-.pr-break-desc{font-size:15px;font-weight:300;line-height:1.85;max-width:62ch;
-  color:rgba(246,244,240,.82)!important;margin:0}
-.pr-break-desc a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45);
-  transition:border-color .3s var(--ease)}
-.pr-break-desc a:hover,.pr-break-desc a:focus-visible{border-color:#f6f4f0}
-
-/* ════════════ TWO-COLUMN STEP (02, 04) ════════════ */
-.pr-split{display:flex!important;align-items:stretch;background:var(--paper)!important}
-.pr-split-reverse{flex-direction:row-reverse}
-.pr-split-img{flex:1 1 50%;min-width:0;position:relative;overflow:hidden;min-height:56vh}
-.pr-split-img img{width:100%;height:100%;object-fit:cover}
-.pr-split-text{flex:1 1 50%;min-width:0;display:flex!important;flex-direction:column;justify-content:center;
-  padding:var(--section) var(--edge) var(--section) var(--gutter)}
-.pr-split-reverse .pr-split-text{padding:var(--section) var(--gutter) var(--section) var(--edge)}
-.pr-split-inner{max-width:52ch}
-/* Right-hand column: sit the measure flush on the page's right edge. */
-.pr-split:not(.pr-split-reverse) .pr-split-inner{margin-left:auto}
-.pr-split h3{font-size:clamp(1.4rem,2.6vw,2.1rem);line-height:1.2;color:var(--ink)!important;margin:0 0 8px}
-.pr-split-sub{font-size:13px;font-weight:300;line-height:1.6;color:var(--stone)!important;margin:0 0 20px}
-.pr-split-desc{font-size:15px;font-weight:300;line-height:1.85;color:var(--ink)!important;margin:0}
-
-/* ════════════ TIMELINE ════════════ */
-.pr-timeline{background:var(--paper)!important;padding:var(--section) 0}
-.pr-timeline h2{font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.2;
-  color:var(--ink)!important;margin:0 0 clamp(40px,4.5vw,64px);max-width:22ch}
-.pr-tl-track{display:flex!important;align-items:flex-start;gap:clamp(20px,2.4vw,36px);position:relative}
-.pr-tl-track::before{content:"";position:absolute;top:4px;left:0;right:0;height:1px;background:var(--rule)}
-.pr-tl-node{flex:1 1 0;min-width:0;display:flex!important;flex-direction:column;align-items:flex-start;position:relative}
-.pr-tl-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);
-  margin:0 0 18px;flex-shrink:0;position:relative;z-index:1}
-.pr-tl-week{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0 0 6px}
-.pr-tl-name{font-size:13px;font-weight:300;line-height:1.4;color:var(--ink)!important;margin:0}
-
-/* ════════════ TESTIMONIAL ════════════ */
-.pr-quote{background:var(--paper)!important;padding:var(--section) 0;border-top:1px solid var(--rule)}
-.pr-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
-  font-size:clamp(1.3rem,2.3vw,1.95rem);line-height:1.45;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 clamp(20px,2.4vw,28px);max-width:30em;text-wrap:pretty}
-.pr-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;line-height:1.9;color:var(--stone)!important;margin:0}
-.pr-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone);padding-bottom:4px;
-  transition:border-color .3s var(--ease)}
-.pr-quote-attr a:hover,.pr-quote-attr a:focus-visible{border-color:var(--ink)}
-
-/* ════════════ MANIFESTO ════════════ */
-.pr-manifesto{background:var(--ink)!important;padding:var(--section) 0;text-align:center}
-.pr-manifesto-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.4;letter-spacing:0;
-  color:#f6f4f0!important;margin:0 auto;max-width:25em;text-wrap:pretty}
-
-/* ════════════ CLOSE ════════════ */
-.pr-cta{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
-  background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
-.pr-cta-bg{position:absolute;inset:0;z-index:0}
-.pr-cta-bg img{width:100%;height:100%;object-fit:cover}
-.pr-cta::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(26,26,24,.58) 0%,rgba(26,26,24,.82) 100%)}
-.pr-cta-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
-.pr-cta h2{font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;color:#f6f4f0!important;
-  margin:0 0 clamp(28px,3vw,40px)}
-.pr-cta-links{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
-.pr-cta-btn-primary,.pr-cta-btn-secondary{
-  display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
-  transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
-.pr-cta-btn-primary{background:var(--gold)!important;border:1px solid var(--gold)!important;
-  color:#1a1a18!important}
-.pr-cta-btn-primary:hover,.pr-cta-btn-primary:focus-visible{
-  background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
-.pr-cta-btn-secondary{background:transparent!important;
-  border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important}
-.pr-cta-btn-secondary:hover,.pr-cta-btn-secondary:focus-visible{
-  background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
-/* The row WRAPS, it never shrinks. Below 768 it becomes one full-width column so
-   neither label can drop a word or clip at 320. */
-@media (max-width:768px){
-  .pr-cta-links{flex-direction:column;align-items:stretch}
-}
-@media (max-width:400px){
-  .pr-cta-btn-primary,.pr-cta-btn-secondary{padding-left:16px;padding-right:16px}
-}
-.pr-cta-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
-  letter-spacing:.04em;color:rgba(246,244,240,.6)!important;margin:16px 0 0}
-.pr-cta-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
-
-/* ════════════ NARROW ════════════ */
-@media (max-width:900px){
-  .pr-phil,.pr-split,.pr-split-reverse{flex-direction:column}
-  .pr-phil-text,.pr-split-text,.pr-split-reverse .pr-split-text{padding:var(--section) var(--gutter)}
-  .pr-phil-inner,.pr-split-inner{max-width:none}
-  .pr-phil-img,.pr-split-img{min-height:0;aspect-ratio:3/2}
-  .pr-break{min-height:0}
-  /* One column: the text no longer sits in the dark end of the gradient. */
-  .pr-break::after{background:rgba(26,26,24,.90)}
-  .pr-tl-track{flex-direction:column;gap:22px}
-  .pr-tl-track::before{display:none}
-  .pr-tl-node{flex:0 0 auto;width:100%;flex-direction:row;align-items:center;gap:14px}
-  .pr-tl-dot{margin:0}
-  .pr-tl-week{margin:0;flex:0 0 auto;min-width:104px}
-}
+.pr-hero-c{position:relative;z-index:2;width:100%;padding:0 0 clamp(56px,7vw,96px)}
+.pr-hero .pr-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
+.pr-hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;letter-spacing:0;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;color:#f6f4f0!important;
+  max-width:24ch;margin:0 0 16px}
+.pr-hero-sub{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(14px,1.4vw,16px);line-height:1.6;letter-spacing:0;
+  color:rgba(246,244,240,.82)!important;max-width:42ch;margin:0}
 @media (max-width:480px){
-  .pr-eyebrow{font-size:10px;letter-spacing:.14em}
-  .pr-eyebrow::before{display:none}
+  .pr-hero .pr-eyebrow{font-size:10px;letter-spacing:.08em;display:block!important}
+  .pr-hero .pr-eyebrow::before{display:none}
 }
-@media (prefers-reduced-motion:reduce){
-  .pr-wrap *{animation:none!important;transition:none!important}
+.pr-statement{padding:var(--section) 0;text-align:center;background:var(--paper)!important}
+.pr-statement-inner{max-width:880px;margin:0 auto;padding:0 clamp(24px,5vw,40px)}
+.pr-statement .pr-eyebrow{margin-bottom:32px}
+.pr-statement p:not(.pr-eyebrow){font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 auto;max-width:28em;text-wrap:pretty}
+.pr-hang{padding:0 0 var(--section);background:var(--paper)!important}
+.pr-hang-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(28px,3.5vw,48px)}
+.pr-hang-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0}
+.pr-arrow{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink)!important;border-bottom:1px solid var(--stone);
+  padding-bottom:5px;display:inline-block}
+.pr-arrow:hover,.pr-arrow:focus-visible{border-color:var(--ink)}
+.pr-stack{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
+.pr-card{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));max-width:calc(50% - clamp(10px,1.2vw,18px));min-width:0}
+.pr-card-full{flex:1 1 100%;max-width:none}
+.pr-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
+.pr-card-frame img{width:100%;height:100%;object-fit:cover}
+.pr-card-over{display:flex!important;justify-content:space-between;align-items:baseline;
+  gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
+.pr-card-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
+  font-size:13px;line-height:1.4;color:var(--ink)!important;margin:0;
+  transition:color .3s var(--ease)}
+.pr-card:hover .pr-card-name,.pr-card:focus-visible .pr-card-name{color:#816a3f!important}
+.pr-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
+.pr-figure{padding:0 0 var(--section);background:var(--paper)!important}
+.pr-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.pr-steps{padding:0 0 var(--section);background:var(--paper)!important}
+.pr-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
+.pr-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.15;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.pr-step p:not(.pr-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:66ch}
+.pr-quote{padding:0 0 var(--section);background:var(--paper)!important}
+.pr-quote-inner{max-width:760px}
+.pr-quote-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
+.pr-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
+.pr-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
+.pr-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+  background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
+.pr-close>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.pr-close::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(26,26,24,.42) 0%,rgba(26,26,24,.74) 100%)}
+.pr-close-c{position:relative;z-index:2;padding:clamp(56px,8vw,96px) clamp(24px,6vw,60px);max-width:760px}
+.pr-close .pr-eyebrow{color:rgba(246,244,240,.85)!important;justify-content:center}
+.pr-close h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;color:#f6f4f0!important;
+  margin:0 0 clamp(28px,3vw,40px)}
+.pr-close-row{display:flex!important;flex-direction:column;align-items:center;gap:16px}
+.pr-close-btns{display:flex!important;flex-wrap:wrap;gap:14px;justify-content:center}
+.pr-btn{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:var(--gold)!important;border:1px solid var(--gold)!important;color:#1a1a18!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.pr-btn:hover,.pr-btn:focus-visible{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:#1a1a18!important}
+.pr-btn-2{display:inline-block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;
+  background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
+.pr-btn-2:hover,.pr-btn-2:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
+.pr-close a:focus-visible{outline:2px solid #f6f4f0;outline-offset:3px}
+.pr-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
+  letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
+.pr-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
+@media (max-width:768px){.pr-close-btns{flex-direction:column;align-items:stretch}}
+@media (max-width:640px){
+  .pr-card,.pr-card-full{flex:1 1 100%;max-width:none}
+  .pr-card-over{flex-direction:column;align-items:flex-start;gap:4px}
+  .pr-card-loc{letter-spacing:.12em}
+  .pr-figure img{width:100%}
 }
+@media (prefers-reduced-motion:reduce){.pr-wrap *{animation:none!important;transition:none!important}}
 </style>
 
-<!-- ═══ NAV: first element in the block, outside the page wrapper.
-     hp-nav-over because this page opens on a dark full-bleed hero. ═══ -->
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
   <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
@@ -392,181 +310,51 @@
 </div>
 
 <div class="pr-wrap">
-
-<!-- ════════════ HERO ════════════ -->
-<section class="pr-hero" data-hp-hero aria-labelledby="pr-hero-h">
-  <div class="pr-hero-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/f5587052-bcdb-4b1b-8f61-84f98ba1adfb/warbler-whistler-architectural-photography-matt-anthony-.jpg-22.jpg?format=2500w 2500w" sizes="100vw" alt="Warbler Residence, Whistler: an upstairs landing with a spotting scope on a tripod at the sliding glass, snow and mountains beyond" width="1500" height="1000" fetchpriority="high" decoding="async">
-  </div>
-  <div class="pr-hero-content">
-    <div class="pr-container">
-      <p class="pr-eyebrow pr-eyebrow-dark">Process</p>
-      <h1 id="pr-hero-h">From first conversation to <em>final delivery</em></h1>
-      <p class="pr-hero-sub">The same steps run on a finished-project shoot. Stills and film, then the work around it when that is useful.</p>
-    </div>
+<section class="pr-hero" data-hp-hero aria-labelledby="pr-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Gravel drive curving through tall firs to the low dark house" width="1500" height="1200" fetchpriority="high" decoding="async">
+  <div class="pr-hero-c"><div class="pr-container">
+    <p class="pr-eyebrow">Process</p>
+    <h1 id="pr-h">From first conversation to final delivery.</h1>
+    <p class="pr-hero-sub">The same steps run on a finished-project shoot. Stills and film, then the work around it when that is useful.</p>
+  </div></div>
+</section>
+<section class="pr-statement">
+  <div class="pr-statement-inner">
+    <p class="pr-eyebrow">Approach</p>
+    <p>Every frame begins long before the camera comes out. Stills and film come from the same visit.</p>
   </div>
 </section>
-
-<!-- ════════════ PHILOSOPHY ════════════ -->
-<section class="pr-phil" aria-labelledby="pr-phil-h">
-  <div class="pr-phil-text">
-    <div class="pr-phil-inner">
-      <p class="pr-eyebrow">Approach</p>
-      <h2 id="pr-phil-h">Every frame begins long before the camera comes out.</h2>
-      <p>I work with architects, builders and interior designers across British Columbia. Each project starts with the drawings, the materials and the intent behind them. Stills and film come from the same visit.</p>
-      <p>The steps below exist so the shoot day stays quiet and nothing about the delivery is a surprise.</p>
-    </div>
-  </div>
-  <div class="pr-phil-img">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bf463fcc-0f61-4c27-84d0-46be256bb34c/warbler-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" alt="Warbler Residence, Whistler: the entry court under a cedar soffit, dark metal siding, a rain chain and concrete steps to the pivot door, snow on the ground" width="1500" height="1000" loading="lazy" decoding="async">
-  </div>
-</section>
-
-<!-- ════════════ STEP 01 ════════════ -->
-<section class="pr-break" aria-labelledby="pr-step1-h">
-  <div class="pr-break-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=2500w 2500w" sizes="100vw" alt="A dark stained wood clad house cantilevered over a rock bluff above the water, bare trees in the foreground" width="1500" height="1125" loading="lazy" decoding="async">
-  </div>
-  <div class="pr-break-content">
-    <div class="pr-container">
-      <p class="pr-eyebrow pr-eyebrow-dark">Step 01</p>
-      <h3 id="pr-step1-h">Pre-Shoot Consultation</h3>
-      <p class="pr-break-sub">Goals, scope and access</p>
-      <p class="pr-break-desc">A call or an email settles what the photographs and film are for: the site, the deck, social, the record of the build. That answer sets the shot list, the scope and access on the day, and whether I come back for progression visits.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ STEP 02 ════════════ -->
-<section class="pr-split" aria-labelledby="pr-step2-h">
-  <div class="pr-split-img">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/66509d6f-8b6e-45c4-af89-cf2632982163/siteline-langley-5.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" alt="Langley residence: a panelled entry hall in low sun, marble tile floor with black diamond inlay, open riser oak stair behind a painted balustrade" width="1500" height="1427" loading="lazy" decoding="async">
-  </div>
-  <div class="pr-split-text">
-    <div class="pr-split-inner">
-      <p class="pr-eyebrow">Step 02</p>
-      <h3 id="pr-step2-h">Creative Planning &amp; Site Review</h3>
-      <p class="pr-split-sub">Plans, light and logistics</p>
-      <p class="pr-split-desc">Before the shoot I read the plans, the renderings or earlier photos, and work out orientation and where the compositions sit. Then the practical questions: light timing, drone permissions, site access, weather. A prep checklist goes out ahead of the day, with staging notes and the design details I plan to photograph.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ STEP 03 ════════════ -->
-<section class="pr-break" aria-labelledby="pr-step3-h">
-  <div class="pr-break-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5be7e36c-d920-4d5d-9260-da4df4c50415/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-16.jpg?format=2500w 2500w" sizes="100vw" alt="Sandy Hook, Sunshine Coast: a side courtyard held by a concrete wall, a Japanese maple against it, glazing and cedar soffit at the left, forest above" width="1500" height="1000" loading="lazy" decoding="async">
-  </div>
-  <div class="pr-break-content">
-    <div class="pr-container">
-      <p class="pr-eyebrow pr-eyebrow-dark">Step 03</p>
-      <h3 id="pr-step3-h">Photography Day</h3>
-      <p class="pr-break-sub">Composed on site, quietly</p>
-      <p class="pr-break-desc">On shoot day I work alone or alongside the build and design teams. Coverage runs from the hero exterior through interiors, details, aerial frames where the site allows, and film. I move quietly and stay clear of whoever else is working.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ STEP 04 ════════════ -->
-<section class="pr-split pr-split-reverse" aria-labelledby="pr-step4-h">
-  <div class="pr-split-img">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7ef87751-7049-4003-b0ae-2d83f90f21c4/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-13.jpg?format=2500w 2500w" sizes="(max-width: 900px) 100vw, 50vw" alt="Fitzsimmons Residence, Whistler: a hallway looking through to the dining table, a carved wood sculpture in the snowy courtyard through the glass at left, white slat stair screen at right" width="1500" height="1000" loading="lazy" decoding="async">
-  </div>
-  <div class="pr-split-text">
-    <div class="pr-split-inner">
-      <p class="pr-eyebrow">Step 04</p>
-      <h3 id="pr-step4-h">Post-Production &amp; Editing</h3>
-      <p class="pr-split-sub">Restrained, editorial finishing</p>
-      <p class="pr-split-desc">I edit every frame myself, in Lightroom and Photoshop. Colour correction, perspective alignment, tonal balance, and the distractions taken out. The approach stays restrained, so the room reads on screen the way it reads standing in it.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ STEP 05 ════════════ -->
-<section class="pr-break" aria-labelledby="pr-step5-h">
-  <div class="pr-break-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=2500w 2500w" sizes="100vw" alt="A commercial building entrance in late sun: glass doors under a metal canopy, Walkus Room lettering above them, precast panels, two young trees and a bench on the paved plaza" width="1500" height="1000" loading="lazy" decoding="async">
-  </div>
-  <div class="pr-break-content">
-    <div class="pr-container">
-      <p class="pr-eyebrow pr-eyebrow-dark">Step 05</p>
-      <h3 id="pr-step5-h">Delivery &amp; Licensing</h3>
-      <p class="pr-break-sub">Files, gallery and terms</p>
-      <p class="pr-break-desc">Final images land in an online gallery, typically within 5 to 10 business days. Full resolution files for print, web sized versions, social crops on request, and licensing terms written for the actual use.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ TIMELINE ════════════ -->
-<section class="pr-timeline" aria-labelledby="pr-tl-h">
-  <div class="pr-container">
-    <p class="pr-eyebrow">Typical timeline</p>
-    <h2 id="pr-tl-h">From conversation to <em>delivery</em></h2>
-    <div class="pr-tl-track">
-      <div class="pr-tl-node">
-        <div class="pr-tl-dot"></div>
-        <p class="pr-tl-week">Week 1</p>
-        <p class="pr-tl-name">Consultation</p>
-      </div>
-      <div class="pr-tl-node">
-        <div class="pr-tl-dot"></div>
-        <p class="pr-tl-week">Week 2</p>
-        <p class="pr-tl-name">Site visit</p>
-      </div>
-      <div class="pr-tl-node">
-        <div class="pr-tl-dot"></div>
-        <p class="pr-tl-week">Week 3</p>
-        <p class="pr-tl-name">Shoot day</p>
-      </div>
-      <div class="pr-tl-node">
-        <div class="pr-tl-dot"></div>
-        <p class="pr-tl-week">Week 4 to 5</p>
-        <p class="pr-tl-name">Editing</p>
-      </div>
-      <div class="pr-tl-node">
-        <div class="pr-tl-dot"></div>
-        <p class="pr-tl-week">Week 6</p>
-        <p class="pr-tl-name">Delivery</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ TESTIMONIAL ════════════ -->
+<section class="pr-steps"><div class="pr-container"><p class="pr-eyebrow">The visit</p><div class="pr-hang-head"><h2>How a project runs</h2></div>
+<div class="pr-step"><p class="pr-eyebrow">01</p><h3>Conversation</h3><p>A call settles what the photographs and film are for: the site, the deck, social, the record of the build.</p></div>
+<div class="pr-step"><p class="pr-eyebrow">02</p><h3>Planning</h3><p>I read the plans, work out light and access, and send a prep note ahead of the day.</p></div>
+<div class="pr-step"><p class="pr-eyebrow">03</p><h3>The visit</h3><p>Exteriors, interiors, aerial where the site allows, and film. I move quietly.</p></div>
+<div class="pr-step"><p class="pr-eyebrow">04</p><h3>Editing</h3><p>I edit every frame myself in Lightroom and Photoshop. Restrained, so the room reads the way it reads standing in it.</p></div>
+<div class="pr-step"><p class="pr-eyebrow">05</p><h3>Delivery</h3><p>Final images land in an online gallery, typically within 5 to 10 business days. Licensing terms written for the actual use.</p></div>
+</div></section>
 <section class="pr-quote" aria-label="Client comment">
   <div class="pr-container">
-    <p class="pr-quote-text">Matt was a pleasure to work with on our recent architectural project shoots. He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor. His creative eye brought out the best in the design, and he easily adapted to changing conditions. &hellip; Highly recommend!</p>
-    <p class="pr-quote-attr">Kyle Paisley, Summerhill Fine Homes &middot; <a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">View Case Study</a></p>
-  </div>
-</section>
-
-<!-- ════════════ MANIFESTO ════════════ -->
-<section class="pr-manifesto">
-  <div class="pr-container">
-    <p class="pr-manifesto-text">Every project starts with understanding what was built and why. The photography follows.</p>
-  </div>
-</section>
-
-<!-- ════════════ CLOSE ════════════ -->
-<section class="pr-cta" aria-labelledby="pr-cta-h">
-  <div class="pr-cta-bg">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/83bbba67-7393-4e34-8b4b-bac1600c8110/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-12.jpg?format=2500w 2500w" sizes="100vw" alt="Sandy Hook, Sunshine Coast: the entry under a cedar soffit, dark corrugated siding, concrete steps up to the glass door, planting and a rock wall to the right" width="1500" height="1000" loading="lazy" decoding="async">
-  </div>
-  <div class="pr-cta-c">
-    <p class="pr-eyebrow pr-eyebrow-dark">Contact</p>
-    <h2 id="pr-cta-h">Tell me about your project.</h2>
-    <div class="pr-cta-links">
-      <a href="/homepage-preview/discovery-call/" class="pr-cta-btn-primary">Book a Discovery Call</a>
-      <a href="/homepage-preview/contact/" class="pr-cta-btn-secondary">Send a Message</a>
+    <div class="pr-quote-inner">
+      <p class="pr-quote-text">Matt was a pleasure to work with on our recent architectural project shoots. He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor. His creative eye brought out the best in the design, and he easily adapted to changing conditions. &hellip; Highly recommend!</p>
+      <p class="pr-quote-attr">Kyle Paisley, Summerhill Fine Homes &middot; <a href="https://www.mattanthonyphoto.com/summerhill-fine-homes">Summerhill Fine Homes</a></p>
     </div>
-    <p class="pr-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></p>
   </div>
 </section>
-
+<section class="pr-close" aria-labelledby="pr-close-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a57cd60-146c-412d-b7a5-357e5805b000/coleman-residence-invermere-waterfront-from-the-dock-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Twin gabled volumes in weathered wood above a lawn, seen from the dock across the shoreline" width="1500" height="1200" loading="lazy" decoding="async">
+  <div class="pr-close-c">
+    <p class="pr-eyebrow">Contact</p>
+    <h2 id="pr-close-h">Tell me about your project.</h2>
+    <div class="pr-close-row">
+      <div class="pr-close-btns">
+        <a class="pr-btn" href="/homepage-preview/discovery-call/">Book a Discovery Call</a>
+        <a class="pr-btn-2" href="/homepage-preview/contact/">Send a Message</a>
+      </div>
+      <span class="pr-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
+    </div>
+  </div>
+</section>
 </div><!-- /.pr-wrap -->
 
-<!-- ═══ FOOTER: last element in the block, outside the page wrapper.
-     Deliberately a div: Squarespace hides real footer elements. ═══ -->
 <div class="hp-ft">
   <div class="hp-ft-inner">
 
@@ -610,7 +398,6 @@
 
   </div>
 </div>
-
 
 <script>
 (function(){
@@ -687,92 +474,6 @@
   });
 })();
 </script>
-
-<!-- HowTo Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Matt Anthony's Architectural Photography Process",
-  "description": "A five-step process from initial consultation through final delivery for architectural photography projects in British Columbia.",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "name": "Pre-Shoot Consultation",
-      "text": "A call or an email settles what the images are for: a portfolio, an award entry, a publication, a client presentation. That answer sets the shot list, the image style, the scope and the access.",
-      "position": 1
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Creative Planning & Site Review",
-      "text": "Reading the plans, renderings or earlier photos to fix orientation and composition, then light timing, drone permissions, site access and weather. A prep checklist goes out ahead of the day.",
-      "position": 2
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Photography Day",
-      "text": "Coverage from the hero exterior through interior wide angles, details, material intersections, and aerial frames where the site allows.",
-      "position": 3
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Post-Production & Editing",
-      "text": "Editing in Lightroom and Photoshop. Colour correction, perspective alignment, tonal balance, and the distractions taken out.",
-      "position": 4
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Delivery & Licensing",
-      "text": "Final images in an online gallery, typically within 5 to 10 business days. Full resolution files for print, web sized versions, and licensing terms written for the actual use.",
-      "position": 5
-    }
-  ]
-}
-</script>
-
-<!--
-  PROCESS PAGE — code block, mattanthonyphoto.com/process
-  Brought onto sitewide/_DESIGN-SYSTEM.md on 2026-08-27.
-
-  Structure: nav (chrome) / hero / philosophy / steps 01-05 / timeline /
-  testimonial / manifesto / close / footer (chrome).
-
-  One page width and one gutter (--page / --gutter). Full-bleed sections use
-  .pr-container; the two-column sections use --edge so the outer text edge
-  lands on the same line as the nav and footer.
-
-  Removed in this pass: the loading screen, section-nav dots, custom cursor,
-  scroll-progress bar, particle canvas, magnetic button, Ken Burns, parallax,
-  film grain, and the word-by-word reveals on the testimonial and manifesto
-  (both shipped text at 15% alpha until JS ran). Also removed: the ghost step
-  numerals (duplicated the Step labels and overflowed at narrow widths), the
-  page-level meta/canonical/og block (Squarespace emits those from the SEO
-  panel), and the page's own footer.
-
-  Alt text was rewritten to match what is visibly in frame. Register pass 2026-08-27:
-  first person singular throughout, second person only in the closing call to action,
-  em and en dashes gone, and the banned words (capture, curated, timeless) removed.
-  The HowTo JSON-LD now mirrors the page copy; before this it described step 2 under
-  step 1 and claimed twilight coverage the page never offers.
-
-  Register pass 2 (2026-08-27): step 01 no longer opens with "Every project begins
-  with". Four sentences ran the same "every/each X begins or starts" construction
-  (the philosophy heading, the philosophy paragraph, step 01, the manifesto); three
-  remain, and step 01 now uses the HowTo JSON-LD's own wording. Nothing else in the
-  copy changed.
-
-  Kyle Paisley's quote is untouched. It is a real client's words, an excerpt of the
-  canonical text in business/website/testimonials.json with the dropped sentence
-  marked by an ellipsis, and tools/check_quotes.py passes on it.
-
-  NOT FIXED HERE, needs Matt: step 05 promises delivery "within 5 to 10 business
-  days", the timeline below it puts delivery in week 6 of a week-3 shoot (about 15
-  business days), and business/operations/service-agreements.md says 15 business days
-  for Project Photography. The three do not agree. The 5 to 10 figure was left alone
-  because it is what all four pricing guides already ship.
-  Also unresolved: the manifesto restates the philosophy section. Cutting one of them
-  is a design decision, not a register fix, so both are still here.
--->
 
 </body>
 </html>
