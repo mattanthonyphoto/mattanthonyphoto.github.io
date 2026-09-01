@@ -271,8 +271,24 @@
   cursor:pointer;color:#f6f4f0!important}
 .sv-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
 .sv-playing .sv-play{display:none!important}
-.sv-figure{padding:0 0 var(--section);background:var(--paper)!important}
-.sv-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.sv-intro{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-intro-inner{display:flex!important;flex-wrap:wrap;align-items:center;
+  gap:clamp(36px,5vw,80px)}
+.sv-intro-pic{flex:1 1 340px;max-width:520px;min-width:0}
+.sv-intro-pic img{width:100%;height:auto}
+.sv-intro-copy{flex:1 1 380px;min-width:0}
+.sv-intro-copy p:not(.sv-eyebrow){font-size:15px;line-height:1.8;
+  color:var(--ink)!important;margin:0 0 1.1em;max-width:42em}
+.sv-intro-copy p:not(.sv-eyebrow):last-child{margin-bottom:0}
+.sv-notes{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-notes-inner{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px);
+  border-top:1px solid var(--rule);padding-top:var(--section)}
+.sv-note{flex:1 1 220px;min-width:0}
+.sv-note h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.2;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.sv-note p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;
+  margin:0;max-width:36ch}
 .sv-steps{padding:0 0 var(--section);background:var(--paper)!important}
 .sv-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
 .sv-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -320,7 +336,7 @@
   .sv-card,.sv-card-full{flex:1 1 100%;max-width:none}
   .sv-card-over{flex-direction:column;align-items:flex-start;gap:4px}
   .sv-card-loc{letter-spacing:.12em}
-  .sv-figure img{width:100%}
+  .sv-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
 </style>
@@ -355,13 +371,23 @@
 <section class="sv-statement">
   <div class="sv-statement-inner">
     <p class="sv-eyebrow">Approach</p>
-    <p>Stop re-briefing a new person on every project. One agreement. The work keeps moving.</p>
+    <p>One agreement. I already know the firm. The work keeps moving.</p>
+  </div>
+</section>
+<section class="sv-intro">
+  <div class="sv-container">
+    <div class="sv-intro-copy">
+      <p class="sv-eyebrow">The agreement</p>
+      <p>I stay on with architects, builders, and designers who want the photographs and the work around them from the same person.</p>
+      <p>The mix is written into the agreement. Finished-project photography, film, progression visits, the website, and social. Not every firm needs every line.</p>
+      <p>A website rebuild is scoped on its own. The monthly work is the visits, the updates, and the channels that stay live. Billed monthly.</p>
+    </div>
   </div>
 </section>
 <section class="sv-hang" aria-labelledby="sv-hang-h">
   <div class="sv-container">
     <div class="sv-hang-head">
-      <h2 id="sv-hang-h">What stays in the conversation</h2>
+      <h2 id="sv-hang-h">What stays in the conversation</h2><a class="sv-arrow" href="/homepage-preview/balmoral-construction/">Balmoral Construction</a>
     </div>
     <div class="sv-stack">
       <a href="/homepage-preview/project-photography/" class="sv-card">
@@ -392,6 +418,34 @@
           <p class="sv-card-loc">The place the photographs live</p>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+<section class="sv-steps"><div class="sv-container"><p class="sv-eyebrow">The month</p><div class="sv-hang-head"><h2>How a month runs</h2></div>
+<div class="sv-step"><p class="sv-eyebrow">01</p><h3>Conversation</h3><p>A monthly conversation, not a new brief. What is finishing, what needs a visit, what goes on the site.</p></div>
+<div class="sv-step"><p class="sv-eyebrow">02</p><h3>The visit</h3><p>Finished buildings, film from the same day, progression while a project is going up.</p></div>
+<div class="sv-step"><p class="sv-eyebrow">03</p><h3>The site</h3><p>Project pages as the photographs land. The site stays current.</p></div>
+<div class="sv-step"><p class="sv-eyebrow">04</p><h3>The channels</h3><p>The same frames, cut for the social accounts in the agreement.</p></div>
+<div class="sv-step"><p class="sv-eyebrow">05</p><h3>The month</h3><p>What ran this month can be named. The next visits are already on the calendar.</p></div>
+</div></section>
+<section class="sv-notes" aria-label="How the agreement sits">
+  <div class="sv-container">
+    <div class="sv-notes-inner">
+      <div class="sv-note">
+        <p class="sv-eyebrow">Mix</p>
+        <h3>Set to the firm.</h3>
+        <p>The lines in the agreement are the lines that run. I do not sell a line I cannot show.</p>
+      </div>
+      <div class="sv-note">
+        <p class="sv-eyebrow">Calendar</p>
+        <h3>Visits go on first.</h3>
+        <p>I book Creative Partner visits ahead of one-off sessions. The next visit is dated before the month starts.</p>
+      </div>
+      <div class="sv-note">
+        <p class="sv-eyebrow">Site</p>
+        <h3>The photographs have a place to live.</h3>
+        <p>New project pages as the work lands. The rebuild, if there is one, is a separate piece of work.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -537,6 +591,10 @@
     if(isOpen() && !group.contains(e.relatedTarget)) shut();
   });
 })();
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Creative Partner","description":"An ongoing agreement for architects, builders, and designers in British Columbia. Photography, film, progression, website and social, under one monthly conversation.","url":"https://www.mattanthonyphoto.com/creative-partner","areaServed":{"@type":"AdministrativeArea","name":"British Columbia"}}
 </script>
 
 </body>
