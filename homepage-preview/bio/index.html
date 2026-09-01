@@ -271,13 +271,24 @@
   cursor:pointer;color:#f6f4f0!important}
 .bio-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
 .bio-playing .bio-play{display:none!important}
-.bio-figure{padding:0 0 clamp(40px,4vw,64px);background:var(--paper)!important}
-.bio-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
-.bio-prose{padding:0 0 var(--section);background:var(--paper)!important}
-.bio-prose-inner{max-width:760px}
-.bio-prose p:not(.bio-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;
-  margin:0 0 1.15em;max-width:66ch}
-.bio-prose p:not(.bio-eyebrow):last-child{margin-bottom:0}
+.bio-intro{padding:0 0 var(--section);background:var(--paper)!important}
+.bio-intro-inner{display:flex!important;flex-wrap:wrap;align-items:center;
+  gap:clamp(36px,5vw,80px)}
+.bio-intro-pic{flex:1 1 340px;max-width:520px;min-width:0}
+.bio-intro-pic img{width:100%;height:auto}
+.bio-intro-copy{flex:1 1 380px;min-width:0}
+.bio-intro-copy p:not(.bio-eyebrow){font-size:15px;line-height:1.8;
+  color:var(--ink)!important;margin:0 0 1.1em;max-width:42em}
+.bio-intro-copy p:not(.bio-eyebrow):last-child{margin-bottom:0}
+.bio-notes{padding:0 0 var(--section);background:var(--paper)!important}
+.bio-notes-inner{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px);
+  border-top:1px solid var(--rule);padding-top:var(--section)}
+.bio-note{flex:1 1 220px;min-width:0}
+.bio-note h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.2;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.bio-note p:not(.bio-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;
+  margin:0;max-width:36ch}
 .bio-steps{padding:0 0 var(--section);background:var(--paper)!important}
 .bio-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
 .bio-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -325,7 +336,7 @@
   .bio-card,.bio-card-full{flex:1 1 100%;max-width:none}
   .bio-card-over{flex-direction:column;align-items:flex-start;gap:4px}
   .bio-card-loc{letter-spacing:.12em}
-  .bio-figure img{width:100%}
+  .bio-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.bio-wrap *{animation:none!important;transition:none!important}}
 </style>
@@ -354,25 +365,46 @@
   <div class="bio-hero-c"><div class="bio-container">
     <p class="bio-eyebrow">About</p>
     <h1 id="bio-h">Matt Anthony</h1>
-    <p class="bio-hero-sub">Architectural photographer based in Squamish, BC. I photograph and film completed architecture across British Columbia.</p>
+    <p class="bio-hero-sub">Architectural photographer, Squamish, BC.</p>
   </div></div>
 </section>
 <section class="bio-statement">
   <div class="bio-statement-inner">
     <p class="bio-eyebrow">Approach</p>
-    <p>I photograph architecture with the same care that goes into designing and building it. The finished building is the door. I stay for the rest of it when that is useful.</p>
+    <p>I photograph completed architecture for the people who design and build it.</p>
   </div>
 </section>
-<section class="bio-figure">
-  <div class="bio-container"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=2500w 2500w" sizes="(min-width: 512px) 620px, 90vw" alt="Matt Anthony standing on a gravel clearing holding a camera, conifers behind him" width="1366" height="2048" loading="lazy" decoding="async"></div>
-</section>
-<section class="bio-prose">
+<section class="bio-intro">
   <div class="bio-container">
-    <div class="bio-prose-inner">
-      <p class="bio-eyebrow">Squamish, BC</p>
-      <p>I work from Squamish for architects, custom builders, and interior designers across British Columbia. Sea to Sky, the Sunshine Coast, Vancouver, the Fraser Valley, and the Okanagan.</p>
-      <p>I read the plans, walk the site, and photograph the decisions behind the building. Natural light where the room was drawn for it. Aerial from the same visit. I am a Transport Canada certified Advanced Drone Pilot.</p>
-      <p>I work alone. The photographs, the film, the edit, and the website when there is one.</p>
+    <div class="bio-intro-inner">
+      <div class="bio-intro-pic"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/78a5df2e-eb81-4c0d-a9f0-9bdea08bdcd9/matt-anthony-photography-squamish.jpg?format=2500w 2500w" sizes="(max-width: 900px) 90vw, (min-width: 1600px) 520px, 32vw" alt="Matt Anthony standing on a gravel clearing holding a camera, conifers behind him" width="1366" height="2048" loading="lazy" decoding="async"></div>
+      <div class="bio-intro-copy">
+        <p class="bio-eyebrow">Photographer</p>
+        <p>I work with architects, custom builders, and interior designers across British Columbia.</p>
+        <p>I am based in Squamish and I drive to most of the work. I read the plans, walk the site, and photograph the decisions behind the building. Natural light where the room was drawn for it. Aerial from the same visit. I am a Transport Canada certified Advanced Drone Pilot.</p>
+        <p>Stills and film come from the same day. I stay for the work around the photographs when that is useful: progression through the build, the website they live on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bio-notes" aria-label="How I work">
+  <div class="bio-container">
+    <div class="bio-notes-inner">
+      <div class="bio-note">
+        <p class="bio-eyebrow">Place</p>
+        <h3>Squamish, then the rest of the province.</h3>
+        <p>Sea to Sky, the Sunshine Coast, Vancouver, the Fraser Valley, and the Okanagan.</p>
+      </div>
+      <div class="bio-note">
+        <p class="bio-eyebrow">Visit</p>
+        <h3>Stills, film, and aerial from one day.</h3>
+        <p>Exteriors, interiors, twilight, and the rooms as they read. I move quietly on site.</p>
+      </div>
+      <div class="bio-note">
+        <p class="bio-eyebrow">After</p>
+        <h3>I edit every frame myself.</h3>
+        <p>Lightroom and Photoshop. Licensing written for the actual use.</p>
+      </div>
     </div>
   </div>
 </section>
