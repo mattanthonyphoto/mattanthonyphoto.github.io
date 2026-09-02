@@ -358,18 +358,16 @@
 }
 .sv-year,.sv-rail-wrap,.sv-sys{padding:0 0 var(--section);background:var(--paper)!important}
 .sv-sys-lede{font-size:15px;line-height:1.8;color:var(--ink)!important;max-width:46em;margin:0 0 clamp(28px,3.5vw,48px)}
-.sv-yboards{display:flex!important;flex-direction:column;gap:clamp(36px,4vw,56px)}
-.sv-yboard h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.15;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
-.sv-yboard>p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0 0 22px;max-width:46em}
+.sv-yboard{max-width:760px}
 .sv-yhead,.sv-yrow{display:flex!important;align-items:center;gap:12px}
-.sv-yhead{margin:0 0 8px}
+.sv-yhead{margin:0 0 10px}
 .sv-yhead span{flex:1 1 0;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)!important;text-align:center}
 .sv-ylbl{flex:0 0 4.6rem;width:4.6rem;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)!important;margin:0}
 .sv-yhead .sv-ylbl{flex:0 0 4.6rem}
-.sv-ytrack{flex:1 1 auto;position:relative;height:22px;background:#eeece6;min-width:0}
-.sv-yrow{margin:0 0 6px}
-.sv-ybar{position:absolute;left:0;right:0;top:6px;height:10px;background:var(--gold)!important}
-.sv-ybar-thin{height:3px;top:10px;background:var(--ink)!important;opacity:.35}
+.sv-ytrack{flex:1 1 auto;position:relative;height:18px;background:#eeece6;min-width:0}
+.sv-yrow{margin:0 0 8px}
+.sv-ybar{position:absolute;left:0;right:0;top:5px;height:8px;background:var(--gold)!important}
+.sv-ybar-thin{height:3px;top:8px;background:var(--ink)!important;opacity:.35}
 .sv-ymark{position:absolute;top:3px;width:8px;height:16px;background:var(--ink)!important}
 .sv-ymark-a{left:14%}
 .sv-ymark-b{left:48%}
@@ -459,58 +457,12 @@
 <section class="sv-year" aria-labelledby="sv-year-h">
   <div class="sv-container">
     <p class="sv-eyebrow">The year</p>
-    <div class="sv-hang-head"><h2 id="sv-year-h">How firms stay on</h2></div>
-    <p class="sv-sys-lede">Gold is the work that runs all year. Marks are the visits. Not every firm runs every row.</p>
-    <div class="sv-yboards">
-      <div class="sv-yboard">
-        <p class="sv-eyebrow">The site</p>
-        <h3>Maintenance and SEO.</h3>
-        <p>The site stays live. Project pages go up when photographs land. A website build is quoted on its own.</p>
+    <div class="sv-hang-head"><h2 id="sv-year-h">How the year runs</h2></div>
+    <p class="sv-sys-lede">Gold runs all year. Marks are visits. The mix is which rows are in the agreement.</p>
+    <div class="sv-yboard">
       <div class="sv-yhead" aria-hidden="true">
         <span class="sv-ylbl"></span>
         <span>Spring</span><span>Summer</span><span>Fall</span><span>Winter</span>
-      </div>
-      <div class="sv-yrow">
-        <p class="sv-ylbl">Site</p>
-        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
-      </div>
-      <div class="sv-yrow">
-        <p class="sv-ylbl">SEO</p>
-        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
-      </div>
-      <div class="sv-yrow">
-        <p class="sv-ylbl">Pages</p>
-        <div class="sv-ytrack"><span class="sv-ymark sv-ymark-a"></span><span class="sv-ymark sv-ymark-c"></span></div>
-      </div>
-      </div>
-      <div class="sv-yboard">
-        <p class="sv-eyebrow">The accounts</p>
-        <h3>Social from the work.</h3>
-        <p>The feed stays live. New frames when a visit is in the agreement.</p>
-      <div class="sv-yhead" aria-hidden="true">
-        <span class="sv-ylbl"></span>
-        <span>Spring</span><span>Summer</span><span>Fall</span><span>Winter</span>
-      </div>
-      <div class="sv-yrow">
-        <p class="sv-ylbl">Feed</p>
-        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
-      </div>
-      <div class="sv-yrow">
-        <p class="sv-ylbl">Visits</p>
-        <div class="sv-ytrack"><span class="sv-ymark sv-ymark-a"></span><span class="sv-ymark sv-ymark-b"></span><span class="sv-ymark sv-ymark-c"></span></div>
-      </div>
-      </div>
-      <div class="sv-yboard">
-        <p class="sv-eyebrow">The full mix</p>
-        <h3>One conversation.</h3>
-        <p>Visits, the site, SEO, and the accounts. A conversation each month. What ran can be named.</p>
-      <div class="sv-yhead" aria-hidden="true">
-        <span class="sv-ylbl"></span>
-        <span>Spring</span><span>Summer</span><span>Fall</span><span>Winter</span>
-      </div>
-      <div class="sv-yrow">
-        <p class="sv-ylbl">Talk</p>
-        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-thin"></span></div>
       </div>
       <div class="sv-yrow">
         <p class="sv-ylbl">Visits</p>
@@ -527,7 +479,6 @@
       <div class="sv-yrow">
         <p class="sv-ylbl">SEO</p>
         <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
-      </div>
       </div>
     </div>
   </div>
