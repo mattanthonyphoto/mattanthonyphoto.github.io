@@ -357,6 +357,40 @@
   .sv-browser-vp img{animation-name:maSiteScrollCpMobile}
 }
 .sv-notes-inner{border-top:0;padding-top:0}
+.sv-sys{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-sys-lede{font-size:15px;line-height:1.8;color:var(--ink)!important;max-width:42em;margin:0 0 clamp(36px,4vw,56px)}
+.sv-sys-paths{display:flex!important;flex-wrap:wrap;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:0 0 clamp(36px,4.5vw,64px)}
+.sv-sys-path{flex:1 1 200px;min-width:0;padding:clamp(22px,2.5vw,32px) clamp(16px,2vw,28px) clamp(22px,2.5vw,32px) 0}
+.sv-sys-path+.sv-sys-path{border-left:1px solid var(--rule);padding-left:clamp(16px,2vw,28px)}
+.sv-sys-path h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.2;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
+.sv-sys-path p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:32ch}
+.sv-sys-path .sv-eyebrow{margin-bottom:16px}
+.sv-sys-frame{margin:0 0 clamp(36px,4.5vw,64px)}
+.sv-sys-frame img{width:100%;height:auto}
+.sv-sys-frame figcaption{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)!important;margin:12px 0 0}
+.sv-sys-art{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:clamp(28px,4vw,56px)}
+.sv-tstack{flex:1 1 260px;max-width:420px;min-width:0}
+.sv-tsheet{background:var(--paper)!important;border:1px solid var(--rule);padding:20px 22px 22px}
+.sv-tsheet+.sv-tsheet{margin-top:8px}
+.sv-tsheet-2{margin-left:14px}
+.sv-tsheet-1{margin-left:28px;background:#eeece6!important}
+.sv-tsheet h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.2;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-tsheet p:not(.sv-eyebrow):not(.sv-turl){font-size:14px;line-height:1.7;color:var(--ink)!important;margin:0;max-width:34ch}
+.sv-tsheet .sv-eyebrow{margin-bottom:12px}
+.sv-turl{display:block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.08em;color:var(--ink)!important;margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--gold)}
+.sv-igs{flex:1 1 300px;display:flex!important;flex-wrap:wrap;gap:14px;min-width:0}
+.sv-ig{flex:1 1 150px;max-width:220px;min-width:0;background:#fff!important;border:1px solid var(--rule)}
+.sv-ig-bar{display:flex!important;align-items:center;gap:8px;padding:10px 12px}
+.sv-ig-avatar{width:20px;height:20px;background:var(--gold)!important;flex-shrink:0}
+.sv-ig-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)!important;margin:0}
+.sv-ig-pic{aspect-ratio:4/5;overflow:hidden;background:var(--ink)!important}
+.sv-ig-pic img{width:100%;height:100%;object-fit:cover}
+.sv-ig-cap{font-size:12px;line-height:1.55;color:var(--ink)!important;margin:0;padding:10px 12px 14px}
+@media (max-width:700px){
+  .sv-sys-path+.sv-sys-path{border-left:0;padding-left:0;border-top:1px solid var(--rule)}
+  .sv-tsheet-2,.sv-tsheet-1{margin-left:0}
+  .sv-ig{flex:1 1 calc(50% - 8px);max-width:none}
+}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
@@ -421,6 +455,80 @@
         <p class="sv-eyebrow">The full mix</p>
         <h3>One conversation.</h3>
         <p>Visits, the site, SEO, and social. Under one monthly conversation. Not every firm runs every line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sv-sys" aria-labelledby="sv-sys-h">
+  <div class="sv-container">
+    <p class="sv-eyebrow">Together</p>
+    <div class="sv-hang-head"><h2 id="sv-sys-h">From the frame.</h2></div>
+    <p class="sv-sys-lede">The photographs are the source. Project pages, the accounts, and search all come from the same visit. The mix decides which of those run.</p>
+    <div class="sv-sys-paths">
+      <div class="sv-sys-path">
+        <p class="sv-eyebrow">The site</p>
+        <h3>Pages and SEO.</h3>
+        <p>Project pages as the photographs land. Monthly maintenance. Search sitting on those pages.</p>
+      </div>
+      <div class="sv-sys-path">
+        <p class="sv-eyebrow">The accounts</p>
+        <h3>The same frames, cut.</h3>
+        <p>A feed from the visit. Written in when the firm wants the channels kept live.</p>
+      </div>
+      <div class="sv-sys-path">
+        <p class="sv-eyebrow">Search</p>
+        <h3>The page people find.</h3>
+        <p>The photograph holds the page. The page is what search can return.</p>
+      </div>
+    </div>
+    <figure class="sv-sys-frame">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house along the rock outcrop, dark cladding under a pale wood soffit with snow below" width="1500" height="1000" loading="lazy" decoding="async">
+      <figcaption>Warbler Residence, Whistler. The frame the site and the accounts are cut from.</figcaption>
+    </figure>
+    <div class="sv-sys-art">
+      <div class="sv-tstack" aria-label="How a photograph reaches a project page and search">
+        <div class="sv-tsheet sv-tsheet-3">
+          <p class="sv-eyebrow">The visit</p>
+          <h3>The photograph.</h3>
+          <p>Shot on the day. Edited, then used everywhere it belongs.</p>
+        </div>
+        <div class="sv-tsheet sv-tsheet-2">
+          <p class="sv-eyebrow">The site</p>
+          <h3>The project page.</h3>
+          <p>The frame lands on a page. Maintenance keeps that page current.</p>
+        </div>
+        <div class="sv-tsheet sv-tsheet-1">
+          <p class="sv-eyebrow">Search</p>
+          <p class="sv-turl">Project page on the site</p>
+          <h3>Custom homes, Whistler.</h3>
+          <p>SEO is the work of making that page findable. No separate story. The same frames.</p>
+        </div>
+      </div>
+      <div class="sv-igs" aria-label="Frames cut for the accounts">
+      <article class="sv-ig">
+        <div class="sv-ig-bar">
+          <span class="sv-ig-avatar" aria-hidden="true"></span>
+          <p class="sv-ig-name">Sugarloaf</p>
+        </div>
+        <div class="sv-ig-pic"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house low on a snowy slope, a long dark elevation with snow covered peaks beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="sv-ig-cap">Pemberton. The house on the snow.</p>
+      </article>
+      <article class="sv-ig">
+        <div class="sv-ig-bar">
+          <span class="sv-ig-avatar" aria-hidden="true"></span>
+          <p class="sv-ig-name">Eagle</p>
+        </div>
+        <div class="sv-ig-pic"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house in snow below a mountain ridge, a stone volume beside horizontal wood cladding" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="sv-ig-cap">Pemberton. Stone and timber under the ridge.</p>
+      </article>
+      <article class="sv-ig">
+        <div class="sv-ig-bar">
+          <span class="sv-ig-avatar" aria-hidden="true"></span>
+          <p class="sv-ig-name">Warbler</p>
+        </div>
+        <div class="sv-ig-pic"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4d198609-e2ea-4208-9592-b2fa028f3968/warbler-whistler-architectural-photography-matt-anthony-.jpg-24.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Dining table and chairs under a branching pendant, full height glazing to the mountains" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <p class="sv-ig-cap">Whistler. The room looking out.</p>
+      </article>
       </div>
     </div>
   </div>
@@ -496,7 +604,7 @@
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
         <a href="/homepage-preview/portfolio/">Portfolio</a>
-            <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/journal/">Journal</a>
