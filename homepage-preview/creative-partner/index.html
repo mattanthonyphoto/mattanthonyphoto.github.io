@@ -339,6 +339,23 @@
   .sv-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
+
+.sv-browser-vp{height:min(840px,88vh)}
+.sv-browser-vp img{animation-name:maSiteScrollCp}
+@keyframes maSiteScrollCp{
+  0%,14%{transform:translateY(0)}
+  46%,58%{transform:translateY(calc(-100% + min(840px,88vh)))}
+  88%,100%{transform:translateY(0)}
+}
+@keyframes maSiteScrollCpMobile{
+  0%,14%{transform:translateY(0)}
+  46%,58%{transform:translateY(calc(-100% + 480px))}
+  88%,100%{transform:translateY(0)}
+}
+@media (max-width:768px){
+  .sv-browser-vp{height:480px}
+  .sv-browser-vp img{animation-name:maSiteScrollCpMobile}
+}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
