@@ -356,15 +356,34 @@
   .sv-browser-vp{height:480px}
   .sv-browser-vp img{animation-name:maSiteScrollCpMobile}
 }
-.sv-notes-inner{border-top:0;padding-top:0}
-.sv-sys{padding:0 0 var(--section);background:var(--paper)!important}
-.sv-sys-lede{font-size:15px;line-height:1.8;color:var(--ink)!important;max-width:42em;margin:0 0 clamp(36px,4vw,56px)}
-.sv-sys-paths{display:flex!important;flex-wrap:wrap;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:0 0 clamp(36px,4.5vw,64px)}
-.sv-sys-path{flex:1 1 200px;min-width:0;padding:clamp(22px,2.5vw,32px) clamp(16px,2vw,28px) clamp(22px,2.5vw,32px) 0}
-.sv-sys-path+.sv-sys-path{border-left:1px solid var(--rule);padding-left:clamp(16px,2vw,28px)}
-.sv-sys-path h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.2;letter-spacing:0;color:var(--ink)!important;margin:0 0 10px}
-.sv-sys-path p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:32ch}
-.sv-sys-path .sv-eyebrow{margin-bottom:16px}
+.sv-year,.sv-rail-wrap,.sv-sys{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-sys-lede{font-size:15px;line-height:1.8;color:var(--ink)!important;max-width:46em;margin:0 0 clamp(28px,3.5vw,48px)}
+.sv-yboards{display:flex!important;flex-direction:column;gap:clamp(36px,4vw,56px)}
+.sv-yboard h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.15;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-yboard>p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0 0 22px;max-width:46em}
+.sv-yhead,.sv-yrow{display:flex!important;align-items:center;gap:12px}
+.sv-yhead{margin:0 0 8px}
+.sv-yhead span{flex:1 1 0;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)!important;text-align:center}
+.sv-ylbl{flex:0 0 4.6rem;width:4.6rem;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)!important;margin:0}
+.sv-yhead .sv-ylbl{flex:0 0 4.6rem}
+.sv-ytrack{flex:1 1 auto;position:relative;height:22px;background:#eeece6;min-width:0}
+.sv-yrow{margin:0 0 6px}
+.sv-ybar{position:absolute;left:0;right:0;top:6px;height:10px;background:var(--gold)!important}
+.sv-ybar-thin{height:3px;top:10px;background:var(--ink)!important;opacity:.35}
+.sv-ymark{position:absolute;top:3px;width:8px;height:16px;background:var(--ink)!important}
+.sv-ymark-a{left:14%}
+.sv-ymark-b{left:48%}
+.sv-ymark-c{left:78%}
+.sv-rail{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--gold);max-width:760px}
+.sv-rail li{position:relative;padding:0 0 clamp(28px,3vw,40px) 22px}
+.sv-rail li:last-child{padding-bottom:0}
+.sv-rail li::before{content:"";position:absolute;left:-26px;top:4px;width:9px;height:9px;background:var(--gold)!important;border:1px solid var(--paper)}
+.sv-rail h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.15;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-rail p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:62ch}
+.sv-rail .sv-eyebrow{margin-bottom:10px}
+.sv-flow{display:flex!important;flex-wrap:wrap;align-items:center;gap:8px 0;margin:0 0 clamp(32px,4vw,52px);padding:18px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sv-flow p{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)!important;margin:0 8px 0 0}
+.sv-flow span{display:block;width:28px;height:1px;background:var(--gold);margin:0 10px 0 0}
 .sv-sys-frame{margin:0 0 clamp(36px,4.5vw,64px)}
 .sv-sys-frame img{width:100%;height:auto}
 .sv-sys-frame figcaption{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)!important;margin:12px 0 0}
@@ -387,9 +406,10 @@
 .sv-ig-pic img{width:100%;height:100%;object-fit:cover}
 .sv-ig-cap{font-size:12px;line-height:1.55;color:var(--ink)!important;margin:0;padding:10px 12px 14px}
 @media (max-width:700px){
-  .sv-sys-path+.sv-sys-path{border-left:0;padding-left:0;border-top:1px solid var(--rule)}
   .sv-tsheet-2,.sv-tsheet-1{margin-left:0}
   .sv-ig{flex:1 1 calc(50% - 8px);max-width:none}
+  .sv-flow span{width:16px;margin-right:8px}
+  .sv-ylbl,.sv-yhead .sv-ylbl{flex:0 0 3.6rem;width:3.6rem;letter-spacing:.08em}
 }
 </style>
 
@@ -431,55 +451,131 @@
     <div class="sv-intro-copy">
       <p class="sv-eyebrow">The agreement</p>
       <p>This is for architects, builders, and designers already photographing with me, or ready to stop booking the work one job at a time.</p>
-      <p>Some firms stay on for the site and SEO. Some for social. Some for visits, the site, and the accounts together. Film and progression visits are written in when they belong. A website build is quoted on its own. Billed monthly.</p>
+      <p>Film and progression visits are written in when they belong. A website build is quoted on its own. Billed monthly.</p>
       <p>Most projects share the cost of a visit across the architect, the designer, and the trades.</p>
     </div>
   </div>
 </section>
-<section class="sv-notes" aria-label="How firms stay on">
+<section class="sv-year" aria-labelledby="sv-year-h">
   <div class="sv-container">
-    <p class="sv-eyebrow">The mix</p>
-    <div class="sv-hang-head"><h2>How firms stay on</h2></div>
-    <div class="sv-notes-inner">
-      <div class="sv-note">
+    <p class="sv-eyebrow">The year</p>
+    <div class="sv-hang-head"><h2 id="sv-year-h">How firms stay on</h2></div>
+    <p class="sv-sys-lede">Gold is the work that runs all year. Marks are the visits. Not every firm runs every row.</p>
+    <div class="sv-yboards">
+      <div class="sv-yboard">
         <p class="sv-eyebrow">The site</p>
         <h3>Maintenance and SEO.</h3>
-        <p>Project pages as the photographs land. Monthly maintenance and SEO. A website build is quoted on its own.</p>
+        <p>The site stays live. Project pages go up when photographs land. A website build is quoted on its own.</p>
+      <div class="sv-yhead" aria-hidden="true">
+        <span class="sv-ylbl"></span>
+        <span>Spring</span><span>Summer</span><span>Fall</span><span>Winter</span>
       </div>
-      <div class="sv-note">
-        <p class="sv-eyebrow">The channels</p>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Site</p>
+        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">SEO</p>
+        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Pages</p>
+        <div class="sv-ytrack"><span class="sv-ymark sv-ymark-a"></span><span class="sv-ymark sv-ymark-c"></span></div>
+      </div>
+      </div>
+      <div class="sv-yboard">
+        <p class="sv-eyebrow">The accounts</p>
         <h3>Social from the work.</h3>
-        <p>The same frames, cut for the accounts. Written in when the firm wants the channels kept live.</p>
+        <p>The feed stays live. New frames when a visit is in the agreement.</p>
+      <div class="sv-yhead" aria-hidden="true">
+        <span class="sv-ylbl"></span>
+        <span>Spring</span><span>Summer</span><span>Fall</span><span>Winter</span>
       </div>
-      <div class="sv-note">
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Feed</p>
+        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Visits</p>
+        <div class="sv-ytrack"><span class="sv-ymark sv-ymark-a"></span><span class="sv-ymark sv-ymark-b"></span><span class="sv-ymark sv-ymark-c"></span></div>
+      </div>
+      </div>
+      <div class="sv-yboard">
         <p class="sv-eyebrow">The full mix</p>
         <h3>One conversation.</h3>
-        <p>Visits, the site, SEO, and social. Under one monthly conversation. Not every firm runs every line.</p>
+        <p>Visits, the site, SEO, and the accounts. A conversation each month. What ran can be named.</p>
+      <div class="sv-yhead" aria-hidden="true">
+        <span class="sv-ylbl"></span>
+        <span>Spring</span><span>Summer</span><span>Fall</span><span>Winter</span>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Talk</p>
+        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-thin"></span></div>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Visits</p>
+        <div class="sv-ytrack"><span class="sv-ymark sv-ymark-a"></span><span class="sv-ymark sv-ymark-b"></span><span class="sv-ymark sv-ymark-c"></span></div>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Site</p>
+        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">Feed</p>
+        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
+      </div>
+      <div class="sv-yrow">
+        <p class="sv-ylbl">SEO</p>
+        <div class="sv-ytrack"><span class="sv-ybar sv-ybar-full"></span></div>
+      </div>
       </div>
     </div>
+  </div>
+</section>
+<section class="sv-rail-wrap" aria-labelledby="sv-rail-h">
+  <div class="sv-container">
+    <p class="sv-eyebrow">The month</p>
+    <div class="sv-hang-head"><h2 id="sv-rail-h">How a month runs</h2></div>
+    <ol class="sv-rail">
+      <li>
+        <p class="sv-eyebrow">01</p>
+        <h3>Conversation</h3>
+        <p>What is finishing. What is in the agreement this month. Not a new brief.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">02</p>
+        <h3>The visit</h3>
+        <p>When a visit is in, it is already dated, ahead of one-off sessions.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">03</p>
+        <h3>Photographs land</h3>
+        <p>Typically within 5 to 10 business days. The same frames, used everywhere they belong.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">04</p>
+        <h3>The page and the feed</h3>
+        <p>Project pages go up. The accounts, if they are in the agreement, stay live.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">05</p>
+        <h3>Search</h3>
+        <p>SEO is making that page findable. What ran this month can be named.</p>
+      </li>
+    </ol>
   </div>
 </section>
 <section class="sv-sys" aria-labelledby="sv-sys-h">
   <div class="sv-container">
     <p class="sv-eyebrow">Together</p>
     <div class="sv-hang-head"><h2 id="sv-sys-h">From the frame.</h2></div>
-    <p class="sv-sys-lede">The photographs are the source. Project pages, the accounts, and search all come from the same visit. The mix decides which of those run.</p>
-    <div class="sv-sys-paths">
-      <div class="sv-sys-path">
-        <p class="sv-eyebrow">The site</p>
-        <h3>Pages and SEO.</h3>
-        <p>Project pages as the photographs land. Monthly maintenance. Search sitting on those pages.</p>
-      </div>
-      <div class="sv-sys-path">
-        <p class="sv-eyebrow">The accounts</p>
-        <h3>The same frames, cut.</h3>
-        <p>A feed from the visit. Written in when the firm wants the channels kept live.</p>
-      </div>
-      <div class="sv-sys-path">
-        <p class="sv-eyebrow">Search</p>
-        <h3>The page people find.</h3>
-        <p>The photograph holds the page. The page is what search can return.</p>
-      </div>
+    <p class="sv-sys-lede">One visit. Then the page, the feed, and search. The mix decides which of those run.</p>
+    <div class="sv-flow" aria-hidden="true">
+      <p>Visit</p><span></span>
+      <p>Photograph</p><span></span>
+      <p>The page</p><span></span>
+      <p>The feed</p><span></span>
+      <p>Search</p>
     </div>
     <figure class="sv-sys-frame">
       <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house along the rock outcrop, dark cladding under a pale wood soffit with snow below" width="1500" height="1000" loading="lazy" decoding="async">
@@ -501,7 +597,7 @@
           <p class="sv-eyebrow">Search</p>
           <p class="sv-turl">Project page on the site</p>
           <h3>Custom homes, Whistler.</h3>
-          <p>SEO is the work of making that page findable. No separate story. The same frames.</p>
+          <p>SEO is making that page findable. The same frames. No separate story.</p>
         </div>
       </div>
       <div class="sv-igs" aria-label="Frames cut for the accounts">
@@ -533,11 +629,6 @@
     </div>
   </div>
 </section>
-<section class="sv-steps"><div class="sv-container"><p class="sv-eyebrow">The month</p><div class="sv-hang-head"><h2>How it runs</h2></div>
-<div class="sv-step"><p class="sv-eyebrow">01</p><h3>The conversation</h3><p>A monthly conversation, not a new brief. What is finishing. What is in the agreement this month.</p></div>
-<div class="sv-step"><p class="sv-eyebrow">02</p><h3>The lines that run</h3><p>The lines in the agreement are the lines that run. Visits, when they are in, go on the calendar ahead of one-off sessions. Images typically within 5 to 10 business days.</p></div>
-<div class="sv-step"><p class="sv-eyebrow">03</p><h3>The month</h3><p>What ran this month can be named. The next work is already in view.</p></div>
-</div></section>
 <section class="sv-hang" aria-labelledby="sv-hang-h">
   <div class="sv-container">
     <div class="sv-hang-head">
