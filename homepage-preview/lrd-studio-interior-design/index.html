@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LRD case study preview</title>
+<title>Lrd Studio Interior Design preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -271,8 +271,24 @@
   cursor:pointer;color:#f6f4f0!important}
 .cs-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
 .cs-playing .cs-play{display:none!important}
-.cs-figure{padding:0 0 var(--section);background:var(--paper)!important}
-.cs-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.cs-intro{padding:0 0 var(--section);background:var(--paper)!important}
+.cs-intro-inner{display:flex!important;flex-wrap:wrap;align-items:center;
+  gap:clamp(36px,5vw,80px)}
+.cs-intro-pic{flex:1 1 340px;max-width:520px;min-width:0}
+.cs-intro-pic img{width:100%;height:auto}
+.cs-intro-copy{flex:1 1 380px;min-width:0}
+.cs-intro-copy p:not(.cs-eyebrow){font-size:15px;line-height:1.8;
+  color:var(--ink)!important;margin:0 0 1.1em;max-width:42em}
+.cs-intro-copy p:not(.cs-eyebrow):last-child{margin-bottom:0}
+.cs-notes{padding:0 0 var(--section);background:var(--paper)!important}
+.cs-notes-inner{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px);
+  border-top:1px solid var(--rule);padding-top:var(--section)}
+.cs-note{flex:1 1 220px;min-width:0}
+.cs-note h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.2;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.cs-note p:not(.cs-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;
+  margin:0;max-width:36ch}
 .cs-steps{padding:0 0 var(--section);background:var(--paper)!important}
 .cs-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
 .cs-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -320,7 +336,7 @@
   .cs-card,.cs-card-full{flex:1 1 100%;max-width:none}
   .cs-card-over{flex-direction:column;align-items:flex-start;gap:4px}
   .cs-card-loc{letter-spacing:.12em}
-  .cs-figure img{width:100%}
+  .cs-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.cs-wrap *{animation:none!important;transition:none!important}}
 </style>
@@ -433,13 +449,13 @@
         <p class="hp-ft-mark">Matt Anthony Photography</p>
         <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
         <p class="hp-ft-areas">
-          <a href="https://www.mattanthonyphoto.com/squamish-architectural-photography">Squamish</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/whistler-architectural-photography">Whistler</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/pemberton-photography">Pemberton</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/vancouver-architectural-photographer">Vancouver</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/okanagan-architectural-photographer">Okanagan</a>
+          <a href="/homepage-preview/squamish-architectural-photography/">Squamish</a> &middot;
+          <a href="/homepage-preview/whistler-architectural-photography/">Whistler</a> &middot;
+          <a href="/homepage-preview/pemberton-photography/">Pemberton</a> &middot;
+          <a href="/homepage-preview/sunshine-coast-photography/">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/homepage-preview/vancouver-architectural-photographer/">Vancouver</a> &middot;
+          <a href="/homepage-preview/fraser-valley-photography/">Fraser&nbsp;Valley</a> &middot;
+          <a href="/homepage-preview/okanagan-architectural-photographer/">Okanagan</a>
         </p>
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">

@@ -239,7 +239,7 @@
 .sv-card:hover .sv-card-name,.sv-card:focus-visible .sv-card-name{color:#816a3f!important}
 .sv-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
-.sv-browser{display:block;min-width:0;overflow:hidden;background:transparent!important;margin:0 0 clamp(20px,2.4vw,36px)}
+.sv-browser{display:block;flex:1 1 100%;max-width:none;min-width:0;overflow:hidden;background:transparent!important;margin:0 0 clamp(20px,2.4vw,36px)}
 .sv-browser:last-child{margin-bottom:0}
 .sv-browser-bar{display:flex!important;align-items:center;gap:8px;padding:11px 16px;background:#2a2a28}
 .sv-browser-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
@@ -271,8 +271,24 @@
   cursor:pointer;color:#f6f4f0!important}
 .sv-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
 .sv-playing .sv-play{display:none!important}
-.sv-figure{padding:0 0 var(--section);background:var(--paper)!important}
-.sv-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.sv-intro{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-intro-inner{display:flex!important;flex-wrap:wrap;align-items:center;
+  gap:clamp(36px,5vw,80px)}
+.sv-intro-pic{flex:1 1 340px;max-width:520px;min-width:0}
+.sv-intro-pic img{width:100%;height:auto}
+.sv-intro-copy{flex:1 1 380px;min-width:0}
+.sv-intro-copy p:not(.sv-eyebrow){font-size:15px;line-height:1.8;
+  color:var(--ink)!important;margin:0 0 1.1em;max-width:42em}
+.sv-intro-copy p:not(.sv-eyebrow):last-child{margin-bottom:0}
+.sv-notes{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-notes-inner{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px);
+  border-top:1px solid var(--rule);padding-top:var(--section)}
+.sv-note{flex:1 1 220px;min-width:0}
+.sv-note h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.2;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.sv-note p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;
+  margin:0;max-width:36ch}
 .sv-steps{padding:0 0 var(--section);background:var(--paper)!important}
 .sv-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
 .sv-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -320,7 +336,7 @@
   .sv-card,.sv-card-full{flex:1 1 100%;max-width:none}
   .sv-card-over{flex-direction:column;align-items:flex-start;gap:4px}
   .sv-card-loc{letter-spacing:.12em}
-  .sv-figure img{width:100%}
+  .sv-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
 </style>
@@ -363,6 +379,7 @@
     <div class="sv-hang-head">
       <h2 id="sv-hang-h">Sites I have built.</h2>
     </div>
+    <div class="sv-stack">
       <a href="/homepage-preview/balmoral-construction/" class="sv-browser">
         <div class="sv-browser-bar">
           <span class="sv-browser-dot"></span>
@@ -389,6 +406,7 @@
           <p class="sv-card-loc">Interior design</p>
         </div>
       </a>
+    </div>
   </div>
 </section>
 <section class="sv-quote" aria-label="Client comment">
@@ -423,13 +441,13 @@
         <p class="hp-ft-mark">Matt Anthony Photography</p>
         <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
         <p class="hp-ft-areas">
-          <a href="https://www.mattanthonyphoto.com/squamish-architectural-photography">Squamish</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/whistler-architectural-photography">Whistler</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/pemberton-photography">Pemberton</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/vancouver-architectural-photographer">Vancouver</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/okanagan-architectural-photographer">Okanagan</a>
+          <a href="/homepage-preview/squamish-architectural-photography/">Squamish</a> &middot;
+          <a href="/homepage-preview/whistler-architectural-photography/">Whistler</a> &middot;
+          <a href="/homepage-preview/pemberton-photography/">Pemberton</a> &middot;
+          <a href="/homepage-preview/sunshine-coast-photography/">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/homepage-preview/vancouver-architectural-photographer/">Vancouver</a> &middot;
+          <a href="/homepage-preview/fraser-valley-photography/">Fraser&nbsp;Valley</a> &middot;
+          <a href="/homepage-preview/okanagan-architectural-photographer/">Okanagan</a>
         </p>
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">

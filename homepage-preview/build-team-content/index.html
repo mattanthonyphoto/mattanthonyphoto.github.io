@@ -271,8 +271,24 @@
   cursor:pointer;color:#f6f4f0!important}
 .sv-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
 .sv-playing .sv-play{display:none!important}
-.sv-figure{padding:0 0 var(--section);background:var(--paper)!important}
-.sv-figure img{width:min(620px,62%);max-width:100%;height:auto;margin:0 auto;display:block}
+.sv-intro{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-intro-inner{display:flex!important;flex-wrap:wrap;align-items:center;
+  gap:clamp(36px,5vw,80px)}
+.sv-intro-pic{flex:1 1 340px;max-width:520px;min-width:0}
+.sv-intro-pic img{width:100%;height:auto}
+.sv-intro-copy{flex:1 1 380px;min-width:0}
+.sv-intro-copy p:not(.sv-eyebrow){font-size:15px;line-height:1.8;
+  color:var(--ink)!important;margin:0 0 1.1em;max-width:42em}
+.sv-intro-copy p:not(.sv-eyebrow):last-child{margin-bottom:0}
+.sv-notes{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-notes-inner{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px);
+  border-top:1px solid var(--rule);padding-top:var(--section)}
+.sv-note{flex:1 1 220px;min-width:0}
+.sv-note h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.2;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 10px}
+.sv-note p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;
+  margin:0;max-width:36ch}
 .sv-steps{padding:0 0 var(--section);background:var(--paper)!important}
 .sv-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
 .sv-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -320,7 +336,7 @@
   .sv-card,.sv-card-full{flex:1 1 100%;max-width:none}
   .sv-card-over{flex-direction:column;align-items:flex-start;gap:4px}
   .sv-card-loc{letter-spacing:.12em}
-  .sv-figure img{width:100%}
+  .sv-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
 </style>
@@ -395,6 +411,14 @@
     </div>
   </div>
 </section>
+<section class="sv-quote" aria-label="Client comment">
+  <div class="sv-container">
+    <div class="sv-quote-inner">
+      <p class="sv-quote-text">On-site he worked efficiently with a professional, calm demeanor.</p>
+      <p class="sv-quote-attr">Kyle Paisley &middot; <a href="/homepage-preview/summerhill-fine-homes/">Summerhill Fine Homes</a></p>
+    </div>
+  </div>
+</section>
 <section class="sv-close" aria-labelledby="sv-close-h">
   <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=2500w 2500w" sizes="100vw" alt="Dark stained wood siding with a tree shadow" width="1500" height="2250" loading="lazy" decoding="async">
   <div class="sv-close-c">
@@ -419,13 +443,13 @@
         <p class="hp-ft-mark">Matt Anthony Photography</p>
         <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
         <p class="hp-ft-areas">
-          <a href="https://www.mattanthonyphoto.com/squamish-architectural-photography">Squamish</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/whistler-architectural-photography">Whistler</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/pemberton-photography">Pemberton</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/vancouver-architectural-photographer">Vancouver</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
-          <a href="https://www.mattanthonyphoto.com/okanagan-architectural-photographer">Okanagan</a>
+          <a href="/homepage-preview/squamish-architectural-photography/">Squamish</a> &middot;
+          <a href="/homepage-preview/whistler-architectural-photography/">Whistler</a> &middot;
+          <a href="/homepage-preview/pemberton-photography/">Pemberton</a> &middot;
+          <a href="/homepage-preview/sunshine-coast-photography/">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/homepage-preview/vancouver-architectural-photographer/">Vancouver</a> &middot;
+          <a href="/homepage-preview/fraser-valley-photography/">Fraser&nbsp;Valley</a> &middot;
+          <a href="/homepage-preview/okanagan-architectural-photographer/">Okanagan</a>
         </p>
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
