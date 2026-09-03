@@ -42,10 +42,11 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services, Contact.
+   Top level: Projects, About (dropdown), Services (dropdown), Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer, so if the script never runs those pages are still reachable. ── */
+   the footer. The Services hub is in the footer, so if the script never runs
+   the leaves stay one click away. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -73,8 +74,10 @@
    the over-hero light treatment and turn white on white. */
 .hp-nav-group{position:relative;display:inline-flex!important;align-items:center}
 .hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
-  min-width:170px;display:flex!important;flex-direction:column;gap:0;
+  min-width:220px;display:flex!important;flex-direction:column;gap:0;
   background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
+/* Services sits beside Contact. A centred panel clips off the right edge. */
+.hp-nav-group:last-of-type .hp-nav-menu{left:auto;right:0;transform:none}
 .hp-nav-menu[hidden]{display:none!important}
 .hp-nav-menu a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
@@ -126,7 +129,7 @@
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
   .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
-  .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
+  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px)}
 }
 
 /* ── FOOTER ── */
@@ -354,7 +357,17 @@
         <a href="/homepage-preview/journal/">Journal</a>
       </div>
     </div>
-    <a href="/homepage-preview/services/">Services</a>
+    <div class="hp-nav-group">
+      <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
+      <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
+        <a href="/homepage-preview/services/">Services</a>
+        <a href="/homepage-preview/project-photography/">Project Photography</a>
+        <a href="/homepage-preview/film/">Film</a>
+        <a href="/homepage-preview/build-team-content/">Progression</a>
+        <a href="/homepage-preview/website-seo/">Marketing</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+      </div>
+    </div>
     <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
   </div>
 </div>
@@ -365,13 +378,22 @@
   <div class="sv-hero-c"><div class="sv-container">
     <p class="sv-eyebrow">Services</p>
     <h1 id="sv-h">I photograph the finished building, then the work around it.</h1>
-    <p class="sv-hero-sub">Stills. Film. Progression through the build. Websites and social. A Creative Partner agreement when a firm wants me on the team.</p>
+    <p class="sv-hero-sub">Stills. Film. Progression through the build. Websites. A Creative Partner agreement when a firm wants me on the team.</p>
   </div></div>
 </section>
 <section class="sv-statement">
   <div class="sv-statement-inner">
     <p class="sv-eyebrow">Approach</p>
     <p>I start with the finished building. I stay for the rest of it when that is useful.</p>
+  </div>
+</section>
+<section class="sv-intro">
+  <div class="sv-container">
+    <div class="sv-intro-copy">
+      <p class="sv-eyebrow">The work</p>
+      <p>This is for architects, builders, and designers across British Columbia.</p>
+      <p>Most visits are shared across the architect, the designer, and the trades. A Creative Partner agreement is billed monthly.</p>
+    </div>
   </div>
 </section>
 <section class="sv-hang" aria-labelledby="sv-hang-h">
@@ -384,35 +406,35 @@
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Two grey gabled volumes joined by a glazed link, set on a concrete base above the shore" width="1500" height="1000" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">Project Photography</p>
-          <p class="sv-card-loc">Stills of a finished build</p>
+          <p class="sv-card-loc">Exteriors, interiors, aerial, twilight</p>
         </div>
       </a>
       <a href="/homepage-preview/film/" class="sv-card">
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house at twilight through the firs, windows lit along the elevation" width="1500" height="1000" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">Film</p>
-          <p class="sv-card-loc">A short film of the building</p>
+          <p class="sv-card-loc">From the same visit as the stills</p>
         </div>
       </a>
       <a href="/homepage-preview/build-team-content/" class="sv-card">
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Construction tools on a sawhorse, ocean and mountains through full height glass beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">Progression</p>
-          <p class="sv-card-loc">Multi-stage visits</p>
+          <p class="sv-card-loc">The build as it goes up</p>
         </div>
       </a>
       <a href="/homepage-preview/website-seo/" class="sv-card">
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house along the rock outcrop, dark cladding under a pale wood soffit with snow below" width="1500" height="1000" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">Marketing</p>
-          <p class="sv-card-loc">Websites and content</p>
+          <p class="sv-card-loc">Websites for firms I photograph</p>
         </div>
       </a>
       <a href="/homepage-preview/creative-partner/" class="sv-card sv-card-full">
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house at dusk above the shore, the entry lit and the moon over the water" width="1500" height="1125" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">Creative Partner</p>
-          <p class="sv-card-loc">An ongoing agreement</p>
+          <p class="sv-card-loc">On the team, billed monthly</p>
         </div>
       </a>
     </div>
@@ -464,6 +486,7 @@
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
         <a href="/homepage-preview/portfolio/">Portfolio</a>
+        <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
@@ -533,33 +556,67 @@
 })();
 
 (function(){
-  /* About dropdown. Everything inside it is also in the footer, so if this
+  /* Dropdowns. About and Services. Hub pages are also in the footer, so if this
      script never runs those pages stay reachable and the trigger is inert. */
-  var btn = document.getElementById('hpAboutBtn');
-  var menu = document.getElementById('hpAboutMenu');
-  if(!btn || !menu) return;
-  var group = btn.parentNode, hoverOK = false, shutTimer;
+  var groups = document.querySelectorAll('.hp-nav-group');
+  if(!groups.length) return;
+  var hoverOK = false;
   try { hoverOK = window.matchMedia('(hover:hover) and (pointer:fine)').matches; } catch(e){}
 
-  function open(){ clearTimeout(shutTimer); menu.hidden = false; btn.setAttribute('aria-expanded','true'); }
-  function shut(){ menu.hidden = true; btn.setAttribute('aria-expanded','false'); }
-  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
-
-  btn.addEventListener('click', function(e){ e.preventDefault(); isOpen() ? shut() : open(); });
-
-  if(hoverOK){
-    group.addEventListener('mouseenter', open);
-    group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+  function closeAll(except){
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i] !== except) groups[i]._shut && groups[i]._shut();
+    }
   }
 
+  function bind(group){
+    var btn = group.querySelector('.hp-nav-trigger');
+    var menu = group.querySelector('.hp-nav-menu');
+    if(!btn || !menu) return;
+    var shutTimer;
+    function open(){
+      closeAll(group);
+      clearTimeout(shutTimer);
+      menu.hidden = false;
+      btn.setAttribute('aria-expanded','true');
+    }
+    function shut(){
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded','false');
+    }
+    function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
+    group._shut = shut;
+    group._isOpen = isOpen;
+    group._btn = btn;
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      isOpen() ? shut() : open();
+    });
+    if(hoverOK){
+      group.addEventListener('mouseenter', open);
+      group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+    }
+    group.addEventListener('focusout', function(e){
+      if(isOpen() && !group.contains(e.relatedTarget)) shut();
+    });
+  }
+
+  for(var i = 0; i < groups.length; i++) bind(groups[i]);
+
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && isOpen()){ shut(); btn.focus(); }
+    if(e.key !== 'Escape') return;
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i]._isOpen && groups[i]._isOpen()){
+        groups[i]._shut();
+        if(groups[i]._btn) groups[i]._btn.focus();
+      }
+    }
   });
   document.addEventListener('click', function(e){
-    if(isOpen() && !group.contains(e.target)) shut();
-  });
-  group.addEventListener('focusout', function(e){
-    if(isOpen() && !group.contains(e.relatedTarget)) shut();
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i]._isOpen && groups[i]._isOpen() && !groups[i].contains(e.target)) groups[i]._shut();
+    }
   });
 })();
 </script>

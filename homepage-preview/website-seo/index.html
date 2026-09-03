@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Website Seo preview</title>
+<title>Marketing preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -42,10 +42,11 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services, Contact.
+   Top level: Projects, About (dropdown), Services (dropdown), Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer, so if the script never runs those pages are still reachable. ── */
+   the footer. The Services hub is in the footer, so if the script never runs
+   the leaves stay one click away. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -73,8 +74,10 @@
    the over-hero light treatment and turn white on white. */
 .hp-nav-group{position:relative;display:inline-flex!important;align-items:center}
 .hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
-  min-width:170px;display:flex!important;flex-direction:column;gap:0;
+  min-width:220px;display:flex!important;flex-direction:column;gap:0;
   background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
+/* Services sits beside Contact. A centred panel clips off the right edge. */
+.hp-nav-group:last-of-type .hp-nav-menu{left:auto;right:0;transform:none}
 .hp-nav-menu[hidden]{display:none!important}
 .hp-nav-menu a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
@@ -126,7 +129,7 @@
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
   .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
-  .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
+  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px)}
 }
 
 /* ── FOOTER ── */
@@ -339,6 +342,29 @@
   .sv-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
+
+.sv-rail-wrap,.sv-sys{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-sys-lede{font-size:15px;line-height:1.8;color:var(--ink)!important;max-width:46em;margin:0 0 clamp(28px,3.5vw,48px)}
+.sv-rail{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--gold);max-width:760px}
+.sv-rail li{position:relative;padding:0 0 clamp(28px,3vw,40px) 22px}
+.sv-rail li:last-child{padding-bottom:0}
+.sv-rail li::before{content:"";position:absolute;left:-26px;top:4px;width:9px;height:9px;background:var(--gold)!important;border:1px solid var(--paper)}
+.sv-rail h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.15;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-rail p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:62ch}
+.sv-rail .sv-eyebrow{margin-bottom:10px}
+.sv-sys-frame{margin:0 0 clamp(36px,4.5vw,64px)}
+.sv-sys-frame img{width:100%;height:auto}
+.sv-sys-frame .sv-card-frame{width:100%}
+.sv-sys-frame figcaption{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)!important;margin:12px 0 0}
+.sv-sys-art{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:clamp(28px,4vw,56px)}
+.sv-tstack{flex:1 1 240px;max-width:360px;min-width:0}
+.sv-tsheet{background:var(--paper)!important;border:1px solid var(--rule);padding:20px 22px 22px}
+.sv-tsheet+.sv-tsheet{margin-top:8px}
+.sv-tsheet-1{background:#eeece6!important}
+.sv-tsheet h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.2;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-tsheet p:not(.sv-eyebrow):not(.sv-turl){font-size:14px;line-height:1.7;color:var(--ink)!important;margin:0;max-width:34ch}
+.sv-tsheet .sv-eyebrow{margin-bottom:12px}
+.sv-sys-feed{flex:1 1 420px;min-width:0}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
@@ -354,7 +380,17 @@
         <a href="/homepage-preview/journal/">Journal</a>
       </div>
     </div>
-    <a href="/homepage-preview/services/">Services</a>
+    <div class="hp-nav-group">
+      <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
+      <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
+        <a href="/homepage-preview/services/">Services</a>
+        <a href="/homepage-preview/project-photography/">Project Photography</a>
+        <a href="/homepage-preview/film/">Film</a>
+        <a href="/homepage-preview/build-team-content/">Progression</a>
+        <a href="/homepage-preview/website-seo/">Marketing</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+      </div>
+    </div>
     <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
   </div>
 </div>
@@ -365,13 +401,51 @@
   <div class="sv-hero-c"><div class="sv-container">
     <p class="sv-eyebrow">Marketing</p>
     <h1 id="sv-h">I build the site the photographs live on.</h1>
-    <p class="sv-hero-sub">Websites for the firms I already photograph, and the content that keeps them current.</p>
+    <p class="sv-hero-sub">Websites for the firms I already photograph, and the pages that keep them current.</p>
   </div></div>
 </section>
 <section class="sv-statement">
   <div class="sv-statement-inner">
     <p class="sv-eyebrow">Approach</p>
     <p>The photographs need a place to live. I build that place, then keep it current as the next projects land.</p>
+  </div>
+</section>
+<section class="sv-intro">
+  <div class="sv-container">
+    <div class="sv-intro-copy">
+      <p class="sv-eyebrow">The site</p>
+      <p>This is for firms I already photograph.</p>
+      <p>I build the site around the frames. Project pages as the work lands. Maintenance keeps them current.</p>
+      <p>A website build is quoted on its own.</p>
+    </div>
+  </div>
+</section>
+<section class="sv-rail-wrap" aria-labelledby="sv-rail-h">
+  <div class="sv-container">
+    <p class="sv-eyebrow">The work</p>
+    <div class="sv-hang-head"><h2 id="sv-rail-h">How a site runs</h2></div>
+    <ol class="sv-rail">
+      <li>
+        <p class="sv-eyebrow">01</p>
+        <h3>Conversation</h3>
+        <p>What the site has to do. Who it is for. What already exists.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">02</p>
+        <h3>The build</h3>
+        <p>Pages around the photographs. Project pages as the work lands.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">03</p>
+        <h3>Live</h3>
+        <p>The site goes up. The photographs have a place.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">04</p>
+        <h3>Keep</h3>
+        <p>Maintenance as new work lands. Search is making that page findable.</p>
+      </li>
+    </ol>
   </div>
 </section>
 <section class="sv-hang" aria-labelledby="sv-hang-h">
@@ -453,7 +527,8 @@
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
         <a href="/homepage-preview/portfolio/">Portfolio</a>
-            <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+        <a href="/homepage-preview/services/">Services</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/journal/">Journal</a>
@@ -522,33 +597,67 @@
 })();
 
 (function(){
-  /* About dropdown. Everything inside it is also in the footer, so if this
+  /* Dropdowns. About and Services. Hub pages are also in the footer, so if this
      script never runs those pages stay reachable and the trigger is inert. */
-  var btn = document.getElementById('hpAboutBtn');
-  var menu = document.getElementById('hpAboutMenu');
-  if(!btn || !menu) return;
-  var group = btn.parentNode, hoverOK = false, shutTimer;
+  var groups = document.querySelectorAll('.hp-nav-group');
+  if(!groups.length) return;
+  var hoverOK = false;
   try { hoverOK = window.matchMedia('(hover:hover) and (pointer:fine)').matches; } catch(e){}
 
-  function open(){ clearTimeout(shutTimer); menu.hidden = false; btn.setAttribute('aria-expanded','true'); }
-  function shut(){ menu.hidden = true; btn.setAttribute('aria-expanded','false'); }
-  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
-
-  btn.addEventListener('click', function(e){ e.preventDefault(); isOpen() ? shut() : open(); });
-
-  if(hoverOK){
-    group.addEventListener('mouseenter', open);
-    group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+  function closeAll(except){
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i] !== except) groups[i]._shut && groups[i]._shut();
+    }
   }
 
+  function bind(group){
+    var btn = group.querySelector('.hp-nav-trigger');
+    var menu = group.querySelector('.hp-nav-menu');
+    if(!btn || !menu) return;
+    var shutTimer;
+    function open(){
+      closeAll(group);
+      clearTimeout(shutTimer);
+      menu.hidden = false;
+      btn.setAttribute('aria-expanded','true');
+    }
+    function shut(){
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded','false');
+    }
+    function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
+    group._shut = shut;
+    group._isOpen = isOpen;
+    group._btn = btn;
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      isOpen() ? shut() : open();
+    });
+    if(hoverOK){
+      group.addEventListener('mouseenter', open);
+      group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+    }
+    group.addEventListener('focusout', function(e){
+      if(isOpen() && !group.contains(e.relatedTarget)) shut();
+    });
+  }
+
+  for(var i = 0; i < groups.length; i++) bind(groups[i]);
+
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && isOpen()){ shut(); btn.focus(); }
+    if(e.key !== 'Escape') return;
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i]._isOpen && groups[i]._isOpen()){
+        groups[i]._shut();
+        if(groups[i]._btn) groups[i]._btn.focus();
+      }
+    }
   });
   document.addEventListener('click', function(e){
-    if(isOpen() && !group.contains(e.target)) shut();
-  });
-  group.addEventListener('focusout', function(e){
-    if(isOpen() && !group.contains(e.relatedTarget)) shut();
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i]._isOpen && groups[i]._isOpen() && !groups[i].contains(e.target)) groups[i]._shut();
+    }
   });
 })();
 </script>
