@@ -377,50 +377,7 @@
 .sv-tsheet p:not(.sv-eyebrow):not(.sv-turl){font-size:14px;line-height:1.7;color:var(--ink)!important;margin:0;max-width:34ch}
 .sv-tsheet .sv-eyebrow{margin-bottom:12px}
 .sv-turl{display:block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.08em;color:var(--ink)!important;margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--gold)}
-.sv-igwrap{flex:1 1 320px;max-width:420px;min-width:0}
-.sv-phone{background:#1a1a18!important;border-radius:40px;padding:14px 12px 8px;box-shadow:0 22px 50px rgba(26,26,24,.16)}
-.sv-phone::after{content:"";display:block;width:108px;height:4px;border-radius:4px;background:rgba(246,244,240,.28)!important;margin:12px auto 10px}
-.sv-phone-screen{background:#fff!important;border-radius:28px;overflow:hidden;height:min(800px,86vh);display:flex!important;flex-direction:column}
-.sv-phone-top{display:flex!important;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid #efefef;flex-shrink:0}
-.sv-phone-top .sv-ig-avatar{width:22px;height:22px}
-.sv-phone-feed{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.sv-ig-stories{display:flex!important;gap:14px;padding:14px 14px 10px;overflow-x:auto;border-bottom:1px solid #efefef}
-.sv-ig-st{margin:0;flex:0 0 auto;width:56px;text-align:center}
-.sv-ig-st-ring{width:56px;height:56px;border-radius:50%;padding:2px;background:var(--gold)!important;overflow:hidden}
-.sv-ig-st-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:2px solid #fff}
-.sv-ig-st figcaption{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:10px;letter-spacing:0;color:var(--ink)!important;margin:6px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sv-ig{background:#fff!important;border:0;max-width:none}
-.sv-ig+.sv-ig{border-top:8px solid #fafafa}
-.sv-ig-bar{display:flex!important;align-items:center;gap:10px;padding:10px 12px}
-.sv-ig-avatar{width:32px;height:32px;border-radius:50%;background:var(--gold)!important;flex-shrink:0}
-.sv-ig-who{flex:1 1 auto;min-width:0}
-.sv-ig-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:500;font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink)!important;margin:0;line-height:1.2}
-.sv-ig-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:0;color:var(--stone)!important;margin:2px 0 0;line-height:1.2}
-.sv-ig-more{color:var(--ink)!important;flex-shrink:0;display:flex!important;align-items:center}
-.sv-ig-pic{position:relative;aspect-ratio:4/5;overflow:hidden;background:#111!important;width:100%;touch-action:pan-y}
-.sv-ig-track{display:flex!important;width:100%;height:100%;min-width:0;transition:transform .35s cubic-bezier(.25,.1,.25,1)}
-.sv-ig-slide{flex:0 0 100%;width:100%;height:100%;min-width:100%}
-.sv-ig-slide img{width:100%;height:100%;object-fit:cover;display:block}
-.sv-ig-count{position:absolute;top:12px;right:12px;z-index:2;min-width:18px;text-align:center;background:rgba(26,26,24,.55)!important;color:#f6f4f0!important;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.04em;padding:4px 7px;border-radius:999px;line-height:1}
-.sv-ig-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:26px;height:26px;border-radius:50%;border:0!important;padding:0;background:rgba(246,244,240,.94)!important;color:#1a1a18!important;cursor:pointer;display:flex!important;align-items:center;justify-content:center;-webkit-appearance:none;appearance:none}
-.sv-ig-nav:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.sv-ig-prev{left:10px}
-.sv-ig-next{right:10px}
-.sv-ig-dots{position:absolute;left:0;right:0;bottom:10px;z-index:2;display:flex!important;justify-content:center;gap:5px}
-.sv-ig-dot{width:6px;height:6px;border-radius:50%;border:0!important;padding:0;background:rgba(246,244,240,.45)!important;cursor:pointer;-webkit-appearance:none;appearance:none}
-.sv-ig-dot.is-on{background:#f6f4f0!important}
-.sv-ig-acts{display:flex!important;align-items:center;padding:10px 12px 6px;color:var(--ink)!important}
-.sv-ig-acts-l{display:flex!important;align-items:center;gap:14px}
-.sv-ig-acts svg{display:block}
-.sv-ig-save{margin-left:auto}
-.sv-ig-cap{font-size:13px;line-height:1.5;color:var(--ink)!important;margin:0;padding:0 12px 14px}
-.sv-ig-note{font-size:14px;line-height:1.7;color:var(--ink)!important;margin:14px 0 0;max-width:36ch}
-@media (max-width:700px){
-  .sv-igwrap{flex:1 1 100%;max-width:400px;margin:0 auto}
-}
-@media (prefers-reduced-motion:reduce){
-  .sv-ig-track{transition:none}
-}
+.sv-sys-feed{flex:1 1 420px;min-width:0}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
@@ -527,110 +484,28 @@
           <p>SEO is making that page findable. The same frames. No separate story.</p>
         </div>
       </div>
-      <div class="sv-igwrap">
-        <p class="sv-eyebrow">The accounts</p>
-        <div class="sv-phone">
-          <div class="sv-phone-screen">
-            <div class="sv-phone-top">
-              <span class="sv-ig-avatar" aria-hidden="true"></span>
-              <p class="sv-ig-name">the account</p>
-            </div>
-            <div class="sv-phone-feed">
-              <div class="sv-ig-stories" aria-label="Stories from the visit">
-<figure class="sv-ig-st">
-        <div class="sv-ig-st-ring"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/184947ce-938f-481a-88c9-00ed0028c468/johnstone-road-madeira-park-golden-hour-aerial-over-the-shore-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Houses and boathouses along a forested shoreline in low golden light, still water below" width="1500" height="1000" loading="lazy" decoding="async"></div>
-        <figcaption>Johnstone</figcaption>
-      </figure>
-<figure class="sv-ig-st">
-        <div class="sv-ig-st-ring"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4f0bbe59-9914-4f5e-ae8a-888d2e85f729/oles-cove-halfmoon-bay-entry-vignette-red-door-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4f0bbe59-9914-4f5e-ae8a-888d2e85f729/oles-cove-halfmoon-bay-entry-vignette-red-door-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4f0bbe59-9914-4f5e-ae8a-888d2e85f729/oles-cove-halfmoon-bay-entry-vignette-red-door-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4f0bbe59-9914-4f5e-ae8a-888d2e85f729/oles-cove-halfmoon-bay-entry-vignette-red-door-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4f0bbe59-9914-4f5e-ae8a-888d2e85f729/oles-cove-halfmoon-bay-entry-vignette-red-door-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4f0bbe59-9914-4f5e-ae8a-888d2e85f729/oles-cove-halfmoon-bay-entry-vignette-red-door-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 92vw, 400px" alt="Red front door and a timber bench at the entry" width="1500" height="1125" loading="lazy" decoding="async"></div>
-        <figcaption>Oles</figcaption>
-      </figure>
-<figure class="sv-ig-st">
-        <div class="sv-ig-st-ring"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414e980a-8b29-4002-9ae4-aa53b42ccde8/salt-spring-island-residence-front-door-under-the-steel-canopy-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414e980a-8b29-4002-9ae4-aa53b42ccde8/salt-spring-island-residence-front-door-under-the-steel-canopy-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414e980a-8b29-4002-9ae4-aa53b42ccde8/salt-spring-island-residence-front-door-under-the-steel-canopy-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414e980a-8b29-4002-9ae4-aa53b42ccde8/salt-spring-island-residence-front-door-under-the-steel-canopy-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414e980a-8b29-4002-9ae4-aa53b42ccde8/salt-spring-island-residence-front-door-under-the-steel-canopy-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414e980a-8b29-4002-9ae4-aa53b42ccde8/salt-spring-island-residence-front-door-under-the-steel-canopy-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="72px" alt="Timber front door under a dark steel canopy, red framed windows to either side" width="1500" height="1125" loading="lazy" decoding="async"></div>
-        <figcaption>Salt Spring</figcaption>
-      </figure>
-<figure class="sv-ig-st">
-        <div class="sv-ig-st-ring"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Living room corner with a lit suspended fireplace, glazing onto the water and rocky shore" width="1500" height="1125" loading="lazy" decoding="async"></div>
-        <figcaption>The Perch</figcaption>
-      </figure>
-              </div>
-      <article class="sv-ig" data-ig-n="3">
-        <div class="sv-ig-bar">
-          <span class="sv-ig-avatar" aria-hidden="true"></span>
-          <div class="sv-ig-who">
-            <p class="sv-ig-name">the account</p>
-            <p class="sv-ig-loc">Johnstone Road</p>
-          </div>
-          <span class="sv-ig-more" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></span>
+      <div class="sv-stack sv-sys-feed" aria-label="Frames for the accounts">
+      <a href="/homepage-preview/johnstone-road/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Two grey gabled volumes joined by a glazed link, set on a concrete base above the shore" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Johnstone Road</p>
+          <p class="sv-card-loc">Madeira Park</p>
         </div>
-        <div class="sv-ig-pic">
-          <div class="sv-ig-track">
-          <div class="sv-ig-slide"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85b27192-cd2b-4b61-8609-6fd282cc2d35/johnstone-road-madeira-park-dusk-entry-view-through-to-the-bay-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85b27192-cd2b-4b61-8609-6fd282cc2d35/johnstone-road-madeira-park-dusk-entry-view-through-to-the-bay-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85b27192-cd2b-4b61-8609-6fd282cc2d35/johnstone-road-madeira-park-dusk-entry-view-through-to-the-bay-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85b27192-cd2b-4b61-8609-6fd282cc2d35/johnstone-road-madeira-park-dusk-entry-view-through-to-the-bay-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85b27192-cd2b-4b61-8609-6fd282cc2d35/johnstone-road-madeira-park-dusk-entry-view-through-to-the-bay-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85b27192-cd2b-4b61-8609-6fd282cc2d35/johnstone-road-madeira-park-dusk-entry-view-through-to-the-bay-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Entry at dusk, the door open on a lit hall running through to the water beyond" width="1500" height="1875" loading="lazy" decoding="async"></div>
-          <div class="sv-ig-slide"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/a5b52336-463f-43dd-be8e-30ff6f0a1bb0/johnstone-road-madeira-park-waterside-elevation-twin-cedar-gables-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Two grey gabled volumes joined by a glazed link, set on a concrete base above the shore" width="1500" height="1000" loading="lazy" decoding="async"></div>
-          <div class="sv-ig-slide"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3eedc20e-b285-4ac8-b3fb-5d11a0e7b9e3/johnstone-road-madeira-park-twilight-glazed-rear-wall-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 92vw, 400px" alt="Twilight glazed rear wall, the rooms lit and the water beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
-          </div>
-        <button type="button" class="sv-ig-nav sv-ig-prev" aria-label="Previous frame"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M9 2.5L4.5 7 9 11.5"/></svg></button>
-        <button type="button" class="sv-ig-nav sv-ig-next" aria-label="Next frame"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 2.5L9.5 7 5 11.5"/></svg></button>
-        <div class="sv-ig-dots"><button type="button" class="sv-ig-dot is-on" aria-label="Frame 1 of 3"></button><button type="button" class="sv-ig-dot" aria-label="Frame 2 of 3"></button><button type="button" class="sv-ig-dot" aria-label="Frame 3 of 3"></button></div>
+      </a>
+      <a href="/homepage-preview/oles-cove/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Living room glazing onto the ocean, wood stove at the hearth" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Oles Cove</p>
+          <p class="sv-card-loc">Halfmoon Bay</p>
         </div>
-        <div class="sv-ig-acts" aria-hidden="true">
-          <div class="sv-ig-acts-l"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-6.8-4.35-9.05-8.05C1.4 9 2.95 5.4 6.4 5.4c1.9 0 3.25 1.15 4.05 2.3.8-1.15 2.15-2.3 4.05-2.3 3.45 0 5 3.6 3.45 6.55C18.8 15.65 12 20 12 20z"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.8a8.3 8.3 0 01-8.4 8.2 8.1 8.1 0 01-3.7-.9L3.5 20.5l1.5-4.9a8.3 8.3 0 1115.5-3.8z"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
-          <span class="sv-ig-save"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.6-5.5 3.6v-17z"/></svg></span>
+      </a>
+      <a href="/homepage-preview/salt-spring-island/" class="sv-card sv-card-full">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Dining table at sunset, the strait beyond the glass" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Salt Spring</p>
+          <p class="sv-card-loc">The Gulf Islands</p>
         </div>
-        <p class="sv-ig-cap">Madeira Park. The hall through to the bay.</p>
-      </article>
-      <article class="sv-ig" data-ig-n="2">
-        <div class="sv-ig-bar">
-          <span class="sv-ig-avatar" aria-hidden="true"></span>
-          <div class="sv-ig-who">
-            <p class="sv-ig-name">the account</p>
-            <p class="sv-ig-loc">Oles Cove</p>
-          </div>
-          <span class="sv-ig-more" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></span>
-        </div>
-        <div class="sv-ig-pic">
-          <div class="sv-ig-track">
-          <div class="sv-ig-slide"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/eb4c40b0-29ef-451e-9ae1-ccec167cd4d7/oles-cove-halfmoon-bay-living-room-ocean-view-glazing-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Living room glazing onto the ocean, wood stove at the hearth" width="1500" height="1125" loading="lazy" decoding="async"></div>
-          <div class="sv-ig-slide"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/90f6e6b6-f307-447f-990c-b6ae9310d224/oles-cove-halfmoon-bay-kitchen-dining-ocean-view-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/90f6e6b6-f307-447f-990c-b6ae9310d224/oles-cove-halfmoon-bay-kitchen-dining-ocean-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/90f6e6b6-f307-447f-990c-b6ae9310d224/oles-cove-halfmoon-bay-kitchen-dining-ocean-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/90f6e6b6-f307-447f-990c-b6ae9310d224/oles-cove-halfmoon-bay-kitchen-dining-ocean-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/90f6e6b6-f307-447f-990c-b6ae9310d224/oles-cove-halfmoon-bay-kitchen-dining-ocean-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/90f6e6b6-f307-447f-990c-b6ae9310d224/oles-cove-halfmoon-bay-kitchen-dining-ocean-view-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 92vw, 400px" alt="Kitchen and dining opening to the ocean" width="1500" height="1125" loading="lazy" decoding="async"></div>
-          </div>
-        <button type="button" class="sv-ig-nav sv-ig-prev" aria-label="Previous frame"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M9 2.5L4.5 7 9 11.5"/></svg></button>
-        <button type="button" class="sv-ig-nav sv-ig-next" aria-label="Next frame"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 2.5L9.5 7 5 11.5"/></svg></button>
-        <div class="sv-ig-dots"><button type="button" class="sv-ig-dot is-on" aria-label="Frame 1 of 2"></button><button type="button" class="sv-ig-dot" aria-label="Frame 2 of 2"></button></div>
-        </div>
-        <div class="sv-ig-acts" aria-hidden="true">
-          <div class="sv-ig-acts-l"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-6.8-4.35-9.05-8.05C1.4 9 2.95 5.4 6.4 5.4c1.9 0 3.25 1.15 4.05 2.3.8-1.15 2.15-2.3 4.05-2.3 3.45 0 5 3.6 3.45 6.55C18.8 15.65 12 20 12 20z"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.8a8.3 8.3 0 01-8.4 8.2 8.1 8.1 0 01-3.7-.9L3.5 20.5l1.5-4.9a8.3 8.3 0 1115.5-3.8z"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
-          <span class="sv-ig-save"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.6-5.5 3.6v-17z"/></svg></span>
-        </div>
-        <p class="sv-ig-cap">Halfmoon Bay. The room looking out.</p>
-      </article>
-      <article class="sv-ig" data-ig-n="2">
-        <div class="sv-ig-bar">
-          <span class="sv-ig-avatar" aria-hidden="true"></span>
-          <div class="sv-ig-who">
-            <p class="sv-ig-name">the account</p>
-            <p class="sv-ig-loc">Salt Spring</p>
-          </div>
-          <span class="sv-ig-more" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></span>
-        </div>
-        <div class="sv-ig-pic">
-          <div class="sv-ig-track">
-          <div class="sv-ig-slide"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Dining table at sunset, the strait beyond the glass" width="1500" height="1125" loading="lazy" decoding="async"></div>
-          <div class="sv-ig-slide"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5a866b0e-00b6-40d6-b56f-3215d12c8811/salt-spring-island-residence-blue-hour-full-elevation-architectural-photographer-matt-anthony.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5a866b0e-00b6-40d6-b56f-3215d12c8811/salt-spring-island-residence-blue-hour-full-elevation-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5a866b0e-00b6-40d6-b56f-3215d12c8811/salt-spring-island-residence-blue-hour-full-elevation-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5a866b0e-00b6-40d6-b56f-3215d12c8811/salt-spring-island-residence-blue-hour-full-elevation-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5a866b0e-00b6-40d6-b56f-3215d12c8811/salt-spring-island-residence-blue-hour-full-elevation-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5a866b0e-00b6-40d6-b56f-3215d12c8811/salt-spring-island-residence-blue-hour-full-elevation-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Blue hour elevation, the living volume lit against the trees" width="1500" height="1000" loading="lazy" decoding="async"></div>
-          </div>
-        <button type="button" class="sv-ig-nav sv-ig-prev" aria-label="Previous frame"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M9 2.5L4.5 7 9 11.5"/></svg></button>
-        <button type="button" class="sv-ig-nav sv-ig-next" aria-label="Next frame"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 2.5L9.5 7 5 11.5"/></svg></button>
-        <div class="sv-ig-dots"><button type="button" class="sv-ig-dot is-on" aria-label="Frame 1 of 2"></button><button type="button" class="sv-ig-dot" aria-label="Frame 2 of 2"></button></div>
-        </div>
-        <div class="sv-ig-acts" aria-hidden="true">
-          <div class="sv-ig-acts-l"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-6.8-4.35-9.05-8.05C1.4 9 2.95 5.4 6.4 5.4c1.9 0 3.25 1.15 4.05 2.3.8-1.15 2.15-2.3 4.05-2.3 3.45 0 5 3.6 3.45 6.55C18.8 15.65 12 20 12 20z"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.8a8.3 8.3 0 01-8.4 8.2 8.1 8.1 0 01-3.7-.9L3.5 20.5l1.5-4.9a8.3 8.3 0 1115.5-3.8z"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
-          <span class="sv-ig-save"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.6-5.5 3.6v-17z"/></svg></span>
-        </div>
-        <p class="sv-ig-cap">The table at sunset.</p>
-      </article>
-            </div>
-          </div>
-        </div>
-        <p class="sv-ig-note">Stories from the visit. Then the posts. Swipe the spread. Same frames as the site.</p>
+      </a>
       </div>
     </div>
   </div>
@@ -847,40 +722,6 @@
   });
   group.addEventListener('focusout', function(e){
     if(isOpen() && !group.contains(e.relatedTarget)) shut();
-  });
-})();
-</script>
-
-<script>
-(function(){
-  document.querySelectorAll('.sv-ig').forEach(function(post){
-    var track = post.querySelector('.sv-ig-track');
-    var slides = post.querySelectorAll('.sv-ig-slide');
-    var dots = post.querySelectorAll('.sv-ig-dot');
-    var n = slides.length;
-    if(!track || n < 2) return;
-    var i = 0;
-    var x0 = null;
-    function go(k){
-      i = (k + n) % n;
-      track.style.transform = 'translateX(' + (-i * 100) + '%)';
-      dots.forEach(function(d, j){ d.classList.toggle('is-on', j === i); });
-    }
-    var prev = post.querySelector('.sv-ig-prev');
-    var next = post.querySelector('.sv-ig-next');
-    if(prev) prev.addEventListener('click', function(){ go(i - 1); });
-    if(next) next.addEventListener('click', function(){ go(i + 1); });
-    dots.forEach(function(d, j){ d.addEventListener('click', function(){ go(j); }); });
-    var pic = post.querySelector('.sv-ig-pic');
-    if(!pic) return;
-    pic.addEventListener('touchstart', function(e){ x0 = e.changedTouches[0].clientX; }, {passive:true});
-    pic.addEventListener('touchend', function(e){
-      if(x0 == null) return;
-      var dx = e.changedTouches[0].clientX - x0;
-      if(dx > 40) go(i - 1);
-      else if(dx < -40) go(i + 1);
-      x0 = null;
-    }, {passive:true});
   });
 })();
 </script>
