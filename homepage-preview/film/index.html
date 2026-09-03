@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Film preview</title>
+<title>film preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -239,8 +239,6 @@
 .sv-card:hover .sv-card-name,.sv-card:focus-visible .sv-card-name{color:#816a3f!important}
 .sv-card-loc{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0;max-width:42ch}
-.sv-card-loc a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
-.sv-card-loc a:hover,.sv-card-loc a:focus-visible{border-color:var(--ink)}
 .sv-browser{display:block;min-width:0;overflow:hidden;background:transparent!important;margin:0 0 clamp(20px,2.4vw,36px)}
 .sv-browser:last-child{margin-bottom:0}
 .sv-browser-bar{display:flex!important;align-items:center;gap:8px;padding:11px 16px;background:#2a2a28}
@@ -341,6 +339,28 @@
   .sv-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
+
+.sv-rail-wrap,.sv-sys{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-sys-lede{font-size:15px;line-height:1.8;color:var(--ink)!important;max-width:46em;margin:0 0 clamp(28px,3.5vw,48px)}
+.sv-rail{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--gold);max-width:760px}
+.sv-rail li{position:relative;padding:0 0 clamp(28px,3vw,40px) 22px}
+.sv-rail li:last-child{padding-bottom:0}
+.sv-rail li::before{content:"";position:absolute;left:-26px;top:4px;width:9px;height:9px;background:var(--gold)!important;border:1px solid var(--paper)}
+.sv-rail h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.15;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-rail p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:62ch}
+.sv-rail .sv-eyebrow{margin-bottom:10px}
+.sv-sys-frame{margin:0 0 clamp(36px,4.5vw,64px)}
+.sv-sys-frame img{width:100%;height:auto}
+.sv-sys-frame figcaption{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)!important;margin:12px 0 0}
+.sv-sys-art{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:clamp(28px,4vw,56px)}
+.sv-tstack{flex:1 1 240px;max-width:360px;min-width:0}
+.sv-tsheet{background:var(--paper)!important;border:1px solid var(--rule);padding:20px 22px 22px}
+.sv-tsheet+.sv-tsheet{margin-top:8px}
+.sv-tsheet-1{background:#eeece6!important}
+.sv-tsheet h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.2;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-tsheet p:not(.sv-eyebrow):not(.sv-turl){font-size:14px;line-height:1.7;color:var(--ink)!important;margin:0;max-width:34ch}
+.sv-tsheet .sv-eyebrow{margin-bottom:12px}
+.sv-sys-feed{flex:1 1 420px;min-width:0}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
@@ -374,6 +394,49 @@
   <div class="sv-statement-inner">
     <p class="sv-eyebrow">Approach</p>
     <p>Stills and film come from the same visit. I cut the film for the site and for social.</p>
+  </div>
+</section>
+<section class="sv-intro">
+  <div class="sv-container">
+    <div class="sv-intro-copy">
+      <p class="sv-eyebrow">The film</p>
+      <p>This is for firms who want a short film of the finished building, not a separate production day.</p>
+      <p>Walkthroughs, aerial, and the rooms as they read. Shot on the same visit as the stills.</p>
+      <p>I cut the film for the site and for social.</p>
+    </div>
+  </div>
+</section>
+<section class="sv-rail-wrap" aria-labelledby="sv-rail-h">
+  <div class="sv-container">
+    <p class="sv-eyebrow">The visit</p>
+    <div class="sv-hang-head"><h2 id="sv-rail-h">How film is made</h2></div>
+    <ol class="sv-rail">
+      <li>
+        <p class="sv-eyebrow">01</p>
+        <h3>Same visit</h3>
+        <p>Stills and film come from the same day. No second crew, no second call.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">02</p>
+        <h3>Walkthroughs</h3>
+        <p>The rooms as they read, then the approach.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">03</p>
+        <h3>Aerial</h3>
+        <p>Where the site allows, from the same visit.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">04</p>
+        <h3>The cut</h3>
+        <p>I cut the film for the site and for social.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">05</p>
+        <h3>Delivery</h3>
+        <p>The film lands with the stills.</p>
+      </li>
+    </ol>
   </div>
 </section>
 <section class="sv-hang" aria-labelledby="sv-hang-h">
@@ -411,11 +474,11 @@
           <video preload="none" playsinline poster="https://mattanthonyphoto.github.io/media/films/poster-cortis.jpg" width="1280" height="720">
             <source src="https://mattanthonyphoto.github.io/media/films/cortis-island-film.mp4" type="video/mp4">
           </video>
-          <button type="button" class="sv-play" aria-label="Play the Desolation Sound film, 1 minute 59 seconds"><svg width="58" height="58" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="25" stroke="rgba(246,244,240,.9)" stroke-width="1"/><path d="M21 17l14 9-14 9z" fill="rgba(246,244,240,.9)"/></svg></button>
+          <button type="button" class="sv-play" aria-label="Play the Cortis Island film, 1 minute 59 seconds"><svg width="58" height="58" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="25" stroke="rgba(246,244,240,.9)" stroke-width="1"/><path d="M21 17l14 9-14 9z" fill="rgba(246,244,240,.9)"/></svg></button>
         </div>
         <div class="sv-card-over">
-          <p class="sv-card-name">Desolation Sound</p>
-          <p class="sv-card-loc">1:59 &middot; <a href="/homepage-preview/desolation-sound/">The stills</a></p>
+          <p class="sv-card-name">Cortis Island</p>
+          <p class="sv-card-loc">1:59</p>
         </div>
       </div>
     </div>

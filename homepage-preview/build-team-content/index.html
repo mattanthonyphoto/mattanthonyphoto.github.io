@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Build Team Content preview</title>
+<title>build-team-content preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -339,6 +339,28 @@
   .sv-intro-pic{flex:1 1 100%;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.sv-wrap *{animation:none!important;transition:none!important}}
+
+.sv-rail-wrap,.sv-sys{padding:0 0 var(--section);background:var(--paper)!important}
+.sv-sys-lede{font-size:15px;line-height:1.8;color:var(--ink)!important;max-width:46em;margin:0 0 clamp(28px,3.5vw,48px)}
+.sv-rail{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--gold);max-width:760px}
+.sv-rail li{position:relative;padding:0 0 clamp(28px,3vw,40px) 22px}
+.sv-rail li:last-child{padding-bottom:0}
+.sv-rail li::before{content:"";position:absolute;left:-26px;top:4px;width:9px;height:9px;background:var(--gold)!important;border:1px solid var(--paper)}
+.sv-rail h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.15;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-rail p:not(.sv-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:62ch}
+.sv-rail .sv-eyebrow{margin-bottom:10px}
+.sv-sys-frame{margin:0 0 clamp(36px,4.5vw,64px)}
+.sv-sys-frame img{width:100%;height:auto}
+.sv-sys-frame figcaption{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)!important;margin:12px 0 0}
+.sv-sys-art{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:clamp(28px,4vw,56px)}
+.sv-tstack{flex:1 1 240px;max-width:360px;min-width:0}
+.sv-tsheet{background:var(--paper)!important;border:1px solid var(--rule);padding:20px 22px 22px}
+.sv-tsheet+.sv-tsheet{margin-top:8px}
+.sv-tsheet-1{background:#eeece6!important}
+.sv-tsheet h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.2;letter-spacing:0;color:var(--ink)!important;margin:0 0 8px}
+.sv-tsheet p:not(.sv-eyebrow):not(.sv-turl){font-size:14px;line-height:1.7;color:var(--ink)!important;margin:0;max-width:34ch}
+.sv-tsheet .sv-eyebrow{margin-bottom:12px}
+.sv-sys-feed{flex:1 1 420px;min-width:0}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
@@ -374,45 +396,120 @@
     <p>A finished building is one story. The visits before that are another.</p>
   </div>
 </section>
-<section class="sv-hang" aria-labelledby="sv-hang-h">
+<section class="sv-intro">
   <div class="sv-container">
-    <div class="sv-hang-head">
-      <h2 id="sv-hang-h">What the visits cover</h2>
+    <div class="sv-intro-copy">
+      <p class="sv-eyebrow">The visits</p>
+      <p>This is for builders and design teams who want a record of the build, not only the finished day.</p>
+      <p>Multi-stage visits. Progress photographs, the crew, and how the project went up.</p>
+      <p>Dates are set around the work on site.</p>
     </div>
-    <div class="sv-stack">
-      <div class="sv-card">
-        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Construction tools on a sawhorse, ocean and mountains through full height glass beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
-        <div class="sv-card-over">
-          <p class="sv-card-name">The site</p>
-          <p class="sv-card-loc">How the project is going up</p>
+  </div>
+</section>
+<section class="sv-rail-wrap" aria-labelledby="sv-rail-h">
+  <div class="sv-container">
+    <p class="sv-eyebrow">The build</p>
+    <div class="sv-hang-head"><h2 id="sv-rail-h">How the visits run</h2></div>
+    <ol class="sv-rail">
+      <li>
+        <p class="sv-eyebrow">01</p>
+        <h3>First visit</h3>
+        <p>Site, staging, the ground as it is. A baseline before the structure goes up.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">02</p>
+        <h3>Structure</h3>
+        <p>Timber, steel, the days the skyline changes.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">03</p>
+        <h3>Envelope</h3>
+        <p>Siding, glazing, the building closing in.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">04</p>
+        <h3>Crew</h3>
+        <p>The people who built it, photographed on the job.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">05</p>
+        <h3>The record</h3>
+        <p>Frames from each visit, held in one place.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="sv-sys" aria-labelledby="sv-sys-h">
+  <div class="sv-container">
+    <p class="sv-eyebrow">On site</p>
+    <div class="sv-hang-head"><h2 id="sv-sys-h">What the visits cover.</h2></div>
+    <p class="sv-sys-lede">The same building, seen as it goes up. Tools, timber, the crew, the stages.</p>
+    <figure class="sv-sys-frame">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ce75c95f-d959-4ce2-ad5b-4b976cc71317/_DSC7112-Edit.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Construction tools on a sawhorse, ocean and mountains through full height glass beyond" width="1500" height="1000" loading="lazy" decoding="async">
+      <figcaption>Tools on a sawhorse. The water through the glass.</figcaption>
+    </figure>
+    <div class="sv-sys-art">
+      <div class="sv-tstack" aria-label="What progression visits cover">
+        <div class="sv-tsheet">
+          <p class="sv-eyebrow">The site</p>
+          <h3>How the project is going up.</h3>
+          <p>Staging, access, the ground as it changes.</p>
+        </div>
+        <div class="sv-tsheet">
+          <p class="sv-eyebrow">The work</p>
+          <h3>Cranes, timber, steel.</h3>
+          <p>The days that change the skyline.</p>
+        </div>
+        <div class="sv-tsheet sv-tsheet-1">
+          <p class="sv-eyebrow">The crew</p>
+          <h3>The people who built it.</h3>
+          <p>Photographed on the job, not a separate portrait day.</p>
         </div>
       </div>
+      <div class="sv-stack sv-sys-feed">
       <div class="sv-card">
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fb20117e-2070-46d4-9b30-65e7e2bd59fe/steel-wood-structures-2500px-5.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Crane lifting a CLT panel with mountain and fog behind" width="1500" height="1000" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">The work</p>
-          <p class="sv-card-loc">Cranes, timber, the days that change the skyline</p>
+          <p class="sv-card-loc">A CLT panel on the crane</p>
         </div>
       </div>
       <div class="sv-card">
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/58dc14fe-7aa1-4945-913f-ed9dea0c467e/_DSC7216.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Builder in overalls with a tool belt, ocean behind" width="1500" height="2250" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">The crew</p>
-          <p class="sv-card-loc">The people who built it</p>
+          <p class="sv-card-loc">On the job</p>
         </div>
       </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sv-hang" aria-labelledby="sv-hang-h">
+  <div class="sv-container">
+    <div class="sv-hang-head">
+      <h2 id="sv-hang-h">The visits.</h2>
+    </div>
+    <div class="sv-stack">
       <div class="sv-card">
         <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/3045f130-da3a-4f65-be9d-527974c8c882/_DSC7302.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Concrete stairs being formed on a rock outcrop, steel and timber framing" width="1500" height="2250" loading="lazy" decoding="async"></div>
         <div class="sv-card-over">
           <p class="sv-card-name">The stages</p>
-          <p class="sv-card-loc">Framing, envelope, the ground as it changes</p>
+          <p class="sv-card-loc">Framing and the ground</p>
+        </div>
+      </div>
+      <div class="sv-card sv-card-full">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=2500w 2500w" sizes="100vw" alt="Dark stained wood siding with a tree shadow" width="1500" height="2250" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The envelope</p>
+          <p class="sv-card-loc">Siding as it goes on</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 <section class="sv-close" aria-labelledby="sv-close-h">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/43ce9776-2d74-4728-ad29-a987976ef156/_DSC7185.jpg?format=2500w 2500w" sizes="100vw" alt="Dark stained wood siding with a tree shadow" width="1500" height="2250" loading="lazy" decoding="async">
+  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/be2e9056-02ca-482b-9c46-36f59fada468/browns-road-sunshine-coast-architectural-photographer-matt-anthony-17.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/be2e9056-02ca-482b-9c46-36f59fada468/browns-road-sunshine-coast-architectural-photographer-matt-anthony-17.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/be2e9056-02ca-482b-9c46-36f59fada468/browns-road-sunshine-coast-architectural-photographer-matt-anthony-17.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/be2e9056-02ca-482b-9c46-36f59fada468/browns-road-sunshine-coast-architectural-photographer-matt-anthony-17.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/be2e9056-02ca-482b-9c46-36f59fada468/browns-road-sunshine-coast-architectural-photographer-matt-anthony-17.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/be2e9056-02ca-482b-9c46-36f59fada468/browns-road-sunshine-coast-architectural-photographer-matt-anthony-17.jpg?format=2500w 2500w" sizes="100vw" alt="The house from below a rock wall, two storeys of glazing under a wood soffit, forest behind" width="1500" height="1000" loading="lazy" decoding="async">
   <div class="sv-close-c">
     <p class="sv-eyebrow">Contact</p>
     <h2 id="sv-close-h">Tell me about your project.</h2>
@@ -449,7 +546,7 @@
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
         <a href="/homepage-preview/portfolio/">Portfolio</a>
-            <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/journal/">Journal</a>
@@ -547,6 +644,10 @@
     if(isOpen() && !group.contains(e.relatedTarget)) shut();
   });
 })();
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Progression Photography","description":"Multi-stage visits across a build. Progress photographs, the crew, and a record of how the project went up. For builders and design teams in British Columbia.","url":"https://www.mattanthonyphoto.com/construction-team-content","areaServed":{"@type":"AdministrativeArea","name":"British Columbia"}}
 </script>
 
 </body>
