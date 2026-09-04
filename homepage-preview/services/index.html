@@ -42,11 +42,11 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services (dropdown), Contact.
+   Top level: Projects, About (dropdown), Services, Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer. The Services hub is in the footer, so if the script never runs
-   the leaves stay one click away. ── */
+   the footer. Services is a single link to the hub. Leaves live on that page
+   and in the footer (Creative Partner). ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -74,8 +74,10 @@
    the over-hero light treatment and turn white on white. */
 .hp-nav-group{position:relative;display:inline-flex!important;align-items:center}
 .hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
-  min-width:220px;display:flex!important;flex-direction:column;gap:0;
+  min-width:260px;display:flex!important;flex-direction:column;gap:0;
   background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
+/* Services sits beside Contact. A centred panel clips off the right edge. */
+.hp-nav-group:last-of-type .hp-nav-menu{left:auto;right:0;transform:none}
 .hp-nav-menu[hidden]{display:none!important}
 .hp-nav-menu a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
@@ -355,7 +357,16 @@
         <a href="/homepage-preview/journal/">Journal</a>
       </div>
     </div>
-    <a href="/homepage-preview/services/">Services</a>
+    <div class="hp-nav-group">
+      <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
+      <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
+        <a href="/homepage-preview/services/">Services</a>
+        <a href="/homepage-preview/project-photography/">Project Photography</a>
+        <a href="/homepage-preview/film/">Videography</a>
+        <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+      </div>
+    </div>
     <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
   </div>
 </div>
@@ -473,7 +484,8 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
-            <a href="/homepage-preview/services/">Services</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
+        <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
@@ -543,7 +555,7 @@
 })();
 
 (function(){
-  /* Dropdown. About. Hub pages are also in the footer, so if this
+  /* Dropdowns. About and Services. Hub pages are also in the footer, so if this
      script never runs those pages stay reachable and the trigger is inert. */
   var groups = document.querySelectorAll('.hp-nav-group');
   if(!groups.length) return;
