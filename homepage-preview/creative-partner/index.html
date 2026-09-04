@@ -76,8 +76,6 @@
 .hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
   min-width:220px;display:flex!important;flex-direction:column;gap:0;
   background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
-/* Services sits beside Contact. A centred panel clips off the right edge. */
-.hp-nav-group:last-of-type .hp-nav-menu{left:auto;right:0;transform:none}
 .hp-nav-menu[hidden]{display:none!important}
 .hp-nav-menu a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
@@ -413,17 +411,7 @@
         <a href="/homepage-preview/journal/">Journal</a>
       </div>
     </div>
-    <div class="hp-nav-group">
-      <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
-      <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/services/">Services</a>
-        <a href="/homepage-preview/project-photography/">Project Photography</a>
-        <a href="/homepage-preview/film/">Film</a>
-        <a href="/homepage-preview/build-team-content/">Progression</a>
-        <a href="/homepage-preview/website-seo/">Marketing</a>
-        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
-      </div>
-    </div>
+    <a href="/homepage-preview/services/">Services</a>
     <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
   </div>
 </div>
@@ -649,8 +637,7 @@
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
         <a href="/homepage-preview/projects-v2/">Projects</a>
-        <a href="/homepage-preview/portfolio/">Portfolio</a>
-        <a href="/homepage-preview/services/">Services</a>
+            <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
         <a href="/homepage-preview/bio/">About</a>
@@ -720,7 +707,7 @@
 })();
 
 (function(){
-  /* Dropdowns. About and Services. Hub pages are also in the footer, so if this
+  /* Dropdown. About. Hub pages are also in the footer, so if this
      script never runs those pages stay reachable and the trigger is inert. */
   var groups = document.querySelectorAll('.hp-nav-group');
   if(!groups.length) return;
