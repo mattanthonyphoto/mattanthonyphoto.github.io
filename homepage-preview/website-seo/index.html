@@ -369,6 +369,25 @@
 .sv-trow .sv-tsheet{flex:1 1 240px;min-width:0}
 .sv-trow .sv-tsheet+.sv-tsheet{margin-top:0}
 .sv-intro-copy{max-width:46em;margin-left:auto;margin-right:auto}
+.sv-turl{display:block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;letter-spacing:.08em;color:var(--ink)!important;margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--gold)}
+.sv-browser-vp{height:min(840px,88vh)}
+.sv-browser-vp img{animation-name:maSiteScrollMkt}
+@keyframes maSiteScrollMkt{
+  0%,14%{transform:translateY(0)}
+  46%,58%{transform:translateY(calc(-100% + min(840px,88vh)))}
+  88%,100%{transform:translateY(0)}
+}
+@keyframes maSiteScrollMktMobile{
+  0%,14%{transform:translateY(0)}
+  46%,58%{transform:translateY(calc(-100% + 480px))}
+  88%,100%{transform:translateY(0)}
+}
+@media (max-width:768px){
+  .sv-browser-vp{height:480px}
+  .sv-browser-vp img{animation-name:maSiteScrollMktMobile}
+}
+.sv-intro-copy a{border-bottom:1px solid var(--stone)}
+.sv-intro-copy a:hover,.sv-intro-copy a:focus-visible{border-color:var(--ink)}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
@@ -405,21 +424,21 @@
   <div class="sv-hero-c"><div class="sv-container">
     <p class="sv-eyebrow">Marketing</p>
     <h1 id="sv-h">I build the site the photographs live on.</h1>
-    <p class="sv-hero-sub">Websites for the firms I already photograph, and the pages that keep them current.</p>
+    <p class="sv-hero-sub">The site is built around the frames. Project pages as the work lands. Search is making those pages findable.</p>
   </div></div>
 </section>
 <section class="sv-statement">
   <div class="sv-statement-inner">
     <p class="sv-eyebrow">Approach</p>
-    <p>The photographs need a place to live. I build that place, then keep it current as the next projects land.</p>
+    <p>The photographs need a place to live.</p>
   </div>
 </section>
 <section class="sv-intro">
   <div class="sv-container">
     <div class="sv-intro-copy">
       <p class="sv-eyebrow">The site</p>
-      <p>This is for firms I already photograph.</p>
-      <p>I build the site around the frames. Project pages as the work lands. Maintenance keeps them current.</p>
+      <p>This is for firms I already photograph. If the visits are ongoing, that is <a href="/homepage-preview/creative-partner/">Creative Partner</a>.</p>
+      <p>I build the site around the frames. Project pages as the work lands. Maintenance keeps them current. SEO is making those pages findable.</p>
       <p>A website build is quoted on its own.</p>
     </div>
   </div>
@@ -437,7 +456,7 @@
       <li>
         <p class="sv-eyebrow">02</p>
         <h3>The build</h3>
-        <p>Pages around the photographs. Project pages as the work lands.</p>
+        <p>Pages around the photographs. The same frames. No separate story.</p>
       </li>
       <li>
         <p class="sv-eyebrow">03</p>
@@ -446,16 +465,52 @@
       </li>
       <li>
         <p class="sv-eyebrow">04</p>
-        <h3>Keep</h3>
-        <p>Maintenance as new work lands. Search is making that page findable.</p>
+        <h3>New work lands</h3>
+        <p>A visit finishes. The project page goes up. Maintenance is that work.</p>
+      </li>
+      <li>
+        <p class="sv-eyebrow">05</p>
+        <h3>Search</h3>
+        <p>SEO is making that page findable. What went live can be named.</p>
       </li>
     </ol>
   </div>
 </section>
-<section class="sv-hang" aria-labelledby="sv-hang-h">
+<section class="sv-sys" aria-labelledby="sv-sys-h">
+  <div class="sv-container">
+    <p class="sv-eyebrow">Together</p>
+    <div class="sv-hang-head"><h2 id="sv-sys-h">From the frame.</h2></div>
+    <p class="sv-sys-lede">One visit. Then the project page. Then search. The site is the place those frames live.</p>
+    <figure class="sv-sys-frame">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/40f0f4b4-0146-4139-8682-d3505ba00ba2/warbler-whistler-architectural-photography-matt-anthony-.jpg-36.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, 88vw" alt="The house along a rock outcrop above the snow, a long dark volume under a pale wood soffit" width="1500" height="1000" loading="lazy" decoding="async">
+      <figcaption>Warbler, Whistler. The frame the project page is cut from.</figcaption>
+    </figure>
+    <div class="sv-sys-art">
+      <div class="sv-trow" aria-label="How a photograph reaches a project page and search">
+        <div class="sv-tsheet sv-tsheet-3">
+          <p class="sv-eyebrow">The visit</p>
+          <h3>The photograph.</h3>
+          <p>Shot on the day. Edited, then used on the site.</p>
+        </div>
+        <div class="sv-tsheet sv-tsheet-2">
+          <p class="sv-eyebrow">The site</p>
+          <h3>The project page.</h3>
+          <p>The frame lands on a page. Maintenance keeps that page current.</p>
+        </div>
+        <div class="sv-tsheet sv-tsheet-1">
+          <p class="sv-eyebrow">Search</p>
+          <p class="sv-turl">Project page on the site</p>
+          <h3>The page people find.</h3>
+          <p>SEO is making that page findable. The same frames. No separate story.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sv-hang" aria-labelledby="sv-sites-h">
   <div class="sv-container">
     <div class="sv-hang-head">
-      <h2 id="sv-hang-h">Sites I have built.</h2>
+      <h2 id="sv-sites-h">Sites I have built.</h2>
     </div>
       <a href="/homepage-preview/balmoral-construction/" class="sv-browser">
         <div class="sv-browser-bar">
@@ -488,8 +543,45 @@
 <section class="sv-quote" aria-label="Client comment">
   <div class="sv-container">
     <div class="sv-quote-inner">
-      <p class="sv-quote-text">The new site looks incredible and really reflects the quality of our work.</p>
-      <p class="sv-quote-attr">Jeremy Kirbyson &middot; <a href="/homepage-preview/the-window-merchant/">The Window Merchant</a></p>
+      <p class="sv-quote-text">The website looks fantastic, and the ongoing maintenance plan gives me peace of mind knowing everything is taken care of.</p>
+      <p class="sv-quote-attr">Marc Harvey &middot; <a href="/homepage-preview/balmoral-construction/">Balmoral Construction</a></p>
+    </div>
+  </div>
+</section>
+<section class="sv-hang" aria-labelledby="sv-work-h">
+  <div class="sv-container">
+    <div class="sv-hang-head">
+      <h2 id="sv-work-h">The work on those sites.</h2>
+    </div>
+    <div class="sv-stack">
+      <a href="/homepage-preview/fitzsimmons-whistler/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Street elevation above a cleared drive, dark cladding below and wood siding above, mountains behind" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Fitzsimmons Residence</p>
+          <p class="sv-card-loc">Whistler</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/eagle-residence/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/15031b90-3d11-466e-89e8-c02dae256ad9/eagle-pemberton-architectural-photography-matt-anthony-.jpg-24.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house in snow below a mountain ridge, a stone volume beside horizontal wood cladding" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Eagle Residence</p>
+          <p class="sv-card-loc">Pemberton</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/sugarloaf-residence/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house low on a snowy slope, a long dark elevation with snow covered peaks beyond" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Sugarloaf Residence</p>
+          <p class="sv-card-loc">Pemberton</p>
+        </div>
+      </a>
+      <a href="/homepage-preview/warbler-whistler/" class="sv-card">
+        <div class="sv-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/69c8df79-7100-471e-9597-3d584766e739/warbler-whistler-architectural-photography-matt-anthony-.jpg-38.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house at dusk from below the rock, warm interior light along the dark elevation" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">Warbler Residence</p>
+          <p class="sv-card-loc">Whistler</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
