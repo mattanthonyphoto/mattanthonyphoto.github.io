@@ -42,11 +42,11 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services (dropdown), Contact.
+   Top level: Projects, About (dropdown), Services, Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer. The Services hub is in the footer, so if the script never runs
-   the leaves stay one click away. ── */
+   the footer. Services is a single link to the hub. Leaves live on that page
+   and in the footer (Creative Partner). ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -74,7 +74,7 @@
    the over-hero light treatment and turn white on white. */
 .hp-nav-group{position:relative;display:inline-flex!important;align-items:center}
 .hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
-  min-width:220px;display:flex!important;flex-direction:column;gap:0;
+  min-width:260px;display:flex!important;flex-direction:column;gap:0;
   background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
 /* Services sits beside Contact. A centred panel clips off the right edge. */
 .hp-nav-group:last-of-type .hp-nav-menu{left:auto;right:0;transform:none}
@@ -268,12 +268,13 @@
   88%,100%{transform:translateY(0)}
 }
 .sv-card-film{aspect-ratio:16/9}
-.sv-card-film video{width:100%;height:100%;object-fit:cover;display:block}
+.sv-card-film video,.sv-yt-poster{width:100%;height:100%;object-fit:cover;display:block}
+.sv-card-film iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .sv-play{position:absolute;inset:0;z-index:2;display:flex!important;align-items:center;
   justify-content:center;background:transparent!important;border:0!important;padding:0;
   cursor:pointer;color:#f6f4f0!important}
 .sv-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
-.sv-playing .sv-play{display:none!important}
+.sv-playing .sv-play,.sv-playing .sv-yt-poster{display:none!important}
 .sv-intro{padding:0 0 var(--section);background:var(--paper)!important}
 .sv-intro-inner{display:flex!important;flex-wrap:wrap;align-items:center;
   gap:clamp(36px,5vw,80px)}
@@ -380,6 +381,7 @@
       <div class="hp-nav-menu" id="hpAboutMenu" role="group" aria-labelledby="hpAboutBtn" hidden>
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/case-studies/">Case Studies</a>
         <a href="/homepage-preview/faqs/">FAQs</a>
         <a href="/homepage-preview/journal/">Journal</a>
       </div>
@@ -389,9 +391,8 @@
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
         <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
-        <a href="/homepage-preview/film/">Film</a>
-        <a href="/homepage-preview/build-team-content/">Progression</a>
-        <a href="/homepage-preview/website-seo/">Marketing</a>
+        <a href="/homepage-preview/film/">Videography</a>
+        <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
       </div>
     </div>
@@ -502,6 +503,53 @@
     </div>
   </div>
 </section>
+<section class="sv-hang" aria-labelledby="sv-adu-h">
+  <div class="sv-container">
+    <div class="sv-hang-head">
+      <h2 id="sv-adu-h">Newlines ADU.</h2>
+    </div>
+    <div class="sv-stack">
+      <div class="sv-card sv-card-full">
+        <div class="sv-card-frame sv-card-film" data-yt="tUeFijrUrgY">
+          <img class="sv-yt-poster" src="https://mattanthonyphoto.github.io/media/newlines-adu/poster-newlines-adu.jpg" srcset="https://mattanthonyphoto.github.io/media/newlines-adu/poster-newlines-adu-1000.jpg 1000w, https://mattanthonyphoto.github.io/media/newlines-adu/poster-newlines-adu.jpg 1920w" sizes="100vw" alt="Wrapped ADU module hanging from a crane over a pad in the trees" width="1920" height="1080" loading="lazy" decoding="async">
+          <button type="button" class="sv-play" aria-label="Play the Newlines ADU film, 1 minute 1 second"><svg width="58" height="58" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="25" stroke="rgba(246,244,240,.9)" stroke-width="1"/><path d="M21 17l14 9-14 9z" fill="rgba(246,244,240,.9)"/></svg></button>
+        </div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The film</p>
+          <p class="sv-card-loc">Squamish &middot; 1:01</p>
+        </div>
+      </div>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-crane-chief.jpg" srcset="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-crane-chief-1000.jpg 800w, https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-crane-chief.jpg 1200w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Crane lifting a wrapped ADU module with a granite bluff behind" width="1200" height="1500" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The lift</p>
+          <p class="sv-card-loc">Crane day, Squamish</p>
+        </div>
+      </div>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-crew-module.jpg" srcset="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-crew-module-1000.jpg 750w, https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-crew-module.jpg 1125w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Crew standing on a wrapped ADU module under the crane" width="1125" height="1500" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The crew</p>
+          <p class="sv-card-loc">On the module</p>
+        </div>
+      </div>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-site-aerial.jpg" srcset="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-site-aerial-1000.jpg 1000w, https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-site-aerial.jpg 1500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Aerial of a backyard excavation with a tank in the hole and a mini excavator" width="1500" height="1000" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The site</p>
+          <p class="sv-card-loc">Ground before the unit</p>
+        </div>
+      </div>
+      <div class="sv-card">
+        <div class="sv-card-frame"><img src="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-module-lift.jpg" srcset="https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-module-lift-1000.jpg 750w, https://mattanthonyphoto.github.io/media/newlines-adu/newlines-adu-module-lift.jpg 1125w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="Wrapped ADU module lifting off a trailer, crew standing below" width="1125" height="1500" loading="lazy" decoding="async"></div>
+        <div class="sv-card-over">
+          <p class="sv-card-name">The set</p>
+          <p class="sv-card-loc">Off the trailer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="sv-hang" aria-labelledby="sv-hang-h">
   <div class="sv-container">
     <div class="sv-hang-head">
@@ -573,11 +621,12 @@
         <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/case-studies/">Case Studies</a>
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/journal/">Journal</a>
         <a href="/homepage-preview/faqs/">FAQs</a>
         <a href="/homepage-preview/discovery-call/">Discovery Call</a>
-      <a href="/homepage-preview/contact/">Contact</a>
+        <a href="/homepage-preview/contact/">Contact</a>
       </nav>
     </div>
 
@@ -701,6 +750,27 @@
     for(var i = 0; i < groups.length; i++){
       if(groups[i]._isOpen && groups[i]._isOpen() && !groups[i].contains(e.target)) groups[i]._shut();
     }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  document.querySelectorAll('.sv-play').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var frame = btn.closest('.sv-card-frame');
+      if(!frame) return;
+      var yt = frame.getAttribute('data-yt');
+      if(yt){
+        var ifr = document.createElement('iframe');
+        ifr.src = 'https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&rel=0&modestbranding=1';
+        ifr.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen');
+        ifr.setAttribute('allowfullscreen','');
+        ifr.setAttribute('title', btn.getAttribute('aria-label') || 'Film');
+        frame.appendChild(ifr);
+        frame.classList.add('sv-playing');
+      }
+    });
   });
 })();
 </script>
