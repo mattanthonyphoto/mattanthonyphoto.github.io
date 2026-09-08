@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Portfolio</title>
+<title>Portfolio preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -489,8 +489,10 @@ body{background:#f6f4f0!important}
    the over-hero light treatment and turn white on white. */
 .hp-nav-group{position:relative;display:inline-flex!important;align-items:center}
 .hp-nav-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
-  min-width:170px;display:flex!important;flex-direction:column;gap:0;
+  min-width:260px;display:flex!important;flex-direction:column;gap:0;
   background:#f6f4f0;border:1px solid var(--rule);padding:6px 0;z-index:9991}
+/* Services sits beside Contact. A centred panel clips off the right edge. */
+.hp-nav-group:last-of-type .hp-nav-menu{left:auto;right:0;transform:none}
 .hp-nav-menu[hidden]{display:none!important}
 .hp-nav-menu a{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
@@ -542,7 +544,7 @@ body{background:#f6f4f0!important}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
   .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
   .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
-  .hp-nav-menu{left:0;transform:none;top:calc(100% + 10px)}
+  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px)}
 }
 
 /* ── FOOTER ── */
@@ -596,20 +598,30 @@ body{background:#f6f4f0!important}
 </style>
 
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
-  <a href="/" class="hp-nav-mark">Matt Anthony Photography</a>
+  <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/projects">Projects</a>
+    <a href="/homepage-preview/projects-v2/">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
       <div class="hp-nav-menu" id="hpAboutMenu" role="group" aria-labelledby="hpAboutBtn" hidden>
-        <a href="/bio">About</a>
-        <a href="/process">Process</a>
-        <a href="/faqs">FAQs</a>
-        <a href="/journal">Journal</a>
+        <a href="/homepage-preview/bio/">About</a>
+        <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/case-studies/">Case Studies</a>
+        <a href="/homepage-preview/faqs/">FAQs</a>
+        <a href="/homepage-preview/journal/">Journal</a>
       </div>
     </div>
-    <a href="/services">Services</a>
-    <a href="/contact" class="hp-nav-cta">Contact</a>
+    <div class="hp-nav-group">
+      <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
+      <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
+        <a href="/homepage-preview/services/">Services</a>
+        <a href="/homepage-preview/project-photography/">Project Photography</a>
+        <a href="/homepage-preview/film/">Videography</a>
+        <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+      </div>
+    </div>
+    <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
   </div>
 </div>
 
@@ -629,7 +641,7 @@ body{background:#f6f4f0!important}
 
 <!-- SALT SPRING ISLAND, GULF ISLANDS · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/salt-spring-island">Salt Spring Island, Gulf Islands</a></p><h2 class="sw-sp-h">Rooms Open <em>to the Shore</em></h2><p class="sw-body">Oak floors, teal tile, and a dining table set to the sunset over the water.</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/salt-spring-island/">Salt Spring Island, Gulf Islands</a></p><h2 class="sw-sp-h">Rooms Open <em>to the Shore</em></h2><p class="sw-body">Oak floors, teal tile, and a dining table set to the sunset over the water.</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/efd5374f-73bd-4013-8744-a64765476c84/salt-spring-island-residence-dining-table-at-sunset-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Dining table and glass pendants against open doors and the sun low over the water" width="1500" height="844" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Sunset through the glass. The table in silhouette, water catching the last of the light.</figcaption></figure>
 </section>
 
@@ -640,7 +652,7 @@ body{background:#f6f4f0!important}
 
 <!-- OLES COVE, HALFMOON BAY · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/oles-cove">Oles Cove, Halfmoon Bay</a></p><h2 class="sw-sp-h">A Black Box <em>on the Bluff</em></h2><p class="sw-body">Corrugated black cladding lifted on posts above the slope, white inside and open to the west.</p><p class="sw-cr">Builder: Summerhill Fine Homes &nbsp;|&nbsp; Design: Second Nature Designs</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/oles-cove/">Oles Cove, Halfmoon Bay</a></p><h2 class="sw-sp-h">A Black Box <em>on the Bluff</em></h2><p class="sw-body">Corrugated black cladding lifted on posts above the slope, white inside and open to the west.</p><p class="sw-cr">Builder: Summerhill Fine Homes &nbsp;|&nbsp; Design: Second Nature Designs</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Oles Cove west elevation in golden light" width="1500" height="1125" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Golden hour on the west face. Cedar, glass and the posts that carry the house over the slope.</figcaption></figure>
 </section>
 
@@ -651,7 +663,7 @@ body{background:#f6f4f0!important}
 
 <!-- THE PERCH, SUNSHINE COAST · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/the-perch-sunshine-coast">The Perch, Sunshine Coast</a></p><h2 class="sw-sp-h">Cantilevered Over <em>the Shoreline</em></h2><p class="sw-body">A building shaped entirely by its relationship to the site.</p><p class="sw-cr">Architect: Michel Laflamme &nbsp;|&nbsp; Builder: Summerhill Fine Homes</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/the-perch-sunshine-coast/">The Perch, Sunshine Coast</a></p><h2 class="sw-sp-h">Cantilevered Over <em>the Shoreline</em></h2><p class="sw-body">A building shaped entirely by its relationship to the site.</p><p class="sw-cr">Architect: Michel Laflamme &nbsp;|&nbsp; Builder: Summerhill Fine Homes</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="A dark clad corner projecting out over rock, the sea and low cloud beyond" width="1500" height="1125" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Late afternoon side light. The cantilever reads as a shadow line against the rock.</figcaption></figure>
 </section>
 
@@ -664,7 +676,7 @@ body{background:#f6f4f0!important}
 
 <!-- TRANQUIL RETREAT, SANDY HOOK · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/tranquil-retreat">Tranquil Retreat, Sandy Hook</a></p><h2 class="sw-sp-h">Corrugated Steel Against <em>Tidal Forest</em></h2><p class="sw-body">The material palette was selected to converge with the site over time, not resist it.</p><p class="sw-cr">Designer: Rob Milstead &nbsp;|&nbsp; Builder: Summerhill Fine Homes</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/tranquil-retreat/">Tranquil Retreat, Sandy Hook</a></p><h2 class="sw-sp-h">Corrugated Steel Against <em>Tidal Forest</em></h2><p class="sw-body">The material palette was selected to converge with the site over time, not resist it.</p><p class="sw-cr">Designer: Rob Milstead &nbsp;|&nbsp; Builder: Summerhill Fine Homes</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?content-type=image%2Fjpeg" srcset="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/aa77ed99-a103-40dd-bce5-b355bab58632/sandy-hook-sunshine-coast-architectural-photography-matt-anthony-.jpg-11.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Entry door standing open under a wood soffit, dark ribbed cladding and a planted bed alongside" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Entry compression. Dark steel overhead, then the eye releases straight through to green.</figcaption></figure>
 </section>
 
@@ -675,7 +687,7 @@ body{background:#f6f4f0!important}
 
 <!-- NET ZERO BUILD, WHISTLER · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/net-zero-build-whistler">Net Zero Build, Whistler</a></p><h2 class="sw-sp-h">Built <em>to Net Zero</em></h2><p class="sw-body">Bold form and purposeful material choices against Whistler's dramatic mountain backdrop.</p><p class="sw-cr">Builder: Peak Ventures &nbsp;|&nbsp; Interiors: Gnar Interior Design</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/net-zero-build-whistler/">Net Zero Build, Whistler</a></p><h2 class="sw-sp-h">Built <em>to Net Zero</em></h2><p class="sw-body">Bold form and purposeful material choices against Whistler's dramatic mountain backdrop.</p><p class="sw-cr">Builder: Peak Ventures &nbsp;|&nbsp; Interiors: Gnar Interior Design</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?content-type=image%2Fjpeg" srcset="https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/6824fd48afd1dd40cd73e146/0ab160b7-ec92-4a1d-966a-8fe689ded9e9/peak-ventures-whistler-6.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Lawn and planted beds below a house with a stone base and pale vertical cladding" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Stone pilaster catching dappled light through the evergreens. The building already belongs.</figcaption></figure>
 </section>
 
@@ -686,7 +698,7 @@ body{background:#f6f4f0!important}
 
 <!-- DESOLATION SOUND, SUNSHINE COAST · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/desolation-sound">Desolation Sound, Sunshine Coast</a></p><h2 class="sw-sp-h">Shingle, Cedar, <em>and Moonrise</em></h2><p class="sw-body">A shingled pavilion on the rock, the moon coming up over the water.</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/desolation-sound/">Desolation Sound, Sunshine Coast</a></p><h2 class="sw-sp-h">Shingle, Cedar, <em>and Moonrise</em></h2><p class="sw-body">A shingled pavilion on the rock, the moon coming up over the water.</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/70f9dba6-b3e7-44e7-8cd3-08c2e46eb534/desolation-sound-residence-blue-hour-moonrise-and-reflection-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Desolation Sound pavilion lit from within with the moon over the water" width="1500" height="1125" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Blue hour. Interior light in the shingle walls, the moon up over the far shore.</figcaption></figure>
 </section>
 
@@ -697,7 +709,7 @@ body{background:#f6f4f0!important}
 
 <!-- JOHNSTONE ROAD, MADEIRA PARK · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/johnstone-road">Johnstone Road, Madeira Park</a></p><h2 class="sw-sp-h">Twin Gables <em>at the Water's Edge</em></h2><p class="sw-body">Grey stained cedar, raw concrete and black steel, stepping down to the water.</p><p class="sw-cr">Architect: Keck Architecture + Design &nbsp;|&nbsp; Builder: Summerhill Fine Homes</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/johnstone-road/">Johnstone Road, Madeira Park</a></p><h2 class="sw-sp-h">Twin Gables <em>at the Water's Edge</em></h2><p class="sw-body">Grey stained cedar, raw concrete and black steel, stepping down to the water.</p><p class="sw-cr">Architect: Keck Architecture + Design &nbsp;|&nbsp; Builder: Summerhill Fine Homes</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e8c0bd41-c147-4746-9802-210ad6923971/johnstone-road-madeira-park-twilight-elevation-through-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Johnstone Road twin gable elevation at blue hour" width="1500" height="1875" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Blue hour from the bank. Both gables lit, the planting still holding the last of the light.</figcaption></figure>
 </section>
 
@@ -716,7 +728,7 @@ body{background:#f6f4f0!important}
 
 <!-- WARBLER RESIDENCE, WHISTLER · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/warbler-whistler">Warbler Residence, Whistler</a></p><h2 class="sw-sp-h">Dark Timber, <em>Winter Light</em></h2><p class="sw-body">Photographed across one winter day, from morning light through dusk.</p><p class="sw-cr">Architect: Shelter Residential Design &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop &nbsp;|&nbsp; Windows: The Window Merchant</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/warbler-whistler/">Warbler Residence, Whistler</a></p><h2 class="sw-sp-h">Dark Timber, <em>Winter Light</em></h2><p class="sw-body">Photographed across one winter day, from morning light through dusk.</p><p class="sw-cr">Architect: Shelter Residential Design &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop &nbsp;|&nbsp; Windows: The Window Merchant</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/64c6702a-78ea-4fe3-a601-78bce7c197a8/warbler-whistler-architectural-photography-matt-anthony-.jpg-5.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Covered walkway on slim steel columns under a pale wood soffit, a concrete path through snow" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Winter entry. Cedar soffit framing the mountains, concrete path cutting through snow.</figcaption></figure>
 </section>
 
@@ -729,7 +741,7 @@ body{background:#f6f4f0!important}
 
 <!-- FITZSIMMONS RESIDENCE, WHISTLER · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/fitzsimmons-whistler">Fitzsimmons Residence, Whistler</a></p><h2 class="sw-sp-h">Angular Form, <em>Material Contrast</em></h2><p class="sw-body">The contrast between dark cladding and white ground is at its most graphic in winter.</p><p class="sw-cr">Architect: Shelter Residential Design &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/fitzsimmons-whistler/">Fitzsimmons Residence, Whistler</a></p><h2 class="sw-sp-h">Angular Form, <em>Material Contrast</em></h2><p class="sw-body">The contrast between dark cladding and white ground is at its most graphic in winter.</p><p class="sw-cr">Architect: Shelter Residential Design &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/312b0797-a43a-4a51-906e-f913c78c7b79/fitzsimmons-whistler-architectural-photography-matt-anthony-.jpg-3.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Street elevation above a cleared drive, dark cladding below and wood siding above, mountains beyond" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Fresh snow compressing the tonal range. Standing seam and cedar sharp against white.</figcaption></figure>
 </section>
 
@@ -740,7 +752,7 @@ body{background:#f6f4f0!important}
 
 <!-- SUGARLOAF RESIDENCE, PEMBERTON · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/sugarloaf-residence">Sugarloaf Residence, Pemberton</a></p><h2 class="sw-sp-h">Framing <em>Mount Currie</em></h2><p class="sw-body">At twilight, interior light turns the glazing into a series of lanterns against the mountain.</p><p class="sw-cr">Architect: STARK Architecture &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop &nbsp;|&nbsp; Millwork: Blueprint</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/sugarloaf-residence/">Sugarloaf Residence, Pemberton</a></p><h2 class="sw-sp-h">Framing <em>Mount Currie</em></h2><p class="sw-body">At twilight, interior light turns the glazing into a series of lanterns against the mountain.</p><p class="sw-cr">Architect: STARK Architecture &nbsp;|&nbsp; Builder: Balmoral Construction &nbsp;|&nbsp; Interiors: Britt Lothrop &nbsp;|&nbsp; Millwork: Blueprint</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2e8c2fb7-cf13-4456-a1f4-6aadb45a2940/surgarloaf-pemberton-architectural-photography-matt-anthony-.jpg-18.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="The house low on a snowy slope, a long dark elevation with snow covered peaks beyond" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Golden hour on Mount Currie. The house in shadow, the peak in direct light. Timing.</figcaption></figure>
 </section>
 
@@ -754,7 +766,7 @@ body{background:#f6f4f0!important}
 
 <!-- COLEMAN RESIDENCE, INVERMERE · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/coleman">Coleman Residence, Invermere</a></p><h2 class="sw-sp-h">Stone Gable, <em>Dark Timber</em></h2><p class="sw-body">A stone gable set against a dark timber wing, the lake showing up in the glass.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/coleman/">Coleman Residence, Invermere</a></p><h2 class="sw-sp-h">Stone Gable, <em>Dark Timber</em></h2><p class="sw-body">A stone gable set against a dark timber wing, the lake showing up in the glass.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/7621878b-6406-411b-bf56-e862f0d925fc/coleman-residence-invermere-covered-entry-at-dusk-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Coleman Residence entry portico with a cedar ceiling" width="1500" height="1200" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Head on at the entry. Cedar ceiling, black cladding one side and stone the other, the view straight through the house.</figcaption></figure>
 </section>
 
@@ -765,7 +777,7 @@ body{background:#f6f4f0!important}
 
 <!-- SCHMIDT RESIDENCE, INVERMERE · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/schmit">Schmidt Residence, Invermere</a></p><h2 class="sw-sp-h">Timber Posts, <em>Still Water</em></h2><p class="sw-body">Two storeys of glass under cedar soffits, the covered deck an outdoor room facing the lake.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/schmit/">Schmidt Residence, Invermere</a></p><h2 class="sw-sp-h">Timber Posts, <em>Still Water</em></h2><p class="sw-body">Two storeys of glass under cedar soffits, the covered deck an outdoor room facing the lake.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/85fe5cd3-9178-439b-b0c3-956a365f15da/schmidt-residence-invermere-twilight-lakefront-elevation-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Schmidt Residence glass elevation at dusk over the lake" width="1500" height="1125" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Dusk. Lit soffits, timber posts, the lake and mountains behind the glass.</figcaption></figure>
 </section>
 
@@ -779,7 +791,7 @@ body{background:#f6f4f0!important}
 
 <!-- BALSAM WAY, WHISTLER · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/balsam-way">Balsam Way, Whistler</a></p><h2 class="sw-sp-h">A Classic Whistler Home, <em>Renewed</em></h2><p class="sw-body">The character of the original timber, feeling completely current.</p><p class="sw-cr">Builder: Tymac Construction &nbsp;|&nbsp; Interiors: LRD Studio</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/balsam-way/">Balsam Way, Whistler</a></p><h2 class="sw-sp-h">A Classic Whistler Home, <em>Renewed</em></h2><p class="sw-body">The character of the original timber, feeling completely current.</p><p class="sw-cr">Builder: Tymac Construction &nbsp;|&nbsp; Interiors: LRD Studio</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9fb8c663-277d-4d25-b564-10ce1a8a57cf/LRD-2500px-38.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Entry door standing open onto the walk, a sheepskin over a basket beside a bench" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Whitewashed fir, soft light, sheepskin. The warmth starts before you cross the threshold.</figcaption></figure>
 </section>
 
@@ -790,7 +802,7 @@ body{background:#f6f4f0!important}
 
 <!-- FRASER VALLEY VISTA, LANGLEY · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/fraser-valley-vista">Fraser Valley Vista, Langley</a></p><h2 class="sw-sp-h">High <em>on the Escarpment</em></h2><p class="sw-body">Set high on an escarpment overlooking farmland and the coastal mountains.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/fraser-valley-vista/">Fraser Valley Vista, Langley</a></p><h2 class="sw-sp-h">High <em>on the Escarpment</em></h2><p class="sw-body">Set high on an escarpment overlooking farmland and the coastal mountains.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/fd1ad420-81be-49cf-8171-509b0a8f3328/siteline-langley-21.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Walk in shower and a long wood vanity below the windows, the valley showing beyond" width="1500" height="1429" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Afternoon raking across herringbone marble. The Valley through the window, teal panelling anchoring the frame.</figcaption></figure>
 </section>
 
@@ -801,7 +813,7 @@ body{background:#f6f4f0!important}
 
 <!-- SDA BC & YUKON HEADQUARTERS, ABBOTSFORD · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/seventh-day-adventist-bc-headquarters">SDA BC & Yukon Headquarters, Abbotsford</a></p><h2 class="sw-sp-h">Institutional Timber <em>and Glass</em></h2><p class="sw-body">Institutional design that feels warm without sacrificing rigour.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/seventh-day-adventist-bc-headquarters/">SDA BC & Yukon Headquarters, Abbotsford</a></p><h2 class="sw-sp-h">Institutional Timber <em>and Glass</em></h2><p class="sw-body">Institutional design that feels warm without sacrificing rigour.</p><p class="sw-cr">Architect: Sitelines Architecture</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Glass entrance doors under a deep overhang, young trees and benches across the paved plaza" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Street level. Columnar maples framing the entry. Civic scale that still feels human.</figcaption></figure>
 </section>
 
@@ -812,7 +824,7 @@ body{background:#f6f4f0!important}
 
 <!-- BROWN'S RESIDENCE, SUNSHINE COAST · spread -->
 <section class="sw-s sw-s-sp sw-rv">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/browns-residence">Brown's Residence, Sunshine Coast</a></p><h2 class="sw-sp-h">Open the Full Width <em>to the Water</em></h2><p class="sw-body">Flat coastal light, and the living room open end to end toward the shore.</p><p class="sw-cr">Builder: Summerhill Fine Homes</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/browns-residence/">Brown's Residence, Sunshine Coast</a></p><h2 class="sw-sp-h">Open the Full Width <em>to the Water</em></h2><p class="sw-body">Flat coastal light, and the living room open end to end toward the shore.</p><p class="sw-cr">Builder: Summerhill Fine Homes</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/35e24e7e-8ae5-47fa-9242-792ad3b6e7b9/browns-road-sunshine-coast-architectural-photographer-matt-anthony-7.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="Living room with a full width slider open to the water, wood soffit beyond" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Horizon line level with the floor plane. The Strait of Georgia as the fourth wall.</figcaption></figure>
 </section>
 
@@ -823,7 +835,7 @@ body{background:#f6f4f0!important}
 
 <!-- GAMBIER ISLAND RESIDENCE · spread -->
 <section class="sw-s sw-s-sp">
-  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/gambier-island-residence">Gambier Island Residence</a></p><h2 class="sw-sp-h">Accessed Only <em>by Water</em></h2><p class="sw-body">The structure follows the natural clearing rather than imposing one.</p><p class="sw-cr">Designer: Linwood Homes &nbsp;|&nbsp; Builder: Black Thumb Contracting</p></div>
+  <div class="sw-sp-txt sw-mob-title"><p class="sw-lbl"><a href="/homepage-preview/gambier-island-residence/">Gambier Island Residence</a></p><h2 class="sw-sp-h">Accessed Only <em>by Water</em></h2><p class="sw-body">The structure follows the natural clearing rather than imposing one.</p><p class="sw-cr">Designer: Linwood Homes &nbsp;|&nbsp; Builder: Black Thumb Contracting</p></div>
   <figure class="sw-sp-fig sw-mob-img"><div class="sw-frame"><button type="button" class="sw-zoom"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ccfb80fe-3b57-490b-bffb-dfe02f8e174e/linwood-gambier-web-34.jpg?format=2500w 2500w" sizes="(max-width:900px) calc(100vw - 32px), 62vw" alt="The wooded point from the air, the house small on the shore below a distant mountain" width="1500" height="1000" decoding="async" loading="lazy"></button></div><figcaption class="sw-cap">Aerial over Howe Sound. The house is a single line in the canopy.</figcaption></figure>
 </section>
 
@@ -839,8 +851,8 @@ body{background:#f6f4f0!important}
     <p class="sw-eyebrow">Contact</p>
     <h2 class="sw-cta-h" id="sw-cta-h">Tell me about your project.</h2>
     <div class="sw-cta-links">
-      <a href="/discovery-call" class="sw-btn-primary">Book a Discovery Call</a>
-      <a href="/contact" class="sw-btn-secondary">Send a Message</a>
+      <a href="/homepage-preview/discovery-call/" class="sw-btn-primary">Book a Discovery Call</a>
+      <a href="/homepage-preview/contact/" class="sw-btn-secondary">Send a Message</a>
     </div>
     <span class="sw-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
   </div>
@@ -856,27 +868,29 @@ body{background:#f6f4f0!important}
         <p class="hp-ft-mark">Matt Anthony Photography</p>
         <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
         <p class="hp-ft-areas">
-          <a href="/squamish-architectural-photography">Squamish</a> &middot;
-          <a href="/whistler-architectural-photography">Whistler</a> &middot;
-          <a href="/pemberton-photography">Pemberton</a> &middot;
-          <a href="/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
-          <a href="/vancouver-architectural-photographer">Vancouver</a> &middot;
-          <a href="/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
-          <a href="/okanagan-architectural-photographer">Okanagan</a> &middot;
-          <a href="/salt-spring-architectural-photography">Salt&nbsp;Spring</a> &middot;
-          <a href="/invermere-architectural-photography">Invermere</a>
+          <a href="/homepage-preview/squamish-architectural-photography/">Squamish</a> &middot;
+          <a href="/homepage-preview/whistler-architectural-photography/">Whistler</a> &middot;
+          <a href="/homepage-preview/pemberton-photography/">Pemberton</a> &middot;
+          <a href="/homepage-preview/sunshine-coast-photography/">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/homepage-preview/vancouver-architectural-photographer/">Vancouver</a> &middot;
+          <a href="/homepage-preview/fraser-valley-photography/">Fraser&nbsp;Valley</a> &middot;
+          <a href="/homepage-preview/okanagan-architectural-photographer/">Okanagan</a> &middot;
+          <a href="/homepage-preview/salt-spring-architectural-photography/">Salt&nbsp;Spring</a> &middot;
+          <a href="/homepage-preview/invermere-architectural-photography/">Invermere</a>
         </p>
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
-        <a href="/projects">Projects</a>
-        <a href="/portfolio">Portfolio</a>
-            <a href="/creative-partner">Creative Partner</a>
-        <a href="/process">Process</a>
-        <a href="/bio">About</a>
-        <a href="/journal">Journal</a>
-        <a href="/faqs">FAQs</a>
-        <a href="/discovery-call">Discovery Call</a>
-      <a href="/contact">Contact</a>
+        <a href="/homepage-preview/projects-v2/">Projects</a>
+        <a href="/homepage-preview/portfolio/">Portfolio</a>
+        <a href="/homepage-preview/services/">Services</a>
+        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+        <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/case-studies/">Case Studies</a>
+        <a href="/homepage-preview/bio/">About</a>
+        <a href="/homepage-preview/journal/">Journal</a>
+        <a href="/homepage-preview/faqs/">FAQs</a>
+        <a href="/homepage-preview/discovery-call/">Discovery Call</a>
+        <a href="/homepage-preview/contact/">Contact</a>
       </nav>
     </div>
 
@@ -947,33 +961,67 @@ body{background:#f6f4f0!important}
 })();
 
 (function(){
-  /* About dropdown. Everything inside it is also in the footer, so if this
+  /* Dropdowns. About and Services. Hub pages are also in the footer, so if this
      script never runs those pages stay reachable and the trigger is inert. */
-  var btn = document.getElementById('hpAboutBtn');
-  var menu = document.getElementById('hpAboutMenu');
-  if(!btn || !menu) return;
-  var group = btn.parentNode, hoverOK = false, shutTimer;
+  var groups = document.querySelectorAll('.hp-nav-group');
+  if(!groups.length) return;
+  var hoverOK = false;
   try { hoverOK = window.matchMedia('(hover:hover) and (pointer:fine)').matches; } catch(e){}
 
-  function open(){ clearTimeout(shutTimer); menu.hidden = false; btn.setAttribute('aria-expanded','true'); }
-  function shut(){ menu.hidden = true; btn.setAttribute('aria-expanded','false'); }
-  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
-
-  btn.addEventListener('click', function(e){ e.preventDefault(); isOpen() ? shut() : open(); });
-
-  if(hoverOK){
-    group.addEventListener('mouseenter', open);
-    group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+  function closeAll(except){
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i] !== except) groups[i]._shut && groups[i]._shut();
+    }
   }
 
+  function bind(group){
+    var btn = group.querySelector('.hp-nav-trigger');
+    var menu = group.querySelector('.hp-nav-menu');
+    if(!btn || !menu) return;
+    var shutTimer;
+    function open(){
+      closeAll(group);
+      clearTimeout(shutTimer);
+      menu.hidden = false;
+      btn.setAttribute('aria-expanded','true');
+    }
+    function shut(){
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded','false');
+    }
+    function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
+    group._shut = shut;
+    group._isOpen = isOpen;
+    group._btn = btn;
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      isOpen() ? shut() : open();
+    });
+    if(hoverOK){
+      group.addEventListener('mouseenter', open);
+      group.addEventListener('mouseleave', function(){ shutTimer = setTimeout(shut, 180); });
+    }
+    group.addEventListener('focusout', function(e){
+      if(isOpen() && !group.contains(e.relatedTarget)) shut();
+    });
+  }
+
+  for(var i = 0; i < groups.length; i++) bind(groups[i]);
+
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && isOpen()){ shut(); btn.focus(); }
+    if(e.key !== 'Escape') return;
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i]._isOpen && groups[i]._isOpen()){
+        groups[i]._shut();
+        if(groups[i]._btn) groups[i]._btn.focus();
+      }
+    }
   });
   document.addEventListener('click', function(e){
-    if(isOpen() && !group.contains(e.target)) shut();
-  });
-  group.addEventListener('focusout', function(e){
-    if(isOpen() && !group.contains(e.relatedTarget)) shut();
+    for(var i = 0; i < groups.length; i++){
+      if(groups[i]._isOpen && groups[i]._isOpen() && !groups[i].contains(e.target)) groups[i]._shut();
+    }
   });
 })();
 </script>
