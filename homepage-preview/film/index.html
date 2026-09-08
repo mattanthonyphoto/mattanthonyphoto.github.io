@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Film preview</title>
+<title>film preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -42,11 +42,12 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services, Contact.
+   Top level: Projects, About (dropdown), Services (dropdown), Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer. Services is a single link to the hub. Leaves live on that page
-   and in the footer (Creative Partner). ── */
+   the footer. Services dropdown: Project Photography, Videography,
+   Progression Documentation, Creative Partner. The hub is in the footer.
+   Marketing is not in the nav. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -268,13 +269,12 @@
   88%,100%{transform:translateY(0)}
 }
 .sv-card-film{aspect-ratio:16/9}
-.sv-card-film video,.sv-yt-poster{width:100%;height:100%;object-fit:cover;display:block}
-.sv-card-film iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.sv-card-film video{width:100%;height:100%;object-fit:cover;display:block}
 .sv-play{position:absolute;inset:0;z-index:2;display:flex!important;align-items:center;
   justify-content:center;background:transparent!important;border:0!important;padding:0;
   cursor:pointer;color:#f6f4f0!important}
 .sv-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
-.sv-playing .sv-play,.sv-playing .sv-yt-poster{display:none!important}
+.sv-playing .sv-play{display:none!important}
 .sv-intro{padding:0 0 var(--section);background:var(--paper)!important}
 .sv-intro-inner{display:flex!important;flex-wrap:wrap;align-items:center;
   gap:clamp(36px,5vw,80px)}
@@ -389,7 +389,6 @@
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
         <a href="/homepage-preview/film/">Videography</a>
         <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
@@ -498,16 +497,6 @@
       <h2 id="sv-hang-h">Recent films.</h2>
     </div>
     <div class="sv-stack">
-      <div class="sv-card sv-card-full">
-        <div class="sv-card-frame sv-card-film" data-yt="tUeFijrUrgY">
-          <img class="sv-yt-poster" src="https://mattanthonyphoto.github.io/media/newlines-adu/poster-newlines-adu.jpg" srcset="https://mattanthonyphoto.github.io/media/newlines-adu/poster-newlines-adu-1000.jpg 1000w, https://mattanthonyphoto.github.io/media/newlines-adu/poster-newlines-adu.jpg 1920w" sizes="100vw" alt="Wrapped ADU module hanging from a crane over a pad in the trees" width="1920" height="1080" loading="lazy" decoding="async">
-          <button type="button" class="sv-play" aria-label="Play the Newlines ADU film, 1 minute 1 second"><svg width="58" height="58" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="25" stroke="rgba(246,244,240,.9)" stroke-width="1"/><path d="M21 17l14 9-14 9z" fill="rgba(246,244,240,.9)"/></svg></button>
-        </div>
-        <div class="sv-card-over">
-          <p class="sv-card-name">Newlines ADU</p>
-          <p class="sv-card-loc">Squamish &middot; 1:01</p>
-        </div>
-      </div>
       <div class="sv-card">
         <div class="sv-card-frame sv-card-film">
           <video preload="none" playsinline poster="https://mattanthonyphoto.github.io/media/films/poster-oles.jpg" width="1280" height="720">
@@ -525,11 +514,11 @@
           <video preload="none" playsinline poster="https://mattanthonyphoto.github.io/media/films/poster-cortis.jpg" width="1280" height="720">
             <source src="https://mattanthonyphoto.github.io/media/films/cortis-island-film.mp4" type="video/mp4">
           </video>
-          <button type="button" class="sv-play" aria-label="Play the Cortis Island film, 1 minute 59 seconds"><svg width="58" height="58" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="25" stroke="rgba(246,244,240,.9)" stroke-width="1"/><path d="M21 17l14 9-14 9z" fill="rgba(246,244,240,.9)"/></svg></button>
+          <button type="button" class="sv-play" aria-label="Play the Desolation Sound film, 1 minute 59 seconds"><svg width="58" height="58" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="25" stroke="rgba(246,244,240,.9)" stroke-width="1"/><path d="M21 17l14 9-14 9z" fill="rgba(246,244,240,.9)"/></svg></button>
         </div>
         <div class="sv-card-over">
-          <p class="sv-card-name">Cortis Island</p>
-          <p class="sv-card-loc">1:59</p>
+          <p class="sv-card-name">Desolation Sound</p>
+          <p class="sv-card-loc">Sunshine Coast &middot; 1:59</p>
         </div>
       </div>
     </div>
@@ -722,19 +711,7 @@
   document.querySelectorAll('.sv-play').forEach(function(btn){
     btn.addEventListener('click', function(){
       var frame = btn.closest('.sv-card-frame');
-      if(!frame) return;
-      var yt = frame.getAttribute('data-yt');
-      if(yt){
-        var ifr = document.createElement('iframe');
-        ifr.src = 'https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&rel=0&modestbranding=1';
-        ifr.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen');
-        ifr.setAttribute('allowfullscreen','');
-        ifr.setAttribute('title', btn.getAttribute('aria-label') || 'Film');
-        frame.appendChild(ifr);
-        frame.classList.add('sv-playing');
-        return;
-      }
-      var v = frame.querySelector('video');
+      var v = frame && frame.querySelector('video');
       if(!v) return;
       v.setAttribute('controls','');
       v.play();

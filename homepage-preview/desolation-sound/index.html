@@ -50,10 +50,12 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services, Contact.
+   Top level: Projects, About (dropdown), Services (dropdown), Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer, so if the script never runs those pages are still reachable. ── */
+   the footer. Services dropdown: Project Photography, Videography,
+   Progression Documentation, Creative Partner. The hub is in the footer.
+   Marketing is not in the nav. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -342,6 +344,16 @@
   font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:rgba(246,244,240,.82)}
 .tp-lb-x:hover,.tp-lb-x:focus-visible{color:#fff}
+
+/* ── FILM: featured at the start of the gallery, same visit as the stills ── */
+.tp-film{margin:0 0 clamp(20px,2.4vw,36px)}
+.tp-film-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:16/9}
+.tp-film-frame video{width:100%;height:100%;object-fit:cover;display:block}
+.tp-play{position:absolute;inset:0;z-index:2;display:flex!important;align-items:center;
+  justify-content:center;background:transparent!important;border:0!important;padding:0;
+  cursor:pointer;color:#f6f4f0!important}
+.tp-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
+.tp-playing .tp-play{display:none!important}
 @media (prefers-reduced-motion:reduce){.tp-wrap *{animation:none!important;transition:none!important}}
 </style>
 
@@ -362,7 +374,6 @@
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
         <a href="/homepage-preview/film/">Videography</a>
         <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
@@ -398,6 +409,14 @@
 
     </dl>
 
+    <section class="tp-film" aria-label="Film">
+      <div class="tp-film-frame">
+        <video preload="none" playsinline poster="https://mattanthonyphoto.github.io/media/films/poster-cortis.jpg" width="1280" height="720">
+          <source src="https://mattanthonyphoto.github.io/media/films/cortis-island-film.mp4" type="video/mp4">
+        </video>
+        <button type="button" class="tp-play" aria-label="Play the Desolation Sound film, 1 minute 59 seconds"><svg width="58" height="58" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="25" stroke="rgba(246,244,240,.9)" stroke-width="1"/><path d="M21 17l14 9-14 9z" fill="rgba(246,244,240,.9)"/></svg></button>
+      </div>
+    </section>
     <section class="tp-gallery" aria-label="Photographs">
       <figure class="tp-fig tp-wide"><button type="button" class="tp-zoom" aria-label="Enlarge photograph"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(min-width: 1600px) 1440px, (min-width: 480px) 90vw, calc(100vw - 48px)" alt="From the air, the house among trees above a wide beach at low tide" width="1500" height="1000" loading="lazy" decoding="async" data-full="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/747873d0-c076-4c11-ace5-0e42f1183568/desolation-sound-residence-aerial-over-the-tidal-flats-architectural-photographer-matt-anthony.jpg?format=2500w"></button></figure>
       <div class="tp-pair">
@@ -721,6 +740,18 @@
   x.addEventListener('click',shut);
   lb.addEventListener('click',function(e){ if(e.target===lb) shut(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!lb.hidden) shut(); });
+})();
+(function(){
+  document.querySelectorAll('.tp-play').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var frame = btn.closest('.tp-film-frame');
+      var v = frame && frame.querySelector('video');
+      if(!v) return;
+      v.setAttribute('controls','');
+      v.play();
+      frame.classList.add('tp-playing');
+    });
+  });
 })();
 </script>
 
