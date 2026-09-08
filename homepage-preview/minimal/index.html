@@ -262,54 +262,52 @@
 .hp-process-banner{position:relative;height:clamp(420px,58vh,720px);min-height:420px;overflow:hidden;
   background:var(--ink)!important;margin:0;
   display:flex!important;align-items:flex-end}
-.hp-voices-banner{position:relative;height:clamp(560px,82vh,960px);min-height:560px;overflow:hidden;
-  background:var(--ink)!important;margin:0 0 clamp(48px,6vw,88px);
-  display:flex!important;align-items:flex-end}
-.hp-process-banner>img,.hp-voices-banner>img{position:absolute;inset:0;width:100%;height:100%;max-width:none;
-  object-fit:cover;z-index:0}
-.hp-process-banner>img{object-position:50% 42%}
-.hp-voices-banner>img{object-position:50% 55%}
-.hp-process-banner::before,.hp-voices-banner::before{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;z-index:1;pointer-events:none;
+
+.hp-process-banner>img{position:absolute;inset:0;width:100%;height:100%;max-width:none;
+  object-fit:cover;object-position:50% 42%;z-index:0}
+.hp-process-banner::before{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,0) 0%,rgba(26,26,24,.55) 48%,rgba(26,26,24,.82) 100%)}
-.hp-process-banner-c,.hp-voices-banner-c{position:relative;z-index:2;width:100%;max-width:var(--page);
-  margin:0 auto;padding:0 var(--gutter) clamp(56px,7vw,96px)}
+.hp-process-banner-c{position:relative;z-index:2;width:100%;max-width:var(--page);
+  margin:0 auto;padding:0 var(--gutter) clamp(40px,6vw,72px)}
 .hp-process-banner .hp-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:18px}
 .hp-process-banner h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
   font-size:clamp(1.85rem,4vw,3.2rem);line-height:1.08;letter-spacing:0;
   color:#f6f4f0!important;max-width:18ch;margin:0 0 clamp(22px,3vw,32px)}
-.hp-process-body{padding:clamp(48px,6vw,88px) 0 0}
-.hp-process-row{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.5vw,48px) clamp(24px,3vw,40px)}
-.hp-step{flex:1 1 160px;min-width:0;max-width:220px;padding:0 0 0 18px;border-left:2px solid var(--gold)}
-.hp-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.2rem,1.8vw,1.45rem);line-height:1.2;letter-spacing:0;
+.hp-process-body{padding:clamp(56px,7vw,96px) 0}
+.hp-rail{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--gold);max-width:760px}
+.hp-rail li{position:relative;padding:0 0 clamp(28px,3vw,40px) 22px}
+.hp-rail li:last-child{padding-bottom:0}
+.hp-rail li::before{content:"";position:absolute;left:-26px;top:4px;width:9px;height:9px;
+  background:var(--gold)!important;border:1px solid var(--paper)}
+.hp-rail h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.15;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 8px}
-.hp-step p:not(.hp-eyebrow){font-size:14px;line-height:1.7;color:var(--ink)!important;margin:0;max-width:28ch}
-.hp-step .hp-eyebrow{margin-bottom:10px}
-@media (max-width:640px){.hp-step{flex:1 1 100%;max-width:none}}
-.hp-voices-banner .hp-voice-text{color:#f6f4f0!important;max-width:22em;
-  font-size:clamp(1.4rem,2.8vw,2.2rem);margin:0 0 16px}
-.hp-voices-banner .hp-quote-attr{color:rgba(246,244,240,.72)!important}
-.hp-voices-banner .hp-quote-attr a{color:#f6f4f0!important;border-bottom-color:rgba(246,244,240,.45)}
-.hp-voices-banner .hp-quote-attr a:hover,.hp-voices-banner .hp-quote-attr a:focus-visible{border-color:#f6f4f0}
+.hp-rail p:not(.hp-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:62ch}
+.hp-rail .hp-eyebrow{margin-bottom:10px}
 
 /* ════════════ TESTIMONIALS ════════════ */
-.hp-voices{padding:0 0 var(--section);background:var(--paper)!important}
-.hp-voices-head{margin-bottom:clamp(28px,3.5vw,48px)}
-.hp-voices-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+.hp-voices{padding:0;background:var(--paper)!important}
+.hp-voices-split{display:flex!important;flex-wrap:wrap;align-items:stretch}
+.hp-voices-pic{flex:1 1 46%;min-width:0;min-height:520px;position:relative;overflow:hidden;background:var(--ink)!important}
+.hp-voices-pic img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 55%}
+.hp-voices-copy{flex:1 1 42%;min-width:280px;padding:clamp(48px,6vw,88px) clamp(28px,5vw,72px);
+  display:flex!important;flex-direction:column;justify-content:center}
+.hp-voices-copy h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:var(--ink)!important;margin:0}
-.hp-voice{background:var(--paper)!important;border:1px solid var(--rule);
-  border-left:2px solid var(--gold);padding:clamp(24px,3vw,36px)}
-.hp-voices-row{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
-.hp-voices-row .hp-voice{flex:1 1 280px;min-width:0}
+  color:var(--ink)!important;margin:0 0 clamp(28px,3.5vw,48px)}
+.hp-voice{padding:0 0 clamp(28px,3vw,40px);border-top:1px solid var(--rule)}
+.hp-voice:first-of-type{border-top:0;padding-top:0}
 .hp-voice-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
-  font-size:clamp(1.1rem,1.8vw,1.35rem);line-height:1.45;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
+  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 14px;text-wrap:pretty}
 .hp-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
 .hp-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
 .hp-quote-attr a:hover,.hp-quote-attr a:focus-visible{border-color:var(--ink)}
-@media (max-width:640px){.hp-voices-row .hp-voice{flex:1 1 100%}}
+@media (max-width:760px){
+  .hp-voices-pic{flex:1 1 100%;min-height:420px}
+  .hp-voices-copy{flex:1 1 100%}
+}
 
 /* ════════════ CLOSE ════════════ */
 .hp-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
@@ -532,50 +530,48 @@
     </div>
   </div>
   <div class="hp-container hp-process-body">
-    <div class="hp-process-row">
-      <div class="hp-step">
+    <ol class="hp-rail">
+      <li>
         <p class="hp-eyebrow">01</p>
         <h3>Conversation</h3>
         <p>What the photographs and film are for.</p>
-      </div>
-      <div class="hp-step">
+      </li>
+      <li>
         <p class="hp-eyebrow">02</p>
         <h3>Planning</h3>
         <p>Plans, light, access. A prep note before the day.</p>
-      </div>
-      <div class="hp-step">
+      </li>
+      <li>
         <p class="hp-eyebrow">03</p>
         <h3>The visit</h3>
         <p>Exteriors, interiors, aerial, film. I move quietly.</p>
-      </div>
-      <div class="hp-step">
+      </li>
+      <li>
         <p class="hp-eyebrow">04</p>
         <h3>Editing</h3>
         <p>I edit every frame. The room as it reads standing in it.</p>
-      </div>
-      <div class="hp-step">
+      </li>
+      <li>
         <p class="hp-eyebrow">05</p>
         <h3>Delivery</h3>
         <p>Gallery in 5 to 10 business days. Licensing for the actual use.</p>
-      </div>
-    </div>
+      </li>
+    </ol>
   </div>
 </section>
 
 <!-- ════════════ TESTIMONIALS ════════════ -->
 <section class="hp-voices" aria-label="Client comments">
-  <div class="hp-voices-banner">
-    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=2500w 2500w" sizes="100vw" alt="The house at dusk against the mountain, lit windows in the stone and wood elevations" width="1500" height="1000" loading="lazy" decoding="async">
-    <div class="hp-voices-banner-c">
-      <p class="hp-voice-text test-t">Working with Matt was an absolute pleasure from start to finish.</p>
-      <p class="hp-quote-attr">Marc Harvey &middot; <a href="/homepage-preview/balmoral-construction/">Balmoral Construction</a></p>
+  <div class="hp-voices-split">
+    <div class="hp-voices-pic">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5197a486-4398-4327-83f1-8309f06eba46/eagle-pemberton-architectural-photography-matt-anthony-.jpg-30.jpg?format=2500w 2500w" sizes="(max-width: 760px) 100vw, 50vw" alt="The house at dusk against the mountain, lit windows in the stone and wood elevations" width="1500" height="1000" loading="lazy" decoding="async">
     </div>
-  </div>
-  <div class="hp-container">
-    <div class="hp-voices-head">
+    <div class="hp-voices-copy">
       <h2>What clients have said</h2>
-    </div>
-    <div class="hp-voices-row">
+      <div class="hp-voice">
+        <p class="hp-voice-text test-t">Working with Matt was an absolute pleasure from start to finish.</p>
+        <p class="hp-quote-attr">Marc Harvey &middot; <a href="/homepage-preview/balmoral-construction/">Balmoral Construction</a></p>
+      </div>
       <div class="hp-voice">
         <p class="hp-voice-text test-t">He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor.</p>
         <p class="hp-quote-attr">Kyle Paisley &middot; <a href="/homepage-preview/summerhill-fine-homes/">Summerhill Fine Homes</a></p>
