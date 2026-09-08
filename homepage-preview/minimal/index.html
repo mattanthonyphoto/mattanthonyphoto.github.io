@@ -257,6 +257,35 @@
   .hp-proj-loc{letter-spacing:.12em}
 }
 
+/* ════════════ PROCESS ════════════ */
+.hp-process{padding:0 0 var(--section);background:var(--paper)!important}
+.hp-process-head{display:flex!important;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(12px,1.5vw,20px)}
+.hp-process-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0}
+.hp-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
+.hp-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.15;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 8px}
+.hp-step p:not(.hp-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:62ch}
+.hp-step .hp-eyebrow{margin-bottom:10px}
+
+/* ════════════ TESTIMONIALS ════════════ */
+.hp-voices{padding:0 0 var(--section);background:var(--paper)!important}
+.hp-voices-head{margin-bottom:clamp(28px,3.5vw,48px)}
+.hp-voices-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
+  color:var(--ink)!important;margin:0}
+.hp-voice{max-width:760px;padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule)}
+.hp-voice-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
+.hp-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
+.hp-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
+.hp-quote-attr a:hover,.hp-quote-attr a:focus-visible{border-color:var(--ink)}
+
 /* ════════════ CLOSE ════════════ */
 .hp-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
@@ -348,6 +377,7 @@
       <div class="hp-nav-menu" id="hpAboutMenu" role="group" aria-labelledby="hpAboutBtn" hidden>
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/case-studies/">Case Studies</a>
         <a href="/homepage-preview/faqs/">FAQs</a>
         <a href="/homepage-preview/journal/">Journal</a>
       </div>
@@ -466,6 +496,62 @@
   </div>
 </section>
 
+<!-- ════════════ PROCESS ════════════ -->
+<section class="hp-process" aria-labelledby="hp-process-h">
+  <div class="hp-container">
+    <div class="hp-process-head">
+      <h2 id="hp-process-h">How a project runs</h2>
+      <a class="hp-arrow-link" href="/homepage-preview/process/">The process &rarr;</a>
+    </div>
+    <div class="hp-step">
+      <p class="hp-eyebrow">01</p>
+      <h3>Conversation</h3>
+      <p>A call settles what the photographs and film are for: the site, the deck, social, the record of the build.</p>
+    </div>
+    <div class="hp-step">
+      <p class="hp-eyebrow">02</p>
+      <h3>Planning</h3>
+      <p>I read the plans, work out light and access, and send a prep note ahead of the day.</p>
+    </div>
+    <div class="hp-step">
+      <p class="hp-eyebrow">03</p>
+      <h3>The visit</h3>
+      <p>Exteriors, interiors, aerial where the site allows, and film. I move quietly.</p>
+    </div>
+    <div class="hp-step">
+      <p class="hp-eyebrow">04</p>
+      <h3>Editing</h3>
+      <p>I edit every frame myself in Lightroom and Photoshop. Restrained, so the room reads the way it reads standing in it.</p>
+    </div>
+    <div class="hp-step">
+      <p class="hp-eyebrow">05</p>
+      <h3>Delivery</h3>
+      <p>Final images land in an online gallery, typically within 5 to 10 business days. Licensing terms written for the actual use.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ TESTIMONIALS ════════════ -->
+<section class="hp-voices" aria-label="Client comments">
+  <div class="hp-container">
+    <div class="hp-voices-head">
+      <h2>What clients have said</h2>
+    </div>
+    <div class="hp-voice">
+      <p class="hp-voice-text test-t">He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor.</p>
+      <p class="hp-quote-attr">Kyle Paisley &middot; <a href="/homepage-preview/summerhill-fine-homes/">Summerhill Fine Homes</a></p>
+    </div>
+    <div class="hp-voice">
+      <p class="hp-voice-text test-t">Working with Matt was an absolute pleasure from start to finish.</p>
+      <p class="hp-quote-attr">Marc Harvey &middot; <a href="/homepage-preview/balmoral-construction/">Balmoral Construction</a></p>
+    </div>
+    <div class="hp-voice">
+      <p class="hp-voice-text test-t">What first drew us to Matt's work was his use of natural light.</p>
+      <p class="hp-quote-attr">Jordan Maddox &middot; <a href="/homepage-preview/sitelines-architecture/">Sitelines Architecture</a></p>
+    </div>
+  </div>
+</section>
+
 <!-- ════════════ CLOSE ════════════ -->
 <section class="hp-close" aria-labelledby="hp-close-h">
   <img src="https://mattanthonyphoto.github.io/media/banners/the-perch-013-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/the-perch-013-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/the-perch-013-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/the-perch-013-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/the-perch-013-2560.webp 2560w" sizes="(orientation: portrait) 115vh, 100vw" alt="The Perch, Sunshine Coast, the cantilevered corner over the rock" loading="lazy" decoding="async" width="1500" height="938">
@@ -508,6 +594,7 @@
         <a href="/homepage-preview/projects-v2/">Projects</a>
                 <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/process/">Process</a>
+        <a href="/homepage-preview/case-studies/">Case Studies</a>
         <a href="/homepage-preview/bio/">About</a>
         <a href="/homepage-preview/journal/">Journal</a>
         <a href="/homepage-preview/faqs/">FAQs</a>
