@@ -259,6 +259,9 @@
 
 /* ════════════ PROCESS ════════════ */
 .hp-process{padding:0 0 var(--section);background:var(--paper)!important}
+.hp-process-banner{position:relative;height:clamp(280px,42vw,560px);overflow:hidden;
+  background:var(--ink)!important;margin:0 0 clamp(48px,6vw,88px)}
+.hp-process-banner img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
 .hp-process-head{display:flex!important;justify-content:space-between;align-items:baseline;
   flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(12px,1.5vw,20px)}
 .hp-process-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -277,14 +280,20 @@
 .hp-voices-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
   color:var(--ink)!important;margin:0}
-.hp-voice{max-width:760px;padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule)}
+.hp-voice{background:var(--paper)!important;border:1px solid var(--rule);
+  border-left:2px solid var(--gold);padding:clamp(24px,3vw,36px)}
+.hp-voice-lead{margin:0 0 clamp(20px,2.4vw,36px);padding:clamp(32px,4vw,48px)}
+.hp-voice-lead .hp-voice-text{font-size:clamp(1.35rem,2.4vw,1.85rem)}
+.hp-voices-row{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px)}
+.hp-voices-row .hp-voice{flex:1 1 280px;min-width:0}
 .hp-voice-text{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;
-  font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;letter-spacing:0;
+  font-size:clamp(1.1rem,1.8vw,1.35rem);line-height:1.45;letter-spacing:0;
   color:var(--ink)!important;margin:0 0 18px;text-wrap:pretty}
 .hp-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
 .hp-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
 .hp-quote-attr a:hover,.hp-quote-attr a:focus-visible{border-color:var(--ink)}
+@media (max-width:640px){.hp-voices-row .hp-voice{flex:1 1 100%}}
 
 /* ════════════ CLOSE ════════════ */
 .hp-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
@@ -498,6 +507,9 @@
 
 <!-- ════════════ PROCESS ════════════ -->
 <section class="hp-process" aria-labelledby="hp-process-h">
+  <figure class="hp-process-banner">
+    <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Gravel drive curving through tall firs to the low dark house" width="1500" height="1200" loading="lazy" decoding="async">
+  </figure>
   <div class="hp-container">
     <div class="hp-process-head">
       <h2 id="hp-process-h">How a project runs</h2>
@@ -537,17 +549,19 @@
     <div class="hp-voices-head">
       <h2>What clients have said</h2>
     </div>
-    <div class="hp-voice">
+    <div class="hp-voice hp-voice-lead">
       <p class="hp-voice-text test-t">Working with Matt was an absolute pleasure from start to finish.</p>
       <p class="hp-quote-attr">Marc Harvey &middot; <a href="/homepage-preview/balmoral-construction/">Balmoral Construction</a></p>
     </div>
-    <div class="hp-voice">
-      <p class="hp-voice-text test-t">He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor.</p>
-      <p class="hp-quote-attr">Kyle Paisley &middot; <a href="/homepage-preview/summerhill-fine-homes/">Summerhill Fine Homes</a></p>
-    </div>
-    <div class="hp-voice">
-      <p class="hp-voice-text test-t">What first drew us to Matt's work was his use of natural light.</p>
-      <p class="hp-quote-attr">Jordan Maddox &middot; <a href="/homepage-preview/sitelines-architecture/">Sitelines Architecture</a></p>
+    <div class="hp-voices-row">
+      <div class="hp-voice">
+        <p class="hp-voice-text test-t">He was highly responsive and organized pre-shoot, and on-site he worked efficiently with a professional, calm demeanor.</p>
+        <p class="hp-quote-attr">Kyle Paisley &middot; <a href="/homepage-preview/summerhill-fine-homes/">Summerhill Fine Homes</a></p>
+      </div>
+      <div class="hp-voice">
+        <p class="hp-voice-text test-t">What first drew us to Matt's work was his use of natural light.</p>
+        <p class="hp-quote-attr">Jordan Maddox &middot; <a href="/homepage-preview/sitelines-architecture/">Sitelines Architecture</a></p>
+      </div>
     </div>
   </div>
 </section>
