@@ -258,8 +258,11 @@
 }
 
 /* ════════════ PROCESS ════════════ */
-.hp-process{padding:0 0 var(--section);background:var(--paper)!important}
-.hp-process-banner,.hp-voices-banner{position:relative;height:clamp(560px,82vh,960px);min-height:560px;overflow:hidden;
+.hp-process{padding:0;background:var(--paper)!important}
+.hp-process-banner{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+  background:var(--ink)!important;margin:0;
+  display:flex!important;align-items:flex-end}
+.hp-voices-banner{position:relative;height:clamp(560px,82vh,960px);min-height:560px;overflow:hidden;
   background:var(--ink)!important;margin:0 0 clamp(48px,6vw,88px);
   display:flex!important;align-items:flex-end}
 .hp-process-banner>img,.hp-voices-banner>img{position:absolute;inset:0;width:100%;height:100%;max-width:none;
@@ -269,24 +272,17 @@
 .hp-process-banner::before,.hp-voices-banner::before{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(26,26,24,0) 0%,rgba(26,26,24,.55) 48%,rgba(26,26,24,.82) 100%)}
 .hp-process-banner-c,.hp-voices-banner-c{position:relative;z-index:2;width:100%;max-width:var(--page);
-  margin:0 auto;padding:0 var(--gutter) clamp(40px,6vw,80px)}
-.hp-process-banner .hp-voice-text,.hp-voices-banner .hp-voice-text{color:#f6f4f0!important;max-width:22em;
+  margin:0 auto;padding:0 var(--gutter) clamp(56px,7vw,96px)}
+.hp-process-banner .hp-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
+.hp-process-banner h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
+  color:#f6f4f0!important;max-width:18ch;margin:0 0 16px}
+.hp-process-banner .hp-hero-sub{margin:0 0 clamp(28px,3vw,40px)}
+.hp-voices-banner .hp-voice-text{color:#f6f4f0!important;max-width:22em;
   font-size:clamp(1.4rem,2.8vw,2.2rem);margin:0 0 16px}
-.hp-process-banner .hp-quote-attr,.hp-voices-banner .hp-quote-attr{color:rgba(246,244,240,.72)!important}
-.hp-process-banner .hp-quote-attr a,.hp-voices-banner .hp-quote-attr a{color:#f6f4f0!important;border-bottom-color:rgba(246,244,240,.45)}
-.hp-process-banner .hp-quote-attr a:hover,.hp-process-banner .hp-quote-attr a:focus-visible,
+.hp-voices-banner .hp-quote-attr{color:rgba(246,244,240,.72)!important}
+.hp-voices-banner .hp-quote-attr a{color:#f6f4f0!important;border-bottom-color:rgba(246,244,240,.45)}
 .hp-voices-banner .hp-quote-attr a:hover,.hp-voices-banner .hp-quote-attr a:focus-visible{border-color:#f6f4f0}
-.hp-process-head{display:flex!important;justify-content:space-between;align-items:baseline;
-  flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(12px,1.5vw,20px)}
-.hp-process-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.1;letter-spacing:0;
-  color:var(--ink)!important;margin:0}
-.hp-step{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--rule);max-width:760px}
-.hp-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.15;letter-spacing:0;
-  color:var(--ink)!important;margin:0 0 8px}
-.hp-step p:not(.hp-eyebrow){font-size:15px;line-height:1.8;color:var(--ink)!important;margin:0;max-width:62ch}
-.hp-step .hp-eyebrow{margin-bottom:10px}
 
 /* ════════════ TESTIMONIALS ════════════ */
 .hp-voices{padding:0 0 var(--section);background:var(--paper)!important}
@@ -522,39 +518,10 @@
   <div class="hp-process-banner">
     <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Gravel drive curving through tall firs to the low dark house" width="1500" height="1200" loading="lazy" decoding="async">
     <div class="hp-process-banner-c">
-      <p class="hp-voice-text test-t">His creative eye brought out the best in the design.</p>
-      <p class="hp-quote-attr">Kyle Paisley &middot; <a href="/homepage-preview/summerhill-fine-homes/">Summerhill Fine Homes</a></p>
-    </div>
-  </div>
-  <div class="hp-container">
-    <div class="hp-process-head">
+      <p class="hp-eyebrow">Process</p>
       <h2 id="hp-process-h">How a project runs</h2>
-      <a class="hp-arrow-link" href="/homepage-preview/process/">The process &rarr;</a>
-    </div>
-    <div class="hp-step">
-      <p class="hp-eyebrow">01</p>
-      <h3>Conversation</h3>
-      <p>A call settles what the photographs and film are for: the site, the deck, social, the record of the build.</p>
-    </div>
-    <div class="hp-step">
-      <p class="hp-eyebrow">02</p>
-      <h3>Planning</h3>
-      <p>I read the plans, work out light and access, and send a prep note ahead of the day.</p>
-    </div>
-    <div class="hp-step">
-      <p class="hp-eyebrow">03</p>
-      <h3>The visit</h3>
-      <p>Exteriors, interiors, aerial where the site allows, and film. I move quietly.</p>
-    </div>
-    <div class="hp-step">
-      <p class="hp-eyebrow">04</p>
-      <h3>Editing</h3>
-      <p>I edit every frame myself in Lightroom and Photoshop. Restrained, so the room reads the way it reads standing in it.</p>
-    </div>
-    <div class="hp-step">
-      <p class="hp-eyebrow">05</p>
-      <h3>Delivery</h3>
-      <p>Final images land in an online gallery, typically within 5 to 10 business days. Licensing terms written for the actual use.</p>
+      <p class="hp-hero-sub">Conversation, the visit, then the files.</p>
+      <a class="hp-hero-ghost" href="/homepage-preview/process/">The process</a>
     </div>
   </div>
 </section>
