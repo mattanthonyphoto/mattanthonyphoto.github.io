@@ -258,8 +258,8 @@
 }
 
 /* ════════════ PROCESS ════════════ */
-.hp-process{padding:0;background:var(--paper)!important}
-.hp-process-banner{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+.hp-process{padding:0 0 var(--section);background:var(--paper)!important}
+.hp-process-banner{position:relative;height:clamp(420px,58vh,720px);min-height:420px;overflow:hidden;
   background:var(--ink)!important;margin:0;
   display:flex!important;align-items:flex-end}
 .hp-voices-banner{position:relative;height:clamp(560px,82vh,960px);min-height:560px;overflow:hidden;
@@ -273,11 +273,19 @@
   background:linear-gradient(to bottom,rgba(26,26,24,0) 0%,rgba(26,26,24,.55) 48%,rgba(26,26,24,.82) 100%)}
 .hp-process-banner-c,.hp-voices-banner-c{position:relative;z-index:2;width:100%;max-width:var(--page);
   margin:0 auto;padding:0 var(--gutter) clamp(56px,7vw,96px)}
-.hp-process-banner .hp-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:22px}
+.hp-process-banner .hp-eyebrow{color:rgba(246,244,240,.85)!important;margin-bottom:18px}
 .hp-process-banner h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
-  font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:0;
-  color:#f6f4f0!important;max-width:18ch;margin:0 0 16px}
-.hp-process-banner .hp-hero-sub{margin:0 0 clamp(28px,3vw,40px)}
+  font-size:clamp(1.85rem,4vw,3.2rem);line-height:1.08;letter-spacing:0;
+  color:#f6f4f0!important;max-width:18ch;margin:0 0 clamp(22px,3vw,32px)}
+.hp-process-body{padding:clamp(48px,6vw,88px) 0 0}
+.hp-process-row{display:flex!important;flex-wrap:wrap;gap:clamp(28px,3.5vw,48px) clamp(24px,3vw,40px)}
+.hp-step{flex:1 1 160px;min-width:0;max-width:220px;padding:0 0 0 18px;border-left:2px solid var(--gold)}
+.hp-step h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.45rem);line-height:1.2;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 8px}
+.hp-step p:not(.hp-eyebrow){font-size:14px;line-height:1.7;color:var(--ink)!important;margin:0;max-width:28ch}
+.hp-step .hp-eyebrow{margin-bottom:10px}
+@media (max-width:640px){.hp-step{flex:1 1 100%;max-width:none}}
 .hp-voices-banner .hp-voice-text{color:#f6f4f0!important;max-width:22em;
   font-size:clamp(1.4rem,2.8vw,2.2rem);margin:0 0 16px}
 .hp-voices-banner .hp-quote-attr{color:rgba(246,244,240,.72)!important}
@@ -520,8 +528,36 @@
     <div class="hp-process-banner-c">
       <p class="hp-eyebrow">Process</p>
       <h2 id="hp-process-h">How a project runs</h2>
-      <p class="hp-hero-sub">Conversation, the visit, then the files.</p>
       <a class="hp-hero-ghost" href="/homepage-preview/process/">The process</a>
+    </div>
+  </div>
+  <div class="hp-container hp-process-body">
+    <div class="hp-process-row">
+      <div class="hp-step">
+        <p class="hp-eyebrow">01</p>
+        <h3>Conversation</h3>
+        <p>What the photographs and film are for.</p>
+      </div>
+      <div class="hp-step">
+        <p class="hp-eyebrow">02</p>
+        <h3>Planning</h3>
+        <p>Plans, light, access. A prep note before the day.</p>
+      </div>
+      <div class="hp-step">
+        <p class="hp-eyebrow">03</p>
+        <h3>The visit</h3>
+        <p>Exteriors, interiors, aerial, film. I move quietly.</p>
+      </div>
+      <div class="hp-step">
+        <p class="hp-eyebrow">04</p>
+        <h3>Editing</h3>
+        <p>I edit every frame. The room as it reads standing in it.</p>
+      </div>
+      <div class="hp-step">
+        <p class="hp-eyebrow">05</p>
+        <h3>Delivery</h3>
+        <p>Gallery in 5 to 10 business days. Licensing for the actual use.</p>
+      </div>
     </div>
   </div>
 </section>
