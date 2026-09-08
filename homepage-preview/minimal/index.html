@@ -259,9 +259,20 @@
 
 /* ════════════ PROCESS ════════════ */
 .hp-process{padding:0 0 var(--section);background:var(--paper)!important}
-.hp-process-banner{position:relative;height:clamp(280px,42vw,560px);overflow:hidden;
-  background:var(--ink)!important;margin:0 0 clamp(48px,6vw,88px)}
-.hp-process-banner img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.hp-process-banner{position:relative;height:clamp(560px,82vh,960px);overflow:hidden;
+  background:var(--ink)!important;margin:0 0 clamp(48px,6vw,88px);
+  display:flex!important;align-items:flex-end}
+.hp-process-banner img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 42%;z-index:0}
+.hp-process-banner::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(26,26,24,.34) 0%,rgba(26,26,24,.16) 38%,rgba(26,26,24,.62) 68%,rgba(26,26,24,.88) 100%)}
+.hp-process-banner-c{position:relative;z-index:2;width:100%;max-width:var(--page);
+  margin:0 auto;padding:0 var(--gutter) clamp(40px,6vw,80px)}
+.hp-process-banner .hp-voice-text{color:#f6f4f0!important;max-width:22em;
+  font-size:clamp(1.4rem,2.8vw,2.2rem);margin:0 0 16px}
+.hp-process-banner .hp-quote-attr{color:rgba(246,244,240,.72)!important}
+.hp-process-banner .hp-quote-attr a{color:#f6f4f0!important;border-bottom-color:rgba(246,244,240,.45)}
+.hp-process-banner .hp-quote-attr a:hover,.hp-process-banner .hp-quote-attr a:focus-visible{border-color:#f6f4f0}
 .hp-process-head{display:flex!important;justify-content:space-between;align-items:baseline;
   flex-wrap:wrap;gap:14px 28px;margin-bottom:clamp(12px,1.5vw,20px)}
 .hp-process-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
@@ -509,6 +520,10 @@
 <section class="hp-process" aria-labelledby="hp-process-h">
   <figure class="hp-process-banner">
     <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c3bb00fc-1c48-4972-a7c3-2e49a3d391f7/oles-cove-halfmoon-bay-approach-through-the-firs-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Gravel drive curving through tall firs to the low dark house" width="1500" height="1200" loading="lazy" decoding="async">
+    <div class="hp-process-banner-c">
+      <p class="hp-voice-text test-t">His creative eye brought out the best in the design.</p>
+      <p class="hp-quote-attr">Kyle Paisley &middot; <a href="/homepage-preview/summerhill-fine-homes/">Summerhill Fine Homes</a></p>
+    </div>
   </figure>
   <div class="hp-container">
     <div class="hp-process-head">
