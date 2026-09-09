@@ -242,8 +242,8 @@
 .hp-proj-lead,.hp-proj:last-child{flex:1 1 100%;max-width:none}
 .hp-proj-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
 .hp-proj-frame img{width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--ease)}
-.hp-proj-frame::before{content:'';position:absolute;left:0;right:0;bottom:0;height:40%;
-  background:linear-gradient(to top,rgba(26,26,24,.48),transparent);
+.hp-proj-frame::before{content:'';position:absolute;inset:0;
+  background:rgba(26,26,24,.62);
   opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
 .hp-proj-frame::after{content:'View project';position:absolute;left:16px;bottom:14px;z-index:1;
   font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;

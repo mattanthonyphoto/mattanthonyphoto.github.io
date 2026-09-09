@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>oles-cove-halfmoon-bay preview</title>
+<title>Oles Cove preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -257,8 +257,11 @@
 .tp-gallery{padding:0 0 clamp(56px,6vw,96px);display:flex!important;flex-direction:column;
   gap:clamp(20px,2.4vw,36px)}
 .tp-fig{margin:0;background:var(--paper)}
-.tp-zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer}
+.tp-zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
 .tp-zoom:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.tp-zoom::after{content:'';position:absolute;inset:0;background:rgba(26,26,24,.45);
+  opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
+.tp-zoom:hover::after,.tp-zoom:focus-visible::after{opacity:1}
 .tp-fig img{width:100%;height:auto}
 .tp-pair{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px);align-items:flex-start}
 .tp-pair>.tp-fig{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));min-width:0}
@@ -282,7 +285,17 @@
 .tp-pn-stack>a{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));max-width:calc(50% - clamp(10px,1.2vw,18px));min-width:0}
 .tp-pn-stack>a:only-child{flex:1 1 100%;max-width:none}
 .tp-pn-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
-.tp-pn-frame img{width:100%;height:100%;object-fit:cover}
+.tp-pn-frame img{width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--ease)}
+.tp-pn-stack>a .tp-pn-frame::before{content:'';position:absolute;inset:0;
+  background:rgba(26,26,24,.62);
+  opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
+.tp-pn-stack>a .tp-pn-frame::after{content:'View project';position:absolute;left:16px;bottom:14px;z-index:1;
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:#f6f4f0;
+  opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
+.tp-pn-stack>a:hover .tp-pn-frame img,.tp-pn-stack>a:focus-visible .tp-pn-frame img{opacity:.88}
+.tp-pn-stack>a:hover .tp-pn-frame::before,.tp-pn-stack>a:focus-visible .tp-pn-frame::before,
+.tp-pn-stack>a:hover .tp-pn-frame::after,.tp-pn-stack>a:focus-visible .tp-pn-frame::after{opacity:1}
 .tp-pn-over{display:flex!important;justify-content:space-between;align-items:baseline;
   gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
 .tp-pn-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
@@ -340,10 +353,14 @@
   display:flex!important;align-items:center;justify-content:center;padding:clamp(16px,3vw,48px)}
 .tp-lb[hidden]{display:none!important}
 .tp-lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
-.tp-lb-x{position:absolute;top:18px;right:22px;background:none;border:0;cursor:pointer;padding:10px;
+.tp-lb-x,.tp-lb-p,.tp-lb-n{position:absolute;background:none;border:0;cursor:pointer;padding:10px;
   font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:rgba(246,244,240,.82)}
-.tp-lb-x:hover,.tp-lb-x:focus-visible{color:#fff}
+.tp-lb-x{top:18px;right:22px}
+.tp-lb-p{left:18px;top:50%;transform:translateY(-50%)}
+.tp-lb-n{right:18px;top:50%;transform:translateY(-50%)}
+.tp-lb-x:hover,.tp-lb-x:focus-visible,.tp-lb-p:hover,.tp-lb-p:focus-visible,
+.tp-lb-n:hover,.tp-lb-n:focus-visible{color:#fff}
 
 /* ── FILM: featured at the start of the gallery, same visit as the stills ── */
 .tp-film{margin:0 0 clamp(20px,2.4vw,36px)}
@@ -567,6 +584,8 @@
 
 <div class="tp-lb" id="tpLb" hidden role="dialog" aria-modal="true" aria-label="Photograph">
   <button type="button" class="tp-lb-x" id="tpLbX">Close</button>
+  <button type="button" class="tp-lb-p" id="tpLbP">Previous</button>
+  <button type="button" class="tp-lb-n" id="tpLbN">Next</button>
   <img id="tpLbImg" src="" alt="">
 </div>
 
@@ -769,21 +788,40 @@
   /* Lightbox. Progressive: without this every photograph is still on the page at
      full width, so nothing is lost if it never runs. */
   var lb=document.getElementById('tpLb'), lbImg=document.getElementById('tpLbImg'),
-      x=document.getElementById('tpLbX'), last=null;
+      x=document.getElementById('tpLbX'), prev=document.getElementById('tpLbP'),
+      next=document.getElementById('tpLbN'), last=null, i=0;
   if(!lb||!lbImg) return;
-  document.querySelectorAll('.tp-zoom').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var im=btn.querySelector('img'); if(!im) return;
-      last=btn; lbImg.src=im.getAttribute('data-full')||im.currentSrc||im.src;
-      lbImg.alt=im.alt; lb.hidden=false; x.focus();
-    });
+  var zooms=[].slice.call(document.querySelectorAll('.tp-zoom'));
+  function show(n){
+    if(!zooms.length) return;
+    i=(n+zooms.length)%zooms.length;
+    var im=zooms[i].querySelector('img'); if(!im) return;
+    last=zooms[i];
+    lbImg.src=im.getAttribute('data-full')||im.currentSrc||im.src;
+    lbImg.alt=im.alt; lb.hidden=false; x.focus();
+  }
+  zooms.forEach(function(btn, n){
+    btn.addEventListener('click',function(){ show(n); });
   });
-  /* keep Tab inside the dialog: it is the only focusable thing in it */
-  lb.addEventListener('keydown',function(e){ if(e.key==='Tab'){ e.preventDefault(); x.focus(); } });
+  var trap=[x, prev, next].filter(Boolean);
+  lb.addEventListener('keydown',function(e){
+    if(e.key!=='Tab'||!trap.length) return;
+    e.preventDefault();
+    var k=trap.indexOf(document.activeElement);
+    var dir=e.shiftKey?-1:1;
+    trap[(k+dir+trap.length)%trap.length].focus();
+  });
   function shut(){ lb.hidden=true; lbImg.removeAttribute('src'); if(last) last.focus(); }
-  x.addEventListener('click',shut);
+  if(x) x.addEventListener('click',shut);
+  if(prev) prev.addEventListener('click',function(){ show(i-1); });
+  if(next) next.addEventListener('click',function(){ show(i+1); });
   lb.addEventListener('click',function(e){ if(e.target===lb) shut(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!lb.hidden) shut(); });
+  document.addEventListener('keydown',function(e){
+    if(lb.hidden) return;
+    if(e.key==='Escape') shut();
+    if(e.key==='ArrowLeft') show(i-1);
+    if(e.key==='ArrowRight') show(i+1);
+  });
 })();
 (function(){
   document.querySelectorAll('.tp-play').forEach(function(btn){
