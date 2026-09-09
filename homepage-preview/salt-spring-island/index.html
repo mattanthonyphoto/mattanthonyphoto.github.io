@@ -50,10 +50,12 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services, Contact.
+   Top level: Projects, About (dropdown), Services (dropdown), Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer, so if the script never runs those pages are still reachable. ── */
+   the footer. Services dropdown: Project Photography, Videography,
+   Progression Documentation, Creative Partner. The hub is in the footer.
+   Marketing is not in the nav. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -342,6 +344,16 @@
   font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:rgba(246,244,240,.82)}
 .tp-lb-x:hover,.tp-lb-x:focus-visible{color:#fff}
+
+/* ── FILM: featured at the start of the gallery, same visit as the stills ── */
+.tp-film{margin:0 0 clamp(20px,2.4vw,36px)}
+.tp-film-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:16/9}
+.tp-film-frame video{width:100%;height:100%;object-fit:cover;display:block}
+.tp-play{position:absolute;inset:0;z-index:2;display:flex!important;align-items:center;
+  justify-content:center;background:transparent!important;border:0!important;padding:0;
+  cursor:pointer;color:#f6f4f0!important}
+.tp-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
+.tp-playing .tp-play{display:none!important}
 @media (prefers-reduced-motion:reduce){.tp-wrap *{animation:none!important;transition:none!important}}
 </style>
 
@@ -362,7 +374,6 @@
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
         <a href="/homepage-preview/film/">Videography</a>
         <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
@@ -682,6 +693,84 @@
   });
 })();
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "ImageGallery",
+    "CollectionPage"
+  ],
+  "name": "Salt Spring Island",
+  "url": "https://www.mattanthonyphoto.com/salt-spring-island",
+  "description": "A house on a wooded point on Salt Spring Island, with a pavilion and outbuildings under planted roofs above the shore. Photographed across one full day, from morning light through twilight.",
+  "about": {
+    "@id": "https://www.mattanthonyphoto.com/#business"
+  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/2ef61e47-46cd-41e8-a6ee-fc8f3332d709/salt-spring-island-residence-front-elevation-over-the-rock-garden-architectural-photographer-matt-anthony.jpg",
+      "caption": "The house across a planted rock garden, shed roofs stepping down toward the water"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/18432b9e-adeb-4ab4-9a0e-5e533a1ad71e/salt-spring-island-residence-garage-wing-and-boulder-steps-architectural-photographer-matt-anthony.jpg",
+      "caption": "Garage wing in dark ribbed cladding above a boulder retaining wall and gravel drive"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c8328124-6003-4d18-bc4f-bf14ffe420c2/salt-spring-island-residence-dry-creek-rain-garden-architectural-photographer-matt-anthony.jpg",
+      "caption": "A dry creek of rounded stones running through new planting below the garage wing"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/5d87b27a-b5c1-4ce8-a632-a68519b904f9/salt-spring-island-residence-rock-garden-stepping-stone-path-architectural-photographer-matt-anthony.jpg",
+      "caption": "Stepping stones set through a rock garden of boulders, mulch and young shrubs"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/d38e1c80-be31-43d9-9b04-bd4749235a7b/salt-spring-island-residence-stacked-shed-roofs-and-flagstone-steps-architectural-photographer-matt-anthony.jpg",
+      "caption": "Stacked shed roofs over ribbed cladding, stone steps climbing between boulders"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/af0f2698-e9ad-40f6-bd2d-0e104e1e05d7/salt-spring-island-residence-rock-garden-steps-and-rain-chain-architectural-photographer-matt-anthony.jpg",
+      "caption": "Stone steps rising through a rock garden beside a pale concrete wall and rain chains"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/480691f4-0818-4341-902b-276e862d0f98/salt-spring-island-residence-corrugated-siding-and-red-window-frames-architectural-photographer-matt-anthony.jpg",
+      "caption": "Red framed glazing under a deep overhang, ribbed cladding and low planting at the base"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/414e980a-8b29-4002-9ae4-aa53b42ccde8/salt-spring-island-residence-front-door-under-the-steel-canopy-architectural-photographer-matt-anthony.jpg",
+      "caption": "Timber front door under a dark steel canopy, red framed windows to either side"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/386ee35a-b63e-4f3e-98d9-4d329041d5fe/salt-spring-island-residence-living-room-from-the-entry-steps-architectural-photographer-matt-anthony.jpg",
+      "caption": "Living room seen from the entry steps, a grey fireplace wall beneath a wood ceiling"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4a9312ca-5b7b-4f7a-a919-659fe7e55c00/salt-spring-island-residence-entry-hall-stair-and-art-wall-architectural-photographer-matt-anthony.jpg",
+      "caption": "Open stair against a white wall hung with framed works, glazing to the trees"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b4189d90-31fb-445b-8191-bbb4d1914668/salt-spring-island-residence-entry-hall-bench-and-open-stair-architectural-photographer-matt-anthony.jpg",
+      "caption": "Entry hall with a bench and an open stair behind a glass balustrade"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/50e74f1f-fded-459a-87b9-b2c241ee49f9/salt-spring-island-residence-floating-oak-stair-from-below-architectural-photographer-matt-anthony.jpg",
+      "caption": "Looking up an open timber stair, the dining table and glazing beyond"
+    }
+  ]
+}
+</script>
+
 <script>
 (function(){
   /* Lightbox. Progressive: without this every photograph is still on the page at
@@ -702,6 +791,18 @@
   x.addEventListener('click',shut);
   lb.addEventListener('click',function(e){ if(e.target===lb) shut(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!lb.hidden) shut(); });
+})();
+(function(){
+  document.querySelectorAll('.tp-play').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var frame = btn.closest('.tp-film-frame');
+      var v = frame && frame.querySelector('video');
+      if(!v) return;
+      v.setAttribute('controls','');
+      v.play();
+      frame.classList.add('tp-playing');
+    });
+  });
 })();
 </script>
 

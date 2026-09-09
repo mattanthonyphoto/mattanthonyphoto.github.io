@@ -50,10 +50,12 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services, Contact.
+   Top level: Projects, About (dropdown), Services (dropdown), Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer, so if the script never runs those pages are still reachable. ── */
+   the footer. Services dropdown: Project Photography, Videography,
+   Progression Documentation, Creative Partner. The hub is in the footer.
+   Marketing is not in the nav. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -342,6 +344,16 @@
   font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:rgba(246,244,240,.82)}
 .tp-lb-x:hover,.tp-lb-x:focus-visible{color:#fff}
+
+/* ── FILM: featured at the start of the gallery, same visit as the stills ── */
+.tp-film{margin:0 0 clamp(20px,2.4vw,36px)}
+.tp-film-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:16/9}
+.tp-film-frame video{width:100%;height:100%;object-fit:cover;display:block}
+.tp-play{position:absolute;inset:0;z-index:2;display:flex!important;align-items:center;
+  justify-content:center;background:transparent!important;border:0!important;padding:0;
+  cursor:pointer;color:#f6f4f0!important}
+.tp-play:focus-visible{outline:2px solid #f6f4f0;outline-offset:-4px}
+.tp-playing .tp-play{display:none!important}
 @media (prefers-reduced-motion:reduce){.tp-wrap *{animation:none!important;transition:none!important}}
 </style>
 
@@ -362,7 +374,6 @@
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
         <a href="/homepage-preview/film/">Videography</a>
         <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
@@ -442,7 +453,7 @@
         <a class="tp-arrow-link" href="/homepage-preview/projects-v2/">All projects &rarr;</a>
       </div>
       <div class="tp-pn-stack">
-      <a href="/homepage-preview/schmit/">
+      <a href="/homepage-preview/schmit-invermere/">
         <div class="tp-pn-frame">
           <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/b18ccc95-41b5-481b-a7d8-a1ca9fef1860/schmidt-residence-invermere-covered-upper-deck-lake-view-architectural-photographer-matt-anthony.jpg?format=1500w 1500w" sizes="(min-width: 1600px) 702px, (min-width: 700px) 43.8vw, 90vw" alt="Glazed two storey elevation above a lawn, covered decks on timber posts, lake and mountains beyond" width="1000" height="750" loading="lazy" decoding="async">
         </div>
@@ -643,6 +654,84 @@
   });
 })();
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "ImageGallery",
+    "CollectionPage"
+  ],
+  "name": "The Perch",
+  "url": "https://www.mattanthonyphoto.com/the-perch-sunshine-coast",
+  "description": "A house on a rock shoreline on the Sunshine Coast, built by Summerhill Fine Homes, its main living volume carried out over the rock above the water. Photographed across one overcast day, from flat afternoon light through dusk.",
+  "about": {
+    "@id": "https://www.mattanthonyphoto.com/#business"
+  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/23aedb76-4c10-4a31-ba9c-9ebd434a25bc/5322-backhouse-web-2.jpg",
+      "caption": "A dark clad corner projecting out over rock, the sea and low cloud beyond"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/45c04a8f-e9d7-435f-8dac-6cc98f3acebc/5322-backhouse-web-3.1.jpg",
+      "caption": "The house low on a forested rocky point, terraces stepping down toward the shore"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e07b8aac-c1ec-4293-b956-79b41aa39f33/5322-backhouse-web-1.jpg",
+      "caption": "Gravel drive to a recessed entry, dark vertical cladding with firewood stacked beneath"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/4bb9a1fe-5bc1-4cf3-a0ea-8053f1a7270c/5322-backhouse-web-3.jpg",
+      "caption": "Glazed lower level under a deep dark roof, concrete steps descending beside a second volume"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/0e7a6365-526e-4c0e-8b06-4939d5008849/5322-backhouse-web-4.jpg",
+      "caption": "Living room corner with a lit suspended fireplace, glazing onto the water and rocky shore"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/75b669fa-89d6-47c2-a4b4-6b45bfa203b1/5322-backhouse-web-6.jpg",
+      "caption": "Living room with a pale sectional and low table, the fireplace hanging beside full height glazing"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/9d699cdf-a6ac-442f-b234-97b0aba24035/5322-backhouse-web-5.jpg",
+      "caption": "Low sofa and a wide table facing the water, the suspended fireplace burning at right"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e1723925-1cd9-4f2d-9eeb-0175f7d8fa22/5322-backhouse-web-7.jpg",
+      "caption": "Dining table and chairs with the kitchen behind, sliding glass open to the forest"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/1d8bbb58-8aca-4df0-8419-7d8d779cb622/5322-backhouse-web-8.jpg",
+      "caption": "Kitchen island and stools beside a long dining table, ribbon windows onto the trees"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/bd45b746-3623-41b7-8016-a94a135bd9b6/5322-backhouse-web-10.jpg",
+      "caption": "White kitchen island with four stools, wall ovens and full height cabinets behind"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/94121f60-3b4a-410f-b0fe-943d269d7511/5322-backhouse-web-9.jpg",
+      "caption": "Counter and sink under a ribbon window, tall cabinetry running the length of the wall"
+    },
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/e88addc1-02bc-4e6e-bff8-8af454c937c0/5322-backhouse-web-12.jpg",
+      "caption": "The kitchen seen past a sliding glass wall, concrete steps rising to a landing"
+    }
+  ]
+}
+</script>
+
 <script>
 (function(){
   /* Lightbox. Progressive: without this every photograph is still on the page at
@@ -663,6 +752,18 @@
   x.addEventListener('click',shut);
   lb.addEventListener('click',function(e){ if(e.target===lb) shut(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!lb.hidden) shut(); });
+})();
+(function(){
+  document.querySelectorAll('.tp-play').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var frame = btn.closest('.tp-film-frame');
+      var v = frame && frame.querySelector('video');
+      if(!v) return;
+      v.setAttribute('controls','');
+      v.play();
+      frame.classList.add('tp-playing');
+    });
+  });
 })();
 </script>
 
