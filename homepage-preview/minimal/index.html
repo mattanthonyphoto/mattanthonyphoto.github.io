@@ -90,8 +90,11 @@
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
-  background-color:#f6f4f0;
-  transition:background-color .45s var(--ease)}
+  background-color:rgba(246,244,240,.58);
+  -webkit-backdrop-filter:blur(18px) saturate(1.1);
+  backdrop-filter:blur(18px) saturate(1.1);
+  transition:background-color .45s var(--ease),transform .4s var(--ease),backdrop-filter .45s var(--ease),-webkit-backdrop-filter .45s var(--ease)}
+.hp-nav.hp-nav-hidden{transform:translateY(-100%);pointer-events:none}
 .hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:.4em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
   transition:color .45s var(--ease)}
@@ -125,7 +128,7 @@
 .hp-nav-menu a:hover,.hp-nav-menu a:focus-visible{color:#1a1a18!important;background-color:#eeece6}
 
 /* Over a dark full-bleed hero, until scrolled past it. */
-.hp-nav-over:not(.hp-scrolled){background-color:transparent}
+.hp-nav-over:not(.hp-scrolled){background-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
 .hp-nav-over:not(.hp-scrolled) .hp-nav-mark{color:#f6f4f0!important}
 .hp-nav-over:not(.hp-scrolled) .hp-nav-links>a,
 .hp-nav-over:not(.hp-scrolled) .hp-nav-trigger{color:rgba(246,244,240,.78)!important}
@@ -375,6 +378,7 @@
 
 @media (prefers-reduced-motion:reduce){
   .hp-wrap *{animation:none!important;transition:none!important}
+  .hp-nav{transform:none!important;transition:none!important}
   .hp-hero-slides img{opacity:0}
   .hp-hero-slides img:first-child{opacity:1}
 }
@@ -599,9 +603,9 @@
     size();
     window.addEventListener('resize', size, {passive:true});
     if(window.ResizeObserver){ new ResizeObserver(size).observe(nav); }
-    return;
+  } else {
+    nav.classList.add('hp-nav-over');
   }
-  nav.classList.add('hp-nav-over');
 
   /* A page may scroll its own container instead of the window: the portfolio deck is
      a scroll-snap gallery, so window.pageYOffset stays 0 forever there and the nav
@@ -613,12 +617,36 @@
   function offset(){
     return scroller ? scroller.scrollTop : window.pageYOffset;
   }
+  var lastY = offset();
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
   function check(){
-    nav.classList.toggle('hp-scrolled', offset() > hero.offsetHeight - nav.offsetHeight);
+    var y = offset();
+    var down = y > lastY;
+    lastY = y;
+    if(hero){
+      nav.classList.toggle('hp-scrolled', y > hero.offsetHeight - nav.offsetHeight);
+    } else {
+      nav.classList.toggle('hp-scrolled', y > 8);
+    }
+    if(reduce || nav.classList.contains('hp-nav-open')){
+      nav.classList.remove('hp-nav-hidden');
+      return;
+    }
+    if(y < 12){
+      nav.classList.remove('hp-nav-hidden');
+      return;
+    }
+    if(down && y > 72){
+      nav.classList.add('hp-nav-hidden');
+      var groups = document.querySelectorAll('.hp-nav-group');
+      for(var i = 0; i < groups.length; i++){
+        if(groups[i]._shut) groups[i]._shut();
+      }
+    } else if(!down){
+      nav.classList.remove('hp-nav-hidden');
+    }
   }
-  /* One class toggle per scroll event is cheap enough to skip a rAF throttle, and
-     skipping it keeps the flip verifiable in a headless browser, where rAF does
-     not tick and the nav would silently never flip in testing. */
   window.addEventListener('scroll', check, {passive:true});
   if(scroller){ scroller.addEventListener('scroll', check, {passive:true}); }
   check();
