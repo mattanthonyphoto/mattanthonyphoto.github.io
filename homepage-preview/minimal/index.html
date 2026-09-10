@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Homepage preview</title>
+<title>Homepage</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -168,8 +168,11 @@
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
   .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
-  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
-  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px)}
+  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em;
+    padding:8px 0;min-height:36px;display:inline-flex!important;align-items:center}
+  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px);
+    min-width:0;max-width:calc(100vw - 32px)}
+  .hp-nav-menu a{white-space:normal;padding:12px 16px;line-height:1.35}
 }
 
 /* hero eyebrow tightens with the nav on the smallest screens.
@@ -182,7 +185,7 @@
 }
 
 /* ════════════ HERO: full-bleed, four frames on a 32s cycle ════════════ */
-.hp-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+.hp-hero{position:relative;height:100vh;height:100svh;min-height:420px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .hp-hero-slides{position:absolute;inset:0;z-index:0}
 .hp-hero-slides img{position:absolute;inset:0;width:100%;height:100%;
@@ -252,6 +255,10 @@
 .hp-proj:hover .hp-proj-frame img,.hp-proj:focus-visible .hp-proj-frame img{opacity:.88}
 .hp-proj:hover .hp-proj-frame::before,.hp-proj:focus-visible .hp-proj-frame::before,
 .hp-proj:hover .hp-proj-frame::after,.hp-proj:focus-visible .hp-proj-frame::after{opacity:1}
+@media (hover:none),(pointer:coarse){
+  .hp-proj-frame::before,.hp-proj-frame::after{opacity:0!important}
+  .hp-proj:hover .hp-proj-frame img{opacity:1}
+}
 .hp-proj-over{display:flex!important;justify-content:space-between;align-items:baseline;
   gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
 .hp-proj-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
@@ -267,7 +274,7 @@
 }
 
 /* ════════════ CLOSE ════════════ */
-.hp-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+.hp-close{position:relative;min-height:56vh;max-height:840px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
 .hp-close img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hp-close::before{content:"";position:absolute;inset:0;z-index:1;

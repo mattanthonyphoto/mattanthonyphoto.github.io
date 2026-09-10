@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About preview</title>
+<title>About</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -42,11 +42,12 @@
    transparently over it, and `hp-scrolled` once you scroll past it. The class is
    never in the markup, so a dead script cannot leave white text on a white page.
 
-   Top level: Projects, About (dropdown), Services, Contact.
+   Top level: Projects, About (dropdown), Services (dropdown), Contact.
    Portfolio lives in the footer with the rest of the work links, so the header
    has one word for the work. Everything inside the About dropdown is ALSO in
-   the footer. Services is a single link to the hub. Leaves live on that page
-   and in the footer (Creative Partner). ── */
+   the footer. Services dropdown: Project Photography, Videography,
+   Progression Documentation, Creative Partner. The hub is in the footer.
+   Marketing is not in the nav. ── */
 .hp-nav{position:fixed!important;top:0;left:0;right:0;z-index:9990;
   display:flex!important;align-items:center;justify-content:space-between;gap:24px;
   padding:26px max(var(--gutter),calc((100% - var(--page)) / 2 + var(--gutter)));
@@ -128,8 +129,11 @@
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
   .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
-  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
-  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px)}
+  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em;
+    padding:8px 0;min-height:36px;display:inline-flex!important;align-items:center}
+  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px);
+    min-width:0;max-width:calc(100vw - 32px)}
+  .hp-nav-menu a{white-space:normal;padding:12px 16px;line-height:1.35}
 }
 
 /* ── FOOTER ── */
@@ -195,7 +199,7 @@
   color:var(--stone)!important;margin:0 0 28px;
   display:inline-flex!important;align-items:center;gap:14px}
 .bio-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold)}
-.bio-hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;
+.bio-hero{position:relative;height:100vh;height:100svh;min-height:420px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:flex-end}
 .bio-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .bio-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -233,7 +237,21 @@
 .bio-card{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));max-width:calc(50% - clamp(10px,1.2vw,18px));min-width:0}
 .bio-card-full{flex:1 1 100%;max-width:none}
 .bio-card-frame{position:relative;overflow:hidden;background:var(--ink)!important;aspect-ratio:3/2}
-.bio-card-frame img{width:100%;height:100%;object-fit:cover}
+.bio-card-frame img{width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--ease)}
+a.bio-card .bio-card-frame::before{content:'';position:absolute;inset:0;
+  background:rgba(26,26,24,.62);
+  opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
+a.bio-card .bio-card-frame::after{content:'View project';position:absolute;left:16px;bottom:14px;z-index:1;
+  font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:#f6f4f0;
+  opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
+a.bio-card:hover .bio-card-frame img,a.bio-card:focus-visible .bio-card-frame img{opacity:.88}
+a.bio-card:hover .bio-card-frame::before,a.bio-card:focus-visible .bio-card-frame::before,
+a.bio-card:hover .bio-card-frame::after,a.bio-card:focus-visible .bio-card-frame::after{opacity:1}
+@media (hover:none),(pointer:coarse){
+  a.bio-card .bio-card-frame::before,a.bio-card .bio-card-frame::after{opacity:0!important}
+  a.bio-card:hover .bio-card-frame img{opacity:1}
+}
 .bio-card-over{display:flex!important;justify-content:space-between;align-items:baseline;
   gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
 .bio-card-name{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
@@ -306,7 +324,7 @@
 .bio-quote-attr{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin:0}
 .bio-quote-attr a{color:var(--ink)!important;border-bottom:1px solid var(--stone)}
-.bio-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
+.bio-close{position:relative;min-height:56vh;max-height:840px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
 .bio-close>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .bio-close::before{content:"";position:absolute;inset:0;z-index:1;
@@ -361,7 +379,6 @@
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
         <a href="/homepage-preview/film/">Videography</a>
         <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
@@ -451,8 +468,8 @@
       <a href="/homepage-preview/website-seo/" class="bio-card">
         <div class="bio-card-frame"><img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/98b6bb8c-ede3-4de9-978a-fc8ae91554a6/warbler-whistler-architectural-photography-matt-anthony-.jpg-35.jpg?format=2500w 2500w" sizes="(max-width: 760px) 90vw, (min-width: 1600px) 702px, 43.8vw" alt="The house along the rock outcrop, dark cladding under a pale wood soffit with snow below" width="1500" height="1000" loading="lazy" decoding="async"></div>
         <div class="bio-card-over">
-          <p class="bio-card-name">Websites</p>
-          <p class="bio-card-loc">The photographs need a place to live</p>
+          <p class="bio-card-name">Marketing</p>
+          <p class="bio-card-loc">Websites and content</p>
         </div>
       </a>
       <a href="/homepage-preview/creative-partner/" class="bio-card bio-card-full">
@@ -645,6 +662,10 @@
     }
   });
 })();
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AboutPage","name":"About Matt Anthony | Architectural Photographer, Squamish","url":"https://www.mattanthonyphoto.com/bio","description":"Architectural photographer based in Squamish. I work with architects, custom builders, and interior designers across British Columbia.","about":{"@id":"https://www.mattanthonyphoto.com/#business"}}
 </script>
 
 </body>
