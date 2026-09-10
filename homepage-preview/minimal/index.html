@@ -95,13 +95,13 @@
   backdrop-filter:blur(18px) saturate(1.1);
   transition:background-color .45s var(--ease),transform .4s var(--ease),backdrop-filter .45s var(--ease),-webkit-backdrop-filter .45s var(--ease)}
 .hp-nav.hp-nav-hidden{transform:translateY(-100%);pointer-events:none}
-.hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:13px;
-  letter-spacing:.4em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
+.hp-nav-mark{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.32em;text-transform:uppercase;color:#1a1a18!important;white-space:nowrap;
   transition:color .45s var(--ease)}
 .hp-nav-links{display:flex!important;gap:clamp(20px,3vw,40px);align-items:center}
 /* One small-caps style for every top level item, link or dropdown trigger. */
-.hp-nav-links>a,.hp-nav-trigger{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;color:#6f6b61!important;
+.hp-nav-links>a,.hp-nav-trigger{font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:#6f6b61!important;
   transition:color .35s var(--ease)}
 .hp-nav-trigger{background:none;border:0;padding:0;margin:0;cursor:pointer;
   display:inline-flex!important;align-items:center;gap:7px;line-height:inherit;font-family:'DM Sans',-apple-system,sans-serif}
@@ -174,7 +174,7 @@
 }
 @media (max-width:820px){
   .hp-nav{padding:18px var(--gutter);gap:16px;flex-wrap:nowrap}
-  .hp-nav-mark{font-size:11px;letter-spacing:.22em;flex:1 1 auto;min-width:0;overflow:hidden}
+  .hp-nav-mark{font-size:13px;letter-spacing:.18em;flex:1 1 auto;min-width:0;overflow:hidden}
   .hp-nav-over:not(.hp-scrolled):not(.hp-nav-open){
     background-color:transparent!important;
     -webkit-backdrop-filter:none!important;
@@ -209,12 +209,12 @@
     min-width:0;width:100%;border:0;background:transparent;padding:0 0 8px;display:flex!important}
   .hp-nav.hp-nav-open .hp-nav-menu[hidden]{display:flex!important}
   .hp-nav.hp-nav-open .hp-nav-links>a,
-  .hp-nav.hp-nav-open .hp-nav-menu a{padding:12px 0;font-size:13px;letter-spacing:.12em;
+  .hp-nav.hp-nav-open .hp-nav-menu a{padding:14px 0;font-size:16px;letter-spacing:.1em;
     white-space:normal;color:#1a1a18!important;background:transparent}
   .hp-nav.hp-nav-open .hp-nav-cta{margin-top:20px;align-self:flex-start;padding:12px 22px}
 }
 @media (max-width:480px){
-  .hp-nav-mark{font-size:10px;letter-spacing:.14em}
+  .hp-nav-mark{font-size:12px;letter-spacing:.14em}
 }
 
 /* hero eyebrow tightens with the nav on the smallest screens.
@@ -263,8 +263,8 @@
   transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
 .hp-hero-ghost:hover,.hp-hero-ghost:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
 @media (max-width:480px){
-  .hp-hero-ghost{padding:15px 22px}
-  .hp-hero-btns{flex-direction:column;align-items:flex-start}
+  .hp-hero-ghost{padding:12px 18px;letter-spacing:.12em}
+  .hp-hero-btns{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px}
 }
 
 /* ════════════ STATEMENT: the single prose moment ════════════ */
@@ -338,7 +338,10 @@
   background:transparent!important;border:1px solid rgba(246,244,240,.5)!important;color:#f6f4f0!important;
   transition:background-color .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
 .hp-close-btn-secondary:hover,.hp-close-btn-secondary:focus-visible{background:rgba(246,244,240,.1)!important;border-color:#f6f4f0!important;color:#f6f4f0!important}
-@media (max-width:768px){.hp-close-btns{flex-direction:column;align-items:stretch}}
+@media (max-width:768px){
+  .hp-close-btns{flex-direction:row;flex-wrap:nowrap;justify-content:center;gap:8px}
+  .hp-close-btn,.hp-close-btn-secondary{padding:12px 18px;letter-spacing:.12em}
+}
 .hp-close-or{font-family:'DM Sans',-apple-system,sans-serif;font-size:12px;font-weight:300;
   letter-spacing:.04em;color:rgba(246,244,240,.6)!important}
 .hp-close-or a{color:#f6f4f0!important;border-bottom:1px solid rgba(246,244,240,.45)}
@@ -775,38 +778,6 @@
     }
   ]
 }
-
-(function(){
-  var nav = document.getElementById('hpNav');
-  var btn = document.getElementById('hpNavBurger');
-  var links = document.getElementById('hpNavLinks');
-  if(!nav || !btn || !links) return;
-  function setH(){ nav.style.setProperty('--hp-nav-h', nav.offsetHeight + 'px'); }
-  function setOpen(on){
-    nav.classList.toggle('hp-nav-open', on);
-    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
-    document.documentElement.style.overflow = on ? 'hidden' : '';
-    if(on) setH();
-  }
-  setH();
-  window.addEventListener('resize', function(){
-    setH();
-    if(window.matchMedia('(min-width:821px)').matches) setOpen(false);
-  }, {passive:true});
-  btn.addEventListener('click', function(e){
-    e.stopPropagation();
-    setOpen(btn.getAttribute('aria-expanded') !== 'true');
-  });
-  links.addEventListener('click', function(e){
-    if(e.target.closest('a')) setOpen(false);
-  });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && nav.classList.contains('hp-nav-open')){
-      setOpen(false);
-      btn.focus();
-    }
-  });
-})();
 </script>
 
 
@@ -828,6 +799,42 @@
   The argument: the photographs carry the page, and everything else gets out of their way.
   One sentence of prose, four facts, two buttons. Nothing on this page is unsourced.
 -->
+<script>
+(function(){
+  var nav = document.getElementById('hpNav');
+  var btn = document.getElementById('hpNavBurger');
+  var links = document.getElementById('hpNavLinks');
+  if(!nav || !btn || !links) return;
+  if(btn.getAttribute('data-hp-bound')) return;
+  btn.setAttribute('data-hp-bound','1');
+  function setH(){ nav.style.setProperty('--hp-nav-h', nav.offsetHeight + 'px'); }
+  function setOpen(on){
+    nav.classList.toggle('hp-nav-open', on);
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+    if(on) setH();
+  }
+  setH();
+  window.addEventListener('resize', function(){
+    setH();
+    if(window.matchMedia('(min-width:821px)').matches) setOpen(false);
+  }, {passive:true});
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    setOpen(btn.getAttribute('aria-expanded') !== 'true');
+  });
+  links.addEventListener('click', function(e){
+    if(e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && nav.classList.contains('hp-nav-open')){
+      setOpen(false);
+      btn.focus();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
