@@ -160,7 +160,7 @@
 .hp-nav-burger{display:block!important;width:44px;height:44px;margin:0;padding:0;border:0;
   background:transparent;cursor:pointer;flex-shrink:0;z-index:2;position:relative;
   -webkit-appearance:none;appearance:none;color:#1a1a18}
-.hp-nav-burger span{position:absolute;left:11px;width:22px;height:2px;background:#1a1a18;
+.hp-nav-burger span{position:absolute;left:11px;width:22px;height:2px;background:currentColor;
   transition:transform .3s var(--ease),opacity .3s var(--ease)}
 .hp-nav-burger span:nth-child(1){top:14px}
 .hp-nav-burger span:nth-child(2){top:21px}
@@ -173,16 +173,27 @@
   .hp-nav-burger{display:none!important}
 }
 @media (max-width:820px){
-  .hp-nav{padding:14px var(--gutter);gap:12px;flex-wrap:nowrap}
-  .hp-nav-mark{font-size:10px;letter-spacing:.14em;flex:1 1 auto;min-width:0;overflow:hidden}
-  .hp-nav,
+  .hp-nav{padding:18px var(--gutter);gap:16px;flex-wrap:nowrap}
+  .hp-nav-mark{font-size:11px;letter-spacing:.22em;flex:1 1 auto;min-width:0;overflow:hidden}
+  .hp-nav-over:not(.hp-scrolled):not(.hp-nav-open){
+    background-color:transparent!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important}
+  .hp-nav-over:not(.hp-scrolled):not(.hp-nav-open) .hp-nav-mark,
+  .hp-nav-over:not(.hp-scrolled):not(.hp-nav-open) .hp-nav-burger{color:#f6f4f0!important}
+  .hp-nav-over:not(.hp-scrolled):not(.hp-nav-open) .hp-nav-burger span{background:#f6f4f0}
   .hp-nav.hp-scrolled,
-  .hp-nav-over:not(.hp-scrolled){
-    background-color:rgba(246,244,240,.58);
+  .hp-nav:not(.hp-nav-over){
+    background-color:rgba(246,244,240,.72);
     -webkit-backdrop-filter:blur(18px) saturate(1.1);
     backdrop-filter:blur(18px) saturate(1.1)}
-  .hp-nav-over:not(.hp-scrolled) .hp-nav-mark,
-  .hp-nav-over:not(.hp-scrolled) .hp-nav-burger{color:#1a1a18!important}
+  .hp-nav.hp-nav-open{
+    background-color:#f6f4f0!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important}
+  .hp-nav.hp-nav-open .hp-nav-mark,
+  .hp-nav.hp-nav-open .hp-nav-burger{color:#1a1a18!important}
+  .hp-nav.hp-nav-open .hp-nav-burger span{background:#1a1a18}
   .hp-nav-links{display:none!important}
   .hp-nav.hp-nav-open .hp-nav-links{
     display:flex!important;position:fixed;left:0;right:0;bottom:0;
