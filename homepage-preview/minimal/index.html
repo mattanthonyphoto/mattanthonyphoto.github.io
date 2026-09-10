@@ -173,7 +173,11 @@
   .hp-nav{padding:14px var(--gutter);gap:12px;flex-wrap:nowrap}
   .hp-nav-mark{font-size:10px;letter-spacing:.14em;flex:1 1 auto;min-width:0;overflow:hidden}
   .hp-nav,
-  .hp-nav-over:not(.hp-scrolled){background-color:#f6f4f0}
+  .hp-nav.hp-scrolled,
+  .hp-nav-over:not(.hp-scrolled){
+    background-color:rgba(246,244,240,.58);
+    -webkit-backdrop-filter:blur(18px) saturate(1.1);
+    backdrop-filter:blur(18px) saturate(1.1)}
   .hp-nav-over:not(.hp-scrolled) .hp-nav-mark,
   .hp-nav-over:not(.hp-scrolled) .hp-nav-burger{color:#1a1a18!important}
   .hp-nav-links{display:none!important}
