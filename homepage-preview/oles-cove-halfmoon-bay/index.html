@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Oles</title>
+<title>Oles Cove</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -262,9 +262,6 @@
 .tp-fig{margin:0;background:var(--paper)}
 .tp-zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
 .tp-zoom:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.tp-zoom::after{content:'';position:absolute;inset:0;background:rgba(26,26,24,.45);
-  opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
-.tp-zoom:hover::after,.tp-zoom:focus-visible::after{opacity:1}
 .tp-fig img{width:100%;height:auto}
 .tp-pair{display:flex!important;flex-wrap:wrap;gap:clamp(20px,2.4vw,36px);align-items:flex-start}
 .tp-pair>.tp-fig{flex:1 1 calc(50% - clamp(20px,2.4vw,36px));min-width:0}
@@ -302,7 +299,6 @@
 @media (hover:none),(pointer:coarse){
   .tp-pn-stack>a .tp-pn-frame::before,.tp-pn-stack>a .tp-pn-frame::after{opacity:0!important}
   .tp-pn-stack>a:hover .tp-pn-frame img{opacity:1}
-  .tp-zoom::after{opacity:0!important}
 }
 .tp-pn-over{display:flex!important;justify-content:space-between;align-items:baseline;
   gap:6px 20px;flex-wrap:wrap;padding:13px 0 0}
