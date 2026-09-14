@@ -320,7 +320,8 @@
 .ct-form-group label{display:block;font-family:'DM Sans',-apple-system,sans-serif;font-weight:400;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone)!important;margin-bottom:9px}
 .ct-form-group input,
-.ct-form-group textarea{
+.ct-form-group textarea,
+.ct-form-group select{
   width:100%!important;font-family:'DM Sans',-apple-system,sans-serif!important;
   font-size:14px!important;font-weight:300!important;line-height:1.6!important;
   color:#1a1a18!important;background:#fff!important;
@@ -328,13 +329,36 @@
   padding:14px 16px!important;box-sizing:border-box!important;color-scheme:light!important;
   transition:border-color .3s var(--ease),box-shadow .3s var(--ease)!important;
 }
+.ct-form-group select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path fill='none' stroke='%231a1a18' stroke-width='1.2' d='M1 1l5 5 5-5'/></svg>");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px!important}
 .ct-form-group input::placeholder,
 .ct-form-group textarea::placeholder{color:#6f6b61!important;font-weight:300}
 .ct-form-group input:focus,
-.ct-form-group textarea:focus{border-color:#1a1a18!important;box-shadow:0 0 0 2px rgba(26,26,24,.14)!important}
+.ct-form-group textarea:focus,
+.ct-form-group select:focus{border-color:#1a1a18!important;box-shadow:0 0 0 2px rgba(26,26,24,.14)!important}
 .ct-form-group input:focus-visible,
-.ct-form-group textarea:focus-visible{outline:2px solid #1a1a18!important;outline-offset:1px!important}
+.ct-form-group textarea:focus-visible,
+.ct-form-group select:focus-visible{outline:2px solid #1a1a18!important;outline-offset:1px!important}
 .ct-form-group textarea{min-height:150px;resize:vertical}
+
+.ct-budget-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px}
+.ct-budget-head label{margin-bottom:0}
+.ct-budget-val{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.45rem;line-height:1;color:var(--ink)!important;font-variant-numeric:tabular-nums}
+.ct-form-group input[type=range]{
+  -webkit-appearance:none;appearance:none;
+  height:2px!important;padding:0!important;border:0!important;border-radius:0!important;
+  background:linear-gradient(to right,var(--gold) 0%,var(--gold) var(--pct,23%),var(--rule) var(--pct,23%),var(--rule) 100%)!important;
+  box-shadow:none!important;cursor:pointer
+}
+.ct-form-group input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:0;
+  background:var(--ink);border:2px solid var(--paper);cursor:pointer
+}
+.ct-form-group input[type=range]::-moz-range-thumb{
+  width:16px;height:16px;border-radius:0;background:var(--ink);border:2px solid var(--paper);cursor:pointer
+}
+.ct-form-group input[type=range]:focus,
+.ct-form-group input[type=range]:focus-visible{box-shadow:none!important;outline:none!important}
+.ct-budget-ends{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;letter-spacing:.04em;color:var(--stone)!important}
 
 .ct-form-submit{margin-top:4px;text-align:center}
 .ct-form-note,.ct-form-error{text-align:center}
@@ -473,6 +497,33 @@
           <div class="ct-form-row">
             <div class="ct-form-group"><label for="ct-fname">Name</label><input type="text" id="ct-fname" name="firstName" placeholder="Your name" autocomplete="name" required></div>
             <div class="ct-form-group"><label for="ct-email-input">Email</label><input type="email" id="ct-email-input" name="email" placeholder="you@company.com" autocomplete="email" required></div>
+          </div>
+          <div class="ct-form-row">
+            <div class="ct-form-group"><label for="ct-company">Company</label><input type="text" id="ct-company" name="company" placeholder="Studio or firm" autocomplete="organization"></div>
+            <div class="ct-form-group">
+              <label for="ct-role">Role</label>
+              <select id="ct-role" name="role">
+                <option value="" selected>Select</option>
+                <option value="Owner / Principal">Owner / Principal</option>
+                <option value="Project Manager">Project Manager</option>
+                <option value="Marketing Manager">Marketing Manager</option>
+                <option value="Design Director">Design Director</option>
+                <option value="Operations Manager">Operations Manager</option>
+                <option value="Estimator">Estimator</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="ct-form-row">
+            <div class="ct-form-group"><label for="ct-phone">Phone</label><input type="tel" id="ct-phone" name="phone" placeholder="604.555.0100" autocomplete="tel"></div>
+          </div>
+          <div class="ct-form-group">
+            <div class="ct-budget-head">
+              <label for="ct-budget">Budget</label>
+              <span class="ct-budget-val" id="ctBudgetVal">$3,500</span>
+            </div>
+            <input type="range" id="ct-budget" name="budget" min="1500" max="10000" step="500" value="3500" aria-valuemin="1500" aria-valuemax="10000" aria-valuenow="3500" aria-valuetext="$3,500">
+            <div class="ct-budget-ends"><span>$1,500</span><span>$10,000+</span></div>
           </div>
           <div class="ct-form-group"><label for="ct-message">Tell Me About Your Project</label><textarea id="ct-message" name="notes" placeholder="What is being built, who you are, the timeline, and what the photographs are for."></textarea></div>
           <input type="text" name="_gotcha" id="ct-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden">
@@ -716,6 +767,31 @@
     return el ? (el.value || '').trim() : '';
   }
 
+  function moneyLabel(n){
+    n = Number(n);
+    if(n >= 10000) return '$10,000+';
+    return '$' + n.toLocaleString('en-CA');
+  }
+
+  var budget = document.getElementById('ct-budget');
+  var budgetVal = document.getElementById('ctBudgetVal');
+  function syncBudget(){
+    if(!budget || !budgetVal) return;
+    var n = Number(budget.value);
+    var min = Number(budget.min);
+    var max = Number(budget.max);
+    var pct = ((n - min) / (max - min)) * 100;
+    budget.style.setProperty('--pct', pct + '%');
+    var label = moneyLabel(n);
+    budgetVal.textContent = label;
+    budget.setAttribute('aria-valuenow', String(n));
+    budget.setAttribute('aria-valuetext', label);
+  }
+  if(budget){
+    budget.addEventListener('input', syncBudget);
+    syncBudget();
+  }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var btn = document.getElementById('ctSubmitBtn');
@@ -736,6 +812,10 @@
     var email = val('email');
     var notes = val('notes');
     var fullName = rawName;
+    var company = val('company');
+    var role = val('role');
+    var phone = val('phone');
+    var budgetLabel = moneyLabel(val('budget') || 3500);
 
     var formspreeReq = fetch(FORMSPREE, {
       method: 'POST',
@@ -743,6 +823,10 @@
       body: JSON.stringify({
         name: fullName,
         email: email,
+        phone: phone,
+        company: company,
+        role: role,
+        budget: budgetLabel,
         message: notes,
         _subject: 'New inquiry, ' + (fullName || 'website'),
         _gotcha: honeypot
@@ -758,6 +842,10 @@
           firstName: firstName,
           lastName: lastName,
           email: email,
+          phone: phone,
+          company: company,
+          role: role,
+          budget: budgetLabel,
           notes: notes.slice(0, 20000),
           website: honeypot,
           dateAdded: new Date().toISOString(),
