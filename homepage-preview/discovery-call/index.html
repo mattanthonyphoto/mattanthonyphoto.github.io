@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Discovery Call preview</title>
+<title>Discovery call preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -267,9 +267,9 @@
 .dc-booking{background:var(--paper)!important;padding:0 0 var(--section)}
 .dc-booking-inner{max-width:760px;margin:0 auto;text-align:center}
 .dc-booking h2{margin-left:auto;margin-right:auto}
-/* The GoHighLevel widget. Fixed height on purpose: it is cross-origin, so nothing
-   here can measure its content, and a height:auto iframe collapses to 150px. */
-.dc-booking-frame{width:100%;height:900px;border:0;display:block;background:var(--paper)}
+/* Hub booking widget. Height starts tall enough, then the iframe posts its
+   content height and this page stretches to match. */
+.dc-booking-frame{width:100%;min-height:640px;height:720px;border:0;display:block;background:var(--paper)}
 .dc-booking-note{font-family:'DM Sans',-apple-system,sans-serif;font-weight:300;
   font-size:13px;line-height:1.85;color:var(--stone)!important;
   margin:clamp(24px,2.6vw,32px) 0 0}
@@ -345,30 +345,29 @@
 
 <!-- ═══ NAV · shared chrome, first element in the block, over the dark photograph. ═══ -->
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
-  <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
+  <a href="/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/projects-v2/">Projects</a>
+    <a href="/projects">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
       <div class="hp-nav-menu" id="hpAboutMenu" role="group" aria-labelledby="hpAboutBtn" hidden>
-        <a href="/homepage-preview/bio/">About</a>
-        <a href="/homepage-preview/process/">Process</a>
-        <a href="/homepage-preview/case-studies/">Case Studies</a>
-        <a href="/homepage-preview/faqs/">FAQs</a>
-        <a href="/homepage-preview/journal/">Journal</a>
+        <a href="/bio">About</a>
+        <a href="/process">Process</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/faqs">FAQs</a>
+        <a href="/journal">Journal</a>
       </div>
     </div>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/services/">Services</a>
-        <a href="/homepage-preview/project-photography/">Project Photography</a>
-        <a href="/homepage-preview/film/">Videography</a>
-        <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
-        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+        <a href="/project-photography">Project Photography</a>
+        <a href="/film">Videography</a>
+        <a href="/construction-team-content">Progression Documentation</a>
+        <a href="/creative-partner">Creative Partner</a>
       </div>
     </div>
-    <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
+    <a href="/contact" class="hp-nav-cta">Contact</a>
   </div>
 </div>
 
@@ -376,11 +375,11 @@
 
 <!-- ════════════ HERO ════════════ -->
 <section class="dc-hero" data-hp-hero aria-labelledby="dc-hero-h">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/693322dc-84f0-4ac6-b2bf-c0252a99a496/oles-cove-halfmoon-bay-sunset-house-on-the-rock-bluff-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="The long elevation lit gold at the end of the day, deck rail above the rock" width="1500" height="1125" fetchpriority="high" decoding="async">
+  <img       fetchpriority="high" decoding="async" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/ebb37653-5489-4beb-a83f-ad40ed118b6c/sitelines-SDA-web--6.jpg?format=2500w 2500w" sizes="100vw" alt="Glass entrance doors under a deep overhang, young trees and benches across the paved plaza" width="1500" height="1000" loading="lazy" decoding="async">
   <div class="dc-hero-c"><div class="dc-container">
     <p class="dc-eyebrow">Discovery Call</p>
     <h1 id="dc-hero-h">Book a discovery call</h1>
-    <p class="dc-hero-sub">Twenty minutes. If it is a fit, a proposal follows the same day.</p>
+    <p class="dc-hero-sub">Thirty minutes. If it is a fit, a proposal follows the same day.</p>
   </div></div>
 </section>
 
@@ -392,13 +391,26 @@
   </div>
 </section>
 
-<!-- ════════════ BOOKING · the GoHighLevel widget ════════════ -->
+<!-- ════════════ BOOKING · Command Hub calendar ════════════ -->
 <section class="dc-booking" aria-labelledby="dc-booking-h">
   <div class="dc-container">
     <div class="dc-booking-inner">
       <p class="dc-eyebrow">Schedule</p>
       <h2 id="dc-booking-h">Pick a time</h2>
-      <iframe src="https://api.leadconnectorhq.com/widget/booking/Frz0NW7cdjKsEuwNLhKA" class="dc-booking-frame" scrolling="yes" id="dcBooking" title="Discovery call booking calendar"></iframe>
+      <iframe src="https://command-hub-mauve.vercel.app/book/discovery?embed=1" class="dc-booking-frame" scrolling="no" id="dcBooking" title="Discovery call booking calendar"></iframe>
+      
+<script>
+(function(){
+  var frame = document.getElementById('dcBooking');
+  if(!frame) return;
+  window.addEventListener('message', function(e){
+    if(e.origin !== 'https://command-hub-mauve.vercel.app') return;
+    if(e.data && e.data.type === 'hub-booking-height' && e.data.height){
+      frame.style.height = Math.max(560, Number(e.data.height)) + 'px';
+    }
+  });
+})();
+</script>
       <p class="dc-booking-note">Nothing open that works? Write to <a href="mailto:info@mattanthonyphoto.com">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#116;&#116;&#97;&#110;&#116;&#104;&#111;&#110;&#121;&#112;&#104;&#111;&#116;&#111;&#46;&#99;&#111;&#109;</a> or call <a href="tel:6047659270">604.765.9270</a></p>
     </div>
   </div>
@@ -406,11 +418,11 @@
 
 <!-- ════════════ CLOSE · the alternative to booking, not a second book button ════════════ -->
 <section class="dc-cta" aria-labelledby="dc-cta-h">
-  <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c53e9e2c-fb1e-48a8-81d6-70eb54982968/johnstone-road-madeira-park-board-formed-concrete-entry-steps-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="100vw" alt="Entry court walled in concrete, a dark rain chain hanging from a pale wood soffit" width="1500" height="1125" loading="lazy" decoding="async">
+  <img       loading="lazy" decoding="async" src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c84d4874-e840-4b3d-ad9f-dcccc5db7749/architectural-interiors-photographer-silverstar-okanagan--23.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c84d4874-e840-4b3d-ad9f-dcccc5db7749/architectural-interiors-photographer-silverstar-okanagan--23.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c84d4874-e840-4b3d-ad9f-dcccc5db7749/architectural-interiors-photographer-silverstar-okanagan--23.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c84d4874-e840-4b3d-ad9f-dcccc5db7749/architectural-interiors-photographer-silverstar-okanagan--23.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/c84d4874-e840-4b3d-ad9f-dcccc5db7749/architectural-interiors-photographer-silverstar-okanagan--23.jpg?format=2500w 2500w" sizes="100vw" alt="The house standing among tall evergreens above a deep bank of snow, dark and grey cladding" width="1500" height="1000" loading="lazy" decoding="async">
   <div class="dc-cta-c">
     <p class="dc-eyebrow">Contact</p>
     <h2 id="dc-cta-h">Tell me about your project.</h2>
-    <a href="/homepage-preview/contact/" class="dc-cta-btn">Send a Message</a>
+    <a href="/contact" class="dc-cta-btn">Send a Message</a>
     <p class="dc-alt-cta">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></p>
   </div>
 </section>
@@ -428,29 +440,29 @@
         <p class="hp-ft-mark">Matt Anthony Photography</p>
         <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
         <p class="hp-ft-areas">
-          <a href="/homepage-preview/squamish-architectural-photography/">Squamish</a> &middot;
-          <a href="/homepage-preview/whistler-architectural-photography/">Whistler</a> &middot;
-          <a href="/homepage-preview/pemberton-photography/">Pemberton</a> &middot;
-          <a href="/homepage-preview/sunshine-coast-photography/">Sunshine&nbsp;Coast</a> &middot;
-          <a href="/homepage-preview/vancouver-architectural-photographer/">Vancouver</a> &middot;
-          <a href="/homepage-preview/fraser-valley-photography/">Fraser&nbsp;Valley</a> &middot;
-          <a href="/homepage-preview/okanagan-architectural-photographer/">Okanagan</a> &middot;
-          <a href="/homepage-preview/salt-spring-architectural-photography/">Salt&nbsp;Spring</a> &middot;
-          <a href="/homepage-preview/invermere-architectural-photography/">Invermere</a>
+          <a href="/squamish-architectural-photography">Squamish</a> &middot;
+          <a href="/whistler-architectural-photography">Whistler</a> &middot;
+          <a href="/pemberton-photography">Pemberton</a> &middot;
+          <a href="/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/vancouver-architectural-photographer">Vancouver</a> &middot;
+          <a href="/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
+          <a href="/okanagan-architectural-photographer">Okanagan</a> &middot;
+          <a href="/salt-spring-architectural-photography">Salt&nbsp;Spring</a> &middot;
+          <a href="/invermere-architectural-photography">Invermere</a>
         </p>
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
-        <a href="/homepage-preview/projects-v2/">Projects</a>
-        <a href="/homepage-preview/portfolio/">Portfolio</a>
-        <a href="/homepage-preview/services/">Services</a>
-        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
-        <a href="/homepage-preview/process/">Process</a>
-        <a href="/homepage-preview/case-studies/">Case Studies</a>
-        <a href="/homepage-preview/bio/">About</a>
-        <a href="/homepage-preview/journal/">Journal</a>
-        <a href="/homepage-preview/faqs/">FAQs</a>
-        <a href="/homepage-preview/discovery-call/">Discovery Call</a>
-        <a href="/homepage-preview/contact/">Contact</a>
+        <a href="/projects">Projects</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/services">Services</a>
+        <a href="/creative-partner">Creative Partner</a>
+        <a href="/process">Process</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/bio">About</a>
+        <a href="/journal">Journal</a>
+        <a href="/faqs">FAQs</a>
+        <a href="/discovery-call">Discovery Call</a>
+        <a href="/contact">Contact</a>
       </nav>
     </div>
 

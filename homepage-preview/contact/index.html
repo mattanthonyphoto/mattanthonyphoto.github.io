@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact</title>
+<title>Contact preview</title>
 <style>html,body{margin:0;padding:0}</style>
 </head>
 <body>
@@ -142,11 +142,8 @@
   .hp-nav{padding:14px var(--gutter);gap:6px 10px;flex-wrap:wrap}
   .hp-nav-mark{flex:1 1 100%;font-size:10px;letter-spacing:.2em}
   .hp-nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
-  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em;
-    padding:8px 0;min-height:36px;display:inline-flex!important;align-items:center}
-  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px);
-    min-width:0;max-width:calc(100vw - 32px)}
-  .hp-nav-menu a{white-space:normal;padding:12px 16px;line-height:1.35}
+  .hp-nav-links>a,.hp-nav-trigger{font-size:10px;letter-spacing:.06em}
+  .hp-nav-menu{left:0;right:auto;transform:none;top:calc(100% + 10px)}
 }
 
 /* ── FOOTER ── */
@@ -420,29 +417,29 @@
 
 <!-- ═══ NAV: first element in the block, over the dark full-bleed hero ═══ -->
 <div class="hp-nav" data-hp-over id="hpNav" role="navigation" aria-label="Main">
-  <a href="/homepage-preview/minimal/" class="hp-nav-mark">Matt Anthony Photography</a>
+  <a href="/" class="hp-nav-mark">Matt Anthony Photography</a>
   <div class="hp-nav-links">
-    <a href="/homepage-preview/projects-v2/">Projects</a>
+    <a href="/projects">Projects</a>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpAboutBtn" aria-expanded="false" aria-controls="hpAboutMenu">About</button>
       <div class="hp-nav-menu" id="hpAboutMenu" role="group" aria-labelledby="hpAboutBtn" hidden>
-        <a href="/homepage-preview/bio/">About</a>
-        <a href="/homepage-preview/process/">Process</a>
-        <a href="/homepage-preview/case-studies/">Case Studies</a>
-        <a href="/homepage-preview/faqs/">FAQs</a>
-        <a href="/homepage-preview/journal/">Journal</a>
+        <a href="/bio">About</a>
+        <a href="/process">Process</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/faqs">FAQs</a>
+        <a href="/journal">Journal</a>
       </div>
     </div>
     <div class="hp-nav-group">
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
-        <a href="/homepage-preview/project-photography/">Project Photography</a>
-        <a href="/homepage-preview/film/">Videography</a>
-        <a href="/homepage-preview/build-team-content/">Progression Documentation</a>
-        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
+        <a href="/project-photography">Project Photography</a>
+        <a href="/film">Videography</a>
+        <a href="/construction-team-content">Progression Documentation</a>
+        <a href="/creative-partner">Creative Partner</a>
       </div>
     </div>
-    <a href="/homepage-preview/contact/" class="hp-nav-cta">Contact</a>
+    <a href="/contact" class="hp-nav-cta">Contact</a>
   </div>
 </div>
 
@@ -471,13 +468,14 @@
   <div class="ct-container">
       <div class="ct-form-panel" id="ct-form-panel" tabindex="-1">
         <h2 class="ct-form-heading">Send an inquiry</h2>
-        <p class="ct-form-sub">The project, the date it finishes, and what the photographs are for. A <a href="/homepage-preview/discovery-call/">Discovery Call</a> is the other path.</p>
+        <p class="ct-form-sub">The project, the date it finishes, and what the photographs are for. A <a href="/discovery-call">Discovery Call</a> is the other path.</p>
         <form class="ct-form" id="ctForm">
           <div class="ct-form-row">
             <div class="ct-form-group"><label for="ct-fname">Name</label><input type="text" id="ct-fname" name="firstName" placeholder="Your name" autocomplete="name" required></div>
             <div class="ct-form-group"><label for="ct-email-input">Email</label><input type="email" id="ct-email-input" name="email" placeholder="you@company.com" autocomplete="email" required></div>
           </div>
-          <div class="ct-form-group"><label for="ct-message">Tell Me About Your Project</label><textarea id="ct-message" name="notes" placeholder="What's being built, who you are, your timeline, and what you're hoping to achieve with the imagery."></textarea></div>
+          <div class="ct-form-group"><label for="ct-message">Tell Me About Your Project</label><textarea id="ct-message" name="notes" placeholder="What is being built, who you are, the timeline, and what the photographs are for."></textarea></div>
+          <input type="text" name="_gotcha" id="ct-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden">
           <div class="ct-form-submit">
             <button type="submit" class="ct-submit-btn" id="ctSubmitBtn">Send Inquiry</button>
             <p class="ct-form-note">I'll get back to you within 24 hours, typically sooner.</p>
@@ -488,7 +486,7 @@
           <div class="ct-success-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>
           <h3>Message sent</h3>
           <p>Thanks for reaching out. Want to skip the back-and-forth? Book a time now.</p>
-          <a href="/homepage-preview/discovery-call/" class="ct-submit-btn">Book a Discovery Call</a>
+          <a href="/discovery-call" class="ct-submit-btn">Book a Discovery Call</a>
           <p class="ct-success-note">I'll also reply to your inquiry within 24 hours.</p>
         </div>
       </div>
@@ -505,7 +503,7 @@
     <h2 id="ct-cta-h">Tell me about your project.</h2>
     <div class="ct-cta-row">
       <div class="ct-cta-links">
-        <a href="/homepage-preview/discovery-call/" class="ct-cta-btn-primary">Book a Discovery Call</a>
+        <a href="/discovery-call" class="ct-cta-btn-primary">Book a Discovery Call</a>
         <a href="#ct-form-panel" class="ct-cta-btn-secondary">Send a Message</a>
       </div>
       <span class="ct-cta-or">or email <a href="mailto:info@mattanthonyphoto.com">info@mattanthonyphoto.com</a></span>
@@ -526,29 +524,29 @@
         <p class="hp-ft-mark">Matt Anthony Photography</p>
         <p class="hp-ft-tag">Architecture and interiors photography across British Columbia</p>
         <p class="hp-ft-areas">
-          <a href="/homepage-preview/squamish-architectural-photography/">Squamish</a> &middot;
-          <a href="/homepage-preview/whistler-architectural-photography/">Whistler</a> &middot;
-          <a href="/homepage-preview/pemberton-photography/">Pemberton</a> &middot;
-          <a href="/homepage-preview/sunshine-coast-photography/">Sunshine&nbsp;Coast</a> &middot;
-          <a href="/homepage-preview/vancouver-architectural-photographer/">Vancouver</a> &middot;
-          <a href="/homepage-preview/fraser-valley-photography/">Fraser&nbsp;Valley</a> &middot;
-          <a href="/homepage-preview/okanagan-architectural-photographer/">Okanagan</a> &middot;
-          <a href="/homepage-preview/salt-spring-architectural-photography/">Salt&nbsp;Spring</a> &middot;
-          <a href="/homepage-preview/invermere-architectural-photography/">Invermere</a>
+          <a href="/squamish-architectural-photography">Squamish</a> &middot;
+          <a href="/whistler-architectural-photography">Whistler</a> &middot;
+          <a href="/pemberton-photography">Pemberton</a> &middot;
+          <a href="/sunshine-coast-photography">Sunshine&nbsp;Coast</a> &middot;
+          <a href="/vancouver-architectural-photographer">Vancouver</a> &middot;
+          <a href="/fraser-valley-photography">Fraser&nbsp;Valley</a> &middot;
+          <a href="/okanagan-architectural-photographer">Okanagan</a> &middot;
+          <a href="/salt-spring-architectural-photography">Salt&nbsp;Spring</a> &middot;
+          <a href="/invermere-architectural-photography">Invermere</a>
         </p>
       </div>
       <nav class="hp-ft-nav" aria-label="Footer">
-        <a href="/homepage-preview/projects-v2/">Projects</a>
-        <a href="/homepage-preview/portfolio/">Portfolio</a>
-        <a href="/homepage-preview/services/">Services</a>
-        <a href="/homepage-preview/creative-partner/">Creative Partner</a>
-        <a href="/homepage-preview/process/">Process</a>
-        <a href="/homepage-preview/case-studies/">Case Studies</a>
-        <a href="/homepage-preview/bio/">About</a>
-        <a href="/homepage-preview/journal/">Journal</a>
-        <a href="/homepage-preview/faqs/">FAQs</a>
-        <a href="/homepage-preview/discovery-call/">Discovery Call</a>
-        <a href="/homepage-preview/contact/">Contact</a>
+        <a href="/projects">Projects</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/services">Services</a>
+        <a href="/creative-partner">Creative Partner</a>
+        <a href="/process">Process</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/bio">About</a>
+        <a href="/journal">Journal</a>
+        <a href="/faqs">FAQs</a>
+        <a href="/discovery-call">Discovery Call</a>
+        <a href="/contact">Contact</a>
       </nav>
     </div>
 
@@ -703,99 +701,88 @@
 }
 </script>
 
-<script src="https://www.google.com/recaptcha/api.js?render=6LfnaaosAAAAALEoeL4qjhTHAyNMRIeyPPcQd_hD"></script>
-
 <script>
-/* ── Contact Form → n8n Webhook ── */
-/* STALE: the LIVE contact page dual-submits Formspree + the command hub.
-   Endpoint, reCAPTCHA key and payload keys are left exactly as found. */
-/* Register pass 2026-08-27 touched COPY ONLY, above this script: the hero sub
-   and the CTA sub lost their second person, the duplicate "I typically respond
-   within 24 hours" line and the "24 Hour Response Time" stat were cut. The form
-   (labels, placeholders, "I'll get back to you", the submit handler below) is
-   untouched. The same four strings also sit in core-pages/contact-formspree-hub.txt,
-   which is the live-form variant and was NOT edited: it will drift until someone
-   mirrors these cuts there and into the Squarespace block. */
-/* Payload keys map 1:1 to Lead Database spreadsheet columns (Pipeline sheet) */
+/* Contact form: Formspree is the visitor success path. The hub webhook
+   creates the lead, a Home task, a reply draft, and pings Matt. */
 (function(){
-  var WEBHOOK = 'https://n8n.srv1277163.hstgr.cloud/webhook/contact-form';
+  var FORMSPREE = 'https://formspree.io/f/xqevrjjp';
+  var WEBHOOK = 'https://command-hub-mauve.vercel.app/api/webhooks/website-form';
+  var WEBHOOK_SECRET = '56e47f9751fa7380283f008c7968375f9c59dcfd5a513f024ec2a8496a2e699f';
   var form = document.getElementById('ctForm');
   if(!form) return;
 
+  function val(n){
+    var el = form.querySelector('[name="'+n+'"]');
+    return el ? (el.value || '').trim() : '';
+  }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
-
     var btn = document.getElementById('ctSubmitBtn');
     var errEl = document.getElementById('ctError');
     btn.textContent = 'Sending...';
     btn.disabled = true;
     errEl.style.display = 'none';
 
-    /* ── Get reCAPTCHA token, then submit ── */
-    grecaptcha.ready(function(){
-      grecaptcha.execute('6LfnaaosAAAAALEoeL4qjhTHAyNMRIeyPPcQd_hD', {action: 'contact_form'}).then(function(token){
-        submitForm(token);
-      }).catch(function(err){
-        console.error('reCAPTCHA error:', err);
+    var rawName = val('firstName');
+    var firstName = rawName;
+    var lastName = '';
+    var sp = rawName.lastIndexOf(' ');
+    if(sp > 0){
+      firstName = rawName.slice(0, sp);
+      lastName = rawName.slice(sp + 1);
+    }
+    var honeypot = val('_gotcha');
+    var email = val('email');
+    var notes = val('notes');
+    var fullName = rawName;
+
+    var formspreeReq = fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: fullName,
+        email: email,
+        message: notes,
+        _subject: 'New inquiry, ' + (fullName || 'website'),
+        _gotcha: honeypot
+      })
+    });
+
+    try {
+      fetch(WEBHOOK, {
+        method: 'POST',
+        keepalive: true,
+        headers: { 'Content-Type': 'application/json', 'X-Website-Secret': WEBHOOK_SECRET },
+        body: JSON.stringify({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          notes: notes.slice(0, 20000),
+          website: honeypot,
+          dateAdded: new Date().toISOString(),
+          formSource: 'Website Contact Form'
+        })
+      }).catch(function(){});
+    } catch (err) {}
+
+    formspreeReq
+      .then(function(r){
+        if(!r.ok) throw new Error('Formspree ' + r.status);
+        form.style.display = 'none';
+        var heading = document.querySelector('.ct-form-heading');
+        var sub = document.querySelector('.ct-form-sub');
+        if(heading) heading.style.display = 'none';
+        if(sub) sub.style.display = 'none';
+        var okEl = document.getElementById('ctSuccess');
+        okEl.style.display = 'block';
+        okEl.focus();
+      })
+      .catch(function(){
         btn.textContent = 'Send Inquiry';
         btn.disabled = false;
         errEl.style.display = 'block';
       });
-    });
-
-    function submitForm(recaptchaToken){
-    /* ── Collect fields (keys match spreadsheet column names) ── */
-    var payload = {
-      /* CONTACT group */
-      firstName:    (form.querySelector('[name="firstName"]').value || '').trim(),
-      lastName:     '',
-      company:      '',
-      role:         '',
-      email:        (form.querySelector('[name="email"]').value || '').trim(),
-      phone:        '',
-
-      /* SOURCE group */
-      source:       '',
-      referralFrom: '',
-      clientType:   '',
-
-      /* SERVICE group */
-      service:      '',
-      region:       '',
-
-      /* PIPELINE */
-      stage:        'New Lead',
-
-      /* NOTES */
-      notes:        (form.querySelector('[name="notes"]').value || '').trim(),
-
-      /* META */
-      dateAdded:    new Date().toISOString(),
-      formSource:   'Website Contact Form',
-      recaptchaToken: recaptchaToken
-    };
-
-    fetch(WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function(r){
-      if(!r.ok) throw new Error('Webhook returned ' + r.status);
-      form.style.display = 'none';
-      document.querySelector('.ct-form-heading').style.display = 'none';
-      document.querySelector('.ct-form-sub').style.display = 'none';
-      var okEl = document.getElementById('ctSuccess');
-      okEl.style.display = 'block';
-      okEl.focus();
-    })
-    .catch(function(err){
-      console.error('Contact form error:', err);
-      btn.textContent = 'Send Inquiry';
-      btn.disabled = false;
-      errEl.style.display = 'block';
-    });
-    } /* end submitForm */
   });
 })();
 </script>
