@@ -516,6 +516,7 @@
           </div>
           <div class="ct-form-row">
             <div class="ct-form-group"><label for="ct-phone">Phone</label><input type="tel" id="ct-phone" name="phone" placeholder="604.555.0100" autocomplete="tel"></div>
+            <div class="ct-form-group"><label for="ct-site">Website</label><input type="url" id="ct-site" name="companyWebsite" placeholder="https://studio.com" autocomplete="url"></div>
           </div>
           <div class="ct-form-group">
             <div class="ct-budget-head">
@@ -815,6 +816,7 @@
     var company = val('company');
     var role = val('role');
     var phone = val('phone');
+    var companyWebsite = val('companyWebsite');
     var budgetLabel = moneyLabel(val('budget') || 3500);
 
     var formspreeReq = fetch(FORMSPREE, {
@@ -827,6 +829,7 @@
         company: company,
         role: role,
         budget: budgetLabel,
+        companyWebsite: companyWebsite,
         message: notes,
         _subject: 'New inquiry, ' + (fullName || 'website'),
         _gotcha: honeypot
@@ -846,6 +849,7 @@
           company: company,
           role: role,
           budget: budgetLabel,
+          companyWebsite: companyWebsite,
           notes: notes.slice(0, 20000),
           website: honeypot,
           dateAdded: new Date().toISOString(),
