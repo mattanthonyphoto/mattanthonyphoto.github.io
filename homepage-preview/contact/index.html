@@ -499,11 +499,11 @@
             <div class="ct-form-group"><label for="ct-email-input">Email</label><input type="email" id="ct-email-input" name="email" placeholder="you@company.com" autocomplete="email" required></div>
           </div>
           <div class="ct-form-row">
-            <div class="ct-form-group"><label for="ct-company">Company</label><input type="text" id="ct-company" name="company" placeholder="Studio or firm" autocomplete="organization"></div>
+            <div class="ct-form-group"><label for="ct-company">Company</label><input type="text" id="ct-company" name="company" placeholder="Studio or firm" autocomplete="organization" required></div>
             <div class="ct-form-group">
               <label for="ct-role">Role</label>
-              <select id="ct-role" name="role">
-                <option value="" selected>Select</option>
+              <select id="ct-role" name="role" required>
+                <option value="" disabled selected>Select</option>
                 <option value="Owner / Principal">Owner / Principal</option>
                 <option value="Project Manager">Project Manager</option>
                 <option value="Marketing Manager">Marketing Manager</option>
@@ -515,18 +515,18 @@
             </div>
           </div>
           <div class="ct-form-row">
-            <div class="ct-form-group"><label for="ct-phone">Phone</label><input type="tel" id="ct-phone" name="phone" placeholder="604.555.0100" autocomplete="tel"></div>
-            <div class="ct-form-group"><label for="ct-site">Website</label><input type="url" id="ct-site" name="companyWebsite" placeholder="https://studio.com" autocomplete="url"></div>
+            <div class="ct-form-group"><label for="ct-phone">Phone</label><input type="tel" id="ct-phone" name="phone" placeholder="604.555.0100" autocomplete="tel" required></div>
+            <div class="ct-form-group"><label for="ct-site">Website</label><input type="text" id="ct-site" name="companyWebsite" placeholder="https://studio.com" inputmode="url" autocomplete="url" required></div>
           </div>
           <div class="ct-form-group">
             <div class="ct-budget-head">
               <label for="ct-budget">Budget</label>
               <span class="ct-budget-val" id="ctBudgetVal">$3,500</span>
             </div>
-            <input type="range" id="ct-budget" name="budget" min="1500" max="10000" step="500" value="3500" aria-valuemin="1500" aria-valuemax="10000" aria-valuenow="3500" aria-valuetext="$3,500">
+            <input type="range" id="ct-budget" name="budget" min="1500" max="10000" step="500" value="3500" required aria-valuemin="1500" aria-valuemax="10000" aria-valuenow="3500" aria-valuetext="$3,500">
             <div class="ct-budget-ends"><span>$1,500</span><span>$10,000+</span></div>
           </div>
-          <div class="ct-form-group"><label for="ct-message">Tell Me About Your Project</label><textarea id="ct-message" name="notes" placeholder="What is being built, who you are, the timeline, and what the photographs are for."></textarea></div>
+          <div class="ct-form-group"><label for="ct-message">Tell Me About Your Project</label><textarea id="ct-message" name="notes" placeholder="What is being built, who you are, the timeline, and what the photographs are for." required></textarea></div>
           <input type="text" name="_gotcha" id="ct-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden">
           <div class="ct-form-submit">
             <button type="submit" class="ct-submit-btn" id="ctSubmitBtn">Send Inquiry</button>
@@ -795,6 +795,10 @@
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
     var btn = document.getElementById('ctSubmitBtn');
     var errEl = document.getElementById('ctError');
     btn.textContent = 'Sending...';
