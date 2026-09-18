@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice · Canmore Woodcrafters · Schmidt Residence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+:root {
+  --ink: #1A1A18;
+  --paper: #FFFFFF;
+  --gold: #C9A96E;
+  --stone: #6B6B68;
+  --rule: rgba(26,26,24,0.12);
+  --linen: #F6F4F0;
+}
+@page { size: Letter; margin: 0.7in 0.72in 0.75in; }
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 10.25pt;
+  line-height: 1.58;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.sheet { max-width: 7.1in; margin: 0 auto; padding: 0.55in 0.48in 0.7in; }
+.brand-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7.5pt;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.brand-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 26pt;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0 0 6px;
+}
+.brand-tag {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 11pt;
+  color: var(--stone);
+}
+.doc-header {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--rule);
+}
+.doc-meta { text-align: right; font-family: 'Josefin Sans', sans-serif; }
+.doc-meta .label {
+  font-size: 7pt;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+.doc-meta .value {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22pt;
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.doc-meta .small {
+  font-size: 8.5pt;
+  letter-spacing: 0.04em;
+  color: var(--stone);
+  font-family: 'DM Sans', Helvetica, sans-serif;
+}
+.parties { width: 100%; border-collapse: collapse; margin-bottom: 28px; }
+.party-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 6.5pt;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.party-name { font-size: 11.5pt; font-weight: 500; margin-bottom: 4px; }
+.party-body { font-size: 9.5pt; line-height: 1.65; }
+.items { width: 100%; border-collapse: collapse; margin: 8px 0 18px; font-size: 9.5pt; }
+.items th {
+  background: var(--ink);
+  color: #F6F4F0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7pt;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 9px 12px;
+}
+.items th.right, .items td.right { text-align: right; }
+.items td { padding: 12px; border-bottom: 1px solid #E5E2DA; vertical-align: top; }
+.item-name { font-weight: 500; margin: 0 0 6px; }
+.item-desc { color: var(--stone); font-size: 9pt; line-height: 1.55; margin: 0; }
+.totals { width: 280px; margin-left: auto; margin-bottom: 28px; }
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 10pt;
+}
+.totals-row.grand {
+  border-bottom: none;
+  border-top: 2px solid var(--ink);
+  margin-top: 6px;
+  padding-top: 14px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 16pt;
+  font-weight: 500;
+}
+.pay {
+  background: var(--ink);
+  color: #F6F4F0;
+  padding: 22px 24px;
+  margin-bottom: 22px;
+}
+.pay .label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.pay p { margin: 0 0 8px; font-size: 9.5pt; line-height: 1.55; }
+.pay p:last-child { margin-bottom: 0; }
+.pay strong { color: var(--gold); font-weight: 500; }
+.notes { font-size: 9pt; color: var(--stone); line-height: 1.6; margin-bottom: 28px; }
+.notes p { margin: 0 0 8px; }
+.notes strong { color: var(--ink); font-weight: 500; }
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone);
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+@media print {
+  html, body { background: #fff !important; }
+  .sheet { padding: 0; max-width: none; }
+}
+</style>
+
+<div class="sheet">
+
+<table class="doc-header">
+<tr>
+<td style="vertical-align:top; padding:0;">
+  <div class="brand-eyebrow">Architectural Photography</div>
+  <div class="brand-name">Matt Anthony</div>
+  <div class="brand-tag">Documenting design intent</div>
+</td>
+<td style="vertical-align:top; padding:0;" class="doc-meta">
+  <div class="label">Amount due</div>
+  <div class="value">$630.00</div>
+  <div class="small">Issued 18 September 2026<br>Due 18 October 2026<br>Terms: Net 30</div>
+</td>
+</tr>
+</table>
+
+<table class="parties">
+<tr>
+<td style="width:50%; vertical-align:top; padding:0 22px 0 0; border-right:1px solid #D9D5CD;">
+  <div class="party-label">Bill to</div>
+  <div class="party-name">Canmore Woodcrafters Ltd.</div>
+  <div class="party-body">
+    Attn: Brian Salzgeber<br>
+    3-102 Boulder Crescent<br>
+    Canmore, Alberta T1W 1L2<br>
+    Brians@canmorewoodcrafters.com<br>
+    403.678.4767
+  </div>
+</td>
+<td style="width:50%; vertical-align:top; padding:0 0 0 22px;">
+  <div class="party-label">From</div>
+  <div class="party-name">Matt Anthony Photography</div>
+  <div class="party-body">
+    Sole proprietor: Matt Anthony<br>
+    Squamish, British Columbia<br>
+    info@mattanthonyphoto.com<br>
+    604.765.9270<br>
+    GST# 79115 0261 RT0001
+  </div>
+</td>
+</tr>
+</table>
+
+<table class="items">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th class="right">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p class="item-name">Schmidt Residence image license, 8 stills</p>
+        <p class="item-desc">
+          Perpetual, non-exclusive commercial license for Canmore Woodcrafters marketing use of eight photographs of the Schmidt Residence, Invermere, BC, selected 18 September 2026. Quoted at $75 per image on 3 September 2026. Full-resolution and web-size files delivered by Dropbox after this invoice is paid and the licensing agreement is signed.
+        </p>
+      </td>
+      <td class="right">$600.00</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="totals">
+  <div class="totals-row"><span>Subtotal</span><span>$600.00</span></div>
+  <div class="totals-row"><span>GST (5%)</span><span>$30.00</span></div>
+  <div class="totals-row grand"><span>Total due</span><span>$630.00 CAD</span></div>
+</div>
+
+<div class="pay">
+  <div class="label">Payment</div>
+  <p><strong>Interac e-Transfer</strong> to info@mattanthonyphoto.com. Auto-deposit is on. No security question needed.</p>
+  <p><strong>Card.</strong> A secure payment link can be sent on request.</p>
+</div>
+
+<div class="notes">
+  <p><strong>This invoice is issued with the Photography Licensing Agreement dated 18 September 2026.</strong> Usage rights are governed by that agreement and take effect on full payment.</p>
+  <p>Thank you, Brian.</p>
+</div>
+
+<div class="footer">
+  <div>Matt Anthony Photography · Squamish, BC</div>
+  <div>mattanthonyphoto.com · 604.765.9270</div>
+</div>
+
+</div>
+</body>
+</html>
