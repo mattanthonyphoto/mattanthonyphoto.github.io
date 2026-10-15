@@ -19,7 +19,7 @@
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
    Homepage, built on the GD Nielsen minimal layout.
-   Blocks: nav, hero, statement, selected projects, how I work, the visit, close.
+   Blocks: nav, hero, statement, selected projects, how I work, the visit, creative partner, close.
    Gallery hang: three across, name and place under each frame.
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -352,6 +352,26 @@
   .hp-visit-lead{font-size:15px}
 }
 
+/* ════════════ CREATIVE PARTNER ════════════ */
+.hp-partner{padding:var(--section) 0;background:var(--paper)!important;border-top:1px solid var(--rule)}
+.hp-partner-inner{max-width:var(--page);margin:0 auto;padding:0 var(--gutter);
+  display:flex!important;align-items:center;gap:clamp(36px,5vw,80px)}
+.hp-partner-copy,.hp-partner-photo{flex:1 1 50%;min-width:0}
+.hp-partner-photo{max-width:50%;display:block;background:var(--ink)!important}
+.hp-partner-photo img{width:100%;max-width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block}
+.hp-partner-photo:hover img,.hp-partner-photo:focus-visible img{opacity:.92}
+.hp-partner-copy h2{font-family:'Inter',-apple-system,sans-serif;font-weight:300;
+  font-size:clamp(1.75rem,2.6vw,2.6rem);line-height:1.15;letter-spacing:0;
+  color:var(--ink)!important;margin:0 0 20px}
+.hp-partner-copy .hp-eyebrow{margin-bottom:20px}
+.hp-partner-copy p:not(.hp-eyebrow){font-family:'Inter',-apple-system,sans-serif;font-weight:300;
+  font-size:16px;line-height:1.75;color:var(--ink)!important;margin:0 0 28px}
+@media (max-width:900px){
+  .hp-partner-inner{flex-direction:column;align-items:stretch;gap:32px}
+  .hp-partner-photo{max-width:none}
+  .hp-partner-copy p:not(.hp-eyebrow){font-size:15px}
+}
+
 /* ════════════ CLOSE ════════════ */
 .hp-close{position:relative;min-height:72vh;max-height:840px;overflow:hidden;
   background:var(--ink)!important;display:flex!important;align-items:center;justify-content:center;text-align:center}
@@ -482,6 +502,7 @@
       <button type="button" class="hp-nav-trigger" id="hpServicesBtn" aria-expanded="false" aria-controls="hpServicesMenu">Services</button>
       <div class="hp-nav-menu" id="hpServicesMenu" role="group" aria-labelledby="hpServicesBtn" hidden>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
+        <a href="/homepage-preview/drone-photography/">Drone Photography</a>
         <a href="https://www.mattanthonyphoto.com/commercial-photography">Commercial Photography</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
       </div>
@@ -662,11 +683,11 @@
           <p>The build as it goes up. Dates are set around the work on site.</p>
         </span>
       </a>
-      <a class="hp-svc" href="/homepage-preview/creative-partner/">
+      <a class="hp-svc" href="/homepage-preview/drone-photography/">
         <span class="hp-svc-n">04</span>
         <span>
-          <h3>Creative Partner</h3>
-          <p>Continued work between projects. The mix is written to the firm. Billed monthly.</p>
+          <h3>Drone Photography</h3>
+          <p>Aerial stills and drone video of the building. Included on most project visits. A flight on its own is quoted separately.</p>
         </span>
       </a>
       <a class="hp-arrow-link" href="/homepage-preview/services/">All services &rarr;</a>
@@ -714,6 +735,21 @@
   </div>
 </section>
 
+<!-- ════════════ CREATIVE PARTNER ════════════ -->
+<section class="hp-partner" id="creative-partner" aria-labelledby="hp-partner-h">
+  <div class="hp-partner-inner">
+    <div class="hp-partner-copy">
+      <p class="hp-eyebrow">Creative Partner</p>
+      <h2 id="hp-partner-h">Continued work between projects.</h2>
+      <p>The mix is written to the firm. Site and SEO. Social. Or visits with both. Film and progression when they belong. A website build is quoted on its own. Billed monthly.</p>
+      <a class="hp-arrow-link" href="/homepage-preview/creative-partner/">Creative Partner &rarr;</a>
+    </div>
+    <a class="hp-partner-photo" href="/homepage-preview/creative-partner/">
+      <img src="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6824fd48afd1dd40cd73e146/39108276-134b-43b8-b9d4-0760ee941f94/desolation-sound-residence-dusk-moon-over-the-water-architectural-photographer-matt-anthony.jpg?format=2500w 2500w" sizes="(max-width:900px) 100vw, 46vw" alt="The house at dusk above the shore, the entry lit and the moon over the water" width="1500" height="1125" loading="lazy" decoding="async">
+    </a>
+  </div>
+</section>
+
 <!-- ════════════ CLOSE ════════════ -->
 <section class="hp-close" aria-labelledby="hp-close-h">
   <img src="https://mattanthonyphoto.github.io/media/banners/the-perch-013-1500.jpg" srcset="https://mattanthonyphoto.github.io/media/banners/the-perch-013-640.webp 640w, https://mattanthonyphoto.github.io/media/banners/the-perch-013-1000.webp 1000w, https://mattanthonyphoto.github.io/media/banners/the-perch-013-1500.webp 1500w, https://mattanthonyphoto.github.io/media/banners/the-perch-013-2560.webp 2560w" sizes="(orientation: portrait) 115vh, 100vw" alt="The Perch, Sunshine Coast, the cantilevered corner over the rock" loading="lazy" decoding="async" width="1500" height="938">
@@ -757,6 +793,7 @@
         <a href="/homepage-preview/portfolio/">Portfolio</a>
         <a href="/homepage-preview/services/">Services</a>
         <a href="/homepage-preview/project-photography/">Project Photography</a>
+        <a href="/homepage-preview/drone-photography/">Drone Photography</a>
         <a href="https://www.mattanthonyphoto.com/commercial-photography">Commercial Photography</a>
         <a href="/homepage-preview/creative-partner/">Creative Partner</a>
         <a href="/homepage-preview/film/">Film</a>
