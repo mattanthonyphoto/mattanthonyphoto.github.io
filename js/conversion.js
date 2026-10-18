@@ -113,7 +113,6 @@
     '/balmoral-construction',
     '/sitelines-architecture',
     '/the-window-merchant',
-    '/lrd-studio-interior-design',
     '/bio',
     '/process',
     '/projects',
