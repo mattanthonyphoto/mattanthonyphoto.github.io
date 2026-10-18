@@ -104,7 +104,7 @@
   var exitPages = [
     '/',
     '/pricing-guide-landing',
-    '/pricing-guide-builders',
+    '/pricing-guide/builders',
     '/project-photography',
     '/award-publication-imagery',
     '/construction-team-content',
@@ -113,7 +113,6 @@
     '/balmoral-construction',
     '/sitelines-architecture',
     '/the-window-merchant',
-    '/lrd-studio-interior-design',
     '/bio',
     '/process',
     '/projects',
